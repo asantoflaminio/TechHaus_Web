@@ -1,0 +1,97 @@
+<style>
+body {
+  padding-top: 80px;
+  text-align: center;
+  font-family: monaco, monospace;
+  background: url(https://2o34683axl001lupaf2udyvl-wpengine.netdna-ssl.com/wp-content/uploads/SageGray_Edited_2018.jpg) 50%;
+  background-size: cover;
+}
+
+h2 {
+  font-size: 17px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 15px;
+  text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #41414c;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+/* Style the content */
+.content {
+    background-color: #ddd;
+    padding: 10px;
+    height: 400px; /* Should be removed. Only for demonstration */
+}
+
+#devicesicon {
+  width:130px;
+  height:130px;
+  position: absolute;
+  left: 120px;
+  top: 280px;
+  
+}
+
+#devicesname {
+  position: absolute;
+  left: 156px;
+  top: 410px;
+}
+
+#roomsicon {
+  width:130px;
+  height:130px;
+  position: absolute;
+  left: 320px;
+  top: 280px;
+  
+}
+
+#roomsname {
+  position: absolute;
+  left: 365px;
+  top: 410px;
+}
+
+#routinesicon {
+  width:130px;
+  height:130px;
+  position: absolute;
+  left: 520px;
+  top: 280px;
+  
+}
+
+#routinesname {
+  position: absolute;
+  left: 555px;
+  top: 410px;
+}
+
+</style>

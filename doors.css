@@ -1,0 +1,86 @@
+<style>
+body {
+  padding-top: 80px;
+  text-align: center;
+  font-family: monaco, monospace;
+  background: url(https://2o34683axl001lupaf2udyvl-wpengine.netdna-ssl.com/wp-content/uploads/SageGray_Edited_2018.jpg) 50%;
+  background-size: cover;
+}
+
+h2 {
+  font-size: 17px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 15px;
+  text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #41414c;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+/* Style the content */
+.content {
+    background-color: #ddd;
+    padding: 10px;
+    height: 400px; /* Should be removed. Only for demonstration */
+}
+
+/* Style the list box */
+.list {
+    background-color: #fff;
+    position: absolute;
+    top: 204px;
+    left: 120px;
+    height: 350px;
+    width: 625px;
+    border-style: solid;
+    border-color: #a6a6a6;
+}
+
+#dooricon {
+  width: 100px;
+  height:100px;
+  position: absolute;
+  left: 13px;
+  top: 210px;
+}
+
+.category_title {
+  position: absolute;
+  left: 130px;
+  top: 145px;
+  z-index: 100; /*para traer al frente*/
+}
+
+#addicon {
+  width: 40px;
+  height:40px;
+  position: absolute;
+  left: 220px;
+  top: 163px;
+  z-index: 100;
+}
