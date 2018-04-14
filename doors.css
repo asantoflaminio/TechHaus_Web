@@ -37,6 +37,10 @@ h3 {
     text-decoration: none;
 }
 
+#settings_icon {
+  width: 20px;
+}
+
 /* Change the link color to #111 (black) on hover */
 .navbar_item_content:hover {
     background-color: #111;
