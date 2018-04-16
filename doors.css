@@ -16,23 +16,21 @@ h3 {
   text-align: center;
 }
 
-.navbar {
+nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #41414c;
+    height: 50px;
 }
 
 .navbar_item {
     float: right;
-}
-
-.navbar_item_content {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px;
     text-decoration: none;
 }
 
@@ -40,9 +38,9 @@ h3 {
   width: 20px;
 }
 
-/* Change the link color to #111 (black) on hover */
+/* Change the link color to #333 on hover */
 .navbar_item_content:hover {
-    background-color: #111;
+    background-color: #333;
 }
 
 /* Style the content */
