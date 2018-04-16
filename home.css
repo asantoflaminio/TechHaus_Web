@@ -1,117 +1,64 @@
-<style>
+@charset "UTF-8";
+
 body {
-  padding-top: 80px;
-  text-align: center;
-  font-family: monaco, monospace;
-  background: url(https://2o34683axl001lupaf2udyvl-wpengine.netdna-ssl.com/wp-content/uploads/SageGray_Edited_2018.jpg) 50%;
-  background-size: cover;
-}
-
-h2 {
-  font-size: 17px;
-  text-align: center;
-}
-
-h3 {
-  font-size: 15px;
-  text-align: center;
-}
-
-
-.icons {
-   width: 100%;
-
-    /* Firefox */
-    display: -moz-box;
-    -moz-box-pack: center;
-    -moz-box-align: center;
-
-    /* Safari and Chrome */
-    display: -webkit-box;
-    -webkit-box-pack: center;
-    -webkit-box-align: center;
-
-    /* W3C */
-    display: box;
-    box-pack: center;
-    box-align: center;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
+ 	margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #41414c;
+    width: 100%;
+    height: 100%;
+    background-color: #fbfbfb;
 }
 
-li {
-    float: right;
+#logo {
+	width: 175px;
+	height: 175px;
+	border-radius: 2px;
+	padding: 3px 3px;
+	margin: 5px 5px;
 }
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+section {
+	text-align: center;
 }
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #111;
+h1 {
+	font: bold 1.9em Arial, Helvetica, sans-serif;
 }
 
-/* Style the content */
-.content {
-    background-color: #ddd;
-    padding: 10px;
-    height: 400px; /* Should be removed. Only for demonstration */
+#icons {
+	display: inline-block;
+  	padding-bottom: 35px;
 }
 
-#devicesicon {
-  width:130px;
-  height:130px;
-  position: absolute;
-  left: 120px;
-  top: 280px;
-  
+figure {
+	float: left; 
 }
 
-#devicesname {
-  position: absolute;
-  left: 156px;
-  top: 410px;
+figure img:hover{
+	-webkit-transform:scale(1.1);
+	-webkit-transition:-webkit-transform 0.40s;
 }
 
-#roomsicon {
-  width:130px;
-  height:130px;
-  position: absolute;
-  left: 320px;
-  top: 280px;
-  
+.icon {
+  	width:200px;
+  	height:200px; 
+  	max-width:100%
 }
 
-#roomsname {
-  position: absolute;
-  left: 365px;
-  top: 410px;
+figcaption{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.3em;
+	text-align: center;
+	margin-top: 5px;
 }
 
-#routinesicon {
-  width:130px;
-  height:130px;
-  position: absolute;
-  left: 520px;
-  top: 280px;
-  
+footer {
+	clear: both;
+ 	padding: 10px;
+ 	background-color: #ddd;
 }
 
-#routinesname {
-  position: absolute;
-  left: 555px;
-  top: 410px;
+footer p {
+	font: 1em Georgia, Arial;
+	color: #777;
+	text-align: center;
 }
-
-</style>
