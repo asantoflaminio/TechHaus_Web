@@ -1,9 +1,10 @@
 body {
-  padding-top: 80px;
+  padding-top: 0;
   text-align: center;
   font-family: monaco, monospace;
-  background: url(https://2o34683axl001lupaf2udyvl-wpengine.netdna-ssl.com/wp-content/uploads/SageGray_Edited_2018.jpg) 50%;
+  background-color: #ddd; /*url(https://2o34683axl001lupaf2udyvl-wpengine.netdna-ssl.com/wp-content/uploads/SageGray_Edited_2018.jpg) 50%;*/
   background-size: cover;
+  margin: 0;
 }
 
 h2 {
@@ -39,15 +40,8 @@ nav {
 }
 
 /* Change the link color to #333 on hover */
-.navbar_item_content:hover {
+.navbar_item:hover {
     background-color: #333;
-}
-
-/* Style the content */
-.content {
-    background-color: #ddd;
-    padding: 10px;
-    height: 400px; /* Should be removed. Only for demonstration */
 }
 
 /* Style the list box */
@@ -55,36 +49,36 @@ nav {
     background-color: #fff;
     position: absolute;
     float: right;
-    top: 204px;
-    left: 120px;
-    height: 350px;
-    width: 83%;
+    bottom: 10px;
+    right: 10px;
+    height: 76%;
+    width: 87%;
     border-style: solid;
     border-color: #a6a6a6;
     overflow:auto;
 }
 
 #dooricon {
-  width: 100px;
-  height:100px;
+  width: 125px;
+  height:125px;
   position: absolute;
   left: 13px;
-  top: 210px;
+  top: 125px;
 }
 
 .category_title {
   position: absolute;
-  left: 130px;
-  top: 145px;
+  left: 157px;
+  top: 60px;
   z-index: 100; /*para traer al frente*/
 }
 
 #addicon {
-  width: 40px;
-  height:40px;
+  width: 38px;
+  height: 38px;
   position: absolute;
-  left: 220px;
-  top: 163px;
+  left: 249px;
+  top: 81px;
   z-index: 100;
 }
 
@@ -124,4 +118,5 @@ nav {
   margin-left: 14px;
   margin-top: 12px;
 }
+
 </style>
