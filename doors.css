@@ -26,6 +26,12 @@ nav {
     height: 50px;
 }
 
+#logo {
+    height: 50px;
+    width: 50px;
+    float: left;
+}
+
 .navbar_item {
     float: right;
     display: block;
