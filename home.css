@@ -62,7 +62,6 @@ figcaption{
 
 footer {
 	clear: both;
- 	padding: 10px;
  	background-color: #ddd;
 }
 
@@ -70,6 +69,8 @@ footer p {
 	font: 1em Georgia, Arial;
 	color: #777;
 	text-align: center;
+	-webkit-margin-before: 2em;
+   	-webkit-margin-after: 0;
 }
 
 .dropbtn {
