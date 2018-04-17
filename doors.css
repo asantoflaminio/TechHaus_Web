@@ -22,13 +22,13 @@ nav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #41414c;
+    background-color: #2B3B46;
     height: 50px;
 }
 
 #logo {
     height: 50px;
-    width: 50px;
+    width: 150px;
     float: left;
 }
 
@@ -50,6 +50,40 @@ nav {
     background-color: #333;
 }
 
+/* Style the list */
+ul.breadcrumb {
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    top: 45px;
+    left: 157px;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 15px;
+}
+
+/* Add a slash symbol (>) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 0;
+    color: black;
+    content: ">\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #4B6377;
+    text-decoration: underline;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #618099;
+    text-decoration: underline;
+}
+
 /* Style the list box */
 .doors_list_box {
     background-color: #fff;
@@ -57,7 +91,7 @@ nav {
     float: right;
     bottom: 10px;
     right: 10px;
-    height: 76%;
+    height: 70%;
     width: 87%;
     border-style: solid;
     border-color: #a6a6a6;
@@ -75,7 +109,7 @@ nav {
 .category_title {
   position: absolute;
   left: 157px;
-  top: 60px;
+  top: 100px;
   z-index: 100; /*para traer al frente*/
 }
 
@@ -84,7 +118,7 @@ nav {
   height: 38px;
   position: absolute;
   left: 249px;
-  top: 81px;
+  top: 121px;
   z-index: 100;
 }
 
