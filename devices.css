@@ -58,24 +58,24 @@ h1 {
 
 li {
     display: inline-block;
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     padding-top: 50px;
-    padding-right: 25px;
-    padding-left: 25px;
+    padding-right: 40px;
+   
     padding-bottom: 50px;
    
 }
 
-figure {
-    
-    background-color: green;
-    padding-bottom: 25px;
+li {
+        padding-bottom: 25px;
     width: 125px;
     height: 125px;
 }
 
-figure img:hover{
+a {text-decoration: none; }
+
+li img:hover{
 	-webkit-transform:scale(1.1);
 	-webkit-transition:-webkit-transform 0.40s;
 
