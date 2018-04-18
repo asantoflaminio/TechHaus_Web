@@ -61,18 +61,11 @@ h1 {
 
 #icons {
 	display: inline-block;
-    
-    height:85%;
-    width: 85%;
-    
-    margin: 0 auto;
-
 }
 
 figure {
-    margin: 0 auto;
     float: left;
-    padding: 30px;
+    padding: 10px;
 }
 
 figure img:hover{
