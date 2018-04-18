@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+html{
+  position:relative; 
+  min-height: 100%;
+}
+
 body {
  	margin: 0;
     padding: 0;
@@ -8,11 +13,6 @@ body {
     background-color: #ccc;  
     font-family: monaco, monospace;
 
-}
-
-section {
-	position: relative;
-	top:80px;
 }
 
 nav {
@@ -50,6 +50,8 @@ nav {
 
 section {
 	text-align: center;
+    
+    margin-top: 50px;
 }
 
 h1 {
@@ -59,22 +61,31 @@ h1 {
 
 #icons {
 	display: inline-block;
-  	padding-bottom: 35px;
+    
+    height:85%;
+    width: 85%;
+    
+    margin: 0 auto;
+
 }
 
 figure {
-	float: left; 
+    margin: 0 auto;
+    float: left;
+    padding: 30px;
 }
 
 figure img:hover{
 	-webkit-transform:scale(1.1);
 	-webkit-transition:-webkit-transform 0.40s;
+
 }
 
 .icon {
   	width:125px;
   	height:125px; 
-  	max-width:100%
+  	max-width:100%;
+   
 }
 
 figcaption{
@@ -86,7 +97,22 @@ figcaption{
 }
 
 
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height:auto;
+    margin-top: 550px;
+    background-color: #ddd;
 
+}
+
+footer p {
+    font: 0.7em Georgia, Arial;
+    color: #777;
+    text-align: center;
+
+}
 
 /*para settings de aca en mas*/
 
@@ -103,7 +129,7 @@ figcaption{
     position: relative;
     display: inline-block;
     float: right;
-    	z-index: 150000;
+    z-index: 150000;
 
     
 }
@@ -127,7 +153,7 @@ figcaption{
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    	z-index: 150000;
+    z-index: 150000;
 
 }
 
