@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 html{
-  position:relative; 
-  min-height: 100%;
+    position:relative; 
+    min-height: 100%;
 }
 
 body {
@@ -26,6 +26,8 @@ nav {
     overflow: hidden;
     background-color: #2B3B4E;
     height: 50px;
+    width: 100%;
+    min-width: 100%;
 }
 
 #logo {
@@ -44,8 +46,8 @@ nav {
 }
 
 #settings {
-  width: 20px;
-  float: right;
+    width: 20px;
+    float: right;
 }
 
 /* Change the link color to #333 on hover */
@@ -92,13 +94,13 @@ figcaption{
 }
 
 #footer {
+    clear: both;
 	position: absolute;
     bottom: 0;
    	width: 100%;
     height:auto;
     margin-top: 550px;
  	background-color: #ddd;
-
 }
 
 footer p {
@@ -121,7 +123,7 @@ footer p {
     position: relative;
     display: inline-block;
     float: right;
-    	z-index: 150000;
+    z-index: 150000;
 
     
 }
@@ -145,7 +147,7 @@ footer p {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    	z-index: 150000;
+    z-index: 150000;
 
 }
 
@@ -159,13 +161,13 @@ footer p {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-    	z-index: 150000;
+    z-index: 150000;
 
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-    	z-index: 150000;
+    z-index: 150000;
 
 }

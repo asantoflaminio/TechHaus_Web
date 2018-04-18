@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
 html{
-  position:relative; 
-  min-height: 100%;
+    position:relative; 
+    min-height: 100%;
 }
 
 body {
-    padding-top: 0;
-    text-align: center;
-    font-family: monaco, monospace;
-    background-color: #ddd; /*url(https://2o34683axl001lupaf2udyvl-wpengine.netdna-ssl.com/wp-content/uploads/SageGray_Edited_2018.jpg) 50%;*/
-    background-size: cover;
     margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: monaco, monospace;
+    background-color: #ccc; 
 }
 
 h2 {
@@ -31,6 +31,9 @@ nav {
     overflow: hidden;
     background-color: #2B3B46;
     height: 50px;
+    width: 100%;
+    min-width: 100%;
+
 }
 
 #logo {
@@ -57,13 +60,22 @@ nav {
     background-color: #333;
 }
 
-/* Style the list */
-ul.breadcrumb {
-    padding: 0;
-    list-style: none;
-    position: absolute;
-    top: 45px;
-    left: 157px;
+aside {
+    float: left;
+    text-align: left;
+    width: 15%;
+    height: 90%;
+}
+
+#deviceicon {
+    width: 160px;
+    height: 160px;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.breadcrumb {
+    padding-top: 20px;
 }
 
 /* Display list items side by side */
@@ -91,49 +103,71 @@ ul.breadcrumb li a:hover {
     text-decoration: underline;
 }
 
-/* Style the list box */
-.doors_list_box {
-    background-color: #fff;
-    position: absolute;
-    float: right;
-    bottom: 10px;
-    right: 10px;
-    height: 70%;
-    width: 87%;
-    border-style: solid;
-    border-color: #a6a6a6;
-    overflow:auto;
-}
 
-#dooricon {
-    width: 125px;
-    height:125px;
-    position: absolute;
-    left: 13px;
-    top: 125px;
+section {
+    
+    text-align: left;
+   
+    margin-left: 230px;
+    margin-bottom:40px;
 }
 
 .category_title {
-    position: absolute;
-    left: 157px;
-    top: 100px;
-    z-index: 100; /*para traer al frente*/
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    display: table;
+    height:30px;
+}
+
+.title_elements{
+    display: inline;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#title{
+    font-size: 30px;
+    padding-right: 15px;
 }
 
 #addicon {
-    width: 38px;
-    height: 38px;
-    position: absolute;
-    left: 249px;
-    top: 121px;
-    z-index: 100;
+    width: 36px;
+    height: 36px;
 }
+
+ul.tabs li {
+  list-style: none;
+  float: left;
+}
+
+ul.tabs li:before {
+  content: '\ffed';
+  margin-right: 0.5em;
+}
+
+/* Style the list box */
+.doors_list_box {
+    margin: 10px;
+    margin-left: 40px;
+     margin-right: 40px;
+    background-color: #fff;
+    
+    height: 420px;
+    width: 85%;
+    border-style: solid;
+    border-color: #a6a6a6;
+    overflow:auto;
+    margin-bottom: 10px;
+}
+
 
 .doors_list {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden; /*no se que es*/
+    overflow: hidden;
 }
 
 .a_door {
@@ -168,18 +202,16 @@ ul.breadcrumb li a:hover {
 
 
 #footer {
-  position: absolute;
+    clear: both;
+    position: absolute;
     bottom: 0;
     width: 100%;
     height:auto;
-    margin-top: 550px;
-  background-color: #ddd;
-
+    background-color: #ddd;
 }
 
 footer p {
-  font: 0.7em Georgia, Arial;
-  color: #777;
-  text-align: center;
-
+    font: 0.7em Georgia, Arial;
+    color: #777;
+    text-align: center;
 }

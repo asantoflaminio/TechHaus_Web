@@ -12,7 +12,9 @@ body {
     height: 100%;
     background-color: #ccc;  
     font-family: monaco, monospace;
+    margin-bottom:100px;
 }
+
 
 nav {
     list-style-type: none;
@@ -21,6 +23,9 @@ nav {
     overflow: hidden;
     background-color: #2B3B46;
     height: 50px;
+    width: 100%;
+    min-width: 100%;
+
 }
 
 #logo {
@@ -39,12 +44,17 @@ nav {
 }
 
 #settings_icon {
-  width: 20px;
+    width: 20px;
 }
 
-/* Change the link color to #333 on hover */
 .navbar_item:hover {
     background-color: #333;
+}
+
+section {
+    position: relative;
+	text-align: center;
+    padding-top: 70px;
 }
 
 h1 {
@@ -52,38 +62,25 @@ h1 {
 }
 
 #icons {
-    text-align: center;
-}
-
-
-li {
     display: inline-block;
-    width: 100px;
-    height: 100px;
-    padding-top: 50px;
-    padding-right: 50px;
-   
-    padding-bottom: 50px;
-   
+    text-align: center;  
+    width: 95%; 
 }
 
-li {
-    padding-bottom: 25px;
-    width: 125px;
-    height: 125px;
+figure {
+    display: inline-block;
 }
 
-a {text-decoration: none; }
-
-li img:hover{
+figure img:hover{
 	-webkit-transform:scale(1.1);
 	-webkit-transition:-webkit-transform 0.40s;
-
 }
 
 .icon {
-  	max-width:100%;
-   
+  	width:120px;
+  	height:120px;
+  	display: inline-block;
+
 }
 
 figcaption{
@@ -94,22 +91,20 @@ figcaption{
 	color: #222;
 }
 
-
 #footer {
+    clear: both;
     position: absolute;
     bottom: 0;
     width: 100%;
     height:auto;
     margin-top: 550px;
     background-color: #ddd;
-
 }
 
 footer p {
     font: 0.7em Georgia, Arial;
     color: #777;
     text-align: center;
-
 }
 
 /*para settings de aca en mas*/
@@ -127,9 +122,7 @@ footer p {
     position: relative;
     display: inline-block;
     float: right;
-    z-index: 150000;
-
-    
+    z-index: 150000;  
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -152,26 +145,22 @@ footer p {
     text-decoration: none;
     display: block;
     z-index: 150000;
-
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
 	background-color: #ddd
 	z-index: 150000;
-
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-    	z-index: 150000;
-
+    z-index: 150000;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-    	z-index: 150000;
-
+    z-index: 150000;
 }
