@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 html{
-  position:relative; 
-  min-height: 100%;
+    position:relative; 
+    min-height: 100%;
 }
 
 body {
@@ -12,7 +12,6 @@ body {
     height: 100%;
     background-color: #ccc;  
     font-family: monaco, monospace;
-
 }
 
 nav {
@@ -48,24 +47,32 @@ nav {
     background-color: #333;
 }
 
-section {
-	text-align: center;
-    
-    margin-top: 50px;
-}
-
 h1 {
 	font: bold 1.9em Arial, Helvetica, sans-serif;
 }
 
-
 #icons {
-	display: inline-block;
+    text-align: center;
+}
+
+
+li {
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    padding-top: 50px;
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-bottom: 50px;
+   
 }
 
 figure {
-    float: left;
-    padding: 10px;
+    
+    background-color: green;
+    padding-bottom: 25px;
+    width: 125px;
+    height: 125px;
 }
 
 figure img:hover{
@@ -75,8 +82,6 @@ figure img:hover{
 }
 
 .icon {
-  	width:125px;
-  	height:125px; 
   	max-width:100%;
    
 }
