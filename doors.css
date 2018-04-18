@@ -28,7 +28,7 @@ nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: visible;
+    overflow: hidden;
     background-color: #2B3B46;
     height: 50px;
     width: 100%;
