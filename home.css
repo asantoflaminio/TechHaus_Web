@@ -34,7 +34,7 @@ h1 {
 
 #icons {
 	display: inline-block;
-  	padding-bottom: 35px;
+  	
 }
 
 figure {
@@ -62,6 +62,13 @@ figcaption{
 
 footer {
 	clear: both;
+	position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   margin-top: 135px;
+
+
  	background-color: #ddd;
 }
 
@@ -69,8 +76,7 @@ footer p {
 	font: 1em Georgia, Arial;
 	color: #777;
 	text-align: center;
-	-webkit-margin-before: 2em;
-   	-webkit-margin-after: 0;
+	
 }
 
 .dropbtn {
