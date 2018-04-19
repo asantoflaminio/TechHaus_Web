@@ -15,10 +15,10 @@ a{text-decoration:none;}
 .clear{clear:both;}/* clear float */
 .pos-relative{position:relative;}/* Position Relative */
 .pos-absolute{position:absolute;}/* Position Absolute */
-.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
-.vertical-top{	vertical-align:top;}/* vertical align top */
-nav.vertical ul li{	display:block;}/* vertical menu */
-nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+.vertical-base{ vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{  vertical-align:top;}/* vertical align top */
+nav.vertical ul li{ display:block;}/* vertical menu */
+nav.horizontal ul li{   display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 
 html{
@@ -27,7 +27,7 @@ html{
 }
 
 body {
- 	margin: 0;
+    margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
@@ -35,16 +35,16 @@ body {
     margin-bottom:100px;
     background: url(Iconos/banner.jpg) no-repeat 0px 0px;
     background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	-ms-background-size: cover;
-	min-height:745px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height:745px;
 }
 
 section {
-	position: relative;
-	top:80px;
+    position: relative;
+    top:80px;
 }
 
 nav {
@@ -79,54 +79,54 @@ nav {
 }
 
 section {
-	text-align: center;  
-	padding-bottom: 60px;
+    text-align: center;  
+    padding-bottom: 60px;
     
 }
 
 
 #icons {
-	display: inline-block;
-  	
+    display: inline-block;
+    
 }
 
 figure {
-	float: left; 
+    float: left; 
 }
 
 figure img:hover{
-	-webkit-transform:scale(1.1);
-	-webkit-transition:-webkit-transform 0.40s;
+    -webkit-transform:scale(1.1);
+    -webkit-transition:-webkit-transform 0.40s;
 }
 
 .icon {
-  	width:200px;
-  	height:200px; 
-  	max-width:100%
+    width:200px;
+    height:200px; 
+    max-width:100%
 }
 
 figcaption{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.3em;
-	text-align: center;
-	margin-top: 5px;	
-	color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    text-align: center;
+    margin-top: 5px;    
+    color: #222;
 }
 
 #footer {
-	position: absolute;
+    position: absolute;
     bottom: 0;
-   	width: 100%;
+    width: 100%;
     height:auto;
     margin-top: 550px;
- 	background-color: #ddd;
+    background-color: #ddd;
 
 }
 
 footer p {
-	font: 0.7em Georgia, Arial;
-	color: #777;
-	text-align: center;
+    font: 0.7em Georgia, Arial;
+    color: #777;
+    text-align: center;
 
 }
 
@@ -142,22 +142,23 @@ footer p {
     border-bottom:1px solid rgb(167, 156, 160);
     
 }
+
 .nav-btm-menu-btm-grid-left{
-	float:left;
-	width:20%;
-	position:relative;
+    float:left;
+    width:20%;
+    position:relative;
 }
 .nav-btm-menu-btm-grid-left-pos{
-	position: absolute;
+    position: absolute;
     top: 3%;
     right:45%;
 }
 .nav-btm-menu-btm-grid-left1{
-	float: left;
+    float: left;
     margin-left:0em;
 }
 .nav-btm-menu-btm-grid-right{
-	float:right;
+    float:right;
 }
 .nav-btm-menu-btm-grid-left1 h3 {
     font-family: monaco, Consolas, "Lucida Console", monospace;
@@ -199,26 +200,26 @@ footer p {
 }
 
 .scrollbar{
-	height: 422px;
+    height: 422px;
     background:rgba(174, 171, 190, 0.85);
     overflow-y: scroll;
 }
 
 #style-2::-webkit-scrollbar-track
 {
-	
-	background-color:#D3D3D3;
+    
+    background-color:#D3D3D3;
 }
 #style-2::-webkit-scrollbar
 {
-	width:5px;
-	background-color: #f5f5f5;
+    width:5px;
+    background-color: #f5f5f5;
 }
 
 #style-2::-webkit-scrollbar-thumb
 {
-	
-	background-color:rgb(110, 230, 159);
+    
+    background-color:rgb(110, 230, 159);
 }
 
 .main-info {
@@ -227,26 +228,26 @@ footer p {
     float:center;
 }
 .main-info-grid1,.main-info-grid3{
-	float:center;
-	width:70%;
+    float:center;
+    width:100%;
 }
 
 .main-info-grid2{
-	margin:0 1em;
+    margin:0 1em;
 }
 .main-info-grid2 h3{
-	padding: .5em;
+    padding: .5em;
     background:#6841b6;
     color: #fff;
     font-size: 1.3em;
     text-align: center;
 }
 .main-info-grid2 h3 span{
-	background:url(../images/6.png) no-repeat 0px 0px;
-	display:inline-block;
-	width:16px;
-	height:16px;
-	padding-right: 1em;
+    background:url(../images/6.png) no-repeat 0px 0px;
+    display:inline-block;
+    width:16px;
+    height:16px;
+    padding-right: 1em;
 }
 .main-info-grid2-infol {
     float: left;
@@ -259,11 +260,11 @@ footer p {
     background: #1C8399;
 }
 .main-info-grid2-infol p{
-	font-size:14px;
-	color:#fff;
+    font-size:14px;
+    color:#fff;
 }
 .main-info-grid2-infol h4{
-	font-size: 3em;
+    font-size: 3em;
     color: #fff;
     letter-spacing: 4px;
 }
@@ -271,36 +272,36 @@ footer p {
     padding: 1em 3em;
 }
 .main-info-grid2-info-bottom{
-	background:#fff;
+    background:#fff;
 }
 .main-info-grid2-info-bottom ul li{
-	display:inline-block;
-	font-size:1em;
-	color:#E28E2B;
+    display:inline-block;
+    font-size:1em;
+    color:#E28E2B;
 }
 /*-- w3layouts --*/
 .main-info-grid2-info-bottom ul li span{
-	color:#999;
-	padding-left:.5em;
+    color:#999;
+    padding-left:.5em;
 }
 .main-info-grid2-info-bottom ul li:nth-child(2){
-	float:right;
+    float:right;
 }
 .main-info-grid2-info-bottom ul {
     padding: 1em 1.5em;
     border-bottom:1px solid #EDEDED;
 }
 .main-info-grid2-info-bottom ul:nth-child(2){
-	background:#f5f5f5;
+    background:#f5f5f5;
 }
 .main-info-grid2-info-bottom ul:last-child {
-	border-bottom:none;
+    border-bottom:none;
 }
 .mb_share {
   overflow:hidden;
 }
 .mb_share .button .native_button div {
-	font-size: 14px;
+    font-size: 14px;
     color: #212121;
 }
 .profile-agile {
@@ -343,7 +344,7 @@ footer p {
     color: #fff;
     font-size: 23px;
     font-weight: 600;
-	margin-bottom: 3px;
+    margin-bottom: 3px;
 }
 .w3l h6, .w3-agile h6 {
     color: #fff;
@@ -398,14 +399,14 @@ footer p {
 }
 }
 @media (max-width:600px){
-	.main-info {
+    .main-info {
     width: 65%;
 }
 }
 @media (max-width:480px){
 .main-info {
     width: 80%;
-	margin: 2em auto;
+    margin: 2em auto;
 }
 .main h1 {
     font-size: 2em;
@@ -465,8 +466,3 @@ footer p {
     margin: 2em 0 0;;
 }
 }
-
-
-
-
-
