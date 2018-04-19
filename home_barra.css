@@ -6,7 +6,7 @@ html{
 }
 
 body {
- 	margin: 0;
+    margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
@@ -15,8 +15,8 @@ body {
 }
 
 section {
-	position: relative;
-	top:80px;
+    position: relative;
+    top:80px;
 }
 
 nav {
@@ -41,7 +41,7 @@ nav {
     display: block;
     color: white;
     text-align: center;
-    padding: 16px;
+    padding: 15.5px;
     text-decoration: none;
 }
 
@@ -52,62 +52,63 @@ nav {
 
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
-    background-color: #555;
+    background-color: #4d4d4d;
 }
 
 section {
-	text-align: center;  
-	padding-bottom: 60px;
+    text-align: center;  
+    padding-bottom: 60px;
 }
 
 h1 {
-	font: bold 1.9em Arial, Helvetica, sans-serif;
+    font: bold 1.9em Arial, Helvetica, sans-serif;
 }
 
 
 #icons {
-	display: inline-block;
-  	
+    display: inline-block;
+    
 }
 
 figure {
-	float: left; 
+    float: left; 
 }
 
 figure img:hover{
-	-webkit-transform:scale(1.1);
-	-webkit-transition:-webkit-transform 0.40s;
+    -webkit-transform:scale(1.1);
+    -webkit-transition:-webkit-transform 0.40s;
 }
 
 .icon {
-  	width:200px;
-  	height:200px; 
-  	max-width:100%
+    width:200px;
+    height:200px; 
+    max-width:100%;
+    cursor: pointer;
 }
 
 figcaption{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.3em;
-	text-align: center;
-	margin-top: 5px;	
-	color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    text-align: center;
+    margin-top: 5px;    
+    color: #222;
 }
 
 #footer {
     clear: both;
-	position: absolute;
+    position: absolute;
     bottom: 0;
-   	width: 100%;
+    width: 100%;
     height:auto;
     margin-top: 550px;
- 	background-color: #ddd;
+    background-color: #ddd;
 }
 
 footer p {
-	font: 0.7em Georgia, Arial;
-	color: #777;
-	text-align: center;
-
+    font: 0.7em Georgia, Arial;
+    color: #777;
+    text-align: center;
+    margin: 5px;
 }
 
 .dropbtn {
@@ -151,7 +152,7 @@ footer p {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-	background-color: #ddd
+    background-color: #ddd
 
 }
 
