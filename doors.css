@@ -29,7 +29,7 @@ nav {
     margin: 0;
     padding: 0;
     overflow: visible;
-    background-color: #2B3B46;
+    background-color: #2B3B4E;
     height: 50px;
     width: 100%;
     min-width: 100%;
@@ -57,7 +57,7 @@ nav {
 
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
-    background-color: #333;
+    background-color: #4d4d4d;
 }
 
 aside {
@@ -177,6 +177,8 @@ ul.tabs li:before {
     background-color:#eee;
     text-align: left;
     border:0.5px solid #ccc;
+    cursor: pointer;
+
 }
 
 .a_door:hover {
