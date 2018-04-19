@@ -28,7 +28,7 @@ nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
     background-color: #2B3B46;
     height: 50px;
     width: 100%;
@@ -47,7 +47,7 @@ nav {
     display: block;
     color: white;
     text-align: center;
-    padding: 16px;
+    padding:15.5px;
     text-decoration: none;
 }
 
@@ -57,7 +57,7 @@ nav {
 
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
-    background-color: #555;
+    background-color: #333;
 }
 
 aside {
@@ -109,7 +109,7 @@ section {
     text-align: left;
    
     margin-left: 230px;
-    margin-bottom:40px;
+    margin-bottom:20px;
 }
 
 .category_title {
@@ -154,12 +154,12 @@ ul.tabs li:before {
      margin-right: 40px;
     background-color: #fff;
     
-    height: 420px;
+    height: 410px;
     width: 85%;
     border-style: solid;
     border-color: #a6a6a6;
     overflow:auto;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 
@@ -214,6 +214,7 @@ footer p {
     font: 0.7em Georgia, Arial;
     color: #777;
     text-align: center;
+    margin: 5px;
 }
 
 .dropbtn {
@@ -257,7 +258,7 @@ footer p {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-	background-color: #ddd
+    background-color: #ddd
 
 }
 
