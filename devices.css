@@ -20,8 +20,8 @@ nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #2B3B46;
+    overflow: visible;
+    background-color: #2B3B4E;
     height: 50px;
     width: 100%;
     min-width: 100%;
@@ -39,7 +39,7 @@ nav {
     display: block;
     color: white;
     text-align: center;
-    padding: 16px;
+    padding: 15.5px;
     text-decoration: none;
 }
 
@@ -48,13 +48,15 @@ nav {
 }
 
 .navbar_item:hover {
-    background-color: #555;
+    background-color: #4d4d4d;
 }
 
 section {
     position: relative;
 	text-align: center;
     padding-top: 70px;
+    top: 5px;
+    z-index: 0;
 }
 
 h1 {
@@ -80,6 +82,7 @@ figure img:hover{
   	width:120px;
   	height:120px;
   	display: inline-block;
+    cursor: pointer;
 
 }
 
@@ -105,9 +108,8 @@ footer p {
     font: 0.7em Georgia, Arial;
     color: #777;
     text-align: center;
+    margin: 5px;
 }
-
-/*para settings de aca en mas*/
 
 .dropbtn {
     background-color: #4CAF50;
@@ -122,7 +124,8 @@ footer p {
     position: relative;
     display: inline-block;
     float: right;
-    z-index: 150000;  
+    z-index: 1;
+
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -144,23 +147,23 @@ footer p {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    z-index: 150000;
+
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-	background-color: #ddd
-	z-index: 150000;
+    background-color: #ddd
+
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-    z-index: 150000;
+
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-    z-index: 150000;
+
 }
