@@ -1,0 +1,270 @@
+@charset "UTF-8";
+
+html{
+    position:relative; 
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: monaco, monospace;
+    background-color: #ccc; 
+}
+
+h2 {
+    font-size: 17px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 15px;
+    text-align: center;
+}
+
+nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: #2B3B4E;
+    height: 50px;
+    width: 100%;
+    min-width: 100%;
+
+}
+
+#logo {
+    height: 50px;
+    width: 150px;
+    float: left;
+}
+
+.navbar_item {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding:15.5px;
+    text-decoration: none;
+}
+
+#settings_icon {
+    width: 20px;
+}
+
+/* Change the link color to #333 on hover */
+.navbar_item:hover {
+    background-color: #4d4d4d;
+}
+
+aside {
+    float: left;
+    text-align: left;
+    width: 15%;
+    height: 90%;
+}
+
+#deviceicon {
+    width: 160px;
+    height: 160px;
+    padding-top: 40px;
+    padding-left: 45px;
+}
+
+.breadcrumb {
+    padding-top: 0;
+    padding-left: 45px
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 15px;
+}
+
+/* Add a slash symbol (>) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 0;
+    color: black;
+    content: ">\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #4B6377;
+    text-decoration: underline;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #618099;
+    text-decoration: underline;
+}
+
+
+section {
+    text-align: left;
+    margin-left: 230px;
+    margin-bottom:20px;
+}
+
+.category_title {
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    display: table;
+    height:30px;
+    position: relative;
+    top: 10px;
+    left:0px;
+}
+
+.title_elements{
+    display: inline;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#title{
+    font-size: 30px;
+    padding-right: 15px;
+}
+
+#addicon {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+ul.tabs li {
+  list-style: none;
+  float: left;
+}
+
+ul.tabs li:before {
+  content: '\ffed';
+  margin-right: 0.5em;
+}
+
+/* Style the list box */
+.devices_list_box {
+    margin: 10px;
+    margin-left: 40px;
+     margin-right: 40px;
+    background-color: #fff;
+    
+    height: 410px;
+    width: 90%;
+    border-style: solid;
+    border-color: #a6a6a6;
+    overflow:auto;
+    margin-bottom: 30px;
+}
+
+
+.devices_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.a_device {
+    float: left;
+    width: 100%;
+    height: 70px;
+    background-color:#eee;
+    text-align: left;
+    border:0.5px solid #ccc;
+    cursor: pointer;
+
+}
+
+.a_device:hover {
+    background-color: #ddd;
+}
+
+.device_name {
+    text-align: left;
+    color: #555;
+    margin-left: 14px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+
+#footer {
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height:auto;
+    background-color: #ddd;
+}
+
+footer p {
+    font: 0.7em Georgia, Arial;
+    color: #777;
+    text-align: center;
+    margin: 5px;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+
+    
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+    position: absolute;
+    top:50px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    left: auto;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd
+
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+
+}
