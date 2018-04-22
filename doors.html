@@ -5,6 +5,11 @@
      <meta charset="UTF-8">
       <title>TechHaus</title>
       <link rel="stylesheet" type="text/css" href="doors.css"/>
+      <script src="js/jquery-3.3.1.js"></script>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   </head>
 
   <body>
@@ -26,8 +31,13 @@
         <a class="navbar_item" href="devices.html">Devices</a>
       </nav>
      
-      
-
+      <div id="popup" class="popup" title="Add Door" draggable="true" resizable="false" closeOnEscape="true">
+        <p id="name-tag">Name</p>
+        <input type="text" class="text-input" id="door_input">
+        <p id="room-tag">Room</p>
+        <input type="text" class="text-input" id="room_input">
+      </div>
+ 
       <aside>
          <ul class="breadcrumb">
             <li><a href="devices.html">Devices</a></li>
@@ -38,7 +48,6 @@
       </aside>
 
       <section>
-        
         <article>
           <div class="category_title">
               <h1 id="title" class="title_elements">Doors</h1>
@@ -62,11 +71,13 @@
 
               </li>
               <li class="a_door">
-                                <div>
+                <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>
                 <div>
                   <h3 class="door_name">Garage Door</h3>
+                </div>
+                <div>
                   <p class="door_room">Garage</p>
                 </div>
 
@@ -88,6 +99,8 @@
                 </div>
                 <div>
                   <h3 class="door_name">Door 2</h3>
+                </div>
+                <div>
                   <p class="door_room">Living Room</p>
                 </div>  
 
@@ -104,6 +117,6 @@
         <p>Copyright &copy; 2018, TechHaus. All rights reserved.</p>
         </div>
     </footer>
-        
+    <script src="js/doors.js"></script>
     </body>
 </html>
