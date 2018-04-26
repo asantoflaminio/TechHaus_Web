@@ -1,3 +1,17 @@
+
+function fav(heart){
+    
+    if (heart.getAttribute('src') == "Iconos/heart.png")
+                {
+                    heart.src = "Iconos/heart_coloured.png";
+                }
+                else
+                {
+                    heart.src = "Iconos/heart.png";
+                }
+}
+
+
 $(function() {
 
 $("#addicon").click(function() {
@@ -48,4 +62,29 @@ $("#addicon").click(function() {
 		]
 	})
 });
+    
+
+    
+
+
+    
+  /* $(".fave_icon").click(function(){
+        var elems =  document.getElementsByClassName("fave_icon");
+        
+        for (var i = 0; i < elems.length; i++) {
+
+            if (elems[i].getAttribute('src') == "Iconos/heart.png")
+                {
+                    elems[i].src = "Iconos/heart_coloured.png";
+                }
+                else
+                {
+                    elems[i].src = "Iconos/heart.png";
+                }
+            }
+        
+
+            
+   });   */        
+            
 });
