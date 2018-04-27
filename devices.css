@@ -88,6 +88,9 @@ figcaption{
 	text-align: center;
 	margin-top: 5px;	
 	color: #222;
+    overflow: hidden;
+    white-space: nowrap; /* Don't forget this one */
+    text-overflow: ellipsis;
 }
 
 #footer {
