@@ -5,6 +5,9 @@
      <meta charset="UTF-8">
       <title>TechHaus</title>
       <link rel="stylesheet" type="text/css" href="kitchen.css"/>
+      <script src="js/jquery-3.3.1.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
 
   <body>
@@ -26,7 +29,24 @@
         <a class="navbar_item" href="devices.html">Devices</a>
       </nav>
      
-      
+       <div id="popup" class="popup" title="Add Device" draggable="true" resizable="false" closeOnEscape="true">
+        <p id="name-tag">Name</p>
+        <input type="text" class="text-input" id="device_input">
+        <p id="room-tag">Type</p>
+        <select class="text-input" id="room_input">
+          <option>Alarm</option>
+          <option>Door</option>
+          <option>Air Conditioner</option>
+          <option>Fridge</option>
+          <option>Light</option>
+          <option>Oven</option>
+          <option>TV</option>
+          <option>Curtain</option>
+          <option>Washer</option>
+          <option>Temporizer</option>
+        </select>
+      </div>
+ 
 
       <aside>
          <ul class="breadcrumb">
@@ -48,29 +68,89 @@
 
         <article>
           <div class="devices_list_box">
-            <ul class="devices_list">
-              <li class="a_device">
-                <a>
+            <div class="devices_list" id="devices_list">
+              <button class="accordion">
+                <div>
+                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                </div>
+                <div>
+                  <img src="Iconos/heart.png" onclick="fav(this);" alt="Fave" class="fave_icon">
+                </div>
+                <div>
+                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                </div>
+                <div>
                   <h3 class="device_name">Oven</h3>
-                </a>
-              </li>
-              <li class="a_device">
-                <a>
+                </div>
+                <div>
+                  <h3 class="device_room">Kitchen</h3>
+                </div>
+              </button>
+              <div class="panel">
+                <p>Info on Oven</p>
+              </div>
+              <button class="accordion">
+                <div>
+                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                </div>
+                <div>
+                  <img src="Iconos/heart.png" onclick="fav(this);" alt="Fave" class="fave_icon">
+                </div>
+                <div>
+                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                </div>
+                <div>
                   <h3 class="device_name">Light 1</h3>
-                </a>
-              </li>
-              <li class="a_device">
-                <a>
+                </div>
+                <div>
+                  <h3 class="device_room">Kitchen</h3>
+                </div>
+              </button>
+              <div class="panel">
+                <p>Info on Light 1</p>
+              </div>
+              <button class="accordion">
+                <div>
+                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                </div>
+                <div>
+                  <img src="Iconos/heart.png" onclick="fav(this);" alt="Fave" class="fave_icon">
+                </div>
+                <div>
+                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                </div>
+                <div>
                   <h3 class="device_name">Light 2</h3>
-                </a>
-              </li>
-              <li class="a_device">
-                <a>
+                </div>
+                <div>
+                  <h3 class="device_room">Garage</h3>
+                </div>
+              </button>
+              <div class="panel">
+                <p>Info on Light 2</p>
+              </div>
+              <button class="accordion">
+                <div>
+                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                </div>
+                <div>
+                  <img src="Iconos/heart.png" onclick="fav(this);" alt="Fave" class="fave_icon">
+                </div>
+                <div>
+                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                </div>
+                <div>
                   <h3 class="device_name">Fridge</h3>
-                </a>  
-              </li>
+                </div>
+                <div>
+                  <h3 class="device_room">Kitchen</h3>
+                </div>
+              </button>
+              <div class="panel">
+                <p>Info on Fridge</p>
+              </div>
 
-            </ul>
+            </div>
           </div>
         </article>
 
@@ -81,6 +161,6 @@
         <p>Copyright &copy; 2018, TechHaus. All rights reserved.</p>
         </div>
     </footer>
-        
+    <script src="js/kitchen.js"></script>   
     </body>
 </html>
