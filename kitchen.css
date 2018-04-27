@@ -12,6 +12,7 @@ body {
     height: 100%;
     font-family: monaco, monospace;
     background-color: #ccc; 
+    overflow-y: hidden;
 }
 
 h2 {
@@ -140,6 +141,11 @@ section {
     cursor: pointer;
 }
 
+#addicon:hover {
+	-webkit-transform:scale(1.1);
+	-webkit-transition:-webkit-transform 0.20s;
+}
+
 ul.tabs li {
   list-style: none;
   float: left;
@@ -173,27 +179,60 @@ ul.tabs li:before {
     overflow: hidden;
 }
 
-.a_device {
-    float: left;
-    width: 100%;
-    height: 70px;
-    background-color:#eee;
-    text-align: left;
-    border:0.5px solid #ccc;
-    cursor: pointer;
-
-}
-
-.a_device:hover {
-    background-color: #ddd;
-}
-
 .device_name {
     text-align: left;
     color: #555;
-    margin-left: 14px;
-    margin-top: 12px;
+    position: relative;
+    float: left;
+    margin-left: 0;
+    margin-top: -6px;
     margin-bottom: 0px;
+    font-family: monaco, monospace;
+}
+
+.device_room {
+    font-size: 14px;
+    color: #777;
+    position: relative;
+    float: left;
+    clear: left;
+    font-style: italic;
+    text-align: left;
+    margin-left: 0;
+    margin-top: 12px;
+    font-weight: normal;
+    font-family: monaco, monospace;
+}
+
+.arrow_icon {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}
+
+.fave_icon {
+    width: 27px;
+    height: 27px;
+    margin: 0;
+    margin-top: 2px;
+    margin-right: 40px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}
+
+.delete_icon {
+    width: 23px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
 }
 
 #footer {
@@ -267,4 +306,138 @@ footer p {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 
+}
+
+/*poup*/
+
+#popup {
+	display: none;
+	height: 50px;
+	width: 100px;
+	background-color: #fff;
+}
+
+#room_input {
+    width: 88%;
+    height: 22px;
+    overflow: scroll;
+}
+
+#device_input {
+    width: 86%;
+    height: 15px;
+
+}
+
+#ui-id-1 {
+	background-color: #2B3B4E;
+	color: white;
+	margin-left: 10px;
+}
+
+.ui.dialog .ui-dialog-titlebar {
+background-color: #2B3B4E;
+
+}
+
+div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle {
+	background-color: #2B3B4E;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border-color: #2B3B4E;
+	width: 192px !important;
+
+}
+
+div.popup.ui-dialog-content.ui-widget-content {
+	margin: -17px;
+	width: 190px !important;
+	height: 160px !important;
+	position: relative !important;
+	left: 17px; 
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-bottom: 1px solid; 
+	border-color: #ddd;
+	z-index: 0;
+}
+
+div.popup.ui-dialog-content.ui-widget-content p {
+	margin-left: 10px;
+	padding-top: 10px;
+	margin-bottom: 5px;
+}
+
+div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
+	width: 192px !important;
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+	position:relative;
+	float: right;
+	visibility: hidden;
+	margin-top: 0;
+	margin-right: 3px;
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close::after {
+	content: "X" !important;
+	visibility: visible;
+	color: white;
+	cursor:pointer;
+}
+
+.text-input {
+	margin-left: 10px;
+}
+
+#room-tag {
+	padding-top: 0;
+	margin-top: 10px; 
+}
+
+div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
+	width: 190px !important;
+	margin-top: -30px;
+}
+
+.mybutton {
+	position: relative;
+	float: right;
+}
+
+.cancel-button {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/* accordion */
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-family: monaco, sans-serif;
+    float: left;
+    height: 70px;
+    border:0.5px solid #ccc;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white; /*#F7F7F7;*/
+    display: none;
+    overflow: hidden;
+    border: 0.5px solid #ccc;
 }
