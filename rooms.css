@@ -88,6 +88,11 @@ section {
     cursor: pointer;
 }
 
+#addicon:hover {
+    -webkit-transform:scale(1.1);
+    -webkit-transition:-webkit-transform 0.20s;
+}
+
 #icons {
     display: inline-block;
     text-align: center;  
