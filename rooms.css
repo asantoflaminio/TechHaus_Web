@@ -12,7 +12,7 @@ body {
     height: 100%;
     background-color: #ccc;  
     font-family: monaco, monospace;
-    margin-bottom:100px;
+    margin-bottom:50px;
 }
 
 
@@ -56,7 +56,7 @@ section {
 	text-align: center;
     padding-top: 20px;
     top: 5px;
-    z-index: 0;
+    z-index: 0;    
 }
 
 .category_title {
@@ -121,6 +121,10 @@ figcaption{
 	text-align: center;
 	margin-top: 5px;	
 	color: #222;
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap; /* Don't forget this one */
+    text-overflow: ellipsis;
 }
 
 #footer {
