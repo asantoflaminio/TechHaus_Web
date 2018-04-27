@@ -6,9 +6,8 @@
       <title>TechHaus</title>
       <link rel="stylesheet" type="text/css" href="doors.css"/>
       <script src="js/jquery-3.3.1.js"></script>
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   </head>
 
@@ -35,7 +34,12 @@
         <p id="name-tag">Name</p>
         <input type="text" class="text-input" id="door_input">
         <p id="room-tag">Room</p>
-        <input type="text" class="text-input" id="room_input">
+        <select class="text-input" id="room_input">
+          <option>Kitchen</option>
+          <option>Garage</option>
+          <option>Mia's Room</option>
+          <option>Living Room</option>
+        </select>
       </div>
  
       <aside>
@@ -57,8 +61,8 @@
 
         <article>
           <div class="doors_list_box">
-            <ul class="doors_list">
-              <li class="a_door">
+            <div class="doors_list" id="doors_list">
+               <button class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>
@@ -73,15 +77,17 @@
                 </div>
                 <div>
                   <p class="door_room">Kitchen</p>
-                </div>
-
-              </li>
-              <li class="a_door">
+                </div>                
+              </button>
+              <div class="panel">
+                <p>Info on Door 1</p>
+              </div>
+              <button class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>
                 <div>
-                  <img src="Iconos/heart.png" onclick="fav(this);" alt="Fave" class="fave_icon" id="heart1">
+                  <img src="Iconos/heart.png" onclick="fav(this);" alt="Fave" class="fave_icon">
                 </div>
                 <div>
                   <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
@@ -91,10 +97,12 @@
                 </div>
                 <div>
                   <p class="door_room">Garage</p>
-                </div>
-
-              </li>
-              <li class="a_door">
+                </div>                
+              </button>
+              <div class="panel">
+                <p>Info on Garage Door</p>
+              </div>
+              <button class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>
@@ -109,9 +117,12 @@
                 </div>
                 <div>
                   <p class="door_room">Living Room</p>
-                </div>
-              </li>
-              <li class="a_door">
+                </div>                
+              </button>
+              <div class="panel">
+                <p>Info on Living Door</p>
+              </div>
+              <button class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>
@@ -126,12 +137,13 @@
                 </div>
                 <div>
                   <p class="door_room">Living Room</p>
-                </div>  
+                </div>                
+              </button>
+              <div class="panel">
+                <p>Info on Door 2</p>
+              </div>
 
-              </li>
-
-            </ul>
-          </div>
+             </div>
         </article>
 
       </section>
