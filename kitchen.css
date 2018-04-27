@@ -109,6 +109,7 @@ ul.breadcrumb li a:hover {
 section {
     text-align: left;
     margin-left: 230px;
+    margin-right: 5%;
     margin-bottom:20px;
 }
 
@@ -156,19 +157,25 @@ ul.tabs li:before {
   margin-right: 0.5em;
 }
 
+.title_article {
+    width: 100%;
+}
+
+.list_article {
+    width: 100%;
+}
+
 /* Style the list box */
 .devices_list_box {
-    margin: 10px;
-    margin-left: 40px;
-     margin-right: 40px;
-    background-color: #fff;
-    
+    margin-top: 0;
+    margin-bottom: 30px;
+    float: right;
+    background-color: #fff; 
     height: 410px;
-    width: 90%;
+    width: 96%;
     border-style: solid;
     border-color: #a6a6a6;
     overflow:auto;
-    margin-bottom: 30px;
 }
 
 
@@ -251,6 +258,8 @@ footer p {
     margin: 5px;
 }
 
+/*dropdown box*/
+
 .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -308,7 +317,7 @@ footer p {
 
 }
 
-/*poup*/
+/*popup*/
 
 #popup {
 	display: none;
@@ -440,4 +449,35 @@ div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
     display: none;
     overflow: hidden;
     border: 0.5px solid #ccc;
+}
+
+/*search bar*/
+
+form {
+    float:right;
+    margin-right: 0;
+    margin-top: 13px;
+}
+
+input[type=text] {
+    height: 24px;
+    width: 200px;
+    float:right;
+    font-family: monaco, sans-serif;
+    font-size: 15px;
+}
+
+.search-container button {
+    float: right;
+    height: 30px;
+
+}
+
+#search_icon {
+    width: 15px;
+    height: 15px;
+}
+
+.search-container button:hover {
+    background: #ccc;
 }
