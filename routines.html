@@ -5,6 +5,9 @@
      <meta charset="UTF-8">
       <title>TechHaus</title>
       <link rel="stylesheet" type="text/css" href="routines.css"/>
+      <script src="js/jquery-3.3.1.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
 
   <body>
@@ -37,8 +40,8 @@
 
         <article>
           <div class="routines_list_box">
-            <ul class="routines_list">
-              <li class="a_routine">
+            <div class="routines_list">
+              <button class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>                
@@ -48,8 +51,11 @@
                 <div>
                   <h3 class="routine_name">Routine 1</h3>
                 </div>
-              </li>
-              <li class="a_routine">
+              </button>
+              <div class="panel">
+                <p>Routine 1 tasks</p>
+              </div>
+              <button class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>  
@@ -59,8 +65,11 @@
                 <div>
                   <h3 class="routine_name">Leave Home</h3>
                 </div>
-              </li>
-              <li class="a_routine">
+              </button>
+              <div class="panel">
+                  <p>Leave Home tasks</p>
+              </div>
+              <button class="accordion">
                  <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>  
@@ -70,8 +79,11 @@
                 <div>
                   <h3 class="routine_name">Simulate Movement</h3>
                 </div>
-              </li>
-            </ul>
+              </button>
+              <div class="panel">
+                <p>Simulate Movement tasks</p>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -82,6 +94,6 @@
         <p>Copyright &copy; 2018, TechHaus. All rights reserved.</p>
         </div>
     </footer>
-        
+    <script src="js/routines.js"></script>
     </body>
 </html>
