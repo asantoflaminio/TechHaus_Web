@@ -1,16 +1,46 @@
 
+//accordion
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        /*this.classList.toggle("active");*/
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+
+        /* Toggle between up and down arrow */
+        var arrow = this.children[0].children[0];
+        if (panel.style.display === "block") {
+	        arrow.src = "Iconos/arrow_up.png";
+        } else {
+	        arrow.src = "Iconos/arrow_down.png";
+        }
+    });
+}
+
+
+//favorite
+
 function fav(heart){
-    
-    if (heart.getAttribute('src') == "Iconos/heart.png")
-                {
-                    heart.src = "Iconos/heart_coloured.png";
-                }
-                else
-                {
+    if (heart.getAttribute('src') == "Iconos/heart.png") {
+                    heart.src = "Iconos/heart_coloured4.png";
+                } else {
                     heart.src = "Iconos/heart.png";
                 }
 }
 
+
+//add door
 
 $(function() {
 
@@ -31,9 +61,9 @@ $("#addicon").click(function() {
     			text: 'Add',
     			"class": "mybutton",
     			click: function () {
-    		 	var ul = document.getElementsByClassName("doors_list");
-			  	var li = document.createElement("li");
-			  	li.setAttribute("class", "a_door");
+    		 	var list = document.getElementById("doors_list");
+			  	var button = document.createElement("BUTTON");
+			  	button.setAttribute("class", "accordion");
 			  	var div1 = document.createElement("div");
 			  	var div2 = document.createElement("div");
 			  	var div3 = document.createElement("div");
@@ -49,12 +79,18 @@ $("#addicon").click(function() {
 			  	div2.appendChild(h3);
 			  	p.setAttribute("class", "door_room");
 			  	p.innerHTML = $('#room_input').val();
+			  	var div4 = document.createElement("div");
+			  	var p1 = document.createElement("p");
+			  	p1.innerHTML = "Info on";
+			  	div4.setAttribute("class", "panel");
 			  	div3.appendChild(p);
-			  	li.appendChild(div1);
-			  	li.appendChild(div2);
-			  	li.appendChild(div3);
-			  	ul[0].appendChild(li);
-      			
+			  	button.appendChild(div1);
+			  	button.appendChild(div2);
+			  	button.appendChild(div3);
+			  	list.appendChild(button);
+			  	div4.appendChild(p1);
+			  	list.appendChild(div4);
+
       			$(this).dialog('close');
 
     			}
@@ -62,29 +98,5 @@ $("#addicon").click(function() {
 		]
 	})
 });
-    
 
-    
-
-
-    
-  /* $(".fave_icon").click(function(){
-        var elems =  document.getElementsByClassName("fave_icon");
-        
-        for (var i = 0; i < elems.length; i++) {
-
-            if (elems[i].getAttribute('src') == "Iconos/heart.png")
-                {
-                    elems[i].src = "Iconos/heart_coloured.png";
-                }
-                else
-                {
-                    elems[i].src = "Iconos/heart.png";
-                }
-            }
-        
-
-            
-   });   */        
-            
 });
