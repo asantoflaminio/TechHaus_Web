@@ -34,7 +34,6 @@ nav {
     height: 50px;
     width: 100%;
     min-width: 100%;
-
 }
 
 #logo {
@@ -52,6 +51,10 @@ nav {
     text-decoration: none;
 }
 
+.navbar_item:-moz-focus-inner { 
+  border: 0; 
+}
+
 #settings_icon {
     width: 20px;
 }
@@ -59,6 +62,7 @@ nav {
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
     background-color: #4d4d4d;
+    outline: none;
 }
 
 aside {
@@ -301,20 +305,18 @@ footer p {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
+   outline: none;
     background-color: #ddd
-
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-
 }
 
 /*popup*/
@@ -437,6 +439,10 @@ div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
     border:0.5px solid #ccc;
 }
 
+.accordion::-moz-focus-inner { 
+  border: 0; 
+}
+
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .accordion:hover {
     background-color: #ccc;
@@ -459,6 +465,18 @@ form {
     margin-top: 13px;
 }
 
+.search { 
+    padding:2px 8px 2px 8px;
+    margin-left: 4px; 
+}
+
+.rounded { 
+    border-top-left-radius:6px; 
+    border-bottom-left-radius:6px; 
+    -moz-border-top-left-radius:6px; 
+    -webkit-border-top-left-radius:6px; 
+}
+
 input[type=text] {
     height: 24px;
     width: 200px;
@@ -469,15 +487,22 @@ input[type=text] {
 
 .search-container button {
     float: right;
-    height: 30px;
-
+    height: 32px;
+    width: 30px;
+    border-top-right-radius:6px; 
+    border-bottom-right-radius:6px;
+    background-color: #334860;
+    border: none;
 }
 
 #search_icon {
     width: 15px;
     height: 15px;
+    background-color: #334860;
 }
 
 .search-container button:hover {
-    background: #ccc;
+    border-style: outset;
+    border-width: 0.5px;
 }
+

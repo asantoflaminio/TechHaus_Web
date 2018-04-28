@@ -31,10 +31,14 @@ for (i = 0; i < acc.length; i++) {
 
 //favorite
 
-function fav(heart){
-    if (heart.getAttribute('src') == "Iconos/heart.png") {
+function fav(event, heart){
+    event.stopPropagation();
+    if (heart.getAttribute('src') == "Iconos/heart.png")
+                {
                     heart.src = "Iconos/heart_coloured4.png";
-                } else {
+                }
+                else
+                {
                     heart.src = "Iconos/heart.png";
                 }
 }

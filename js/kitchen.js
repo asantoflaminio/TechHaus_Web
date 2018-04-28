@@ -23,8 +23,8 @@ for (i = 0; i < acc.length; i++) {
     });
 }
 
-function fav(heart){
-    
+function fav(event, heart){
+    event.stopPropagation();
     if (heart.getAttribute('src') == "Iconos/heart.png")
                 {
                     heart.src = "Iconos/heart_coloured4.png";
@@ -40,7 +40,7 @@ $(function() {
 $("#addicon").click(function() {
 
 	$("#popup").dialog({
-		modal: true,
+        modal: true,
     	buttons: [ 
     		{	
     			text:'Cancel',

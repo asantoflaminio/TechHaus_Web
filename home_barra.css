@@ -53,6 +53,7 @@ nav {
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
     background-color: #4d4d4d;
+     outline: none;
 }
 
 section {
@@ -152,8 +153,8 @@ footer p {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
+   outline: none;
     background-color: #ddd
-
 }
 
 /* Show the dropdown menu on hover */

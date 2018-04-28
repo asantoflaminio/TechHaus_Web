@@ -15,7 +15,6 @@ body {
     margin-bottom:100px;
 }
 
-
 nav {
     list-style-type: none;
     margin: 0;
@@ -49,11 +48,12 @@ nav {
 
 .navbar_item:hover {
     background-color: #4d4d4d;
+     outline: none;
 }
 
 section {
     position: relative;
-	text-align: center;
+    text-align: center;
     padding-top: 70px;
     top: 5px;
     z-index: 0;
@@ -64,6 +64,7 @@ section {
     text-align: center;  
     width: 100%; 
 }
+
 
 figure {
     display: inline-block;
@@ -80,6 +81,10 @@ figure img:hover{
   	display: inline-block;
     cursor: pointer;
 
+}
+
+a {
+    outline: none;
 }
 
 figcaption{
@@ -151,8 +156,8 @@ footer p {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
+   outline: none;
     background-color: #ddd
-
 }
 
 /* Show the dropdown menu on hover */
