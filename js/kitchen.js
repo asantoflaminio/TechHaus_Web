@@ -27,7 +27,7 @@ function fav(heart){
     
     if (heart.getAttribute('src') == "Iconos/heart.png")
                 {
-                    heart.src = "Iconos/heart_coloured.png";
+                    heart.src = "Iconos/heart_coloured4.png";
                 }
                 else
                 {
