@@ -51,12 +51,8 @@
             <div class="routines_list">
               <button class="accordion">
                 <div>
-                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                </div>                
-                <div>
-                  <img src="Iconos/play.png" alt="Play" class="play_icon">
-                </div>
-                <div>
+                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon"> 
+                  <img src="Iconos/play.png" alt="Play" class="play_icon" onclick="play(this,event)">
                   <h3 class="routine_name">Routine 1</h3>
                 </div>
               </button>
@@ -66,11 +62,7 @@
               <button class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                </div>  
-                <div>
-                  <img src="Iconos/play.png" alt="Play" class="play_icon">
-                </div>
-                <div>
+                  <img src="Iconos/play.png" alt="Play" class="play_icon" onclick="play(this,event)">
                   <h3 class="routine_name">Leave Home</h3>
                 </div>
               </button>
@@ -80,11 +72,7 @@
               <button class="accordion">
                  <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                </div>  
-                <div>
-                  <img src="Iconos/play.png" alt="Play" class="play_icon">
-                </div>
-                <div>
+                  <img src="Iconos/play.png" alt="Play" class="play_icon" onclick="play(this,event)">
                   <h3 class="routine_name">Simulate Movement</h3>
                 </div>
               </button>
@@ -95,8 +83,17 @@
           </div>
         </article>
 
+        <article>
+            <div class="notice">
+                <div class="routine_played">
+                    <h1 id='name'></h1> 
+                </div>
+            </div>
+        </article>
+
       </section>
       
+    
     <footer>
       <div id="footer">
         <p>Copyright &copy; 2018, TechHaus. All rights reserved.</p>

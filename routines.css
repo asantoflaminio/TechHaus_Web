@@ -58,7 +58,7 @@ nav {
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
     background-color: #4d4d4d;
-     outline: none;
+    outline: none;
 }
 
 
@@ -69,41 +69,11 @@ nav {
     padding-left: 45px;
 }
 
-.breadcrumb {
-    padding-top: 0;
-    padding-left: 45px
-}
-
-/* Display list items side by side */
-ul.breadcrumb li {
-    display: inline;
-    font-size: 15px;
-}
-
-/* Add a slash symbol (>) before/behind each list item */
-ul.breadcrumb li+li:before {
-    padding: 0;
-    color: black;
-    content: ">\00a0";
-}
-
-/* Add a color to all links inside the list */
-ul.breadcrumb li a {
-    color: #4B6377;
-    text-decoration: underline;
-}
-
-/* Add a color on mouse-over */
-ul.breadcrumb li a:hover {
-    color: #618099;
-    text-decoration: underline;
-}
-
-
 section {
-    margin-bottom:20px;
+    margin-bottom:10px;
     margin-left: 5%;
     margin-right: 5.2%;
+
 }
 
 .category_title {
@@ -143,10 +113,10 @@ section {
 /* Style the list box */
 .routines_list_box {
     float: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     background-color: #fff;
     height: 410px;
-    width: 100%;
+    width: 99.5%;
     border-style: solid;
     border-color: #a6a6a6;
     overflow:auto;
@@ -171,7 +141,6 @@ section {
     font-size: 17px;
     font-family: monaco, monospace;
 }
-
 
 .play_icon {
     width: 44px;
@@ -257,7 +226,7 @@ footer p {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-   outline: none;
+    outline: none;
     background-color: #ddd
 }
 
@@ -318,7 +287,6 @@ footer p {
 
 form {
     float:right;
-    margin-right: 0;
     margin-top: 13px;
 }
 
@@ -361,4 +329,35 @@ input[type=text] {
 .search-container button:hover {
     border-style: outset;
     border-width: 0.5px;
+}
+
+
+/* routine played */
+
+.notice{
+    margin-bottom: 40px;
+    display: none;
+}
+
+.routine_played{
+    position: relative;
+    text-align: center; 
+    padding: 1px 5px 1px 5px;
+    background-color: black;
+    border-radius:8px;
+    -moz-border-radius:8px; 
+    -webkit-border-radius:8px;
+    opacity: 0.7;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.routine_played h1 {
+    color: white;
+    font-family: monaco, sans-serif;
+    font-size: 12px;
+}
+
+.routine_played:hover{
+    opacity: 0.9;
 }

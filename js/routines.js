@@ -24,3 +24,16 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+
+function play(name, event){
+    event.stopPropagation();
+    name = name.nextSibling.nextSibling.innerHTML
+    var notice = document.getElementsByClassName('notice')[0];
+    notice.style.display = 'block';
+    document.getElementById('name').innerHTML = "Routine \"" + name + "\" was played";
+
+    this.setTimeout(function(){
+        notice.style.display='none';
+    }, 3000);
+    
+}
