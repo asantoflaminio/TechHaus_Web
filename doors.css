@@ -136,10 +136,18 @@ section {
 }
 
 .title_elements{
-    display: inline;
+    float:left
     height: 100%;
     display: table-cell;
     vertical-align: middle;
+}
+
+.add{
+    position: absolute;
+    top: 0px;
+    display: table;
+    right: -26px;
+
 }
 
 

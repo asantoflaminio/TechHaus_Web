@@ -61,12 +61,11 @@
           </form>
         </div>
           <div class="category_title">
-             <div class="door_title" onmouseover="pencil_display(event,this);" onmouseout="pencil_out(event,this);">
+             <div onmouseover="pencil_display(event,this);" onmouseout="pencil_out(event,this);">
                  <h1 id="title" class="title_elements">Doors</h1>
                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil_icon">
+                 <img src="https://www.materialui.co/materialIcons/content/add_circle_grey_192x192.png" alt="add" id="addicon" class="add">
               </div>
-              <img src="https://www.materialui.co/materialIcons/content/add_circle_grey_192x192.png" alt="add" id="addicon" class="title_elements">
-              
           </div>
         </article>
       </div>
@@ -74,6 +73,7 @@
           <div class="doors_list_box">
             <div class="doors_list" id="doors_list">
                <button class="accordion">
+               
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
                 </div>
@@ -90,11 +90,13 @@
                   <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
                 </div>
                 
-                <div>
+                <div onmouseover="pencil_display(event,this);" onmouseout="pencil_out(event,this);">
                   <h3 class="door_name">Door 1</h3>
+                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil_icon">
                 </div>
                 <div>
                   <p class="door_room">Kitchen</p>
+    
                 </div> 
                 <div>
                   <h4 class="trash_message">You are about to delete this device. Continue? </h4>
