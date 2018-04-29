@@ -162,6 +162,7 @@ $("#addicon").click(function() {
 			  	div9.setAttribute("class", "panel");
 			  	div3.appendChild(p);
 			  	button.appendChild(div1);
+                
                 button.appendChild(div5);
                 button.appendChild(div4);
 			  	button.appendChild(div2);
