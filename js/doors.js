@@ -97,6 +97,7 @@ function pencil_out(event, title){
     
 }
 
+
 function pencil2_display(event, title){
 
     var pencil = title.closest('div').querySelector('.pencil2_icon');
@@ -113,9 +114,31 @@ function pencil2_out(event, title){
 }
 
 
+
+
 //add door
 
 $(function() {
+    
+    function edit(event, title){
+    var divHtml = title.html();
+    var editableText = $("<textarea />");
+    editableText.val(divHtml);
+    title.replaceWith(editableText);
+    editableText.focus();
+    // setup the blur event for this new textarea
+    editableText.blur(editableTextBlurred(title));
+    }
+
+    function editableTextBlurred(title) {
+    var html = title.val();
+    var viewableText = $("<div>");
+    viewableText.html(html);
+    title.replaceWith(viewableText);
+    // setup the click event for this new div
+    $(viewableText).click(divClicked);
+    }
+    
 
 $("#addicon").click(function() {
 

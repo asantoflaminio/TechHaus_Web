@@ -68,8 +68,11 @@
             </form>
           </div>
           <div class="category_title">
-              <h1 id="title" class="title_elements">Kitchen</h1>
-              <img src="https://www.materialui.co/materialIcons/content/add_circle_grey_192x192.png" alt="add" id="addicon" class="title_elements">
+              <div onclick="edit(event,this);" onmouseover="pencil_display(event,this);" onmouseout="pencil_out(event,this);">
+                 <h1 id="title" class="title_elements">Kitchen</h1>
+                 <img src="Iconos/pencil.png" alt="Pencil"  class="pencil_icon">
+                 <img src="https://www.materialui.co/materialIcons/content/add_circle_grey_192x192.png" alt="add" id="addicon" class="add">
+              </div>
           </div>
         </div>
         </article>
@@ -85,14 +88,24 @@
                   <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
                 </div>
                 <div>
-                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                  <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
                 </div>
                 <div>
+                  <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                </div>
+                <div>
+                  <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                </div>
+                <div onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);">
                   <h3 class="device_name">Oven</h3>
+                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
+                </div>
+                <div >
+                  <h3 class="device_room">Oven</h3> 
                 </div>
                 <div>
-                  <h3 class="device_room">Kitchen</h3>
-                </div>
+                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                </div> 
               </button>
               <div class="panel">
                 <p>Info on Oven</p>
@@ -105,14 +118,24 @@
                   <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
                 </div>
                 <div>
-                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                  <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
                 </div>
                 <div>
+                  <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                </div>
+                <div>
+                  <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                </div>
+                <div onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);">
                   <h3 class="device_name">Light 1</h3>
+                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
                 </div>
                 <div>
-                  <h3 class="device_room">Kitchen</h3>
+                  <h3 class="device_room">Light</h3>
                 </div>
+                <div>
+                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                </div> 
               </button>
               <div class="panel">
                 <p>Info on Light 1</p>
@@ -125,14 +148,24 @@
                   <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
                 </div>
                 <div>
-                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                  <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
                 </div>
                 <div>
+                  <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                </div>
+                <div>
+                  <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                </div>
+                <div onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);">
                   <h3 class="device_name">Light 2</h3>
+                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
                 </div>
                 <div>
-                  <h3 class="device_room">Garage</h3>
+                  <h3 class="device_room">Light</h3>
                 </div>
+                <div>
+                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                </div> 
               </button>
               <div class="panel">
                 <p>Info on Light 2</p>
@@ -145,14 +178,24 @@
                   <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
                 </div>
                 <div>
-                  <img src="Iconos/tacho.png" alt="Delete" class="delete_icon">
+                  <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
                 </div>
                 <div>
+                  <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                </div>
+                <div>
+                  <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                </div>
+                <div onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);">
                   <h3 class="device_name">Fridge</h3>
+                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
+                </div>
+                <div >
+                  <h3 class="device_room">Fridge</h3> 
                 </div>
                 <div>
-                  <h3 class="device_room">Kitchen</h3>
-                </div>
+                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                </div> 
               </button>
               <div class="panel">
                 <p>Info on Fridge</p>

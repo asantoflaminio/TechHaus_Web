@@ -128,11 +128,39 @@ section {
     left:0px;
 }
 
+.pencil_icon {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0px;
+    display: table;
+    right: 0px;
+    visibility: hidden;
+}
+
+.pencil2_icon {
+    width: 12px;
+    height: 12px;
+    position: relative;
+    top: -8px;
+    display: table;
+    right: 0px;
+    visibility: hidden;
+}
+
 .title_elements{
-    display: inline;
+    float:left
     height: 100%;
     display: table-cell;
     vertical-align: middle;
+}
+
+.add{
+    position: absolute;
+    top: 0px;
+    display: table;
+    right: -26px;
+
 }
 
 #title{
@@ -215,6 +243,19 @@ ul.tabs li:before {
     font-family: monaco, monospace;
 }
 
+.trash_message {
+    text-align: right;
+    color: #555;
+    position: relative;
+    float: right;
+    margin-left: 0;
+    margin-top: -6px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    font-family: monaco, monospace;
+    visibility: hidden;
+}
+
 .arrow_icon {
     width: 30px;
     height: 30px;
@@ -222,6 +263,31 @@ ul.tabs li:before {
     cursor: pointer;
     position: relative;
     float: right;
+}
+
+
+.no_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
+}
+
+.yes_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
 }
 
 .fave_icon {
