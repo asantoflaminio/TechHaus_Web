@@ -152,6 +152,7 @@ $("#addicon").click(function() {
                 var heart = document.createElement("img");
                 var yes = document.createElement("img");
                 var no = document.createElement("img");
+                var pencil2 = document.createElement("img");
                 var h4 = document.createElement("h4");
 			  	img.setAttribute("src", "Iconos/arrow_down.png");
 			  	img.setAttribute("alt", "Expand");
@@ -172,6 +173,9 @@ $("#addicon").click(function() {
 			  	no.setAttribute("alt", "No");
 			  	no.setAttribute("class", "no_icon");
                 no.setAttribute("onclick", "no(event,this);");
+                pencil2.setAttribute("src", "Iconos/pencil.png");
+                pencil2.setAttribute("alt", "Pencil;");
+                pencil2.setAttribute("class", "pencil2_icon");
                     
 			  	div1.appendChild(img);
                 div4.appendChild(trash);
@@ -184,6 +188,9 @@ $("#addicon").click(function() {
                 h3.setAttribute("class", "door_name");
 			  	h3.innerHTML = $('#door_input').val();
 			  	div2.appendChild(h3);
+                div2.appendChild(pencil2);
+                div2.setAttribute("onmouseover", "pencil2_display(event,this);");
+                div2.setAttribute("onmouseout","pencil2_out(event,this);");   
 			  	p.setAttribute("class", "door_room");
 			  	p.innerHTML = $('#room_input').val();
 			  	var div9 = document.createElement("div");
