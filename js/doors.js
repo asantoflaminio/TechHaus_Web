@@ -78,7 +78,9 @@ function no(event, noicon){
 function yes(event, yesicon){
     
     event.stopPropagation();
+    yesicon.closest('button').nextElementSibling.remove();
     yesicon.closest('button').remove();
+
     
 }
 
