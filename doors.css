@@ -125,12 +125,24 @@ section {
     left:0px;
 }
 
+.pencil_icon {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0px;
+    display: table;
+    right: 0px;
+    visibility: hidden;
+}
+
 .title_elements{
     display: inline;
     height: 100%;
     display: table-cell;
     vertical-align: middle;
 }
+
+
 
 #title{
     font-size: 30px;

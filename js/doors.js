@@ -82,6 +82,21 @@ function yes(event, yesicon){
     
 }
 
+function pencil_display(event, title){
+
+    var pencil = title.closest('div').querySelector('.pencil_icon');
+    pencil.style.visibility = "visible";
+    
+}
+
+function pencil_out(event, title){
+    
+
+   var pencil = title.closest('div').querySelector('.pencil_icon');
+    pencil.style.visibility = "hidden";
+    
+}
+
 
 //add door
 
