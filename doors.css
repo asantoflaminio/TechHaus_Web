@@ -135,6 +135,16 @@ section {
     visibility: hidden;
 }
 
+.pencil2_icon {
+    width: 12px;
+    height: 12px;
+    position: relative;
+    top: -8px;
+    display: table;
+    right: 0px;
+    visibility: hidden;
+}
+
 .title_elements{
     float:left
     height: 100%;
@@ -253,6 +263,7 @@ ul.tabs li:before {
     position: relative;
     float: right;
 }
+
 
 .fave_icon {
     width: 27px;

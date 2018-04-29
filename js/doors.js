@@ -97,6 +97,21 @@ function pencil_out(event, title){
     
 }
 
+function pencil2_display(event, title){
+
+    var pencil = title.closest('div').querySelector('.pencil2_icon');
+    pencil.style.visibility = "visible";
+    
+}
+
+function pencil2_out(event, title){
+    
+
+   var pencil = title.closest('div').querySelector('.pencil2_icon');
+    pencil.style.visibility = "hidden";
+    
+}
+
 
 //add door
 
