@@ -212,6 +212,19 @@ ul.tabs li:before {
 
 }
 
+.trash_message {
+    text-align: right;
+    color: #555;
+    position: relative;
+    float: right;
+    margin-left: 0;
+    margin-top: -6px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    font-family: monaco, monospace;
+    visibility: hidden;
+}
+
 .arrow_icon {
     width: 30px;
     height: 30px;
@@ -230,6 +243,30 @@ ul.tabs li:before {
     cursor: pointer;
     position: relative;
     float: right;
+}
+
+.no_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
+}
+
+.yes_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
 }
 
 .delete_icon {
