@@ -5,6 +5,9 @@
         <meta charset="UTF-8">
         <title>TechHaus</title>
         <link rel="stylesheet" type="text/css" href="rooms.css"/>
+        <script src="js/jquery-3.3.1.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
 
     <body>
@@ -51,7 +54,17 @@
             </figure>
             <figure>
               <a href="">
-                <img src="Iconos/bathroom2.png" alt="Bathroom" class="icon">
+                <div onmouseover="trash_display(event,this);" onmouseout="trash_out(event,this);"  class="roomandtrash">
+                    <img src="Iconos/bathroom2.png" alt="Bathroom" class="icon" >
+                    <img src="Iconos/tacho.png" alt="Trash"  class="trash_icon" onclick="display_box(event,this);">
+                </div>  
+                
+                <div class="box">
+                    <h4 class="Messagebox">You are about to delete this room and all its devices. 
+                    </h4>
+                    <img src="Iconos/confirm.png" alt="Confirm" class="confirm">
+                    <img src="Iconos/cancel.png" alt="Cancel" class="cancel">
+                </div>
               </a>
               <figcaption>Bathroom</figcaption>
             </figure>
@@ -77,11 +90,12 @@
         </section>
 
 
- <footer>
+         <footer>
           <div id="footer">
             <p>Copyright &copy; 2018, TechHaus. All rights reserved.</p>
           </div>
         </footer> 
+        <script src="js/rooms.js"></script> 
 
     </body>
 </html>
