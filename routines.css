@@ -161,6 +161,7 @@ section {
     width: 30px;
     height: 30px;
     margin: 0;
+    margin-right: 10px;
     cursor: pointer;
     position: relative;
     float: right;
@@ -250,12 +251,12 @@ footer p {
     color: #444;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 97%;
     text-align: left;
     outline: none;
     font-family: monaco, sans-serif;
     float: left;
-    height: 70px;
+    height: 40px;
     border:0.5px solid #ccc;
 }
 
@@ -358,6 +359,3 @@ input[type=text] {
     font-size: 12px;
 }
 
-.routine_played:hover{
-    opacity: 0.9;
-}
