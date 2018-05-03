@@ -1,4 +1,3 @@
-
 //accordion
 
 var acc = document.getElementsByClassName("accordion");
@@ -125,7 +124,6 @@ function searching() {
     accordions_list = document.getElementsByClassName("accordion");
     panels = document.getElementsByClassName("panel");
 
-
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < accordions_list.length; i++) {
         if (accordions_list[i].getElementsByTagName("h3")[0].innerHTML.toUpperCase().indexOf(filter) > -1) {
@@ -137,9 +135,6 @@ function searching() {
         }
     }
 }
-
-
-
 
 //add door
 
