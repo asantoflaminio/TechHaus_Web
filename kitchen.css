@@ -10,13 +10,19 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #ccc;
-    margin-bottom:100px;
+    font-family: monaco, monospace;
+    background-color: #ccc; 
+    overflow-y: hidden;
 }
 
-section {
-    position: relative;
-    top:80px;
+h2 {
+    font-size: 17px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 15px;
+    text-align: center;
 }
 
 nav {
@@ -41,58 +47,271 @@ nav {
     display: block;
     color: white;
     text-align: center;
-    padding: 15.5px;
+    padding:15.5px;
     text-decoration: none;
 }
 
-#settings {
+.navbar_item:-moz-focus-inner { 
+  border: 0; 
+}
+
+#settings_icon {
     width: 20px;
-    float: right;
 }
 
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
     background-color: #4d4d4d;
-     outline: none;
+    outline: none;
 }
+
+aside {
+    float: left;
+    text-align: left;
+    width: 15%;
+    height: 90%;
+}
+
+#deviceicon {
+    width: 160px;
+    height: 160px;
+    padding-top: 40px;
+    padding-left: 45px;
+}
+
+.breadcrumb {
+    padding-top: 0;
+    padding-left: 45px
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 15px;
+}
+
+/* Add a slash symbol (>) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 0;
+    color: black;
+    content: ">\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #4B6377;
+    text-decoration: underline;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #618099;
+    text-decoration: underline;
+}
+
 
 section {
-    text-align: center;  
-    padding-bottom: 60px;
+    text-align: left;
+    margin-left: 230px;
+    margin-right: 5%;
+    margin-bottom:20px;
 }
 
-h1 {
-    font: bold 1.9em monaco, sans-serif;
+.category_title {
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    display: table;
+    height:30px;
+    position: relative;
+    top: 10px;
+    left:0px;
 }
 
-
-#icons {
-    display: inline-block;
-    
+.pencil_icon {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0px;
+    display: table;
+    right: 5px;
+    visibility: hidden;
 }
 
-figure {
-    float: left; 
+.pencil2_icon {
+    width: 12px;
+    height: 12px;
+    position: relative;
+    top: -8px;
+    display: table;
+    right: -4px;
+    visibility: hidden;
 }
 
-figure img:hover{
-    -webkit-transform:scale(1.1);
-    -webkit-transition:-webkit-transform 0.40s;
+.title_elements{
+    float:left
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
-.icon {
-    width:200px;
-    height:200px; 
-    max-width:100%;
+.add{
+    position: absolute;
+    top: 0px;
+    display: table;
+    right: -26px;
+
+}
+
+#title{
+    font-size: 30px;
+    padding-right: 20px;
+}
+
+#addicon {
+    width: 36px;
+    height: 36px;
     cursor: pointer;
 }
 
-figcaption{
-    font-family: monaco, sans-serif;
-    font-size: 1.3em;
-    text-align: center;
-    margin-top: 5px;    
-    color: #222;
+#addicon:hover {
+	-webkit-transform:scale(1.1);
+	-webkit-transition:-webkit-transform 0.20s;
+}
+
+ul.tabs li {
+  list-style: none;
+  float: left;
+}
+
+ul.tabs li:before {
+  content: '\ffed';
+  margin-right: 0.5em;
+}
+
+.title_article {
+    width: 100%;
+}
+
+.list_article {
+    width: 100%;
+}
+
+/* Style the list box */
+.devices_list_box {
+    margin-top: 0;
+    margin-bottom: 30px;
+    float: right;
+    background-color: #fff; 
+    height: 410px;
+    width: 96%;
+    border-style: solid;
+    border-color: #a6a6a6;
+    overflow:auto;
+}
+
+
+.devices_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.device_name {
+    text-align: left;
+    color: #555;
+    position: relative;
+    float: left;
+    margin-left: 0;
+    margin-top: -3px;
+    margin-bottom: 0px;
+    font-family: monaco, monospace;
+}
+
+.device_room {
+    font-size: 14px;
+    color: #777;
+    position: relative;
+    float: left;
+    clear: left;
+    font-style: italic;
+    text-align: left;
+    margin-left: 0;
+    margin-top: 12px;
+    font-weight: normal;
+    font-family: monaco, monospace;
+}
+
+.trash_message {
+    text-align: right;
+    color: #555;
+    position: relative;
+    float: right;
+    margin-left: 0;
+    margin-top: -6px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    font-family: monaco, monospace;
+    visibility: hidden;
+}
+
+.arrow_icon {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}
+
+
+.no_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
+}
+
+.yes_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
+}
+
+.fave_icon {
+    width: 27px;
+    height: 27px;
+    margin: 0;
+    margin-top: 5px;
+    margin-right: 40px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}
+
+.delete_icon {
+    width: 23px;
+    height: 23px;
+    margin: 0;
+    margin-top: 7px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
 }
 
 #footer {
@@ -101,7 +320,6 @@ figcaption{
     bottom: 0;
     width: 100%;
     height:auto;
-    margin-top: 550px;
     background-color: #ddd;
 }
 
@@ -111,6 +329,8 @@ footer p {
     text-align: center;
     margin: 5px;
 }
+
+/*dropdown box*/
 
 .dropbtn {
     background-color: #4CAF50;
@@ -160,11 +380,197 @@ footer p {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+
+/*popup*/
+
+#popup {
+	display: none;
+	height: 50px;
+	width: 100px;
+	background-color: #fff;
+}
+
+#room_input {
+    width: 88%;
+    height: 22px;
+    overflow: scroll;
+}
+
+#device_input {
+    width: 86%;
+    height: 15px;
 
 }
+
+#ui-id-1 {
+	background-color: #2B3B4E;
+	color: white;
+	margin-left: 10px;
+}
+
+.ui.dialog .ui-dialog-titlebar {
+background-color: #2B3B4E;
+
+}
+
+div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle {
+	background-color: #2B3B4E;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border-color: #2B3B4E;
+	width: 192px !important;
+
+}
+
+div.popup.ui-dialog-content.ui-widget-content {
+	margin: -17px;
+	width: 190px !important;
+	height: 160px !important;
+	position: relative !important;
+	left: 17px; 
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-bottom: 1px solid; 
+	border-color: #ddd;
+	z-index: 0;
+}
+
+div.popup.ui-dialog-content.ui-widget-content p {
+	margin-left: 10px;
+	padding-top: 10px;
+	margin-bottom: 5px;
+}
+
+div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
+	width: 192px !important;
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+	position:relative;
+	float: right;
+	visibility: hidden;
+	margin-top: 0;
+	margin-right: 3px;
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close::after {
+	content: "X" !important;
+	visibility: visible;
+	color: white;
+	cursor:pointer;
+}
+
+.text-input {
+	margin-left: 10px;
+}
+
+#room-tag {
+	padding-top: 0;
+	margin-top: 10px; 
+}
+
+div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
+	width: 190px !important;
+	margin-top: -30px;
+}
+
+.mybutton {
+	position: relative;
+	float: right;
+}
+
+.cancel-button {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/* accordion */
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 15px;
+    width: 97%;
+    text-align: left;
+    outline: none;
+    font-family: monaco, sans-serif;
+    float: left;
+    height: 40px;
+    border:0.5px solid #ccc;
+}
+
+.accordion::-moz-focus-inner { 
+  border: 0; 
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white; /*#F7F7F7;*/
+    display: none;
+    overflow: hidden;
+    border: 0.5px solid #ccc;
+}
+
+/*search bar*/
+
+form {
+    float:right;
+    margin-right: 0;
+    margin-top: 13px;
+}
+
+.search { 
+    padding:2px 8px 2px 8px;
+    margin-left: 4px; 
+}
+
+.rounded { 
+    border-top-left-radius:6px; 
+    border-bottom-left-radius:6px; 
+    -moz-border-top-left-radius:6px; 
+    -webkit-border-top-left-radius:6px; 
+}
+
+input[type=text] {
+    height: 24px;
+    width: 200px;
+    float:right;
+    font-family: monaco, sans-serif;
+    font-size: 15px;
+}
+
+.search-container button {
+    float: right;
+    height: 32px;
+    width: 30px;
+    border-top-right-radius:6px; 
+    border-bottom-right-radius:6px;
+    background-color: #334860;
+    border: none;
+}
+
+#search_icon {
+    width: 15px;
+    height: 15px;
+    background-color: #334860;
+}
+
+.search-container button:hover {
+    border-style: outset;
+    border-width: 0.5px;
+}
+
