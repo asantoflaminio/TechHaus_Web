@@ -12,14 +12,3 @@ function trash_out(event, title){
     trash.style.visibility = "hidden";
     
 }
-
-function display_box(event, trash){
-    
-
-    var icon = trash.closest('div').querySelector('.icon');
-    icon.style.display= "none";
-    trash.visibility = "hidden";
-    var box = trash.closest('a').querySelector('.box');
-    box.style.display= "block";
-    
-}
