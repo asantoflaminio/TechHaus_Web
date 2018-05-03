@@ -12,7 +12,7 @@ body {
     height: 100%;
     font-family: monaco, monospace;
     background-color: #ccc; 
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 h2 {
@@ -131,7 +131,7 @@ section {
     position: absolute;
     top: 0px;
     display: table;
-    right: 0px;
+    right: 5px;
     visibility: hidden;
 }
 
@@ -141,7 +141,7 @@ section {
     position: relative;
     top: -8px;
     display: table;
-    right: 0px;
+    right: -4px;
     visibility: hidden;
 }
 
@@ -164,7 +164,7 @@ section {
 
 #title{
     font-size: 30px;
-    padding-right: 15px;
+    padding-right: 20px;
 }
 
 #addicon {
@@ -223,7 +223,7 @@ ul.tabs li:before {
     position: relative;
     float: left;
     margin-left: 0;
-    margin-top: -6px;
+    margin-top: -3px;
     margin-bottom: 0px;
     font-family: monaco, monospace;
 }
@@ -259,6 +259,8 @@ ul.tabs li:before {
     width: 30px;
     height: 30px;
     margin: 0;
+    margin-top: 4px;
+    margin-right: 10px;
     cursor: pointer;
     position: relative;
     float: right;
@@ -269,7 +271,7 @@ ul.tabs li:before {
     width: 27px;
     height: 27px;
     margin: 0;
-    margin-top: 2px;
+    margin-top: 5px;
     margin-right: 40px;
     cursor: pointer;
     position: relative;
@@ -304,7 +306,7 @@ ul.tabs li:before {
     width: 23px;
     height: 23px;
     margin: 0;
-    margin-top: 4px;
+    margin-top: 7px;
     margin-right: 15px;
     cursor: pointer;
     position: relative;
@@ -388,8 +390,6 @@ footer p {
 
 #popup {
 	display: none;
-	height: 50px;
-	width: 100px;
 	background-color: #fff;
 }
 
@@ -402,13 +402,21 @@ footer p {
 #door_input {
     width: 86%;
     height: 15px;
+	position: relative !important;
+	float: left !important;
+}
 
+#name-tag {
+	position: relative !important;
 }
 
 #ui-id-1 {
 	background-color: #2B3B4E;
 	color: white;
 	margin-left: 10px;
+	position: relative;
+	float: left;
+	margin-top: 0;
 }
 
 .ui.dialog .ui-dialog-titlebar {
@@ -421,21 +429,22 @@ div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-drag
 	padding-top: 8px;
 	padding-bottom: 8px;
 	border-color: #2B3B4E;
+	height: 17px !important;
 	width: 192px !important;
+	margin-top: 490px !important;
 
 }
 
 div.popup.ui-dialog-content.ui-widget-content {
-	margin: -17px;
+	margin-top: -16px;
 	width: 190px !important;
 	height: 160px !important;
-	position: relative !important;
 	left: 17px; 
 	border-left: 1px solid;
 	border-right: 1px solid;
 	border-bottom: 1px solid; 
 	border-color: #ddd;
-	z-index: 0;
+	clear: both;
 }
 
 div.popup.ui-dialog-content.ui-widget-content p {
@@ -444,8 +453,10 @@ div.popup.ui-dialog-content.ui-widget-content p {
 	margin-bottom: 5px;
 }
 
+
 div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
 	width: 192px !important;
+	height: 20px !important;
 }
 
 button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
@@ -454,6 +465,8 @@ button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-
 	visibility: hidden;
 	margin-top: 0;
 	margin-right: 3px;
+	margin-top: 0 !important;
+
 }
 
 button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close::after {
@@ -465,11 +478,15 @@ button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-
 
 .text-input {
 	margin-left: 10px;
+	position: relative !important;
+	float: left;
 }
 
 #room-tag {
 	padding-top: 0;
-	margin-top: 10px; 
+	margin-top: 10px;
+	position: relative;
+	float: left;
 }
 
 div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
@@ -494,13 +511,13 @@ div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
     background-color: #eee;
     color: #444;
     cursor: pointer;
-    padding: 18px;
-    width: 100%;
+    padding: 15px;
+    width: 97%;
     text-align: left;
     outline: none;
     font-family: monaco, sans-serif;
     float: left;
-    height: 70px;
+    height: 40px;
     border:0.5px solid #ccc;
 }
 
@@ -575,4 +592,9 @@ input[type=text] {
 .search-container button:hover {
     border-style: outset;
     border-width: 0.5px;
+}
+
+div.ui-widget-overlay.ui-front {
+    height: 100% !important;
+    width: 100% !important;
 }
