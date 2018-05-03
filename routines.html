@@ -28,6 +28,11 @@
         
         <a class="navbar_item" href="devices.html">Devices</a>
       </nav>
+
+      <div id="popup" class="popup" title="Add Routine" draggable="true" resizable="false" closeOnEscape="true">
+        <p id="name-tag">Name</p>
+        <input type="text" class="text-input" id="routine_input">
+      </div>
      
       <section>
         
@@ -48,7 +53,7 @@
 
         <article>
           <div class="routines_list_box">
-            <div class="routines_list">
+            <div class="routines_list" id="routines_list">
               <div class="accordion">
                 <div>
                   <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon"> 
@@ -83,13 +88,12 @@
           </div>
         </article>
 
-        <article>
-            <div class="notice">
-                <div class="routine_played">
-                    <h1 id='name'></h1> 
-                </div>
+
+          <div class="notice">
+            <div class="routine_played">
+              <h1 id='name'></h1> 
             </div>
-        </article>
+          </div>
 
       </section>
       
