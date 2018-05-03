@@ -15,22 +15,6 @@ body {
     margin-bottom:50px;
 }
 
-a .roomandtrash {
-   display: inline;
-   position: relative;
-   /*width: 120px !important; no me da bola*/
-}
-
-.trash_icon {
-    width: 25px;
-    height: 25px;
-    position: relative;
-    right: 20px;
-    top: -85px;
-    visibility: hidden;
-
-}
-
 a {
     text-decoration: none;
 }
@@ -133,6 +117,27 @@ figure img:hover{
   	height:120px;
   	display: inline-block;
     cursor: pointer;
+}
+
+a .roomandtrash {
+   display: inline;
+   position: relative;
+   width: 120px !important;
+}
+
+div .roomandtrash {
+   width: 120px !important;
+
+}
+
+.trash_icon {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: -10px;
+    top: -110px;
+    visibility: hidden;
+
 }
 
 a {
