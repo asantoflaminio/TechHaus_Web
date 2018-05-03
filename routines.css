@@ -3,6 +3,7 @@
 html{
     position:relative; 
     min-height: 100%;
+    height: 100%;
 }
 
 body {
@@ -12,6 +13,7 @@ body {
     height: 100%;
     font-family: monaco, monospace;
     background-color: #ccc; 
+    overflow-y: hidden;
 }
 
 h2 {
@@ -135,7 +137,7 @@ section {
     color: #555;
     position: relative;
     float: left;
-    margin-top: 9px;
+    margin-top: 8px;
     margin-bottom: 26.5px;
     margin-left: 15px;
     font-size: 17px;
@@ -160,7 +162,7 @@ section {
 .arrow_icon {
     width: 30px;
     height: 30px;
-    margin: 0;
+    margin-top: 3px;
     margin-right: 10px;
     cursor: pointer;
     position: relative;
@@ -256,7 +258,7 @@ footer p {
     outline: none;
     font-family: monaco, sans-serif;
     float: left;
-    height: 40px;
+    height: 35px;
     border:0.5px solid #ccc;
 }
 
@@ -351,11 +353,123 @@ input[type=text] {
     opacity: 0.7;
     margin-left: 40%;
     margin-right: 40%;
+    bottom: 80px;
+    display:inline-block;
 }
 
 .routine_played h1 {
     color: white;
     font-family: monaco, sans-serif;
     font-size: 12px;
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
+/*popup*/
+
+#popup {
+    display: none;
+    background-color: #fff;
+}
+
+#routine_input {
+    width: 88%;
+    height: 22px;
+    float: left;
+    overflow: scroll;
+}
+
+#name-tag {
+    position: relative !important;
+}
+
+#ui-id-1 {
+    background-color: #2B3B4E;
+    color: white;
+    margin-left: 10px;
+    position: relative;
+    float: left;
+    margin-top: 0;
+
+}
+
+div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle {
+    background-color: #2B3B4E;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-color: #2B3B4E;
+    height: 17px !important;
+    width: 192px !important;
+    margin-top: 490px !important;
+
+}
+
+div.popup.ui-dialog-content.ui-widget-content {
+    margin-top: -16px;
+    width: 190px !important;
+    height: 100px !important;
+    left: 17px; 
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid; 
+    border-color: #ddd;
+    clear: both;
+}
+
+div.popup.ui-dialog-content.ui-widget-content p {
+    margin-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 5px;
+}
+
+
+div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
+    width: 192px !important;
+    height: 20px !important;
+    position: relative !important;
+    top: -143% !important;
+    left: 43% !important; 
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+    position:relative;
+    float: right;
+    visibility: hidden;
+    margin-top: 0;
+    margin-right: 3px;
+    margin-top: 0 !important;
+
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close::after {
+    content: "X" !important;
+    visibility: visible;
+    color: white;
+    cursor:pointer;
+}
+
+.text-input {
+    margin-left: 10px;
+    position: relative !important;
+    float: left;
+}
+
+div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
+    width: 190px !important;
+    margin-top: -30px;
+}
+
+.mybutton {
+    position: relative;
+    float: right;
+}
+
+.cancel-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.ui-widget-overlay.ui-front {
+   position: fixed !important;
+   top: 0;
+}
