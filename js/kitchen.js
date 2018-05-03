@@ -70,14 +70,15 @@ function trash(event, trashcan){
     event.stopPropagation();
     if (trashcan.getAttribute('src') == "Iconos/tacho.png")
                 {
-                    trashcan.src = "Iconos/warning.png"; //this works ok
-                    var heart = trashcan.closest('button').querySelector('.fave_icon');
+                    //trashcan.src = "Iconos/warning.png"; //this works ok
+                    trashcan.style.visibility = "hidden";
+                    var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
                     heart.style.visibility = "hidden";
-                    var message = trashcan.closest('button').querySelector('.trash_message');
+                    var message = trashcan.closest('div').parentNode.querySelector('.trash_message');
                     message.style.visibility = "visible";
-                    var yes = trashcan.closest('button').querySelector('.yes_icon');
+                    var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
                     yes.style.visibility = "visible";
-                    var no = trashcan.closest('button').querySelector('.no_icon');
+                    var no = trashcan.closest('div').parentNode.querySelector('.no_icon');
                     no.style.visibility = "visible";
                     
                 }
@@ -85,14 +86,15 @@ function trash(event, trashcan){
 
 function no(event, noicon){
     event.stopPropagation();
-    var trashcan = noicon.closest('button').querySelector('.delete_icon');
+    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
     trashcan.src = "Iconos/tacho.png";
+    trashcan.style.visibility = "visible";
     noicon.style.visibility = "hidden";
-    var message = noicon.closest('button').querySelector('.trash_message');
+    var message = noicon.closest('div').parentNode.querySelector('.trash_message');
     message.style.visibility = "hidden";
-    var yes = noicon.closest('button').querySelector('.yes_icon');
+    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
     yes.style.visibility = "hidden";
-    var heart = noicon.closest('button').querySelector('.fave_icon');
+    var heart = noicon.closest('div').parentNode.querySelector('.fave_icon');
     heart.style.visibility = "visible";
     
     
@@ -101,8 +103,8 @@ function no(event, noicon){
 function yes(event, yesicon){
     
     event.stopPropagation();
-    yesicon.closest('button').nextElementSibling.remove();
-    yesicon.closest('button').remove();
+    yesicon.closest('div').parentNode.nextElementSibling.remove();
+    yesicon.closest('div').parentNode.remove();
     
 }
 
