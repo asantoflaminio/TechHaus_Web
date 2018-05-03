@@ -15,9 +15,10 @@ body {
     margin-bottom:50px;
 }
 
-.roomandtrash {
+a .roomandtrash {
    display: inline;
    position: relative;
+   /*width: 120px !important; no me da bola*/
 }
 
 .trash_icon {
@@ -27,8 +28,12 @@ body {
     right: 20px;
     top: -85px;
     visibility: hidden;
+
 }
 
+a {
+    text-decoration: none;
+}
 
 nav {
     list-style-type: none;
