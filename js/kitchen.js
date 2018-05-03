@@ -108,149 +108,107 @@ function yes(event, yesicon){
     
 }
 
-$(function() {
-
 $("#addicon").click(function() {
 
-	$("#popup").dialog({
+    $("#popup").dialog({
         modal: true,
-    	buttons: [ 
-    		{	
-    			text:'Cancel',
-    			"class": "mybutton cancel-button",
-    			click: function() {
-    			
-    			$(this).dialog('close');
-    			}
-    		},
-    		{
-    			/*text: 'Add',
-    			"class": "mybutton",
-    			click: function () {
-    		 	var list = document.getElementById("devices_list");
-			  	var button = document.createElement("BUTTON");
-			  	button.setAttribute("class", "accordion");
-			  	var div1 = document.createElement("div");
-			  	var div2 = document.createElement("div");
-			  	var div3 = document.createElement("div");
-			  	var p = document.createElement("p");
-			  	var h3 = document.createElement("h3");
-			  	var img = document.createElement("img");
-			  	img.setAttribute("src", "Iconos/arrow_down.png");
-			  	img.setAttribute("alt", "Expand");
-			  	img.setAttribute("class", "arrow_icon");
-			  	div1.appendChild(img);
-			  	h3.setAttribute("class", "device_name");
-			  	h3.innerHTML = $('#device_input').val();
-			  	div2.appendChild(h3);
-			  	p.setAttribute("class", "device_room");
-			  	p.innerHTML = $('#room_input').val();
-			  	div3.appendChild(p);
-			  	button.appendChild(div1);
-			  	button.appendChild(div2);
-			  	button.appendChild(div3);
-			  	list.appendChild(button);
-			   	var div4 = document.createElement("div");
-			  	var p1 = document.createElement("p");
-			  	p1.innerHTML = "Info on";
-			  	div4.setAttribute("class", "panel");
-			  	div4.appendChild(p1);
-			  	list.appendChild(div4);
-      			
-      			$(this).dialog('close');*/
-                    
-                    
+        buttons: [ 
+            {   
+                text:'Cancel',
+                "class": "mybutton cancel-button",
+                click: function() {
+
+                $(this).dialog('close');
+                }
+            },
+            {
                 text: 'Add',
-    			"class": "mybutton",
-    			click: function () {
-    		 	var list = document.getElementById("devices_list");
-			  	var button = document.createElement("BUTTON");
-			  	button.setAttribute("class", "accordion");
-			  	var div1 = document.createElement("div");
-			  	var div2 = document.createElement("div");
-			  	var div3 = document.createElement("div");
+                "class": "mybutton",
+                click: function () {
+                var list = document.getElementById("devices_list");
+                var elem = document.createElement("div");
+                elem.setAttribute("class", "accordion");
+                var div1 = document.createElement("div");
+                var div2 = document.createElement("div");
+                var div3 = document.createElement("div");
                 var div4 = document.createElement("div");
                 var div5 = document.createElement("div");
                 var div6 = document.createElement("div");
                 var div7 = document.createElement("div");
                 var div8 = document.createElement("div");
-			  	var p = document.createElement("p");
-			  	var h3 = document.createElement("h3");
-			  	var img = document.createElement("img");
+                var p = document.createElement("p");
+                var h3 = document.createElement("h3");
+                var img = document.createElement("img");
                 var trash = document.createElement("img");
                 var heart = document.createElement("img");
                 var yes = document.createElement("img");
                 var no = document.createElement("img");
                 var pencil2 = document.createElement("img");
                 var h4 = document.createElement("h4");
-			  	img.setAttribute("src", "Iconos/arrow_down.png");
-			  	img.setAttribute("alt", "Expand");
-			  	img.setAttribute("class", "arrow_icon");
+                img.setAttribute("src", "Iconos/arrow_down.png");
+                img.setAttribute("alt", "Expand");
+                img.setAttribute("class", "arrow_icon");
                 trash.setAttribute("src", "Iconos/tacho.png");
-			  	trash.setAttribute("alt", "Delete");
-			  	trash.setAttribute("class", "delete_icon");
+                trash.setAttribute("alt", "Delete");
+                trash.setAttribute("class", "delete_icon");
                 trash.setAttribute("onclick", "trash(event,this);");
                 heart.setAttribute("src", "Iconos/heart.png");
-			  	heart.setAttribute("alt", "Fave");
-			  	heart.setAttribute("class", "fave_icon");
+                heart.setAttribute("alt", "Fave");
+                heart.setAttribute("class", "fave_icon");
                 heart.setAttribute("onclick", "fav(event,this);");
                 yes.setAttribute("src", "Iconos/yes.png");
-			  	yes.setAttribute("alt", "Yes");
-			  	yes.setAttribute("class", "yes_icon");
+                yes.setAttribute("alt", "Yes");
+                yes.setAttribute("class", "yes_icon");
                 yes.setAttribute("onclick", "yes(event,this);");
                 no.setAttribute("src", "Iconos/no.png");
-			  	no.setAttribute("alt", "No");
-			  	no.setAttribute("class", "no_icon");
+                no.setAttribute("alt", "No");
+                no.setAttribute("class", "no_icon");
                 no.setAttribute("onclick", "no(event,this);");
                 pencil2.setAttribute("src", "Iconos/pencil.png");
                 pencil2.setAttribute("alt", "Pencil;");
                 pencil2.setAttribute("class", "pencil2_icon");
                     
-			  	div1.appendChild(img);
+                div1.appendChild(img);
                 div4.appendChild(trash);
                 div5.appendChild(heart);
                 div6.appendChild(yes);
                 div7.appendChild(no);
                 div8.appendChild(h4);
-			  	h4.setAttribute("class", "trash_message");
-			  	h4.innerHTML = "You are about to delete this device. Continue? ";
+                h4.setAttribute("class", "trash_message");
+                h4.innerHTML = "You are about to delete this device. Continue? ";
                 h3.setAttribute("class", "device_name");
-			  	h3.innerHTML = $('#door_input').val();
-			  	div2.appendChild(h3);
+                h3.innerHTML = $('#device_input').val();
+                div2.appendChild(h3);
                 div2.appendChild(pencil2);
                 div2.setAttribute("onmouseover", "pencil2_display(event,this);");
                 div2.setAttribute("onmouseout","pencil2_out(event,this);");   
-			  	p.setAttribute("class", "device_room");
-			  	p.innerHTML = $('#room_input').val();
-			  	var div9 = document.createElement("div");
-			  	var p1 = document.createElement("p");
-			  	p1.innerHTML = "Info on";
-			  	div9.setAttribute("class", "panel");
-			  	div3.appendChild(p);
-			  	button.appendChild(div1);
+                p.setAttribute("class", "device_room");
+                p.innerHTML = $('#room_input').val();
+                var div9 = document.createElement("div");
+                var p1 = document.createElement("p");
+                p1.innerHTML = "Info on";
+                div9.setAttribute("class", "panel");
+                div3.appendChild(p);
+                elem.appendChild(div1);
                 
-                button.appendChild(div5);
-                button.appendChild(div4);
-			  	button.appendChild(div2);
-			  	button.appendChild(div3);
-                button.appendChild(div6);
-                button.appendChild(div7);
-                button.appendChild(div8);
-                button.appendChild(div9);
+                elem.appendChild(div5);
+                elem.appendChild(div4);
+                elem.appendChild(div6);
+                elem.appendChild(div7);
+                elem.appendChild(div2);
+                elem.appendChild(div3);
+                elem.appendChild(div8);
+                elem.appendChild(div9);
                 
-			  	list.appendChild(button);
-			  	div9.appendChild(p1);
-			  	list.appendChild(div9);
+                list.appendChild(elem);
+                div9.appendChild(p1);
+                list.appendChild(div9);
 
-      			$(this).dialog('close');
 
-    			}
-    		}
-		]
-	})
-});
+                $(this).dialog('close');
 
-/*$(".doors_list").accordion({
-	collapsible: true
-});*/
+                }
+            }
+        ]
+    });
 });
