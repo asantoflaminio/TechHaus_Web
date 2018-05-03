@@ -117,6 +117,24 @@ function pencil2_out(event, title){
     
 }
 
+function searching() {
+    // Declare variables
+    var input, filter, accordions_list, i;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    accordions_list = document.getElementsByClassName("accordion");
+
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < accordions_list.length; i++) {
+        if (accordions_list[i].getElementsByTagName("h3")[0].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            accordions_list[i].style.display = "";
+        } else {
+            accordions_list[i].style.display = "none";
+        }
+    }
+}
+
 
 
 

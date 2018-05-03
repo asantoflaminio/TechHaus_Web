@@ -57,7 +57,7 @@
         <div class="search-container">
           <form action=""> <!--/action_page.php-->
             <button type="submit"><img src="Iconos/search_icon.png" id="search_icon"></img></button>
-             <span><input type="text" class="search rounded" placeholder="Search..."></span>
+             <span><input type="text" onkeyup="searching();" class="search rounded" placeholder="Search..."  id="myInput"></span>
           </form>
         </div>
           <div class="category_title">
@@ -70,7 +70,7 @@
         </article>
       </div>
         <article class="list_article">
-          <div class="doors_list_box">
+          <div class="doors_list_box" id="doors_box">
             <div class="doors_list" id="doors_list">
                <div class="accordion">
                
