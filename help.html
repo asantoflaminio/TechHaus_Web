@@ -30,16 +30,16 @@
       </nav>
       <div class="leftcol">
         <ul>
-          <li><a href="#">Getting started</a></li>
-          <li><a href="#">Adding</a></li>
-          <li><a href="#">Deleting</a></li>
+          <li><a href="#" onclick="showGettingStarted();">Getting started</a></li>
+          <li><a href="#" onclick="showAdding();">Adding</a></li>
+          <li><a href="#"  onclick="showDeleting();">Deleting</a></li>
           <li><a href="#" onclick="showFavorites();">Favorites</a></li>
         </ul>
       </div>
       <div>
           <img src="Iconos//Help/logo_grey.png" alt="logogris"  id="logogrande" class="logo_grey">
       </div>
-      <div class='Favorites' id="Favs">
+      <div class='help_cat' id="Favs">
          <div class='favorites_info'>
              <div class="box">
                    <div class="picture">
@@ -69,23 +69,103 @@
                         </h4>
                     </div>
             </div>
-         </div>
-         <div class='markasfav'>
+         </div> 
+      </div>
+      <div class='help_cat' id="gstarted">
+         <div class='devices_info'>
              <div class="box">
                    <div class="picture">
-                        <img src="Iconos/Help/heart_help.png" alt="Fav" class="heart_help">
+                        <img src="Iconos/Help/doors_help.png" alt="Door" class="doors_help">
                     </div>
                     <div class="Messagebox_title">
-                        <h1 >Mark as favorite
+                        <h1 >Devices
                         </h1>
                     </div>
                     <div class="Messagebox">
-                        <h4 >To mark a device as favorite go to a section where the device is listed and then colour the heart next to it by clicking on it. 
+                        <h4 >Under the 'Devices' tab you can access you devices by categories. Click on the one you want too see a list. You can add new devices on each category. 
                         </h4>
                     </div>
             </div>
          </div>
-          
+         <div class='room_info'>
+             <div class="box">
+                   <div class="picture">
+                        <img src="Iconos/Help/bath.png" alt="Bath" class="bath_help">
+                    </div>
+                    <div class="Messagebox_title">
+                        <h1 >Rooms
+                        </h1>
+                    </div>
+                    <div class="Messagebox">
+                        <h4 >Under the 'Rooms' tab you can access your devices organized by rooms. You can create more rooms using the add button. You can also add new devices in each room. 
+                        </h4>
+                    </div>
+            </div>
+         </div>
+         <div class='routine_info'>
+             <div class="box">
+                   <div class="picture">
+                        <img src="Iconos/Help/routine.png" alt="Routine" class="routine_help">
+                    </div>
+                    <div class="Messagebox_title">
+                        <h1 >Routines
+                        </h1>
+                    </div>
+                    <div class="Messagebox">
+                        <h4 >Under the 'Routines' tab you can access your routines, create new ones and modify them. To execute a routine click on the play icon next to its name. You can see details of the routine by expanding it. 
+                        </h4>
+                    </div>
+            </div>
+         </div> 
+      </div>
+      <div class='help_cat' id="Delete">
+         <div class='deleting_info'>
+             <div class="box">
+                   <div class="picture">
+                        <img src="Iconos/Help/trash_help.png" alt="Trash" class="trash_help">
+                    </div>
+                    <div class="Messagebox_title">
+                        <h1 >Deleting devices
+                        </h1>
+                    </div>
+                    <div class="Messagebox">
+                        <h4 >To delete a device, go to a section where the device is listed, whether it's a room or a device category. Then click on the trash can icon next to it. 
+                        </h4>
+                    </div>
+            </div>
+         </div>
+         <div class='delete_room'>
+             <div class="box">
+                   <div class="picture">
+                        <img src="Iconos/Help/deleteroom_help.png" alt="Del" class="delete_help">
+                    </div>
+                    <div class="Messagebox_title">
+                        <h1 >Deleting rooms
+                        </h1>
+                    </div>
+                    <div class="Messagebox">
+                        <h4 >To delete a room go to the 'Rooms' tab and by passing the cursor over a room a trash can icon will appear. Click on it to delete the selected room. 
+                        </h4>
+                    </div>
+            </div>
+         </div> 
+      </div>
+      <div class='help_cat' id="Adding">
+         <div class='adding_info'>
+             <div class="box">
+                   <div class="picture">
+                        <img src="Iconos/Help/addhelp.png" alt="Add" class="add_help">
+                    </div>
+                    <div class="Messagebox_title">
+                        <h1 >Adding devices, rooms and routines
+                        </h1>
+                    </div>
+                    <div class="Messagebox">
+                        <h4 >To add a device you can go to a device category or a specific room. Then click on the add icon to add a new device. A similar button is found under the 'Rooms' tab to add a room and under 'Routines' to create a routine. 
+                        </h4>
+                    </div>
+            </div>
+         </div> 
       </div>
 
       

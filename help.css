@@ -13,7 +13,7 @@ body {
     height: 100%;
     font-family: monaco, monospace;
     background-color: #ccc; 
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 h2 {
@@ -122,6 +122,8 @@ nav {
     padding: 0;
     margin-left: 4px;
     color:#2B3B4E;
+    text-align: center;
+    vertical-align:middle;
 }
 .leftcol ul a {
     text-decoration: none;
@@ -129,6 +131,12 @@ nav {
     font-weight: bold;
     margin-top: 2px;
     margin-bottom: 2px;
+    text-align: center;
+    vertical-align:middle;
+}
+
+.leftcol ul a:hover {
+    background-color: #ccc;
 }
 
 .logo_grey {
@@ -160,8 +168,12 @@ nav {
     outline: none;
 }
 
-#Favs {
+.help_cat {
     display: none;
+    overflow-y: scroll;
+    position:relative;
+    height: 500px;
+    width: 86%;
 }
 
 .box {
@@ -219,6 +231,76 @@ nav {
     float:left;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+ 
+}
+
+.doors_help {
+  width: 155px;
+  height: 170px;
+  position: relative;
+    float:left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+ 
+}
+
+.bath_help {
+  width: 146px;
+  height: 170px;
+  position: relative;
+    float:left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+ 
+}
+
+.routine_help {
+    width: 230px;
+  height: 170px;
+  position: relative;
+    float:left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+ 
+}
+
+.trash_help {
+  width: 157px;
+  height: 170px;
+  position: relative;
+    float:left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+ 
+}
+
+.delete_help {
+  width: 171px;
+  height: 170px;
+  position: relative;
+    float:left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+ 
+}
+
+.add_help {
+  position: relative;
+    float:left;
+    margin-top: 24.5px;
+    margin-bottom: 24.55px;
     margin-left: 5px;
     margin-right: 5px;
  
