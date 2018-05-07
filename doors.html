@@ -176,6 +176,10 @@
                 <div>
                   <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
                 </div>
+                <div class="lock">
+                       <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);">
+                        <p class="lock_text">Lock: Locked</p>
+                  </div>
                 <div>
                   <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
                 </div>
@@ -196,12 +200,9 @@
               <div class="panel">
                    <div class="status">
                         <img src="Iconos/closed.png" alt="Closed"  class="status_icon" onclick="stat(event,this);">
-                        <p>Current status: Closed</p>
+                        <p class="stat_text">Status: Closed</p>
                   </div>
-                  <div class="lock">
-                       <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);">
-                        <p>Current lock: Locked</p>
-                  </div>
+                  
               </div>
 
              </div>

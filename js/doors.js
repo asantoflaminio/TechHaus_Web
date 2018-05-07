@@ -47,26 +47,26 @@ function stat(event, status){
     if (status.getAttribute('src') == "Iconos/closed.png")
                 {
                     status.src = "Iconos/open.png";
-                    status.closest('p').innerHTML = 'Current status: Open';
+                    status.closest('div').parentNode.querySelector('.stat_text').innerHTML = 'Status: Open';
                 }
                 else
                 {
                     status.src = "Iconos/closed.png";
-                    status.closest('p').innerHTML = 'Current status: Closed';
+                    status.closest('div').parentNode.querySelector('.stat_text').innerHTML = 'Status: Closed';
                 }
 }
 
 function lock(event, locking){
-    //event.stopPropagation();
+    event.stopPropagation();
     if (locking.getAttribute('src') == "Iconos/locked.png")
                 {
                     locking.src = "Iconos/unlocked.png";
-                    locking.closest('p').innerHTML = 'Current lock: Unlocked';
+                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = 'Lock: Unlocked';
                 }
                 else
                 {
                     locking.src = "Iconos/locked.png";
-                    locking.closest('p').innerHTML = 'Current lock: Locked';
+                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = "Lock: Locked";
                 }
 }
 
@@ -79,6 +79,8 @@ function trash(event, trashcan){
                     trashcan.style.visibility = "hidden";
                     var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
                     heart.style.visibility = "hidden";
+                    var lck = trashcan.closest('div').parentNode.querySelector('.lock');
+                    lck.style.display = "none";
                     var message = trashcan.closest('div').parentNode.querySelector('.trash_message');
                     message.style.visibility = "visible";
                     var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
@@ -101,6 +103,8 @@ function no(event, noicon){
     yes.style.visibility = "hidden";
     var heart = noicon.closest('div').parentNode.querySelector('.fave_icon');
     heart.style.visibility = "visible";
+    var lck = trashcan.closest('div').parentNode.querySelector('.lock');
+    lck.style.display = "";
     
     
 }
