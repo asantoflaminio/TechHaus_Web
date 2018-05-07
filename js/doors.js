@@ -42,6 +42,35 @@ function fav(event, heart){
                 }
 }
 
+function stat(event, status){
+    //event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/closed.png")
+                {
+                    status.src = "Iconos/open.png";
+                    status.closest('p').innerHTML = 'Current status: Open';
+                }
+                else
+                {
+                    status.src = "Iconos/closed.png";
+                    status.closest('p').innerHTML = 'Current status: Closed';
+                }
+}
+
+function lock(event, locking){
+    //event.stopPropagation();
+    if (locking.getAttribute('src') == "Iconos/locked.png")
+                {
+                    locking.src = "Iconos/unlocked.png";
+                    locking.closest('p').innerHTML = 'Current lock: Unlocked';
+                }
+                else
+                {
+                    locking.src = "Iconos/locked.png";
+                    locking.closest('p').innerHTML = 'Current lock: Locked';
+                }
+}
+
+
 function trash(event, trashcan){
     event.stopPropagation();
     if (trashcan.getAttribute('src') == "Iconos/tacho.png")
@@ -82,7 +111,6 @@ function yes(event, yesicon){
     yesicon.closest('div').parentNode.nextElementSibling.remove();
     yesicon.closest('div').parentNode.remove();
 
-    
 }
 
 function pencil_display(event, title){
