@@ -1,9 +1,11 @@
 //accordion
 
-var acc = document.getElementsByClassName("accordion");
-var i;
+addPanels();
 
-for (i = 0; i < acc.length; i++) {
+function addPanels(){
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function() {
         /* Toggle between adding and removing the "active" class,
         to highlight the button that controls the panel */
@@ -26,6 +28,8 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+}
+
 
 
 //favorite
@@ -271,6 +275,7 @@ $("#addicon").click(function() {
 			  	var p1 = document.createElement("p");
 			  	p1.innerHTML = "Info on";
 			  	div9.setAttribute("class", "panel");
+                div9.appendChild(p1);
 			  	div3.appendChild(p);
 			  	elem.appendChild(div1);
                 
@@ -281,12 +286,11 @@ $("#addicon").click(function() {
                 elem.appendChild(div2);
                 elem.appendChild(div3);
                 elem.appendChild(div8);
-                elem.appendChild(div9);
+               // elem.appendChild(div9);
                 
 			  	list.appendChild(elem);
-			  	div9.appendChild(p1);
 			  	list.appendChild(div9);
-
+                addPanels();
 
       			$(this).dialog('close');
 
