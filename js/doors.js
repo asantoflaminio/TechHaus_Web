@@ -139,6 +139,7 @@ function pencil2_out(event, title){
 }
 
 //edit device name
+var id_enter;
 
 function edit_name(event, name) {
     event.stopPropagation();
@@ -151,21 +152,25 @@ function edit_name(event, name) {
     checkmark.style.visibility = "visible";
 }
 
-function change_name(event, icon) {
+function change_name(event, element) {
     event.stopPropagation();
-    var name_input = icon.previousElementSibling.children[0];
+    var name_input = element;
     var name = name_input.value;
-    var new_name = icon.parentNode.previousElementSibling;
+    var new_name = element.parentNode.parentNode.previousElementSibling;
     new_name.innerHTML = name;
     name_input.style.visibility = "hidden";
-    icon.style.visibility = "hidden";
     new_name.style.visibility = "visible";
     name_input.style.backgroundColor = "#bbb"
 }
 
-function change_background_color(event, name) {
+function input_name(event, name) {
     event.stopPropagation();
     name.style.backgroundColor = "transparent";
+    $(name).keydown(function(event){
+        if(event.keyCode == 13){
+            change_name(event, name);
+        }
+    }); 
 }
 
 //search bar
