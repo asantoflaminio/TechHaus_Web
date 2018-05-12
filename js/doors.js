@@ -121,21 +121,7 @@ function yes(event, yesicon){
 
 }
 
-function pencil_display(event, title){
-
-    var pencil = title.closest('div').querySelector('.pencil_icon');
-    pencil.style.visibility = "visible";
-    
-}
-
-function pencil_out(event, title){
-    
-
-   var pencil = title.closest('div').querySelector('.pencil_icon');
-    pencil.style.visibility = "hidden";
-    
-}
-
+//modify
 
 function pencil2_display(event, title){
 
@@ -151,6 +137,38 @@ function pencil2_out(event, title){
     pencil.style.visibility = "hidden";
     
 }
+
+//edit device name
+
+function edit_name(event, name) {
+    event.stopPropagation();
+    name.style.visibility = "hidden";
+    var input_new_name = name.nextElementSibling.children[0].children[0];
+    var checkmark = name.nextElementSibling.children[1];
+    var pencil = name.nextElementSibling.nextElementSibling;
+    pencil.style.visibility = "hidden";
+    input_new_name.style.visibility = "visible";
+    checkmark.style.visibility = "visible";
+}
+
+function change_name(event, icon) {
+    event.stopPropagation();
+    var name_input = icon.previousElementSibling.children[0];
+    var name = name_input.value;
+    var new_name = icon.parentNode.previousElementSibling;
+    new_name.innerHTML = name;
+    name_input.style.visibility = "hidden";
+    icon.style.visibility = "hidden";
+    new_name.style.visibility = "visible";
+    name_input.style.backgroundColor = "#bbb"
+}
+
+function change_background_color(event, name) {
+    event.stopPropagation();
+    name.style.backgroundColor = "transparent";
+}
+
+//search bar
 
 function searching() {
     // Declare variables
