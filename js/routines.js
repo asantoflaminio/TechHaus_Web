@@ -1,36 +1,195 @@
-var acc = document.getElementsByClassName("accordion");
-var i;
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        /*this.classList.toggle("active");*/
+var api = class {
+  static get baseUrl() {
+    return "http://127.0.0.1:8080/api/";
+  }
 
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
-        }
-
-        var arrow = this.children[0].children[0];
-
-        if (panel.style.display === "block") {
-	        arrow.src = "Iconos/arrow_up.png";
-        } else {
-	        arrow.src = "Iconos/arrow_down.png";
-        }
-    });
+  static get timeout() {
+    return 60 * 1000;
+  }
 }
+
+api.routines = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/routines/";
+  }
+
+  static getRoutines() {
+   return $.ajax({
+      url: api.routines.url,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.routines; 
+        });  
+  }
+    
+  static executeRoutine(id) {
+   return $.ajax({
+      url: api.routines.url + id + "/execute/",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return "done"; 
+        }); 
+  }
+
+    
+    static getActionsNames(id) {
+       return $.ajax({
+          url: api.routines.url + id,
+          method: "GET",
+          dataType: "json",
+          timeout: api.timeout,
+           }).then(function(data) {
+               return data.routine.actions; 
+            });  
+      }
+    
+}
+
+api.devices = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/devices/";
+  }
+   static getDeviceName(id) {
+   return $.ajax({
+      url: api.devices.url + id,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data;
+        });  
+  } 
+}
+
+
+
+
+$(document).ready(function() {
+    api.routines.getRoutines().done(function(data) {
+        $.each(data, function(i, item){
+        
+        var routine_name = item.name;//JSON.stringify(item.name.replace("\"",""));
+        var routine_id = item.id;
+        console.log(routine_name);
+        console.log(routine_id);
+        var list = document.getElementById("routines_list");
+        var acc = document.createElement("div");
+        acc.setAttribute("class", "accordion");   
+        var pnl = document.createElement("div");
+        var p = document.createElement("p");
+        pnl.setAttribute("class", "panel");
+        var div = document.createElement("div");
+        var img1 = document.createElement("img");
+        img1.setAttribute("src", "Iconos/arrow_down.png");
+        img1.setAttribute("alt", "Expand");
+        img1.setAttribute("class", "arrow_icon");
+        var img2 =  document.createElement("img");
+        img2.setAttribute("src", "Iconos/play.png");
+        img2.setAttribute("alt", "Play");
+        img2.setAttribute("class", "play_icon");
+        img2.setAttribute("onclick", "play(this,event);");
+        var h3 = document.createElement("h3");
+        h3.setAttribute("class", "routine_name");
+        h3.innerHTML = routine_name;
+        
+
+        
+        api.routines.getActionsNames(routine_id).done(function(data) {
+            $.each(data, function(j, item2){
+                var action_name = item2.actionName;
+                var device_id = item2.deviceId; //ACA hay q hacer un get de nombre de device de devices con el id
+                var device_name = "";
+                api.devices.getDeviceName(device_id).done(function(data) {
+                    $.each(data, function(k, item3){
+                        device_name = item3.name;
+                        p.innerHTML += device_name;
+                    });
+                    console.log(device_name);
+                    console.log(action_name);       
+                    p.innerHTML +=  ": " + action_name + "<br>" ;
+                });
+             
+               
+            });
+            
+        });
+       // p.innerHTML = "MARTA SUAREZ IS HERE";
+        //$(p).text(panel_text);
+        pnl.appendChild(p);
+        div.appendChild(img1);
+        div.appendChild(img2);   
+        div.appendChild(h3);
+        acc.appendChild(div);
+        list.appendChild(acc);
+        list.appendChild(pnl);
+        
+        
+        
+        });
+       
+
+        addPanels();
+
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("Request failed: jqXHR.status=" + jqXHR.status + ", textStatus=" + textStatus + ", errorThrown=" + errorThrown);
+    });
+    //addPanels();
+    //
+     
+    //addPanels();
+    
+});
+
+
+function addPanels(){
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            /*this.classList.toggle("active");*/
+
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+
+            var arrow = this.children[0].children[0];
+
+            if (panel.style.display === "block") {
+                arrow.src = "Iconos/arrow_up.png";
+            } else {
+                arrow.src = "Iconos/arrow_down.png";
+            }
+        });
+    } 
+}
+
 
 function play(name, event){
     event.stopPropagation();
-    name = name.nextSibling.nextSibling.innerHTML;
+    name = name.closest('div').querySelector('.routine_name').innerHTML; 
     var notice = document.getElementsByClassName('notice')[0];
     notice.style.display = 'block';
     document.getElementById('name').innerHTML = "Routine \"" + name + "\" was played";
+    
+    api.routines.getRoutines().done(function(data) {
+        $.each(data, function(i, item){
+            if(name == item.name){
+                api.routines.executeRoutine(item.id);
+            }
+        });
+    });
 
     this.setTimeout(function(){
         notice.style.display='none';
@@ -107,7 +266,11 @@ $("#addicon").click(function() {
                 var img1 = document.createElement("img");
                 var img2 = document.createElement("img");
                 var h3 = document.createElement("h3");
-
+                var pnl = document.createElement("div");
+                var p = document.createElement("p");
+                pnl.setAttribute("class", "panel");
+                p.innerHTML = "This routine is empty!";
+                pnl.appendChild(p);
                 img1.setAttribute("src", "Iconos/arrow_down.png");
                 img1.setAttribute("alt", "Expand");
                 img1.setAttribute("class", "arrow_icon");
@@ -125,7 +288,28 @@ $("#addicon").click(function() {
                 div.appendChild(h3);
                 elem.appendChild(div);
                 list.appendChild(elem);
+                list.appendChild(pnl);
+                        elem.addEventListener("click", function() {
+                    /* Toggle between adding and removing the "active" class,
+                    to highlight the button that controls the panel */
+                    /*this.classList.toggle("active");*/
 
+                    /* Toggle between hiding and showing the active panel */
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+
+                    var arrow = this.children[0].children[0];
+
+                    if (panel.style.display === "block") {
+                        arrow.src = "Iconos/arrow_up.png";
+                    } else {
+                        arrow.src = "Iconos/arrow_down.png";
+                    }
+                });
                 $(this).dialog('close');
 
                 }

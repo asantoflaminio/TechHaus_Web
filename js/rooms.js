@@ -37,7 +37,7 @@ $(document).ready(function() {
         console.log(roomtype);
         var icons = document.getElementById("icons");
         var fig = document.createElement("figure");
-        var a_elem = document.createElement("a"); //FALTA EL HREF!
+        var a_elem = document.createElement("a"); 
         var div1 = document.createElement("div");
         var img1 = document.createElement("img");
         var img2 = document.createElement("img");   
@@ -46,7 +46,7 @@ $(document).ready(function() {
         div1.setAttribute("onmouseover", "trash_display(event,this);");
         div1.setAttribute("onmouseout", "trash_out(event,this);");
         div1.setAttribute("class", "roomandtrash");     
-        a_elem.setAttribute("href", "kitchen.html");
+        a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
         if(roomtype == "bathroom"){
             img1.setAttribute("src", "Iconos/bathroom2.png"); 
         }else if(roomtype == "garage"){
