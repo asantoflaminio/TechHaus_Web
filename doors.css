@@ -218,28 +218,45 @@ ul.tabs li:before {
     overflow: hidden;
 }
 
-.lock {
-    float: right;
-    display: flex;
-    margin-right: 230px;
-    font-family: monaco, monospace;
-    font-weight: bold;
-}
-
-.status {
-    float:left;
-    display: flex;
-}
-
 .door_name {
     text-align: left;
     color: #555;
-    position: relative;
+    position: absolute;
     float: left;
     margin-left: 0;
     margin-top: -3px;
     margin-bottom: 0px;
     font-family: monaco, monospace;
+}
+
+.new_door_name:focus {
+    outline: none;
+}
+
+.new_door_name {
+    position: absolute;
+    height: 17px !important;
+    width: 130px !important;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+    margin-top: -2px;
+    font-weight: bold;
+    color: #555; 
+    visibility: hidden;
+    font-family: monaco, monospace !important;
+    background-color: #bbb;
+    font-style: italic;
+}
+
+.checkmark {
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    visibility: hidden;
+    margin-top: -5px;
 }
 
 .door_room {
