@@ -91,7 +91,11 @@
                 </div>
                 
                 <div>
-                  <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);">Door 1</h3>
+                  <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Door 1</h3>
+                  <div>
+                    <span><input type="text" value="Door 1" class="new_door_name" onclick="change_background_color(event,this)"></input></span>
+                    <img src="Iconos/checkmark.png" class="checkmark" onclick="change_name(event, this)">
+                  </div>
                   <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
                 </div>
                 
