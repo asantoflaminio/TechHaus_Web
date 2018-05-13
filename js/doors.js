@@ -83,8 +83,8 @@ function trash(event, trashcan){
                     trashcan.style.visibility = "hidden";
                     var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
                     heart.style.visibility = "hidden";
-                    var lck = trashcan.closest('div').parentNode.querySelector('.lock');
-                    lck.style.display = "none";
+                    //var lck = trashcan.closest('div').parentNode.querySelector('.lock');
+                    //lck.style.display = "none";
                     var message = trashcan.closest('div').parentNode.querySelector('.trash_message');
                     message.style.visibility = "visible";
                     var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
@@ -144,8 +144,7 @@ var id_enter;
 function edit_name(event, name) {
     event.stopPropagation();
     name.style.visibility = "hidden";
-    var input_new_name = name.nextElementSibling.children[0].children[0];
-    
+    var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
     var pencil = name.nextElementSibling.nextElementSibling;
     pencil.style.visibility = "hidden";
     input_new_name.style.visibility = "visible";
@@ -156,7 +155,7 @@ function change_name(event, element) {
     event.stopPropagation();
     var name_input = element;
     var name = name_input.value;
-    var new_name = element.parentNode.parentNode.previousElementSibling;
+    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
     new_name.innerHTML = name;
     name_input.style.visibility = "hidden";
     new_name.style.visibility = "visible";
