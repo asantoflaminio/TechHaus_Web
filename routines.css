@@ -11,8 +11,8 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: monaco, monospace;
-    background-color: #ccc; 
+    font-family: monaco, monospace !important;
+    background-color: #ccc !important; 
     overflow-y: hidden;
 }
 
@@ -49,18 +49,25 @@ nav {
     display: block;
     color: white;
     text-align: center;
-    padding:15.5px;
+    padding: 13px;
     text-decoration: none;
+    font-family: monaco, monospace;
+}
+
+.navbar_item:-moz-focus-inner { 
+  border: 0; 
 }
 
 #settings_icon {
-    width: 20px;
+    width: 50px;
 }
 
 /* Change the link color to #333 on hover */
 .navbar_item:hover {
     background-color: #4d4d4d;
     outline: none;
+    color: white;
+    text-decoration: none;
 }
 
 
@@ -94,6 +101,7 @@ section {
     height: 100%;
     display: table-cell;
     vertical-align: middle;
+    font-weight: bold;
 }
 
 #title{
@@ -138,10 +146,11 @@ section {
     position: relative;
     float: left;
     margin-top: 8px;
-    margin-bottom: 26.5px;
+    margin-bottom: 20px;
     margin-left: 15px;
     font-size: 17px;
     font-family: monaco, monospace;
+    font-weight: bold;
 }
 
 .play_icon {
@@ -201,8 +210,8 @@ footer p {
     position: relative;
     display: inline-block;
     float: right;
+    z-index: 1;
 
-    
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -224,25 +233,25 @@ footer p {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-
+    color: #000;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
     outline: none;
-    background-color: #ddd
+    background-color: #ddd;
+    color: black;
+    text-decoration: none;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-
 }
 
 /* accordion */
@@ -253,12 +262,12 @@ footer p {
     color: #444;
     cursor: pointer;
     padding: 18px;
-    width: 97%;
+    width: 100%;
     text-align: left;
     outline: none;
     font-family: monaco, sans-serif;
     float: left;
-    height: 35px;
+    height: 70px;
     border:0.5px solid #ccc;
 }
 
@@ -286,6 +295,10 @@ footer p {
     border: 0.5px solid #ccc;
 }
 
+.panel_info {
+    margin-top: 15px;
+}
+
 /*search bar*/
 
 form {
@@ -296,6 +309,8 @@ form {
 .search { 
     padding:2px 8px 2px 8px;
     margin-left: 4px; 
+    height: 32px !important;
+    width: 225px !important;
 }
 
 .rounded { 
@@ -326,6 +341,7 @@ input[type=text] {
 #search_icon {
     width: 15px;
     height: 15px;
+    margin-bottom: 5px;
     background-color: #334860;
 }
 
@@ -333,7 +349,6 @@ input[type=text] {
     border-style: outset;
     border-width: 0.5px;
 }
-
 
 /* routine played */
 
@@ -367,109 +382,100 @@ input[type=text] {
 
 /*popup*/
 
-#popup {
-    display: none;
-    background-color: #fff;
-}
-
-#routine_input {
-    width: 88%;
-    height: 22px;
-    float: left;
-    overflow: scroll;
-}
-
 #name-tag {
     position: relative !important;
-}
-
-#ui-id-1 {
-    background-color: #2B3B4E;
-    color: white;
-    margin-left: 10px;
-    position: relative;
-    float: left;
-    margin-top: 0;
+    font-family: monaco, monospace;
+    margin-left: 13px;
+    margin-bottom: 7px;
 
 }
 
-div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle {
-    background-color: #2B3B4E;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-color: #2B3B4E;
-    height: 17px !important;
-    width: 192px !important;
-    margin-top: 490px !important;
-
-}
-
-div.popup.ui-dialog-content.ui-widget-content {
-    margin-top: -16px;
-    width: 190px !important;
-    height: 100px !important;
-    left: 17px; 
-    border-left: 1px solid;
-    border-right: 1px solid;
-    border-bottom: 1px solid; 
-    border-color: #ddd;
-    clear: both;
-}
-
-div.popup.ui-dialog-content.ui-widget-content p {
-    margin-left: 10px;
-    padding-top: 10px;
-    margin-bottom: 5px;
-}
-
-
-div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
-    width: 192px !important;
-    height: 20px !important;
+#device_input {
+    width: 88%;
+    height: 25px;
     position: relative !important;
-    top: -143% !important;
-    left: 43% !important; 
-}
+    float: left !important;
+    font-family: monaco, monospace;
 
-button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
-    position:relative;
-    float: right;
-    visibility: hidden;
-    margin-top: 0;
-    margin-right: 3px;
-    margin-top: 0 !important;
-
-}
-
-button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close::after {
-    content: "X" !important;
-    visibility: visible;
-    color: white;
-    cursor:pointer;
 }
 
 .text-input {
-    margin-left: 10px;
+    margin-left: 13px;
     position: relative !important;
     float: left;
+    font-family: monaco, monospace;
+
 }
 
-div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
-    width: 190px !important;
-    margin-top: -30px;
-}
-
-.mybutton {
+#room-tag {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 15px;
     position: relative;
-    float: right;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+
 }
 
-.cancel-button {
-    margin-left: 10px;
-    margin-right: 10px;
+#room_input {
+    width: 88%;
+    height: 25px;
+    overflow: scroll;
+    font-family: monaco, monospace;
+    margin-bottom: 10px;
 }
 
-div.ui-widget-overlay.ui-front {
-   position: fixed !important;
-   top: 0;
+#action-tag {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+}
+
+#action_input {
+    width: 88%;
+    height: 25px;
+    overflow: scroll;
+    font-family: monaco, monospace;
+    margin-bottom: 10px;
+}
+
+.modal-header {
+    background-color: #2B3B4E;
+    height: 50px !important;
+    padding: 10px 15px !important;
+}
+
+.modal-title {
+    color: white;
+    font-family: monaco, monospace;
+
+}
+
+.close {
+    color: #fff !important;
+    opacity: 1 !important;
+      font-weight: 200 !important;
+
+}
+
+.close:focus {
+    outline:none;
+}
+
+.modal-dialog {
+    width: 250px !important;
+    height: 350px !important;
+}
+
+.modal-footer {
+    height: 65px !important;
+}
+
+.btn-primary {
+    background-color: #2B3B4E !important;
 }
