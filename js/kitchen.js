@@ -64,6 +64,12 @@ api.devicetypes = class {
   
 }
 
+//TODO
+
+function add_device(event, name) {
+
+}
+
 api.devices = class {
   static get url() {
     return "http://127.0.0.1:8080/api/devices/";
