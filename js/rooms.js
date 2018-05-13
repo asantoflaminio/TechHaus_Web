@@ -58,6 +58,7 @@ $(document).ready(function() {
         div1.setAttribute("onmouseout", "trash_out(event,this);");
         div1.setAttribute("class", "roomandtrash");     
         a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
+        a_elem.setAttribute("onclick", "passId(event, this)")
         if(roomtype == "bathroom"){
             img1.setAttribute("src", "Iconos/bathroom2.png"); 
         }else if(roomtype == "garage"){
@@ -167,3 +168,22 @@ function add_room(event, name) {
                                                        });
 
 }
+
+function passId(event, aelem){
+    console.log("EEMMM ESTOYYY ");
+    var roomname = aelem.closest("figure").querySelector("figcaption").innerHTML;
+    console.log("Voy a bbuscar con roomname = " + roomname);
+     api.rooms.getRooms().done(function(data) {
+        $.each(data, function(i, item){
+            if(item.name == roomname){
+                var room_id = item.id;
+                console.log("FOUND IT, ID is " + room_id);
+                window.localStorage.clear();
+                window.localStorage.setItem("room_id", room_id);
+                window.location.href = 'kitchen.html';
+            }
+    
+        });
+     });
+}
+         

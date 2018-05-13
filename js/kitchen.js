@@ -33,6 +33,17 @@ api.rooms = class {
                return data.devices; //.map(item => item.name);
             });      
       }
+    
+    static getRoom(id) {
+   return $.ajax({
+      url: api.rooms.url + id,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.room; //.map(item => item.name);
+        });      
+  }
 }
 
 api.devicetypes = class {
@@ -378,6 +389,33 @@ function searching() {
 }
 
 $(document).ready(function() {
+    var roomid = window.localStorage.getItem("room_id");
+    api.rooms.getRoom(roomid).done(function(data){
+        console.log(data.name);
+        console.log("THIS IS A " + data.meta.replace("{","").replace("}","").split(',')[0]);
+        document.getElementById("title").innerHTML = data.name;
+        var roomtype = data.meta.replace("{","").replace("}","").split(',')[0];
+        var img = document.getElementById("deviceicon");
+        if(roomtype == "bathroom"){
+                        img.setAttribute("src", "Iconos/bathroom2.png"); 
+                        }else if(roomtype == "garage"){
+                            img.setAttribute("src", "Iconos/garage2.png"); 
+                        }else if(roomtype == "kitchen"){
+                             img.setAttribute("src", "Iconos/kitchen1.png");      
+                        }else if(roomtype == "garden"){
+                            img.setAttribute("src", "Iconos/jardin4.png");   
+                        }else if(roomtype == "laundry"){
+                            img.setAttribute("src", "Iconos/laundry2.png");      
+                        }else if(roomtype == "bedroom"){
+                            img.setAttribute("src", "Iconos/Rooms6.png");       
+                        }else{
+                            img.setAttribute("src", "Iconos/marta.png");     
+                        }
+    });
+
+    
+   
+    
     api.rooms.getRooms().done(function(data) {
         
         $.each(data, function(i, item){
