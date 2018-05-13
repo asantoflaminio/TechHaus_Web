@@ -10,8 +10,8 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #ccc;  
-    font-family: monaco, monospace;
+    background-color: #ccc !important;  
+    font-family: monaco, monospace !important;
     margin-bottom:50px;
 }
 
@@ -42,17 +42,20 @@ nav {
     display: block;
     color: white;
     text-align: center;
-    padding: 15.5px;
+    padding: 13px;
     text-decoration: none;
+    font-family: monaco, monospace;
 }
 
 #settings_icon {
-    width: 20px;
+    width: 50px;
 }
 
 .navbar_item:hover {
     background-color: #4d4d4d;
     outline: none;
+    color: white;
+    text-decoration: none;
 }
 
 section {
@@ -79,6 +82,7 @@ section {
     height: 100%;
     display: table-cell;
     vertical-align: middle;
+    font-weight: bold !important;
 }
 
 #title{
@@ -89,6 +93,7 @@ section {
 #addicon {
     width: 36px;
     height: 36px;
+    margin-top: 5px;
     cursor: pointer;
 }
 
@@ -209,24 +214,109 @@ footer p {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    color: #000;
+
 
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-     outline: none;
-    background-color: #ddd
-
+    outline: none;
+    background-color: #ddd;
+    color: black;
+    text-decoration: none;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
 
+
+/*popup*/
+
+#name-tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-left: 13px;
+    margin-bottom: 7px;
+
+}
+
+#name_input {
+    width: 88%;
+    height: 25px;
+    position: relative !important;
+    float: left !important;
+    font-family: monaco, monospace;
+
+}
+
+.text-input {
+    margin-left: 13px;
+    position: relative !important;
+    float: left;
+    font-family: monaco, monospace;
+
+}
+
+#room-tag {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+
+}
+
+#room_input {
+    width: 88%;
+    height: 25px;
+    overflow: scroll;
+    font-family: monaco, monospace;
+    margin-bottom: 10px;
+
+}
+
+.modal-header {
+    background-color: #2B3B4E;
+    height: 50px !important;
+    padding: 10px 15px !important;
+}
+
+.modal-title {
+    color: white;
+    font-family: monaco, monospace;
+
+}
+
+.close {
+    color: #fff !important;
+    opacity: 1 !important;
+      font-weight: 200 !important;
+
+}
+
+.close:focus {
+    outline:none;
+}
+
+.modal-dialog {
+    width: 250px !important;
+    height: 350px !important;
+}
+
+.modal-footer {
+    height: 65px !important;
+}
+
+.btn-primary {
+    background-color: #2B3B4E !important;
 }
