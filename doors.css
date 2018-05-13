@@ -138,16 +138,6 @@ section {
     left:0px;
 }
 
-.pencil_icon {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 0px;
-    display: table;
-    right: 5px;
-    visibility: hidden;
-}
-
 .pencil2_icon {
     width: 12px;
     height: 12px;
@@ -295,6 +285,7 @@ ul.tabs li:before {
     margin-right: 15px;
     font-family: monaco, monospace;
     visibility: hidden;
+    font-size: 15px;
 }
 
 .arrow_icon {

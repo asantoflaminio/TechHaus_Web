@@ -143,10 +143,10 @@ var id_enter;
 
 function edit_name(event, name) {
     event.stopPropagation();
-    name.style.visibility = "hidden";
-    var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
     var pencil = name.nextElementSibling.nextElementSibling;
     pencil.style.visibility = "hidden";
+    name.style.visibility = "hidden";
+    var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
     input_new_name.style.visibility = "visible";
     
 }
