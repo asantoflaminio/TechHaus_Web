@@ -112,7 +112,6 @@
                   <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Door 1</h3>
                   <div>
                     <span><input type="text" value="Door 1" class="new_door_name" onclick="input_name(event,this)"></input></span>
-                    <!--<img src="Iconos/checkmark.png" class="checkmark" onclick="change_name(event, this)"> -->
                   </div>
                   <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
                 </div>
@@ -198,10 +197,10 @@
                 <div>
                   <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
                 </div>
-                <div class="lock">
+               <!-- <div class="lock">
                        <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);">
                         <p class="lock_text">Lock: Locked</p>
-                  </div>
+                  </div> -->
                 <div>
                   <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
                 </div>
@@ -221,13 +220,24 @@
               </div>
               <div class="panel">
                    <div class="status">
-                        <img src="Iconos/closed.png" alt="Closed"  class="status_icon" onclick="stat(event,this);">
+                        <img src="Iconos/closed.png" alt="Closed" class="status_icon" onclick="stat(event,this);">
                         <p class="stat_text">Status: Closed</p>
-                  </div>
-                  
+                       <p class="stat_text">Status: Closed</p>
+                       
+                    </div>
+                    <div class="status">
+                        <img src="Iconos/closed.png" alt="Closed" class="status_icon" onclick="stat(event,this);">
+                        <p class="stat_text">Status: Closed</p>
+                       
+                    </div>
+                     <div class="status">
+                        <img src="Iconos/closed.png" alt="Closed" class="status_icon" onclick="stat(event,this);">
+                        <p class="stat_text">Status: Closed</p>
+                       
+                    </div>
               </div>
-
-             </div>
+          </div>
+          </div>
         </article>
 
       </section>

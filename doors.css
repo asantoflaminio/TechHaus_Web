@@ -247,7 +247,7 @@ ul.tabs li:before {
 }
 
 .new_door_name {
-    position: absolute;
+    position: relative;
     height: 17px !important;
     width: 130px !important;
     background: none;
@@ -336,17 +336,6 @@ ul.tabs li:before {
     position: relative;
     float: right;
     visibility: hidden;
-}
-
-.status_icon {
-    width: 30px;
-    height: 30px;
-    margin: 0;
-    margin-top: 6px;
-    margin-right: 15px;
-    cursor: pointer;
-    vertical-align: baseline;
-    display: table-cell;
 }
 
 .lock_icon {
@@ -560,12 +549,43 @@ footer p {
 */
 
 /* Style the accordion panel. Note: hidden by default */
+
 .panel {
     padding: 0 18px;
     background-color: white; /*#F7F7F7;*/
     display: none;
     overflow: hidden;
     border: 0.5px solid #ccc;
+}
+
+.status{
+    display: table;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.status_icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.stat_text{
+	float: left;
+	display: table-cell;
+    vertical-align: middle;
+    margin-left: 30px;
+    margin-top: 5px;
+    font-size: 14px;
+    
 }
 
 .panel_info {
@@ -597,7 +617,7 @@ form {
 input[type=text] {
     height: 24px;
     width: 200px;
-    float:right;
+    float:left;
     font-family: monaco, sans-serif;
     font-size: 15px;
 }

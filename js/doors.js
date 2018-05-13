@@ -51,12 +51,12 @@ function stat(event, status){
     if (status.getAttribute('src') == "Iconos/closed.png")
                 {
                     status.src = "Iconos/open.png";
-                    status.closest('div').parentNode.querySelector('.stat_text').innerHTML = 'Status: Open';
+                     status.nextElementSibling.innerHTML = 'Status: Open';
                 }
                 else
                 {
                     status.src = "Iconos/closed.png";
-                    status.closest('div').parentNode.querySelector('.stat_text').innerHTML = 'Status: Closed';
+                    status.nextElementSibling.innerHTML = 'Status: Closed';
                 }
 }
 
@@ -145,11 +145,11 @@ function edit_name(event, name) {
     event.stopPropagation();
     name.style.visibility = "hidden";
     var input_new_name = name.nextElementSibling.children[0].children[0];
-    var checkmark = name.nextElementSibling.children[1];
+    
     var pencil = name.nextElementSibling.nextElementSibling;
     pencil.style.visibility = "hidden";
     input_new_name.style.visibility = "visible";
-    checkmark.style.visibility = "visible";
+    
 }
 
 function change_name(event, element) {
