@@ -83,8 +83,8 @@ function trash(event, trashcan){
                     trashcan.style.visibility = "hidden";
                     var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
                     heart.style.visibility = "hidden";
-                    //var lck = trashcan.closest('div').parentNode.querySelector('.lock');
-                    //lck.style.display = "none";
+                    var lck = trashcan.closest('div').parentNode.querySelector('.lock');
+                    lck.style.display = "none";
                     var message = trashcan.closest('div').parentNode.querySelector('.trash_message');
                     message.style.visibility = "visible";
                     var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');

@@ -344,14 +344,23 @@ ul.tabs li:before {
     visibility: hidden;
 }
 
+
+.lock_text{
+	float: right;
+	margin-left: 10px;
+	margin-right: 300px;
+	margin-top: 8px;
+}
+
 .lock_icon {
     width: 30px;
     height: 30px;
-    margin: 0;
-    margin-top: 6px;
-    float: center;
+   
+    
+  	margin-top: 6px;
+    float: right;
     cursor: pointer;
-    display: table-cell;
+  
 }
 
 .delete_icon {
