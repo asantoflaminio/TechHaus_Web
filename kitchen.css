@@ -230,8 +230,10 @@ ul.tabs li:before {
 
 .device_name {
     text-align: left;
+    font-size: 15px;
+    font-weight: bold;
     color: #555;
-    position: relative;
+    position: absolute;
     float: left;
     margin-left: 0;
     margin-top: -3px;
@@ -248,8 +250,7 @@ ul.tabs li:before {
     font-style: italic;
     text-align: left;
     margin-left: 0;
-    margin-top: 12px;
-    font-weight: normal;
+    margin-top: 10px;
     font-family: monaco, monospace;
 }
 
@@ -490,12 +491,12 @@ footer p {
     color: #444;
     cursor: pointer;
     padding: 15px;
-    width: 97%;
+    width: 100%;
     text-align: left;
     outline: none;
     font-family: monaco, sans-serif;
     float: left;
-    height: 40px;
+    height: 70px;
     border:0.5px solid #ccc;
 }
 
@@ -515,6 +516,10 @@ footer p {
     display: none;
     overflow: hidden;
     border: 0.5px solid #ccc;
+}
+
+.panel_info {
+    margin-top: 15px;
 }
 
 /*search bar*/
