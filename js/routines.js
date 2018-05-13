@@ -102,7 +102,7 @@ $(document).ready(function() {
         api.routines.getActionsNames(routine_id).done(function(data) {
             $.each(data, function(j, item2){
                 var action_name = item2.actionName;
-                var device_id = item2.deviceId; //ACA hay q hacer un get de nombre de device de devices con el id
+                var device_id = item2.deviceId; 
                 var device_name = "";
                 api.devices.getDeviceName(device_id).done(function(data) {
                     $.each(data, function(k, item3){
@@ -118,8 +118,7 @@ $(document).ready(function() {
             });
             
         });
-       // p.innerHTML = "MARTA SUAREZ IS HERE";
-        //$(p).text(panel_text);
+   
         pnl.appendChild(p);
         div.appendChild(img1);
         div.appendChild(img2);   
