@@ -13,6 +13,7 @@ body {
     background-color: #ccc !important;  
     font-family: monaco, monospace !important;
     margin-bottom:50px;
+    overflow-y: scroll;
 }
 
 a {
@@ -102,13 +103,15 @@ section {
 }
 
 #icons {
-    display: inline-block;
-    text-align: center;  
-    width: 100%;
+    margin: 0 !important;
 }
 
 figure {
-    display: inline-block;
+    width: 190px;
+    height: 190px;
+    display: inline-block !important;
+    margin: 0 !important;
+
 }
 
 figure img:hover{
@@ -139,7 +142,7 @@ div .roomandtrash {
     height: 25px;
     position: absolute;
     right: -10px;
-    top: -110px;
+    top: -60px;
     visibility: hidden;
 
 }
@@ -151,6 +154,7 @@ a {
 figcaption{
 	font-family: monaco, sans-serif;
 	font-size: 17px;
+    display: inline-block !important;
 	text-align: center;
 	margin-top: 5px;	
 	color: #222;
