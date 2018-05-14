@@ -446,7 +446,35 @@ input[type=text] {
     font-family: monaco, monospace;
     margin-left: 13px;
     margin-bottom: 7px;
+}
 
+#device-tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-top: 42px;
+    margin-left: 13px;
+    margin-bottom: 7px;
+}
+
+#device-tag2 {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-top: 7px;
+    margin-left: 13px;
+    margin-bottom: 7px;
+}
+
+#name_input {
+	margin-right: 13px !important;
+	width: 88%;
+}
+
+#devicetype-tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-top: 42px;
+    margin-left: 13px;
+    margin-bottom: 7px;
 }
 
 #device_input {
@@ -461,6 +489,7 @@ input[type=text] {
 .text-input {
     margin-left: 13px;
     position: relative !important;
+    width: 88%;
     float: left;
     font-family: monaco, monospace;
 
@@ -478,7 +507,6 @@ input[type=text] {
 }
 
 #room_input {
-    width: 88%;
     height: 25px;
     overflow: scroll;
     font-family: monaco, monospace;
@@ -489,15 +517,21 @@ input[type=text] {
     padding-top: 0;
     margin-left: 13px;
     margin-top: 15px;
-    position: relative;
+    position: relative !important;
     float: left;
     font-family: monaco, monospace;
     margin-bottom: 7px;
 }
 
 #action_input {
-    width: 88%;
     height: 25px;
+    overflow: scroll;
+    font-family: monaco, monospace;
+    margin-bottom: 10px;
+}
+
+#devicetype_input {
+	height: 25px;
     overflow: scroll;
     font-family: monaco, monospace;
     margin-bottom: 10px;
@@ -528,7 +562,7 @@ input[type=text] {
 
 .modal-dialog {
     width: 250px !important;
-    height: 350px !important;
+    height: 450px !important;
 }
 
 .modal-footer {
