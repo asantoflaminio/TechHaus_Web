@@ -57,7 +57,7 @@ $(document).ready(function() {
         div1.setAttribute("onmouseover", "trash_display(event,this);");
         div1.setAttribute("onmouseout", "trash_out(event,this);");
         div1.setAttribute("class", "roomandtrash");     
-        a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
+       // a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
         a_elem.setAttribute("onclick", "passId(event, this)");
         if(roomtype == "bathroom"){
             img1.setAttribute("src", "Iconos/bathroom2.png"); 
@@ -131,7 +131,7 @@ function add_room(event, name) {
         div1.setAttribute("onmouseover", "trash_display(event,this);");
         div1.setAttribute("onmouseout", "trash_out(event,this);");
         div1.setAttribute("class", "roomandtrash");     
-        a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
+        //a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
         a_elem.setAttribute("onclick", "passId(event, this)");
         if(roomtype == "bathroom"){
             img1.setAttribute("src", "Iconos/bathroom2.png"); 
