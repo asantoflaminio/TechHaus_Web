@@ -58,6 +58,15 @@ api.routines = class {
             });  
       }
     
+    static deleteRoutine(id) {
+       return $.ajax({
+          url: api.routines.url + id,
+          method: "DELETE",
+          dataType: "json",
+          timeout: api.timeout
+           })
+      }
+    
 }
 
 api.devices = class {
@@ -165,6 +174,24 @@ function onPageLoad(){
         img3.setAttribute("alt", "Unlapiz");
         img3.setAttribute("class", "lapiz_icon");
         img3.setAttribute("onclick", "edit_routine(this,event);"); //falta lo del modal que toglee y eso so varios attributes
+        var trash = document.createElement("img");
+        trash.setAttribute("src", "Iconos/tacho.png");
+        trash.setAttribute("alt", "Delete");
+        trash.setAttribute("class", "delete_icon");
+        trash.setAttribute("onclick", "trash(event,this);");
+        var yes = document.createElement("img");
+        var no = document.createElement("img");
+        yes.setAttribute("src", "Iconos/yes.png");
+        yes.setAttribute("alt", "Yes");
+        yes.setAttribute("class", "yes_icon");
+        yes.setAttribute("onclick", "yes(event,this);");
+        no.setAttribute("src", "Iconos/no.png");
+        no.setAttribute("alt", "No");
+        no.setAttribute("class", "no_icon");
+        no.setAttribute("onclick", "no(event,this);");
+        var h4 = document.createElement("h4");
+        h4.setAttribute("class", "trash_message");
+        h4.innerHTML = "You are about to delete this routine. Continue? ";
         var h3 = document.createElement("h3");
         h3.setAttribute("class", "routine_name");
         h3.innerHTML = routine_name;
@@ -195,6 +222,11 @@ function onPageLoad(){
         div.appendChild(img1);
         div.appendChild(img2);
         div.appendChild(img3);
+        div.appendChild(trash);
+        div.appendChild(no);
+        div.appendChild(yes);
+        div.appendChild(h4);
+        
         div.appendChild(h3);
         acc.appendChild(div);
         list.appendChild(acc);
@@ -210,6 +242,55 @@ function onPageLoad(){
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log("Request failed: jqXHR.status=" + jqXHR.status + ", textStatus=" + textStatus + ", errorThrown=" + errorThrown);
     });
+}
+
+function trash(event, trashcan){
+    event.stopPropagation();
+    if (trashcan.getAttribute('src') == "Iconos/tacho.png")
+                {
+                    //trashcan.src = "Iconos/warning.png"; //this works ok
+                    trashcan.style.visibility = "hidden";
+                    var heart = trashcan.closest('div').parentNode.querySelector('.lapiz_icon');
+                    heart.style.visibility = "hidden";
+                    var message = trashcan.closest('div').parentNode.querySelector('.trash_message');
+                    message.style.visibility = "visible";
+                    var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
+                    yes.style.visibility = "visible";
+                    var no = trashcan.closest('div').parentNode.querySelector('.no_icon');
+                    no.style.visibility = "visible";
+                    
+                }
+}
+
+function no(event, noicon){
+    event.stopPropagation();
+    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
+    trashcan.src = "Iconos/tacho.png";
+    trashcan.style.visibility = "visible";
+    noicon.style.visibility = "hidden";
+    var message = noicon.closest('div').parentNode.querySelector('.trash_message');
+    message.style.visibility = "hidden";
+    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
+    yes.style.visibility = "hidden";
+    var heart = noicon.closest('div').parentNode.querySelector('.lapiz_icon');
+    heart.style.visibility = "visible";
+    
+    
+}
+
+function yes(event, yesicon){
+    
+    event.stopPropagation();
+    yesicon.closest('div').parentNode.nextElementSibling.remove();
+    yesicon.closest('div').parentNode.remove();
+    api.routines.getRoutines().done(function(data){
+         $.each(data, function(r, item3){
+        if(yesicon.closest('div').parentNode.querySelector('h3').innerHTML == item3.name){
+                api.routines.deleteRoutine(item3.id);
+              }
+       });
+  });
+    
 }
 
 $(document).ready(function() {

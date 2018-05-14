@@ -178,6 +178,55 @@ section {
     float: right;
 }
 
+.delete_icon {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    margin-top: 5px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}
+
+.no_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
+}
+
+.yes_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    visibility: hidden;
+}
+
+.trash_message {
+    text-align: right;
+    color: #555;
+    position: relative;
+    float: right;
+    margin-left: 0;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    font-family: monaco, monospace;
+    font-size: 15px;
+    visibility: hidden;
+}
+
 .lapiz_icon {
     width: 30px;
     height: 30px;
