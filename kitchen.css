@@ -233,12 +233,40 @@ ul.tabs li:before {
     font-size: 15px;
     font-weight: bold;
     color: #555;
-    position: absolute;
+    position: relative;
     float: left;
     margin-left: 0;
     margin-top: -3px;
     margin-bottom: 0px;
     font-family: monaco, monospace;
+    
+}
+
+.new_device_name:focus {
+    outline: none;
+}
+
+.name_device{
+    display: table;
+    
+}
+
+.new_device_name {
+    position: relative;
+    height: 17px !important;
+    width: 130px !important;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+    margin-top: -17px;
+    font-weight: bold;
+    color: #555; 
+    visibility: hidden;
+    font-family: monaco, monospace !important;
+    background-color: #bbb;
+    font-style: italic;
 }
 
 .device_room {
@@ -250,21 +278,22 @@ ul.tabs li:before {
     font-style: italic;
     text-align: left;
     margin-left: 0;
-    margin-top: 10px;
+    margin-top: 8px;
     font-family: monaco, monospace;
+
 }
 
 .trash_message {
-    text-align: right;
+    text-align: left;
     color: #555;
-    position: relative;
-    float: right;
+    position: absolute;
     margin-left: 0;
-    margin-top: -6px;
+    margin-top: -60px;
     margin-bottom: 0px;
-    margin-right: 15px;
+    right: 32%;
     font-family: monaco, monospace;
     visibility: hidden;
+    font-size: 15px;
 }
 
 .arrow_icon {
@@ -279,30 +308,6 @@ ul.tabs li:before {
 }
 
 
-.no_icon {
-    width: 67px;
-    height: 23px;
-    margin: 0;
-    margin-top: 4px;
-    margin-right: 15px;
-    cursor: pointer;
-    position: relative;
-    float: right;
-    visibility: hidden;
-}
-
-.yes_icon {
-    width: 67px;
-    height: 23px;
-    margin: 0;
-    margin-top: 4px;
-    margin-right: 15px;
-    cursor: pointer;
-    position: relative;
-    float: right;
-    visibility: hidden;
-}
-
 .fave_icon {
     width: 27px;
     height: 27px;
@@ -312,6 +317,49 @@ ul.tabs li:before {
     cursor: pointer;
     position: relative;
     float: right;
+}
+
+.no_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 7px;
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+    float: left;
+    visibility: hidden;
+    display: inline-block !important;
+}
+
+.yes_icon {
+    width: 67px;
+    height: 23px;
+    margin: 0;
+    margin-top: 7px;
+    cursor: pointer;
+    position: relative;
+    float: left;
+    visibility: hidden;
+    display: inline-block !important;
+}
+
+.lock_text{
+    font-size: 15px;
+    margin-bottom: 0;
+    display: inline-block !important;
+    position: relative;
+    top: -13px;
+}
+
+.lock_icon {
+    width: 25px;
+    height: 25px;
+    display: inline-block !important;
+    margin-left: 30%;
+    margin-top: 7px;
+    margin-bottom: 37px;
+
 }
 
 .delete_icon {
@@ -574,3 +622,23 @@ input[type=text] {
     border-width: 0.5px;
 }
 
+/*accordion inside*/
+
+.accordion1 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+}
+
+.accordion2 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+    overflow-x:visible !important;
+}
+
+.accordion3 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+}
