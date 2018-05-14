@@ -178,6 +178,16 @@ section {
     float: right;
 }
 
+.lapiz_icon {
+    width: 30px;
+    height: 30px;
+    margin-top: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}
+
 
 #footer {
     clear: both;

@@ -43,31 +43,29 @@
               </div>
               <div class="modal-body">
                 <p id="name-tag">Name</p>
-                <input type="text" class="text-input" id="device_input">
-                <p id="room-tag">Device</p>
-                <select class="text-input" id="room_input">
-                  <option>Alarm</option>
-                  <option>Door</option>
+                <input type="text" class="text-input" id="name_input">
+                <p id="devicetype-tag">Device Type</p>
+                <select class="text-input" id="devicetype_input" >
                   <option>Air Conditioner</option>
+                  <option>Alarm</option>
+                  <option>Blind</option>
+                  <option>Door</option>
                   <option>Fridge</option>
-                  <option>Light</option>
+                  <option>Lamp</option>
                   <option>Oven</option>
-                  <option>TV</option>
-                  <option>Curtain</option>
-                  <option>Washer</option>
-                  <option>Temporizer</option>
+                </select>
+                <p id="device-tag">Device</p>
+                <select class="text-input" id="device_input" onclick="add_device_input(event, this);" onmouseleave="activatetypeinput(event, this);">
+                  <option>--</option>
                 </select>
                 <p id="action-tag">Action</p>
-                <select class="text-input" id="action_input">
-                  <option>Close</option>
-                  <option>Open</option>
-                  <option>Lock</option>
-                  <option>Unlock</option>
+                <select class="text-input" id="action_input" onclick="add_action_input(event, this);" onmouseleave="activateactioninput(event, this);">
+                  <option>--</option>
                 </select>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="add_device(event, this)">Add</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="add_routine(event, this);">Add</button>
               </div>
             </div>
           </div>
@@ -93,36 +91,7 @@
         <article>
           <div class="routines_list_box">
             <div class="routines_list" id="routines_list">
-              <div class="accordion">
-                <div>
-                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon"> 
-                  <img src="Iconos/play.png" alt="Play" class="play_icon" onclick="play(this,event)">
-                  <h3 class="routine_name">Routine 1</h3>
-                </div>
-              </div>
-              <div class="panel">
-                <p class="panel_info">Routine 1 tasks</p>
-              </div>
-              <div class="accordion">
-                <div>
-                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                  <img src="Iconos/play.png" alt="Play" class="play_icon" onclick="play(this,event)">
-                  <h3 class="routine_name">Leave Home</h3>
-                </div>
-              </div>
-              <div class="panel">
-                  <p class="panel_info">Leave Home tasks</p>
-              </div>
-              <div class="accordion">
-                 <div>
-                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                  <img src="Iconos/play.png" alt="Play" class="play_icon" onclick="play(this,event)">
-                  <h3 class="routine_name">Simulate Movement</h3>
-                </div>
-              </div>
-              <div class="panel">
-                <p class="panel_info">Simulate Movement tasks</p>
-              </div>
+              
             </div>
           </div>
         </article>

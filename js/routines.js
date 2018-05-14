@@ -35,6 +35,16 @@ api.routines = class {
            return "done"; 
         }); 
   }
+    
+    static postRoutine(nombre, action) {
+   return $.ajax({
+      url: api.routines.url,
+      method: "POST",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'name': nombre, 'actions': action, 'meta': "{}"},
+       })
+  }
 
     
     static getActionsNames(id) {
@@ -54,6 +64,17 @@ api.devices = class {
   static get url() {
     return "http://127.0.0.1:8080/api/devices/";
   }
+    
+    static getAllDevices() {
+   return $.ajax({
+      url: api.devices.url,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  } 
    static getDeviceName(id) {
    return $.ajax({
       url: api.devices.url + id,
@@ -64,19 +85,65 @@ api.devices = class {
            return data;
         });  
   } 
+    
+    static getDevices(id) {
+   return $.ajax({
+      url: api.devices.url + id,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data;
+        });  
+  } 
+    
+    
+    static getDevicesID() {
+   return $.ajax({
+      url: "http://127.0.0.1:8080/api/devicetypes",
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  } 
+    
+    static getDevicesForType(id) {
+   return $.ajax({
+      url: "http://127.0.0.1:8080/api/devices/devicetypes/" + id ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  }
+    
+    static getDeviceActions(id) {
+   return $.ajax({
+      url: "http://127.0.0.1:8080/api/devicetypes/" + id ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.device.actions;
+        });  
+  } 
 }
 
 
-
-
-$(document).ready(function() {
+function onPageLoad(){
+    //document.getElementById("routines_list")
+    var myNode = document.getElementById("routines_list");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
     api.routines.getRoutines().done(function(data) {
         $.each(data, function(i, item){
         
-        var routine_name = item.name;//JSON.stringify(item.name.replace("\"",""));
+        var routine_name = item.name;
         var routine_id = item.id;
-        console.log(routine_name);
-        console.log(routine_id);
         var list = document.getElementById("routines_list");
         var acc = document.createElement("div");
         acc.setAttribute("class", "accordion");   
@@ -93,6 +160,11 @@ $(document).ready(function() {
         img2.setAttribute("alt", "Play");
         img2.setAttribute("class", "play_icon");
         img2.setAttribute("onclick", "play(this,event);");
+        var img3 = document.createElement("img");    
+        img3.setAttribute("src", "Iconos/lapiz_routines.png");
+        img3.setAttribute("alt", "Unlapiz");
+        img3.setAttribute("class", "lapiz_icon");
+        img3.setAttribute("onclick", "edit_routine(this,event);"); //falta lo del modal que toglee y eso so varios attributes
         var h3 = document.createElement("h3");
         h3.setAttribute("class", "routine_name");
         h3.innerHTML = routine_name;
@@ -121,7 +193,8 @@ $(document).ready(function() {
    
         pnl.appendChild(p);
         div.appendChild(img1);
-        div.appendChild(img2);   
+        div.appendChild(img2);
+        div.appendChild(img3);
         div.appendChild(h3);
         acc.appendChild(div);
         list.appendChild(acc);
@@ -137,6 +210,11 @@ $(document).ready(function() {
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log("Request failed: jqXHR.status=" + jqXHR.status + ", textStatus=" + textStatus + ", errorThrown=" + errorThrown);
     });
+}
+
+$(document).ready(function() {
+    onPageLoad();
+    
     //addPanels();
     //
      
@@ -218,6 +296,99 @@ function searching() {
 }
 
 //add routine
+function activatetypeinput(event, devinput){
+   devinput.setAttribute("onclick","add_device_input(event, this);");
+}
+
+function edit_routine(event, devinput){
+  //Falta que togllee un nuevo modal y de ahi tomar las cosas
+}
+
+function add_device_input(event, devinput) {
+
+    var devtype = $("#devicetype_input").val()
+    devinput.removeAttribute("onclick");
+    $(devinput).children('option').remove();
+    console.log(devtype);
+    api.devices.getDevicesID().done(function(data){
+                                    $.each(data, function(i, item){
+                                        console.log(item.name);
+                                        if(item.name.toUpperCase() == devtype.toUpperCase()){
+                                            var typeid = item.id;
+                                            api.devices.getDevicesForType(typeid).done(function(data){
+                                                $.each(data, function(j, item2){
+                                                    var option = document.createElement("option");
+                                                    option.innerHTML = item2.name;
+                                                    console.log(option.innerHTML);
+                                                    devinput.appendChild(option);
+                                                });
+                                            });
+                                        }
+                                    });
+        //
+                                    });
+    
+}
+
+function activateactioninput(event, acinput){
+   acinput.setAttribute("onclick","add_action_input(event, this);");
+}
+
+function add_action_input(event, acinput) {
+
+    var devtype = $("#devicetype_input").val();
+    acinput.removeAttribute("onclick");
+    $(acinput).children('option').remove();
+    console.log(devtype);
+    api.devices.getDevicesID().done(function(data){
+                                    $.each(data, function(i, item){
+                                        console.log(item.name);
+                                        if(item.name.toUpperCase() == devtype.toUpperCase()){
+                                            var typeid = item.id;
+                                            api.devices.getDeviceActions(typeid).done(function(data){
+                                                $.each(data, function(j, item2){
+                                                    if(item2.name != "getState"){
+                                                        var option = document.createElement("option");
+                                                        option.innerHTML = item2.name;
+                                                        console.log(option.innerHTML);
+                                                        acinput.appendChild(option);
+                                                    }
+                                                    
+                                                });
+                                            });
+                                        }
+                                    });
+        //
+                                    });
+    
+}
+
+function add_routine(event, name) {
+    var rut_name = $("#name_input").val();
+    var device = $("#device_input").val();
+    var action = $("#action_input").val();
+    var actions = [];
+    
+    console.log("rutname es "+rut_name);
+    if(rut_name != "" && action != "--" && action != ""){
+        console.log("EN IF");
+       api.devices.getAllDevices().done(function(data){
+           $.each(data, function(i, item1){
+               if(device == item1.name){
+                   var action1 = "{ \\\"deviceId\\\":  "; "\\\"" + item1.id + "\\\", \\\"actionName\\\":  \\\"" + action + "\\\",  \\\"params\\\":  [], \\\"meta\\\": \\\"{}\\\" }";
+                   var prueba = [{"deviceId": item1.id, "actionName": action, "params": [], "meta": "{}"}];
+                   var pp = JSON.stringify(prueba);
+                   actions[0] = action1;
+                   api.routines.postRoutine(rut_name, pp).done(function(data){
+                                
+                                  onPageLoad();
+                                 });
+                
+               }
+           });
+       });
+       }
+}
 
 $(function() {
     
@@ -278,6 +449,7 @@ $("#addicon").click(function() {
                 img2.setAttribute("alt", "Play");
                 img2.setAttribute("class", "play_icon");
                 img2.setAttribute("onclick", "play(this,event)");
+                    
 
                 h3.setAttribute("class", "routine_name");
                 h3.innerHTML = $('#routine_input').val();
