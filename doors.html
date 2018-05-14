@@ -89,150 +89,166 @@
         <article class="list_article">
           <div class="doors_list_box" id="doors_box">
             <div class="doors_list" id="doors_list">
-               <div class="accordion">
-                <div>
-                    <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                </div>
-                <div>
-                    <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
-                </div>
-                <div>
-                    <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
-                </div>
-                <div class="lock">
-                    <p class="lock_text">Lock: Locked</p>
-                    <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);">
+              <div class="accordion">
+                <div class="accordion1">
+                  <div class="name_door">
+                      <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Door 1</h3>
+                      <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
+                  <div>
+                      <span><input type="text" value="Door 1" class="new_door_name" onclick="input_name(event,this)"></input></span>
+                      </div>
                   </div>
-                <div>
-                    <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                  <div>
+                    <p class="door_room">Kitchen</p>
+                  </div> 
                 </div>
-                <div>
-                    <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
-                </div>
-                <div class="name_door">
-                    <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Door 1</h3>
-                    <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
-                <div>
-                    <span><input type="text" value="Door 1" class="new_door_name" onclick="input_name(event,this)"></input></span>
-                  	</div>
-                </div>
-                <div>
-                  <p class="door_room">Kitchen</p>
+                <div class="accordion2">
+                  <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);"></img>
+                  <p class="lock_text"> Locked</p>
+                  <div>
+                    <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                  </div> 
                 </div> 
-                <div>
-                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                <div class="accordion3">
+                  <div>
+                      <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                  </div>
                 </div>               
               </div>
               <div class="panel">
                 <p class="panel_info">Info on Door 1</p>
               </div>
               <div class="accordion">
-                <div>
-                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                </div>
-                <div>
-                  <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
-                </div>
-                <div>
-                  <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
-                </div>
-                 <div class="lock">
-                        <p class="lock_text">Lock: Locked</p>
-                        <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);">
-                  </div>
-                <div>
-                  <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
-                </div>
-                <div>
-                  <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
-                </div>
-                <div class="name_door">
-                  <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Garage Door</h3>
-                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
+                <div class="accordion1">
+                  <div class="name_door">
+                      <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Garage Door</h3>
+                      <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
                   <div>
-                    <span><input type="text" value="Garage Door" class="new_door_name" onclick="input_name(event,this)"></input></span>
+                      <span><input type="text" value="Door 1" class="new_door_name" onclick="input_name(event,this)"></input></span>
+                      </div>
                   </div>
+                  <div>
+                    <p class="door_room">Garage</p>
+                  </div> 
                 </div>
-                <div >
-                  <p class="door_room">Garage</p>
-                </div>
-                <div>
-                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
-                </div>                 
+                <div class="accordion2">
+                  <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);"></img>
+                  <p class="lock_text"> Locked</p>
+                  <div>
+                    <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                  </div> 
+                </div> 
+                <div class="accordion3">
+                  <div>
+                      <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                  </div>
+                </div>                
               </div>
               <div class="panel">
                 <p class="panel_info">Info on Garage Door</p>
               </div>
               <div class="accordion">
-                <div>
-                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                </div>
-                <div>
-                  <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
-                </div>
-                <div>
-                  <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
-                </div>
-                 <div class="lock">
-                    <p class="lock_text">Lock: Locked</p>
-                     <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);">
-                  </div>
-                <div>
-                  <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
-                </div>
-                <div>
-                  <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
-                </div>
-                <div class="name_door">
-                  <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Living Door</h3>
-                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
+                <div class="accordion1">
+                  <div class="name_door">
+                      <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Living Door</h3>
+                      <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
                   <div>
-                    <span><input type="text" value="Living Door" class="new_door_name" onclick="input_name(event,this)"></input></span>
+                      <span><input type="text" value="Door 1" class="new_door_name" onclick="input_name(event,this)"></input></span>
+                      </div>
                   </div>
+                  <div>
+                    <p class="door_room">Living Room</p>
+                  </div> 
                 </div>
-                <div>
-                  <p class="door_room">Living Room</p>
-                </div>
-                <div>
-                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
-                </div>                 
+                <div class="accordion2">
+                  <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);"></img>
+                  <p class="lock_text"> Locked</p>
+                  <div>
+                    <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                  </div> 
+                </div> 
+                <div class="accordion3">
+                  <div>
+                      <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                  </div>
+                </div> 
               </div>
               <div class="panel">
                 <p class="panel_info">Info on Living Door</p>
               </div>
               <div class="accordion">
-                <div>
-                  <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
-                </div>
-                <div>
-                  <img src="Iconos/heart.png"  onclick="fav(event,this);" alt="Fave" class="fave_icon">
-                </div>
-                <div>
-                  <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
-                </div>
-                <div class="lock">
-                        <p class="lock_text">Lock: Locked</p>
-                        <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);">
-                  </div> 
-                <div>
-                  <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
-                </div>
-                <div>
-                  <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
-                </div>
-                <div class="name_door">
-                  <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Door 2</h3>
-                  <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
+                <div class="accordion1">
+                  <div class="name_door">
+                      <h3 class="door_name" onmouseover="pencil2_display(event,this);" onmouseout="pencil2_out(event,this);" onclick="edit_name(event,this)">Door 2</h3>
+                      <img src="Iconos/pencil.png" alt="Pencil"  class="pencil2_icon">
                   <div>
-                    <span><input type="text" value="Door 2" class="new_door_name" onclick="input_name(event,this)"></input></span>
+                      <span><input type="text" value="Door 1" class="new_door_name" onclick="input_name(event,this)"></input></span>
+                      </div>
                   </div>
+                  <div>
+                    <p class="door_room">Living Room</p>
+                  </div> 
                 </div>
-                <div>
-                  <p class="door_room">Living Room</p>
-                </div>
-                <div>
-                  <h4 class="trash_message">You are about to delete this device. Continue? </h4>
-                </div>                 
+                <div class="accordion2">
+                  <img src="Iconos/locked.png" alt="Locked"  class="lock_icon" onclick="lock(event,this);"></img>
+                  <p class="lock_text"> Locked</p>
+                  <div>
+                    <h4 class="trash_message">You are about to delete this device. Continue? </h4>
+                  </div> 
+                </div> 
+                <div class="accordion3">
+                  <div>
+                      <img src="Iconos/arrow_down.png" alt="Expand" class="arrow_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/heart.png" onclick="fav(event,this);" alt="Fave" class="fave_icon">
+                  </div>
+                  <div>
+                      <img src="Iconos/tacho.png" onclick="trash(event,this);" alt="Delete" class="delete_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/yes.png" onclick="yes(event,this);" alt="Yes" class="yes_icon">
+                  </div>
+                  <div>
+                    <img src="Iconos/no.png" onclick="no(event,this);" alt="No" class="no_icon">
+                  </div>
+                </div>                
               </div>
               <div class="panel">
                    <div class="status">
