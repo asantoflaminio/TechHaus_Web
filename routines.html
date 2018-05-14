@@ -31,7 +31,7 @@
         <a class="navbar_item" href="devices.html">Devices</a>
       </nav>
 
-        <!-- Modal -->
+        <!-- Modal Add Routine -->
         <div class="modal fade" id="add_room_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -71,6 +71,33 @@
           </div>
         </div> 
      
+        <!-- Modal Add Task -->
+        <div class="modal fade" id="add_task_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="device-tag2">Device</p>
+                <select class="text-input" id="device_input" onclick="add_device_input(event, this);" onmouseleave="activatetypeinput(event, this);">
+                  <option>--</option>
+                </select>
+                <p id="action-tag">Action</p>
+                <select class="text-input" id="action_input" onclick="add_action_input(event, this);" onmouseleave="activateactioninput(event, this);">
+                  <option>--</option>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="add_routine(event, this);">Add</button>
+              </div>
+            </div>
+          </div>
+        </div> 
       <section>
         
         <article>
