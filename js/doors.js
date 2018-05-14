@@ -65,12 +65,12 @@ function lock(event, locking){
     if (locking.getAttribute('src') == "Iconos/locked.png")
                 {
                     locking.src = "Iconos/unlocked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = 'Lock: Unlocked';
+                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Unlocked";
                 }
                 else
                 {
                     locking.src = "Iconos/locked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = "Lock: Locked";
+                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Locked";
                 }
 }
 
@@ -83,9 +83,11 @@ function trash(event, trashcan){
                     trashcan.style.visibility = "hidden";
                     var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
                     heart.style.visibility = "hidden";
-                    var lck = trashcan.closest('div').parentNode.querySelector('.lock');
-                    lck.style.display = "none";
-                    var message = trashcan.closest('div').parentNode.querySelector('.trash_message');
+                    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
+                    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
+                    lck_icon.style.visibility = "hidden";
+                    lck.style.visibility = "hidden";
+                    var message = trashcan.closest('div').parentNode.parentNode.querySelector('.trash_message');
                     message.style.visibility = "visible";
                     var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
                     yes.style.visibility = "visible";
@@ -101,14 +103,16 @@ function no(event, noicon){
     trashcan.src = "Iconos/tacho.png";
     trashcan.style.visibility = "visible";
     noicon.style.visibility = "hidden";
-    var message = noicon.closest('div').parentNode.querySelector('.trash_message');
+    var message = noicon.closest('div').parentNode.parentNode.querySelector('.trash_message');
     message.style.visibility = "hidden";
     var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
     yes.style.visibility = "hidden";
-    var heart = noicon.closest('div').parentNode.querySelector('.fave_icon');
+    var heart = noicon.closest('div').parentNode.parentNode.querySelector('.fave_icon');
     heart.style.visibility = "visible";
-    var lck = trashcan.closest('div').parentNode.querySelector('.lock');
-    lck.style.display = "";
+    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
+    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
+    lck_icon.style.visibility = "visible";
+    lck.style.visibility = "visible";
     
     
 }
@@ -116,8 +120,8 @@ function no(event, noicon){
 function yes(event, yesicon){
     
     event.stopPropagation();
-    yesicon.closest('div').parentNode.nextElementSibling.remove();
-    yesicon.closest('div').parentNode.remove();
+    yesicon.closest('div').parentNode.parentNode.nextElementSibling.remove();
+    yesicon.closest('div').parentNode.parentNode.remove();
 
 }
 
