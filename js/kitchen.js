@@ -239,7 +239,7 @@ function add_device(event, name) {
                 var p = document.createElement("p");
 
                 p.setAttribute("class", "device_room");
-                p.innerHTML = $('#room_input').val();
+                p.innerHTML = $('#room_input').val().toLowerCase();
 
                 div3.appendChild(p);
                 acc1.appendChild(div1);
