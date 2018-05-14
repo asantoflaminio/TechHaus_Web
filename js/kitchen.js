@@ -145,56 +145,6 @@ function yes(event, yesicon){
   });
 }
 
-//modify
-
-function pencil2_display(event, title){
-
-    var pencil = title.closest('div').querySelector('.pencil2_icon');
-    pencil.style.visibility = "visible";
-    
-}
-
-function pencil2_out(event, title){
-    
-
-   var pencil = title.closest('div').querySelector('.pencil2_icon');
-    pencil.style.visibility = "hidden";
-    
-}
-
-//edit device name
-var id_enter;
-
-function edit_name(event, name) {
-    var pencil = name.nextElementSibling.nextElementSibling;
-    pencil.style.visibility = "hidden";    event.stopPropagation();
-
-    name.style.visibility = "hidden";
-    var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
-    input_new_name.style.visibility = "visible";
-    
-}
-
-function change_name(event, element) {
-    event.stopPropagation();
-    var name_input = element;
-    var name = name_input.value;
-    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
-    new_name.innerHTML = name;
-    name_input.style.visibility = "hidden";
-    new_name.style.visibility = "visible";
-    name_input.style.backgroundColor = "#bbb"
-}
-
-function input_name(event, name) {
-    event.stopPropagation();
-    name.style.backgroundColor = "transparent";
-    $(name).keydown(function(event){
-        if(event.keyCode == 13){
-            change_name(event, name);
-        }
-    }); 
-}
 
 
 function add_device(event, name) {
@@ -438,7 +388,7 @@ function addPanels(){
     }
 }
 
-
+//edit room name
 function pencil_display(event, title){
 
     var pencil = title.closest('div').querySelector('.pencil_icon');
@@ -454,7 +404,42 @@ function pencil_out(event, title){
     
 }
 
+function edit_nameRoom(event, name) {
+    event.stopPropagation();
+    var pencil = name.nextElementSibling;
+    pencil.style.visibility = "hidden";    
+    var add = name.nextElementSibling.nextElementSibling.nextElementSibling;
+    add.style.visibility = "hidden";
+    name.style.visibility = "hidden";
+    var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
+    input_new_name.style.visibility = "visible";
+    
+}
 
+function change_nameRoom(event, element) {
+    event.stopPropagation();
+    var name_input = element;
+    var name = name_input.value;
+    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
+    new_name.innerHTML = name;
+    var add = element.parentNode.parentNode.nextElementSibling;
+    add.style.visibility = "visible";
+    name_input.style.visibility = "hidden";
+    new_name.style.visibility = "visible";
+    name_input.style.backgroundColor = "#bbb"
+}
+
+function input_nameRoom(event, name) {
+    event.stopPropagation();
+    name.style.backgroundColor = "transparent";
+    $(name).keydown(function(event){
+        if(event.keyCode == 13){
+            change_nameRoom(event, name);
+        }
+    }); 
+}
+
+//edit device name
 function pencil2_display(event, title){
 
     var pencil = title.closest('div').querySelector('.pencil2_icon');
@@ -468,6 +453,39 @@ function pencil2_out(event, title){
    var pencil = title.closest('div').querySelector('.pencil2_icon');
     pencil.style.visibility = "hidden";
     
+}
+
+
+function edit_name(event, name) {
+    event.stopPropagation();
+    var pencil = name.nextElementSibling.nextElementSibling;
+    pencil.style.visibility = "hidden";    
+
+    name.style.visibility = "hidden";
+    var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
+    input_new_name.style.visibility = "visible";
+    
+}
+
+function change_name(event, element) {
+    event.stopPropagation();
+    var name_input = element;
+    var name = name_input.value;
+    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
+    new_name.innerHTML = name;
+    name_input.style.visibility = "hidden";
+    new_name.style.visibility = "visible";
+    name_input.style.backgroundColor = "#bbb"
+}
+
+function input_name(event, name) {
+    event.stopPropagation();
+    name.style.backgroundColor = "transparent";
+    $(name).keydown(function(event){
+        if(event.keyCode == 13){
+            change_name(event, name);
+        }
+    }); 
 }
 
 function fav(event, heart){

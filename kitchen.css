@@ -269,6 +269,26 @@ ul.tabs li:before {
     font-style: italic;
 }
 
+.new_room_name {
+    position: absolute;
+    display: table-cell;
+    vertical-align: middle;
+    height: 40px !important;
+    width: 200px !important;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: 0px;
+    margin-top: -40px;
+    font-weight: bold;
+    color: #555; 
+    visibility: hidden;
+    font-family: monaco, monospace !important;
+    background-color: #bbb;
+    font-style: italic;
+}
+
 .device_room {
     font-size: 14px;
     color: #777;
