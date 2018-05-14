@@ -148,6 +148,35 @@ section {
     visibility: hidden;
 }
 
+.pencil2_iconRoom {
+    width: 12px;
+    height: 12px;
+    position: relative;
+   	bottom: -8px;
+   	right: -4px;
+    display: table;
+    visibility: hidden;
+   
+}
+
+.new_room{
+	position: relative;
+    height: 28px !important;
+    width: 130px !important;
+    font-style: italic;
+    background: none;
+    border: 0;
+    padding: 2px;
+    margin: 0;
+    margin-top: -22px;
+    color: #555; 
+   	visibility: hidden;
+    font-family: monaco, monospace !important;
+    background-color: #bbb;
+}
+
+
+
 .title_elements{
     float:left
     height: 100%;
@@ -239,7 +268,6 @@ ul.tabs li:before {
 
 .name_door{
 	display: table;
-	
 }
 
 .new_door_name {
@@ -254,24 +282,28 @@ ul.tabs li:before {
     margin-top: -17px;
     font-weight: bold;
     color: #555; 
-    visibility: hidden;
+   	visibility: hidden;
     font-family: monaco, monospace !important;
     background-color: #bbb;
     font-style: italic;
 }
 
+.room_door{
+	display: table;
+}
+
 .door_room {
+    text-align: left;
     font-size: 14px;
+    font-style: italic;
     color: #777;
     position: relative;
     float: left;
-    clear: left;
-    font-style: italic;
-    text-align: left;
     margin-left: 0;
-    margin-top: 8px;
+    margin-top: 4px;
+    margin-bottom: 0px;
     font-family: monaco, monospace;
-
+    
 }
 
 .trash_message {
@@ -625,6 +657,13 @@ input[type=text] {
     float:left;
     font-family: monaco, sans-serif;
     font-size: 15px;
+}
+
+
+select[type=text] {
+    float:left;
+    font-family: monaco, sans-serif;
+    font-size: 13px;
 }
 
 .search-container button {

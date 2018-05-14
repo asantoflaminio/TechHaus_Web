@@ -125,25 +125,19 @@ function yes(event, yesicon){
 
 }
 
-//modify
+//edit device name
 
 function pencil2_display(event, title){
-
     var pencil = title.closest('div').querySelector('.pencil2_icon');
     pencil.style.visibility = "visible";
     
 }
 
 function pencil2_out(event, title){
-    
-
    var pencil = title.closest('div').querySelector('.pencil2_icon');
     pencil.style.visibility = "hidden";
     
 }
-
-//edit device name
-var id_enter;
 
 function edit_name(event, name) {
     event.stopPropagation();
@@ -175,6 +169,41 @@ function input_name(event, name) {
         }
     }); 
 }
+
+//edit room name
+
+function pencil2_displayRoom(event, title){
+    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
+    pencil.style.visibility = "visible";
+    
+}
+
+function pencil2_outRoom(event, title){
+    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
+    pencil.style.visibility = "hidden";
+    
+}
+
+function edit_room(event, room) {
+    event.stopPropagation();
+    var pencil = room.nextElementSibling;
+    pencil.style.visibility = "hidden";
+    room.style.visibility = "hidden";
+    var select_new_room = room.nextElementSibling.nextElementSibling.children[0].children[0];
+    select_new_room.style.visibility = "visible";
+    
+}
+
+function select_room(event, new_room){
+    event.stopPropagation();
+    var room = new_room;
+    var room_name = room.parentNode.parentNode.previousElementSibling.previousElementSibling;
+    room_name.innerHTML = room.value;
+    room.style.visibility = "hidden";
+    room_name.style.visibility = "visible";
+}
+
+
 
 //search bar
 
