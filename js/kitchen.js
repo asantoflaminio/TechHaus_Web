@@ -140,6 +140,7 @@ function add_device(event, name) {
                 var div9 = document.createElement("div");
                 var p1 = document.createElement("p");
                 p1.innerHTML = "Info on";
+                p1.setAttribute("class", "panel_info");
                 div9.setAttribute("class", "panel");
                 div3.appendChild(p);
                 elem.appendChild(div1);
