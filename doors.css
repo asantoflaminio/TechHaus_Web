@@ -281,7 +281,7 @@ ul.tabs li:before {
     margin-left: 0;
     margin-top: -60px;
     margin-bottom: 0px;
-    right: 400px;
+    right: 32%;
     font-family: monaco, monospace;
     visibility: hidden;
     font-size: 15px;
