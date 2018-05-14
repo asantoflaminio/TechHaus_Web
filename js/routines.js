@@ -219,9 +219,7 @@ function onPageLoad(){
                     $.each(data, function(k, item3){
                         device_name = item3.name;
                         p.innerHTML += device_name;
-                    });
-                    console.log(device_name);
-                    console.log(action_name);       
+                    });   
                     p.innerHTML +=  ": " + action_name + "<br>" ;
                 });
              
@@ -394,7 +392,6 @@ function cargar_datos(icono, event){
         $.each(data, function(i, item){
             if(routinename == item.name){
                 window.localStorage.clear();
-                console.log("VOy a seteaer el id " + item.id)
                 window.localStorage.setItem("routine_id", item.id);
                 
             }
@@ -411,17 +408,14 @@ function add_device_input2(event, devinput) {
     var devtype = $("#devicetype_input2").val();
     devinput.removeAttribute("onclick");
     $(devinput).children('option').remove();
-    console.log(devtype);
     api.devices.getDevicesID().done(function(data){
                                     $.each(data, function(i, item){
-                                        console.log(item.name);
                                         if(item.name.toUpperCase() == devtype.toUpperCase()){
                                             var typeid = item.id;
                                             api.devices.getDevicesForType(typeid).done(function(data){
                                                 $.each(data, function(j, item2){
                                                     var option = document.createElement("option");
                                                     option.innerHTML = item2.name;
-                                                    console.log(option.innerHTML);
                                                     devinput.appendChild(option);
                                                 });
                                             });
@@ -442,10 +436,8 @@ function add_action_input2(event, acinput) {
     var prohibidos = ["getState", "changeSecurityCode", "setColor", "setBrightness", "setTemperature", "setGrill", "setHeat", "setConvection", "setMode", "setVerticalSwing", "setHorizontalSwing", "setFanSpeed", "setInterval", "setFreezerTemperature"];
     acinput.removeAttribute("onclick");
     $(acinput).children('option').remove();
-    console.log(devtype);
     api.devices.getDevicesID().done(function(data){
                                     $.each(data, function(i, item){
-                                        console.log(item.name);
                                         if(item.name.toUpperCase() == devtype.toUpperCase()){
                                             var typeid = item.id;
                                             api.devices.getDeviceActions(typeid).done(function(data){
@@ -453,7 +445,6 @@ function add_action_input2(event, acinput) {
                                                     if(prohibidos.indexOf(item2.name) <= -1){
                                                         var option = document.createElement("option");
                                                         option.innerHTML = item2.name;
-                                                        console.log(option.innerHTML);
                                                         acinput.appendChild(option);
                                                     }
                                                     
@@ -477,10 +468,21 @@ function edit_routine(event, addbtn){
     var action = $("#action_input2").val();
 
     
-    console.log("rutid es " + rut_id);
-    //FALTA TOMAR TODAS LAS RUTINAS MATCHEAR POR ID, LUEGO PASARLE A UPDATE LE NOMRE Y LA NUEVA ACCION CONCATENADO
-//CON LO ANTERIOR
-    if(rut_id != "" && action != "--" && action != ""){
+    var no = 0;
+        if(device == "--" || device == "" || device == null){
+                no = 1;
+                document.getElementById("device-tag22222").style.color = "#ff0000";
+                document.getElementById("action-tag22222").style.color = "#000000";
+                $('#add_task_popup').modal('show');
+        }
+        else if(action == "--" || action == "" || action == null){
+                no = 1;
+                document.getElementById("action-tag22222").style.color = "#ff0000";
+                document.getElementById("device-tag22222").style.color = "#000000";
+                $('#add_task_popup').modal('show');
+        }
+
+    if(no != 1 && rut_id != "" && action != "--" && action != ""){
        api.devices.getAllDevices().done(function(data){
            $.each(data, function(i, item1){
                if(device == item1.name){
@@ -488,12 +490,11 @@ function edit_routine(event, addbtn){
                    api.routines.getRoutines().done(function(data){
                         $.each(data, function(j, item2){
                             if(item2.id == rut_id){
-                                console.log("el size es " + item2.actions.length);
                                 item2.actions[item2.actions.length] = {"deviceId": item1.id, "actionName": action, "params": [], "meta": "{}"};
                                 var pp = JSON.stringify(item2.actions);
-                                console.log(pp);
                                 api.routines.updateRoutine(rut_id, item2.name, pp).done(function(data){
                                   onPageLoad();
+                                    $('#add_task_popup').modal('hide');
                                  }); 
                             }
                                 
@@ -511,17 +512,14 @@ function add_device_input(event, devinput) {
     var devtype = $("#devicetype_input").val()
     devinput.removeAttribute("onclick");
     $(devinput).children('option').remove();
-    console.log(devtype);
     api.devices.getDevicesID().done(function(data){
                                     $.each(data, function(i, item){
-                                        console.log(item.name);
                                         if(item.name.toUpperCase() == devtype.toUpperCase()){
                                             var typeid = item.id;
                                             api.devices.getDevicesForType(typeid).done(function(data){
                                                 $.each(data, function(j, item2){
                                                     var option = document.createElement("option");
                                                     option.innerHTML = item2.name;
-                                                    console.log(option.innerHTML);
                                                     devinput.appendChild(option);
                                                 });
                                             });
@@ -541,10 +539,8 @@ function add_action_input(event, acinput) {
     var devtype = $("#devicetype_input").val();
     acinput.removeAttribute("onclick");
     $(acinput).children('option').remove();
-    console.log(devtype);
     api.devices.getDevicesID().done(function(data){
                                     $.each(data, function(i, item){
-                                        console.log(item.name);
                                         if(item.name.toUpperCase() == devtype.toUpperCase()){
                                             var typeid = item.id;
                                             api.devices.getDeviceActions(typeid).done(function(data){
@@ -552,7 +548,6 @@ function add_action_input(event, acinput) {
                                                     if(prohibidos.indexOf(item2.name) <= -1){
                                                         var option = document.createElement("option");
                                                         option.innerHTML = item2.name;
-                                                        console.log(option.innerHTML);
                                                         acinput.appendChild(option);
                                                     }
                                                     
@@ -588,15 +583,14 @@ function add_routine(event, name) {
                 document.getElementById("action-tag").style.color = "#000000";
                 $('#add_room_popup').modal('show');
         }
-        else if(device == "--" || device == ""){
+        else if(device == "--" || device == "" || device == null){
                 no = 1;
-                console.log("UHUM???");
                 document.getElementById("name-tag").style.color = "#000000";
                 document.getElementById("device-tag").style.color = "#ff0000";
                 document.getElementById("action-tag").style.color = "#000000";
                 $('#add_room_popup').modal('show');
         }
-        else if(action == "--" || action == ""){
+        else if(action == "--" || action == "" || action == null){
                 no = 1;
                 document.getElementById("action-tag").style.color = "#ff0000";
                 document.getElementById("name-tag").style.color = "#000000";
