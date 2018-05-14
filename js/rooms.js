@@ -182,6 +182,7 @@ function passId(event, aelem){
                 window.localStorage.clear();
                 window.localStorage.setItem("room_id", room_id);
                 window.location.href = 'kitchen.html';
+                
             }
     
         });

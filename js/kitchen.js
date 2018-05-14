@@ -579,6 +579,7 @@ function searching() {
 
 $(document).ready(function() {
     var roomid = window.localStorage.getItem("room_id");
+    window.localStorage.clear();
     api.rooms.getRoom(roomid).done(function(data){
         console.log(data.name);
         console.log("THIS IS A " + data.meta.replace("{","").replace("}","").split(',')[0]);

@@ -53,6 +53,7 @@
                   <option>Fridge</option>
                   <option>Lamp</option>
                   <option>Oven</option>
+                  <option>Timer</option>
                 </select>
                 <p id="device-tag">Device</p>
                 <select class="text-input" id="device_input" onclick="add_device_input(event, this);" onmouseleave="activatetypeinput(event, this);">
@@ -65,7 +66,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="add_routine(event, this);">Add</button>
+                <button type="button" class="btn btn-primary"  onclick="add_routine(event, this);">Add</button>
               </div>
             </div>
           </div>
@@ -82,22 +83,35 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p id="device-tag2">Device</p>
-                <select class="text-input" id="device_input" onclick="add_device_input(event, this);" onmouseleave="activatetypeinput(event, this);">
+               <p id="devicetype-tag2">Device Type</p>
+                <select class="text-input" id="devicetype_input2" >
+                  <option>Air Conditioner</option>
+                  <option>Alarm</option>
+                  <option>Blind</option>
+                  <option>Door</option>
+                  <option>Fridge</option>
+                  <option>Lamp</option>
+                  <option>Oven</option>
+                  <option>Timer</option>
+                </select>
+               <p id="device-tag22222">Device</p> 
+                <select class="text-input" id="device_input2" onclick="add_device_input2(event, this);" onmouseleave="activatetypeinput2(event, this);"> 
                   <option>--</option>
                 </select>
-                <p id="action-tag">Action</p>
-                <select class="text-input" id="action_input" onclick="add_action_input(event, this);" onmouseleave="activateactioninput(event, this);">
+                <p id="action-tag22222">Action</p>
+                <select class="text-input" id="action_input2" onclick="add_action_input2(event, this);" onmouseleave="activateactioninput2(event, this);">
                   <option>--</option>
-                </select>
+                </select> 
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="add_routine(event, this);">Add</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="edit_routine(event, this);">Add</button>
               </div>
             </div>
           </div>
         </div> 
+        
+        
       <section>
         
         <article>
