@@ -20,7 +20,7 @@ function addPanels(){
         }
 
         /* Toggle between up and down arrow */
-        var arrow = this.children[0].children[0];
+        var arrow = this.children[2].children[0].children[0];
         if (panel.style.display === "block") {
 	        arrow.src = "Iconos/arrow_up.png";
         } else {
@@ -74,6 +74,57 @@ function lock(event, locking){
                 }
 }
 
+function toggle(event, toggling){
+    event.stopPropagation();
+    if (toggling.getAttribute('src') == "Iconos/toggle_off.png")
+                {
+                    toggling.src = "Iconos/toggle_on.png";
+                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " On";
+                }
+                else
+                {
+                    toggling.src = "Iconos/toggle_off.png";
+                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Off";
+                }
+}
+
+function change_blind_status(event, status){
+    event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/blind_down.png")
+                {
+                    status.src = "Iconos/blind_up.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_up_status.png";
+                    status.nextElementSibling.innerHTML = ' Up';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Up";
+
+                }
+                else
+                {
+                    status.src = "Iconos/blind_down.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_down_status.png";
+                    status.nextElementSibling.innerHTML = ' Down';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Down";
+                }
+}
+
+function change_blind_status_from_acc(event, status){
+    event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/blind_down_status.png")
+                {
+                    status.src = "Iconos/blind_up_status.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_up.png";
+                    status.nextElementSibling.innerHTML = ' Up';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Up";
+
+                }
+                else
+                {
+                    status.src = "Iconos/blind_down_status.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_down.png";
+                    status.nextElementSibling.innerHTML = ' Down';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Down";
+                }
+}
 
 function trash(event, trashcan){
     event.stopPropagation();
@@ -125,19 +176,25 @@ function yes(event, yesicon){
 
 }
 
-//edit device name
+//modify
 
 function pencil2_display(event, title){
+
     var pencil = title.closest('div').querySelector('.pencil2_icon');
     pencil.style.visibility = "visible";
     
 }
 
 function pencil2_out(event, title){
+    
+
    var pencil = title.closest('div').querySelector('.pencil2_icon');
     pencil.style.visibility = "hidden";
     
 }
+
+//edit device name
+var id_enter;
 
 function edit_name(event, name) {
     event.stopPropagation();
@@ -169,41 +226,6 @@ function input_name(event, name) {
         }
     }); 
 }
-
-//edit room name
-
-function pencil2_displayRoom(event, title){
-    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
-    pencil.style.visibility = "visible";
-    
-}
-
-function pencil2_outRoom(event, title){
-    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
-    pencil.style.visibility = "hidden";
-    
-}
-
-function edit_room(event, room) {
-    event.stopPropagation();
-    var pencil = room.nextElementSibling;
-    pencil.style.visibility = "hidden";
-    room.style.visibility = "hidden";
-    var select_new_room = room.nextElementSibling.nextElementSibling.children[0].children[0];
-    select_new_room.style.visibility = "visible";
-    
-}
-
-function select_room(event, new_room){
-    event.stopPropagation();
-    var room = new_room;
-    var room_name = room.parentNode.parentNode.previousElementSibling.previousElementSibling;
-    room_name.innerHTML = room.value;
-    room.style.visibility = "hidden";
-    room_name.style.visibility = "visible";
-}
-
-
 
 //search bar
 
