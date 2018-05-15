@@ -169,6 +169,7 @@ function onPageLoad(){
         var pnl = document.createElement("div");
         var p = document.createElement("p");
         pnl.setAttribute("class", "panel");
+        p.setAttribute("class", "panel_info");
         var div = document.createElement("div");
         var img1 = document.createElement("img");
         img1.setAttribute("src", "Iconos/arrow_down.png");
