@@ -622,6 +622,7 @@ $(document).ready(function() {
                        api.devicetypes.getDeviceType(item2.typeId).done(function(data) {
                            dev_type = data.name; 
                            
+                           
                 var list = document.getElementById("devices_list");
                 var elem = document.createElement("div");
                 elem.setAttribute("class", "accordion");

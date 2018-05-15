@@ -178,57 +178,79 @@ function trash_out(event, title){
 
 function add_room(event, name) {
         var roomname = $('#name_input').val();//JSON.stringify(item.name.replace("\"",""));
-        var roomtype = $('#room_input').val().toLowerCase();//tomo el primer elemento de meta
-        var icons = document.getElementById("icons");
-        var fig = document.createElement("figure");
-        var a_elem = document.createElement("a"); 
-        var div1 = document.createElement("div");
-        var img1 = document.createElement("img");
-        var img2 = document.createElement("img");   
-        var fig_cap = document.createElement("figcaption");
-        
-        div1.setAttribute("onmouseover", "trash_display(event,this);");
-        div1.setAttribute("onmouseout", "trash_out(event,this);");
-        div1.setAttribute("class", "roomandtrash");     
-        //a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
-       // a_elem.setAttribute("onclick", "passId(event, this)");
-        if(roomtype == "bathroom"){
-            img1.setAttribute("src", "Iconos/bathroom2.png"); 
-        }else if(roomtype == "garage"){
-            img1.setAttribute("src", "Iconos/garage2.png"); 
-        }else if(roomtype == "kitchen"){
-             img1.setAttribute("src", "Iconos/kitchen1.png");      
-        }else if(roomtype == "garden"){
-            img1.setAttribute("src", "Iconos/jardin4.png");   
-        }else if(roomtype == "laundry"){
-            img1.setAttribute("src", "Iconos/laundry2.png");      
-        }else if(roomtype == "bedroom"){
-            img1.setAttribute("src", "Iconos/Rooms6.png");       
-        }else{
-            img1.setAttribute("src", "Iconos/other.png");     
+        var no = 0;
+        console.log(no);
+        api.rooms.getRooms().done(function(data){
+            $.each(data, function(i, item){
+                if(item.name == roomname){
+                    no = 1;
+                }
+            });
+        if(roomname == ""){
+            document.getElementById("name-tag").innerHTML = "Name is required";
+            document.getElementById("name-tag").style.color = "#ff0000";
+            $('#add_room_popup').modal('show');
         }
-        img1.setAttribute("alt", roomname);
-        img1.setAttribute("class", "icon");
-        img1.setAttribute("onclick", "passId(event, this)");
-        img2.setAttribute("src", "Iconos/tacho.png");
-        img2.setAttribute("alt", "Trash");
-        img2.setAttribute("class", "trash_icon");
-        img2.setAttribute("onclick", "display_box(event,this);");
-        img2.setAttribute("data-toggle", "modal");
-        img2.setAttribute("data-target", "#delete_popup");
-        fig_cap.innerHTML = roomname;
+        else if(no == 1){
+            document.getElementById("name-tag").innerHTML = "Name already in use";
+            document.getElementById("name-tag").style.color = "#ff0000";
+            $('#add_room_popup').modal('show');
+        }else{
+            var roomtype = $('#room_input').val().toLowerCase();//tomo el primer elemento de meta
+            var icons = document.getElementById("icons");
+            var fig = document.createElement("figure");
+            var a_elem = document.createElement("a"); 
+            var div1 = document.createElement("div");
+            var img1 = document.createElement("img");
+            var img2 = document.createElement("img");   
+            var fig_cap = document.createElement("figcaption");
         
-        div1.appendChild(img1);
-        div1.appendChild(img2);
-        a_elem.appendChild(div1);
-        fig.appendChild(a_elem);
-        fig.appendChild(fig_cap);
-        icons.appendChild(fig);
-    
-        api.rooms.postRoom(roomname,roomtype).done(function(data) {
-                                                   
-                                                           console.log("ROOM ADDED");
-                                                       });
+            div1.setAttribute("onmouseover", "trash_display(event,this);");
+            div1.setAttribute("onmouseout", "trash_out(event,this);");
+            div1.setAttribute("class", "roomandtrash");     
+            //a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
+           // a_elem.setAttribute("onclick", "passId(event, this)");
+            if(roomtype == "bathroom"){
+                img1.setAttribute("src", "Iconos/bathroom2.png"); 
+            }else if(roomtype == "garage"){
+                img1.setAttribute("src", "Iconos/garage2.png"); 
+            }else if(roomtype == "kitchen"){
+                 img1.setAttribute("src", "Iconos/kitchen1.png");      
+            }else if(roomtype == "garden"){
+                img1.setAttribute("src", "Iconos/jardin4.png");   
+            }else if(roomtype == "laundry"){
+                img1.setAttribute("src", "Iconos/laundry2.png");      
+            }else if(roomtype == "bedroom"){
+                img1.setAttribute("src", "Iconos/Rooms6.png");       
+            }else{
+                img1.setAttribute("src", "Iconos/other.png");     
+            }
+            img1.setAttribute("alt", roomname);
+            img1.setAttribute("class", "icon");
+            img1.setAttribute("onclick", "passId(event, this)");
+            img2.setAttribute("src", "Iconos/tacho.png");
+            img2.setAttribute("alt", "Trash");
+            img2.setAttribute("class", "trash_icon");
+            img2.setAttribute("onclick", "display_box(event,this);");
+            img2.setAttribute("data-toggle", "modal");
+            img2.setAttribute("data-target", "#delete_popup");
+            fig_cap.innerHTML = roomname;
+
+            div1.appendChild(img1);
+            div1.appendChild(img2);
+            a_elem.appendChild(div1);
+            fig.appendChild(a_elem);
+            fig.appendChild(fig_cap);
+            icons.appendChild(fig);
+
+            api.rooms.postRoom(roomname,roomtype).done(function(data) {
+
+                                                               console.log("ROOM ADDED");
+                                                                $('#add_room_popup').modal('hide');
+                                                           });
+            }  
+            });
+        
 
 }
 
