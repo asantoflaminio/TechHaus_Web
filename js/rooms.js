@@ -8,6 +8,35 @@ var api = class {
   }
 }
 
+api.devices = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/devices/";
+  }
+
+  static deleteFromRoom(deviceId) {
+   return $.ajax({
+      url: api.devices.url + deviceId + "/rooms",
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout,
+       })
+       
+     
+  }
+    
+    static deleteDevice(deviceId) {
+   return $.ajax({
+      url: api.devices.url + deviceId,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout,
+       })
+       
+     
+  }
+
+}
+
 api.rooms = class {
   static get url() {
     return "http://127.0.0.1:8080/api/rooms/";
@@ -36,16 +65,40 @@ api.rooms = class {
        
      
   }
+    
+  static deleteRoom(id){
+      return $.ajax({
+      url: api.rooms.url +id,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout
+       
+       });
+  }
+    
+    static getDevicesForRoom(roomid){
+        return $.ajax({
+      url: api.rooms.url + roomid + "/devices",
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices; 
+        });
+    }
+
 }
 
-$(document).ready(function() {
+function onLoad(){
+    var myNode = document.getElementById("icons");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
     api.rooms.getRooms().done(function(data) {
         $.each(data, function(i, item){
         
         var roomname = item.name.replace("\"","")//JSON.stringify(item.name.replace("\"",""));
-        console.log(roomname);
         var roomtype = item.meta.replace("{","").replace("}","").split(',')[0]; //tomo el primer elemento de meta
-        console.log(roomtype);
         var icons = document.getElementById("icons");
         var fig = document.createElement("figure");
         var a_elem = document.createElement("a"); 
@@ -58,7 +111,7 @@ $(document).ready(function() {
         div1.setAttribute("onmouseout", "trash_out(event,this);");
         div1.setAttribute("class", "roomandtrash");     
        // a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
-        a_elem.setAttribute("onclick", "passId(event, this)");
+        //a_elem.setAttribute("onclick", "passId(event, this)");
         if(roomtype == "bathroom"){
             img1.setAttribute("src", "Iconos/bathroom2.png"); 
         }else if(roomtype == "garage"){
@@ -76,10 +129,13 @@ $(document).ready(function() {
         }
         img1.setAttribute("alt", roomname);
         img1.setAttribute("class", "icon");
+        img1.setAttribute("onclick", "passId(event, this)");
         img2.setAttribute("src", "Iconos/tacho.png");
         img2.setAttribute("alt", "Trash");
         img2.setAttribute("class", "trash_icon");
         img2.setAttribute("onclick", "display_box(event,this);");
+        img2.setAttribute("data-toggle", "modal");
+        img2.setAttribute("data-target", "#delete_popup");
         fig_cap.innerHTML = roomname;
         
         div1.appendChild(img1);
@@ -98,6 +154,11 @@ $(document).ready(function() {
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log("Request failed: jqXHR.status=" + jqXHR.status + ", textStatus=" + textStatus + ", errorThrown=" + errorThrown);
     });
+}
+
+$(document).ready(function() {
+    onLoad();
+    
 });
 
 function trash_display(event, title){
@@ -117,9 +178,7 @@ function trash_out(event, title){
 
 function add_room(event, name) {
         var roomname = $('#name_input').val();//JSON.stringify(item.name.replace("\"",""));
-        console.log(roomname);
         var roomtype = $('#room_input').val().toLowerCase();//tomo el primer elemento de meta
-        console.log(roomtype);
         var icons = document.getElementById("icons");
         var fig = document.createElement("figure");
         var a_elem = document.createElement("a"); 
@@ -132,7 +191,7 @@ function add_room(event, name) {
         div1.setAttribute("onmouseout", "trash_out(event,this);");
         div1.setAttribute("class", "roomandtrash");     
         //a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
-        a_elem.setAttribute("onclick", "passId(event, this)");
+       // a_elem.setAttribute("onclick", "passId(event, this)");
         if(roomtype == "bathroom"){
             img1.setAttribute("src", "Iconos/bathroom2.png"); 
         }else if(roomtype == "garage"){
@@ -150,10 +209,13 @@ function add_room(event, name) {
         }
         img1.setAttribute("alt", roomname);
         img1.setAttribute("class", "icon");
+        img1.setAttribute("onclick", "passId(event, this)");
         img2.setAttribute("src", "Iconos/tacho.png");
         img2.setAttribute("alt", "Trash");
         img2.setAttribute("class", "trash_icon");
         img2.setAttribute("onclick", "display_box(event,this);");
+        img2.setAttribute("data-toggle", "modal");
+        img2.setAttribute("data-target", "#delete_popup");
         fig_cap.innerHTML = roomname;
         
         div1.appendChild(img1);
@@ -170,15 +232,58 @@ function add_room(event, name) {
 
 }
 
+function display_box(event, tacho){
+    var roomname = tacho.closest('div').parentNode.parentNode.querySelector('figcaption').innerHTML;
+    var roomid = "";
+    window.localStorage.clear();
+    window.localStorage.setItem("roomname", roomname);
+    api.rooms.getRooms().done(function(data){
+        $.each(data, function(i, item){
+            if(item.name == roomname){
+                roomid = item.id;
+                document.getElementById("msg-tag").innerHTML = "You are about to delete room \'"+roomname+ "\' and all its associated devices."
+                window.localStorage.setItem("room_id2", roomid);
+            }
+        });
+    });
+    
+
+    
+}
+
+function delete_room(event, confirm){
+    var roomid = window.localStorage.getItem("room_id2");
+    var roomname = window.localStorage.getItem("roomname");
+    api.rooms.getDevicesForRoom(roomid).done(function(data){
+        $.each(data, function(i, item){
+            api.devices.deleteFromRoom(item.id).done(function(data){
+                api.devices.deleteDevice(item.id).done(function(data){
+                                                       
+                                                       });
+            });
+            });
+            api.rooms.deleteRoom(roomid).done(function(data){
+                 onLoad();
+            });
+           
+            
+        });
+    
+       
+    
+    
+    
+}
+
 function passId(event, aelem){
-    console.log("EEMMM ESTOYYY ");
+
     var roomname = aelem.closest("figure").querySelector("figcaption").innerHTML;
-    console.log("Voy a bbuscar con roomname = " + roomname);
+  
      api.rooms.getRooms().done(function(data) {
         $.each(data, function(i, item){
             if(item.name == roomname){
                 var room_id = item.id;
-                console.log("FOUND IT, ID is " + room_id);
+                
                 window.localStorage.clear();
                 window.localStorage.setItem("room_id", room_id);
                 window.location.href = 'kitchen.html';
