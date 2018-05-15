@@ -399,7 +399,9 @@ function onPageLoad(){
     var brd = document.getElementById("breadcrumbfinal");
     var ttl = document.getElementById("title");
     if(typename == 'door'){ //esto es para el logo y el titulo
-
+        logo.setAttribute("src","Iconos/Doors.png");
+        brd.innerHTML = "Doors";
+        ttl.innerHTML = "Doors";
     }else if(typename =='ac'){
         logo.setAttribute("src","Iconos/AirConditioners2.png");
         brd.innerHTML = "Air Conditioners";
