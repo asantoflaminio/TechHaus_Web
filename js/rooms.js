@@ -263,7 +263,7 @@ function display_box(event, tacho){
         $.each(data, function(i, item){
             if(item.name == roomname){
                 roomid = item.id;
-                document.getElementById("msg-tag").innerHTML = "You are about to delete room \'"+roomname+ "\' and all its associated devices."
+                document.getElementById("msg-tag").innerHTML = "You are about to delete room \'"+roomname+ "\' and all its associated devices"
                 window.localStorage.setItem("room_id2", roomid);
             }
         });
