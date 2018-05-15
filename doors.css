@@ -460,8 +460,8 @@ ul.tabs li:before {
     height: 35px;
     display: inline-block !important;
     margin-left: 25%;
-    margin-top: 7px;
-    margin-bottom: 28px;
+    margin-top: 2px;
+    margin-bottom: 40px;
 
 }
 
@@ -839,7 +839,8 @@ footer p {
 .arrow_change_up_icon {
     width: 25px;
     height: 25px;
-    margin-left: 5px;
+    margin-left: 75px;
+    margin-top: -40px;
     margin-right: 0;
   
     cursor: pointer;

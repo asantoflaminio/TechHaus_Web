@@ -31,7 +31,7 @@
         <a class="navbar_item" href="devices.html">Devices</a>
       </nav>
 
-        <!-- Modal -->
+        <!-- Add Device Modal -->
         <div class="modal fade" id="add_room_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="mymodal">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -61,6 +61,96 @@
               </div>
             </div>
           </div>
+
+        <!-- Change Password Modal -->
+        <div class="modal fade" id="change_pass_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="name-tag">Old Password</p>
+                <input type="text" class="text-input" id="old_pass_input">
+                <p id="room-tag">New Password</p>
+                <input type="text" class="text-input" id="new_pass_input">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="change_pass(event, this)" data-dismiss="modal">Change</button>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <!-- ArmStay Ask Password Modal -->
+        <div class="modal fade" id="ask_pass_armstay_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Enter Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="name-tag">Password</p>
+                <input type="text" class="text-input" id="pass_input">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="armstay_confirm(event, this)" data-dismiss="modal">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ArmAway Ask Password Modal -->
+        <div class="modal fade" id="ask_pass_armaway_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Enter Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="name-tag">Password</p>
+                <input type="text" class="text-input" id="pass_input">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="armaway_confirm(event, this)" data-dismiss="modal">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disarm Ask Password Modal -->
+        <div class="modal fade" id="ask_pass_disarm_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Enter Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="name-tag">Password</p>
+                <input type="text" class="text-input" id="pass_input">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="disarm_confirm(event, this)" data-dismiss="modal">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
         </div> 
 
       <aside>
