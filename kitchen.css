@@ -408,9 +408,10 @@ ul.tabs li:before {
 .lock_text{
     font-size: 15px;
     margin-bottom: 0;
+    margin-left: 5px;
     display: inline-block !important;
     position: relative;
-    top: -13px;
+    top: -20px;
 }
 
 .lock_icon {
@@ -418,8 +419,28 @@ ul.tabs li:before {
     height: 25px;
     display: inline-block !important;
     margin-left: 30%;
-    margin-top: 7px;
-    margin-bottom: 37px;
+    margin-top: -9px;
+    margin-bottom: 40px;
+
+}
+
+.toggle_icon {
+    width: 50px;
+    height: 25px;
+    display: inline-block !important;
+    margin-left: 25.5%;
+    margin-top: -3px;
+    margin-bottom: 40px;
+
+}
+
+.alarm_icon {
+    width: 45px;
+    height: 35px;
+    display: inline-block !important;
+    margin-left: 25%;
+    margin-top: 2px;
+    margin-bottom: 40px;
 
 }
 
@@ -529,6 +550,34 @@ footer p {
 
 }
 
+#new_pass_input {
+    width: 88%;
+    height: 25px;
+    position: relative !important;
+    float: left !important;
+    font-family: monaco, monospace;
+
+}
+
+#old_pass_input {
+    width: 88%;
+    height: 25px;
+    position: relative !important;
+    float: left !important;
+    font-family: monaco, monospace;
+
+}
+
+#pass_input {
+    width: 88%;
+    height: 25px;
+    position: relative !important;
+    float: left !important;
+    font-family: monaco, monospace;
+
+}
+
+
 .text-input {
     margin-left: 13px;
     position: relative !important;
@@ -618,6 +667,28 @@ footer p {
     background-color: #ccc;
 }
 
+/*accordion inside*/
+
+.accordion1 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+}
+
+.accordion2 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+    overflow-x:visible !important;
+}
+
+.accordion3 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+    margin-bottom: 6px;
+}
+
 /* Style the accordion panel. Note: hidden by default */
 .panel {
     padding: 0 18px;
@@ -625,6 +696,263 @@ footer p {
     display: none;
     overflow: hidden;
     border: 0.5px solid #ccc;
+}
+
+.status{
+    display: table;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.status_icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.color_icon {
+    width: 37px;
+    height: 35px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.color_input {
+    margin-left: 10px;  
+    margin-top: 3px;  
+}
+
+.brightness_icon {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+
+.disarm_icon {
+    width: 40px;
+    height: 25px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.toggle_inside_icon {
+    width: 40px;
+    height: 20px;
+    margin-left: 15px;
+    margin-top: 7px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.stay_away_icon {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.temperature_icon {
+    width: 30px;
+    height: 37px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.arrow_change_down_icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 25px;
+    margin-right: 0;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.arrow_change_up_icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 80px;
+    margin-top: -40px;
+    margin-right: 0;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.arrow_change_down_icon_with_text {
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    margin-right: 0;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.temperature_icon_status {
+    width: 30px;
+    height: 35px;
+    display: inline-block !important;
+    margin-left: 29%;
+    margin-top: 0;
+    margin-bottom: 45px;
+}
+
+.changepass_icon {
+    width: 42px;
+    height: 42px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.ac_mode_icon {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+  
+}
+
+.swing_icon {
+    width: 42px;
+    height: 39px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.fan_icon {
+    width: 40px;
+    height: 33px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.convection_icon {
+    width: 38px;
+    height: 35px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.grill_icon {
+    width: 35px;
+    height: 38px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.heat_icon {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.fridge_default_icon {
+    width: 40px;
+    height: 45px;
+    margin-left: 20px;
+  
+    cursor: pointer;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.panel_selector {
+    margin-left: 7px;
+    font-size: 13px;
+}
+
+.stat_text{
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 14px;
+    
+}
+
+.number_info {
+    margin-left: 5px !important;
 }
 
 .panel_info {
@@ -683,23 +1011,68 @@ input[type=text] {
     border-width: 0.5px;
 }
 
-/*accordion inside*/
+/*panel inside*/
 
-.accordion1 {
-    width: 32.8%;
-    height: 100%;
+.panel1 {
+    margin-top: 8px;
+    height: 100% !important;
+    width: 49%;
+    display: inline-block !important;
+
+}
+
+.panel2 {
+    margin-top: 8px;
+    vertical-align: top;
+    height: 100% !important;
+    width: 49%;
     display: inline-block !important;
 }
 
-.accordion2 {
-    width: 32.8%;
-    height: 100%;
-    display: inline-block !important;
-    overflow-x:visible !important;
+/*slider*/
+
+.slidecontainer {
+    width: 40%; /* Width of the outside container */
+    height: 30px;
+    display: inline-block;
+    margin-left: 13px;
+    margin-top: 5px;
 }
 
-.accordion3 {
-    width: 32.8%;
-    height: 100%;
-    display: inline-block !important;
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px;
+    border-radius: 50%; 
+    background: #2C9984; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
 }
