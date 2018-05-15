@@ -179,9 +179,9 @@ function addPanels(){
         /* Toggle between up and down arrow */
         var arrow = this.children[2].children[0].children[0];
         if (panel.style.display === "block") {
-	        arrow.src = "Iconos/arrow_up.png";
+          arrow.src = "Iconos/arrow_up.png";
         } else {
-	        arrow.src = "Iconos/arrow_down.png";
+          arrow.src = "Iconos/arrow_down.png";
         }
     });
 }
@@ -557,22 +557,175 @@ function onPageLoad(){
             div3.appendChild(divRo);
             acc1.appendChild(div1);
             acc1.appendChild(div3);
-            //A partir de aca viene lo q pertenece al acc2 que es en kitchen donde empieza con lock_icon
-            if(typename == 'door'){ //para crear 'var divX' usar X mayor a 10
+
+            if(typename == 'door'){
+
+                var lock_icon2 = document.createElement("img");
+                var lock_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
+                lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
+                lock_icon2.setAttribute("alt", "Locked");
+                lock_icon2.setAttribute("onclick", "lock(event,this);");
+
+                lock_info.setAttribute("class", "lock_text");
+                lock_info.innerHTML = "Locked"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(lock_icon2);
+                acc2.appendChild(lock_info);
+                acc2.appendChild(div_trash);
 
             }else if(typename =='ac'){
 
+                var toggle_img = document.createElement("img");
+                var toggle_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                toggle_img.setAttribute("class", "toggle_icon");
+                toggle_img.setAttribute("onclick", "toggle(event,this);");
+
+                toggle_info.setAttribute("class", "lock_text");
+                toggle_info.innerHTML = "Off"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(toggle_img);
+                acc2.appendChild(toggle_info);
+                acc2.appendChild(div_trash);
+
             }else if(typename == 'oven'){
+
+                var toggle_img = document.createElement("img");
+                var toggle_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                toggle_img.setAttribute("class", "toggle_icon");
+                toggle_img.setAttribute("onclick", "toggle(event,this);");
+
+                toggle_info.setAttribute("class", "lock_text");
+                toggle_info.innerHTML = "Off"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(toggle_img);
+                acc2.appendChild(toggle_info);
+                acc2.appendChild(div_trash);
 
             }else if(typename == 'alarm'){
 
+                var alarm_icon = document.createElement("img");
+                var alarm_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                alarm_icon.setAttribute("src", "Iconos/alarm_stat_off.png"); //debería depender de getstate
+                alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                alarm_icon.setAttribute("alt", "Alarm Status");
+                alarm_icon.setAttribute("onclick", "toggle(event,this);");
+
+                alarm_info.setAttribute("class", "lock_text");
+                alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(alarm_icon);
+                acc2.appendChild(alarm_info);
+                acc2.appendChild(div_trash);              
+
             }else if(typename == 'blind'){
+
+                var blind_icon2 = document.createElement("img");
+                var blind_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                blind_icon2.setAttribute("src", "Iconos/blind_up_status.png"); //debería depender de getstate
+                blind_icon2.setAttribute("alt", "Up"); //debería depender de getstate
+                blind_icon2.setAttribute("class", "lock_icon");
+                blind_icon2.setAttribute("onclick", "change_blind_status_from_acc(event,this);");
+
+                blind_info.setAttribute("class", "lock_text");
+                blind_info.innerHTML = " Up"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(blind_icon2);
+                acc2.appendChild(blind_info);
+                acc2.appendChild(div_trash);
 
             }else if(typename == 'refrigerator'){
 
+                var temp_icon = document.createElement("img");
+                var temp_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                temp_icon.setAttribute("src", "Iconos/temperature.png");
+                temp_icon.setAttribute("alt", "Temperature");
+                temp_icon.setAttribute("class", "temperature_icon_status");
+
+                temp_info.setAttribute("class", "lock_text");
+                temp_info.innerHTML = "5°C"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(temp_icon);
+                acc2.appendChild(temp_info);
+                acc2.appendChild(div_trash);
+
             }else if(typename == 'lamp'){
 
+                var toggle_img = document.createElement("img");
+                var toggle_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                toggle_img.setAttribute("class", "toggle_icon");
+                toggle_img.setAttribute("onclick", "toggle(event,this);");
+
+                toggle_info.setAttribute("class", "lock_text");
+                toggle_info.innerHTML = "Off"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(toggle_img);
+                acc2.appendChild(toggle_info);
+                acc2.appendChild(div_trash);
             }
+
             var div5 = document.createElement("div");
             var div6 = document.createElement("div");
             var div7 = document.createElement("div");
@@ -667,7 +820,7 @@ function onPageLoad(){
                 stat.setAttribute("onclick", "stat(event,this);");
 
                 p2.setAttribute("class", "stat_text");
-                p2.innerHTML = "Closed"; //debería depender de getstatus
+                p2.innerHTML = "Status: Closed"; //debería depender de getstatus
 
                 status2.appendChild(stat);
                 status2.appendChild(p2);
@@ -835,8 +988,8 @@ function onPageLoad(){
                 var option13 = document.createElement("option");
 
                 vertical_swing.setAttribute("src", "Iconos/vertical_swing.png");
-                fan_icon.setAttribute("alt", "Vertical Swing");
-                fan_icon.setAttribute("class", "swing_icon");
+                vertical_swing.setAttribute("alt", "Vertical Swing");
+                vertical_swing.setAttribute("class", "swing_icon");
 
                 p5.setAttribute("class", "stat_text");
                 p5.innerHTML = "Vertical swing: ";
@@ -872,8 +1025,8 @@ function onPageLoad(){
                 var option19 = document.createElement("option");
 
                 horizontal_swing.setAttribute("src", "Iconos/horizontal_swing.png");
-                fan_icon.setAttribute("alt", "Horizontal Swing");
-                fan_icon.setAttribute("class", "swing_icon");
+                horizontal_swing.setAttribute("alt", "Horizontal Swing");
+                horizontal_swing.setAttribute("class", "swing_icon");
 
                 p6.setAttribute("class", "stat_text");
                 p6.innerHTML = "Horizontal swing: ";
@@ -1211,10 +1364,6 @@ function onPageLoad(){
                 //create panel 1
 
                 panel1.appendChild(status1);
-
-                //create panel 2
-
-                panel2.appendChild(status2);
 
                 //create panel
 
@@ -1567,87 +1716,87 @@ $(function() {
    //esto es viejo, borrar (creo)
 $("#addicon").click(function() {
 
-	$("#popup").dialog({
-		modal: true,
-    	buttons: [ 
-    		{	
-    			text:'Cancel',
-    			"class": "mybutton cancel-button",
-    			click: function() {
+  $("#popup").dialog({
+    modal: true,
+      buttons: [ 
+        { 
+          text:'Cancel',
+          "class": "mybutton cancel-button",
+          click: function() {
 
-    			$(this).dialog('close');
-    			}
-    		},
-    		{
-    			text: 'Add',
-    			"class": "mybutton",
-    			click: function () {
-    		 	var list = document.getElementById("doors_list");
-			  	var elem = document.createElement("div");
-			  	elem.setAttribute("class", "accordion");
-			  	var div1 = document.createElement("div");
-			  	var div2 = document.createElement("div");
-			  	var div3 = document.createElement("div");
+          $(this).dialog('close');
+          }
+        },
+        {
+          text: 'Add',
+          "class": "mybutton",
+          click: function () {
+          var list = document.getElementById("doors_list");
+          var elem = document.createElement("div");
+          elem.setAttribute("class", "accordion");
+          var div1 = document.createElement("div");
+          var div2 = document.createElement("div");
+          var div3 = document.createElement("div");
                 var div4 = document.createElement("div");
                 var div5 = document.createElement("div");
                 var div6 = document.createElement("div");
                 var div7 = document.createElement("div");
                 var div8 = document.createElement("div");
-			  	var p = document.createElement("p");
-			  	var h3 = document.createElement("h3");
-			  	var img = document.createElement("img");
+          var p = document.createElement("p");
+          var h3 = document.createElement("h3");
+          var img = document.createElement("img");
                 var trash = document.createElement("img");
                 var heart = document.createElement("img");
                 var yes = document.createElement("img");
                 var no = document.createElement("img");
                 var pencil2 = document.createElement("img");
                 var h4 = document.createElement("h4");
-			  	img.setAttribute("src", "Iconos/arrow_down.png");
-			  	img.setAttribute("alt", "Expand");
-			  	img.setAttribute("class", "arrow_icon");
+          img.setAttribute("src", "Iconos/arrow_down.png");
+          img.setAttribute("alt", "Expand");
+          img.setAttribute("class", "arrow_icon");
                 trash.setAttribute("src", "Iconos/tacho.png");
-			  	trash.setAttribute("alt", "Delete");
-			  	trash.setAttribute("class", "delete_icon");
+          trash.setAttribute("alt", "Delete");
+          trash.setAttribute("class", "delete_icon");
                 trash.setAttribute("onclick", "trash(event,this);");
                 heart.setAttribute("src", "Iconos/heart.png");
-			  	heart.setAttribute("alt", "Fave");
-			  	heart.setAttribute("class", "fave_icon");
+          heart.setAttribute("alt", "Fave");
+          heart.setAttribute("class", "fave_icon");
                 heart.setAttribute("onclick", "fav(event,this);");
                 yes.setAttribute("src", "Iconos/yes.png");
-			  	yes.setAttribute("alt", "Yes");
-			  	yes.setAttribute("class", "yes_icon");
+          yes.setAttribute("alt", "Yes");
+          yes.setAttribute("class", "yes_icon");
                 yes.setAttribute("onclick", "yes(event,this);");
                 no.setAttribute("src", "Iconos/no.png");
-			  	no.setAttribute("alt", "No");
-			  	no.setAttribute("class", "no_icon");
+          no.setAttribute("alt", "No");
+          no.setAttribute("class", "no_icon");
                 no.setAttribute("onclick", "no(event,this);");
                 pencil2.setAttribute("src", "Iconos/pencil.png");
                 pencil2.setAttribute("alt", "Pencil;");
                 pencil2.setAttribute("class", "pencil2_icon");
                     
-			  	div1.appendChild(img);
+          div1.appendChild(img);
                 div4.appendChild(trash);
                 div5.appendChild(heart);
                 div6.appendChild(yes);
                 div7.appendChild(no);
                 div8.appendChild(h4);
-			  	h4.setAttribute("class", "trash_message");
-			  	h4.innerHTML = "You are about to delete this device. Continue? ";
+          h4.setAttribute("class", "trash_message");
+          h4.innerHTML = "You are about to delete this device. Continue? ";
                 h3.setAttribute("class", "door_name");
-			  	h3.innerHTML = $('#door_input').val();
-			  	div2.appendChild(h3);
+          h3.innerHTML = $('#door_input').val();
+          div2.appendChild(h3);
                 div2.appendChild(pencil2);
                 div2.setAttribute("onmouseover", "pencil2_display(event,this);");
                 div2.setAttribute("onmouseout","pencil2_out(event,this);");   
-			  	p.setAttribute("class", "door_room");
-			  	p.innerHTML = $('#room_input').val();
-			  	var div9 = document.createElement("div");
-			  	var p1 = document.createElement("p");
-			  	p1.innerHTML = "Info on";
-			  	div9.setAttribute("class", "panel");
+          p.setAttribute("class", "door_room");
+          p.innerHTML = $('#room_input').val();
+          var div9 = document.createElement("div");
+          var p1 = document.createElement("p");
+          p1.innerHTML = "Info on";
+          div9.setAttribute("class", "panel");
                 div9.appendChild(p1);
-			  	div3.appendChild(p);
-			  	elem.appendChild(div1);
+          div3.appendChild(p);
+          elem.appendChild(div1);
                 
                 elem.appendChild(div5);
                 elem.appendChild(div4);
@@ -1658,16 +1807,16 @@ $("#addicon").click(function() {
                 elem.appendChild(div8);
                // elem.appendChild(div9);
                 
-			  	list.appendChild(elem);
-			  	list.appendChild(div9);
+          list.appendChild(elem);
+          list.appendChild(div9);
                 addPanels();
 
-      			$(this).dialog('close');
+            $(this).dialog('close');
 
-    			}
-    		}
-		]
-	})
+          }
+        }
+    ]
+  })
 });
 
 });
