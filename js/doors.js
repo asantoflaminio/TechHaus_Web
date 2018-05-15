@@ -348,36 +348,41 @@ function change_toggle_status_from_acc(event, status){
                 }
 }
 
-function change_temp_status(event, status){
+function change_air_temp_status(event, status){
     event.stopPropagation();
 
-}
-
-function change_temp_status_from_acc(event, status){
-    event.stopPropagation();
-}
-
-/*function trash(event, trashcan){
-    event.stopPropagation();
-    if (trashcan.getAttribute('src') == "Iconos/tacho.png")
+    if(status.getAttribute('src') == "Iconos/arrow_down.png")
                 {
-                    //trashcan.src = "Iconos/warning.png"; //this works ok
-                    trashcan.style.visibility = "hidden";
-                    var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
-                    heart.style.visibility = "hidden";
-                    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
-                    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
-                    lck_icon.style.visibility = "hidden";
-                    lck.style.visibility = "hidden";
-                    var message = trashcan.closest('div').parentNode.parentNode.querySelector('.trash_message');
-                    message.style.visibility = "visible";
-                    var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
-                    yes.style.visibility = "visible";
-                    var no = trashcan.closest('div').parentNode.querySelector('.no_icon');
-                    no.style.visibility = "visible";
-                    
+                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,2)) > 18) {
+                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,2))-1).toString() + "°C";
+                  }
                 }
-}*/
+                else
+                {
+                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,2)) < 38) {
+                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,2))+1).toString() + "°C";
+                  }
+                }
+}
+
+function change_air_mode(event, status){
+    event.stopPropagation();
+
+    if(status.value == "Cool")
+                {
+                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/cool.png");
+                }
+                else if(status.value == "Heat")
+                {
+                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/heat.png");
+                }
+                else
+                {
+                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fan.png");
+                }
+}
+
+
 
 function trash(event, tacho){
     var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
@@ -403,36 +408,6 @@ function delete_device(event, confirm){
         $('#delete_device_popup').modal('hide');
     });
 };
-
-/*
-function no(event, noicon){
-    event.stopPropagation();
-    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
-    trashcan.src = "Iconos/tacho.png";
-    trashcan.style.visibility = "visible";
-    noicon.style.visibility = "hidden";
-    var message = noicon.closest('div').parentNode.parentNode.querySelector('.trash_message');
-    message.style.visibility = "hidden";
-    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
-    yes.style.visibility = "hidden";
-    var heart = noicon.closest('div').parentNode.parentNode.querySelector('.fave_icon');
-    heart.style.visibility = "visible";
-    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
-    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
-    lck_icon.style.visibility = "visible";
-    lck.style.visibility = "visible";
-    
-    
-}
-
-function yes(event, yesicon){
-    
-    event.stopPropagation();
-    yesicon.closest('div').parentNode.parentNode.nextElementSibling.remove();
-    yesicon.closest('div').parentNode.parentNode.remove();
-
-}
-*/
 
 //edit device name
 
@@ -955,7 +930,7 @@ function onPageLoad(){
                 lock_icon.setAttribute("onclick", "change_lock_status(event,this);");
 
                 p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Lock: Locked"; //debería depender de getstatus
+                p1.innerHTML = "Status: Locked"; //debería depender de getstatus
 
                 status1.appendChild(lock_icon);
                 status1.appendChild(p1);
@@ -1059,14 +1034,16 @@ function onPageLoad(){
                     arrow_down.setAttribute("src", "Iconos/arrow_down.png");
                     arrow_down.setAttribute("alt", "Temperature Down");
                     arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
+                    arrow_down.setAttribute("onclick", "change_air_temp_status(event, this);");
 
                     p2.setAttribute("class", "stat_text");
                     p2.setAttribute("class", "number_info");
-                    p2.innerHTML = data.temperature + "°C "; //esto debería ser un getstatus
+                    p2.innerHTML = data.temperature + "°C ";
 
                     arrow_up.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up.setAttribute("alt", "Temperature Up");
                     arrow_up.setAttribute("class", "arrow_change_up_icon");
+                    arrow_up.setAttribute("onclick", "change_air_temp_status(event, this);");
 
                     status1.appendChild(temp);
                     status1.appendChild(p1);
@@ -1084,21 +1061,26 @@ function onPageLoad(){
                     var option3 = document.createElement("option");
                     var option4 = document.createElement("option");
                     var option5 = document.createElement("option");
+
                     if(data.mode == 'cool'){
-                        mode_icon.setAttribute("src", "Iconos/cool.png"); 
+                        mode_icon.setAttribute("src", "Iconos/cool.png");
+                        mode_icon.setAttribute("alt", "Cool");
                     }else if(data.mode == 'fan'){
                         mode_icon.setAttribute("src", "Iconos/fan.png"); 
+                        mode_icon.setAttribute("alt", "Fan");
                     }else{
-                        mode_icon.setAttribute("src", "Iconos/heat.png"); 
+                        mode_icon.setAttribute("src", "Iconos/heat.png");
+                        mode_icon.setAttribute("alt", "Cool"); 
                     }
-                    
-                    mode_icon.setAttribute("alt", "Cool"); //debería ponerse el alt correspondiente segun getstatus
+
                     mode_icon.setAttribute("class", "ac_mode_icon");
 
                     p3.setAttribute("class", "stat_text");
                     p3.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
+                    select.setAttribute("onclick", "change_air_mode(event, this);");
+
                     if(data.mode == 'cool'){
                         option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
                         option2.innerHTML = "Heat";
@@ -1112,9 +1094,7 @@ function onPageLoad(){
                         option2.innerHTML = "Heat";
                         option3.innerHTML = "Cool";
                     }
-                    
 
-                    //quizás conviene variar el orden acá según getstatus
                     select.appendChild(option1);
                     select.appendChild(option2);
                     select.appendChild(option3);
@@ -1148,6 +1128,7 @@ function onPageLoad(){
                     p4.innerHTML = "Fan speed: ";
 
                     select2.setAttribute("class", "panel_selector");
+
                     if(data.fanSpeed == 'auto'){
                         option4.innerHTML = "Auto"; 
                         option5.innerHTML = "25";
@@ -1179,9 +1160,7 @@ function onPageLoad(){
                         option7.innerHTML = "75";
                         option8.innerHTML = "Auto";  
                     }
-                    
 
-                    //quizás conviene variar el orden acá según getstatus
                     select2.appendChild(option4);
                     select2.appendChild(option5);
                     select2.appendChild(option6);
@@ -1241,10 +1220,8 @@ function onPageLoad(){
                         option10.innerHTML = "45";
                         option11.innerHTML = "67";
                         option13.innerHTML = "Auto";        
-                    }
-                    
+                     }
 
-                    //quizás conviene variar el orden acá según getstatus
                     select3.appendChild(option9);
                     select3.appendChild(option10);
                     select3.appendChild(option11);
@@ -1275,6 +1252,7 @@ function onPageLoad(){
                     p6.innerHTML = "Horizontal swing: ";
 
                     select4.setAttribute("class", "panel_selector");
+
                     if(data.horizontalSwing == 'auto'){
                         option14.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
                         option15.innerHTML = "-90";
@@ -1318,9 +1296,7 @@ function onPageLoad(){
                         option18.innerHTML = "45";
                         option19.innerHTML = "Auto"; 
                     }
-                    
 
-                    //quizás conviene variar el orden acá según getstatus
                     select4.appendChild(option14);
                     select4.appendChild(option15);
                     select4.appendChild(option16);
