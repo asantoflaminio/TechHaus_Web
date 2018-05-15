@@ -429,6 +429,7 @@ ul.tabs li:before {
 .lock_text{
     font-size: 15px;
     margin-bottom: 0;
+    margin-left: 5px;
     display: inline-block !important;
     position: relative;
     top: -20px;
@@ -439,8 +440,8 @@ ul.tabs li:before {
     height: 25px;
     display: inline-block !important;
     margin-left: 30%;
-    margin-top: 7px;
-    margin-bottom: 37px;
+    margin-top: -9px;
+    margin-bottom: 40px;
 
 }
 
@@ -449,8 +450,8 @@ ul.tabs li:before {
     height: 25px;
     display: inline-block !important;
     margin-left: 25.5%;
-    margin-top: 7px;
-    margin-bottom: 37px;
+    margin-top: -3px;
+    margin-bottom: 40px;
 
 }
 
