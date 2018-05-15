@@ -303,7 +303,7 @@ function trash(event, tacho){
         $.each(data, function(i, item){
             if(item.name == devicename){
                 deviceid = item.id;
-                document.getElementById("msg-tag").innerHTML = "You are about to delete device \'"+devicename+ "\'."
+                document.getElementById("msg-tag").innerHTML = "You are about to delete device \'"+devicename+ "\'"
                 window.localStorage.setItem("device_id2", deviceid);
             }
         });
