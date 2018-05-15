@@ -332,6 +332,7 @@ function add_device(event, name) {
 
                             $.each(data, function(i, item){
                                 if(item.name.toUpperCase() == document.getElementById("title").innerHTML.toUpperCase()){
+                                    console.log("encontre el room ");
                                     api.devicetypes.getDeviceTypes().done(function(data) {
                                         $.each(data, function(j, item2){
                                             if(item2.name.toUpperCase() == $('#room_input').val().toUpperCase()){
