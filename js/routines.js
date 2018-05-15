@@ -473,14 +473,20 @@ function edit_routine(event, addbtn){
         if(device == "--" || device == "" || device == null){
                 no = 1;
                 document.getElementById("device-tag22222").style.color = "#ff0000";
-                document.getElementById("action-tag22222").style.color = "#000000";
+                
+                document.getElementById("device-tag22222").innerHTML = "Please choose a device";
                 $('#add_task_popup').modal('show');
+        }else{
+            document.getElementById("device-tag22222").style.color = "#000000";
         }
-        else if(action == "--" || action == "" || action == null){
+        if(action == "--" || action == "" || action == null){
                 no = 1;
                 document.getElementById("action-tag22222").style.color = "#ff0000";
-                document.getElementById("device-tag22222").style.color = "#000000";
+                
+                document.getElementById("action-tag22222").innerHTML = "Please choose an action";
                 $('#add_task_popup').modal('show');
+        }else{
+            document.getElementById("action-tag22222").style.color = "#000000";
         }
 
     if(no != 1 && rut_id != "" && action != "--" && action != ""){
@@ -571,8 +577,7 @@ function add_routine(event, name) {
             if(rut_name == item.name){
                 no = 1;
                 document.getElementById("name-tag").style.color = "#ff0000";
-                document.getElementById("device-tag").style.color = "#000000";
-                document.getElementById("action-tag").style.color = "#000000";
+                document.getElementById("name-tag").innerHTML = "Name already in use";
                 $('#add_room_popup').modal('show');
                 
             }
@@ -580,23 +585,26 @@ function add_routine(event, name) {
         if(rut_name == ""){
                 no = 1;
                 document.getElementById("name-tag").style.color = "#ff0000";
-                document.getElementById("device-tag").style.color = "#000000";
-                document.getElementById("action-tag").style.color = "#000000";
+                document.getElementById("name-tag").innerHTML = "Please choose a name";
                 $('#add_room_popup').modal('show');
-        }
-        else if(device == "--" || device == "" || device == null){
-                no = 1;
+        }else{
                 document.getElementById("name-tag").style.color = "#000000";
-                document.getElementById("device-tag").style.color = "#ff0000";
-                document.getElementById("action-tag").style.color = "#000000";
-                $('#add_room_popup').modal('show');
         }
-        else if(action == "--" || action == "" || action == null){
+        if(device == "--" || device == "" || device == null){
+                no = 1;
+                document.getElementById("device-tag").style.color = "#ff0000";
+                document.getElementById("device-tag").innerHTML = "Please choose a device";
+                $('#add_room_popup').modal('show');
+        }else{
+            document.getElementById("device-tag").style.color = "#000000";
+        }
+        if(action == "--" || action == "" || action == null){
                 no = 1;
                 document.getElementById("action-tag").style.color = "#ff0000";
-                document.getElementById("name-tag").style.color = "#000000";
-                document.getElementById("device-tag").style.color = "#000000";
+                document.getElementById("action-tag").innerHTML = "Please choose an action";
                 $('#add_room_popup').modal('show');
+        }else{
+            document.getElementById("action-tag").style.color = "#000000";
         }
         if(no != 1 && rut_name != "" && action != "--" && action != ""){
         
