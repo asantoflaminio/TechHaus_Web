@@ -601,7 +601,7 @@ $(document).ready(function() {
                         }else if(roomtype == "bedroom"){
                             img.setAttribute("src", "Iconos/Rooms6.png");       
                         }else{
-                            img.setAttribute("src", "Iconos/Other.png");     
+                            img.setAttribute("src", "Iconos/other.png");     
                         }
     });
 
@@ -621,7 +621,6 @@ $(document).ready(function() {
                        var dev_type = "";
                        api.devicetypes.getDeviceType(item2.typeId).done(function(data) {
                        dev_type = data.name; 
-                           
                            
                 var list = document.getElementById("devices_list");
                 var elem = document.createElement("div");
