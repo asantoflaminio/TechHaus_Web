@@ -674,7 +674,7 @@ function onPageLoad(){
                     lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
                     lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
                     lock_icon2.setAttribute("alt", "Locked");
-                    lock_icon2.setAttribute("onclick", "lock(event,this);");
+                    lock_icon2.setAttribute("onclick", "change_lock_status_from_acc(event,this);");
 
                     lock_info.setAttribute("class", "lock_text");
                     lock_info.innerHTML = "Locked"; //debería depender de getstate
@@ -716,7 +716,7 @@ function onPageLoad(){
                     }
                    
                     toggle_img.setAttribute("class", "toggle_icon");
-                    toggle_img.setAttribute("onclick", "toggle(event,this);");
+                    toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
 
                     
 
@@ -746,7 +746,7 @@ function onPageLoad(){
                     toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
                     toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
                     toggle_img.setAttribute("class", "toggle_icon");
-                    toggle_img.setAttribute("onclick", "toggle(event,this);");
+                    toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
 
                     toggle_info.setAttribute("class", "lock_text");
                     toggle_info.innerHTML = "Off"; //debería depender de getstate
@@ -863,7 +863,7 @@ function onPageLoad(){
                     toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
                     toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
                     toggle_img.setAttribute("class", "toggle_icon");
-                    toggle_img.setAttribute("onclick", "toggle(event,this);");
+                    toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
 
                     toggle_info.setAttribute("class", "lock_text");
                     toggle_info.innerHTML = "Off"; //debería depender de getstate
@@ -951,6 +951,7 @@ function onPageLoad(){
                 lock_icon.setAttribute("src", "Iconos/locked_inside.png"); //debería depender de getstatus
                 lock_icon.setAttribute("alt", "Locked"); //debería depender de getstatus
                 lock_icon.setAttribute("class", "status_icon");
+                lock_icon.setAttribute("onclick", "change_lock_status(event,this);");
 
                 p1.setAttribute("class", "stat_text");
                 p1.innerHTML = "Lock: Locked"; //debería depender de getstatus
@@ -1021,6 +1022,7 @@ function onPageLoad(){
                         toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                         toggle_icon.setAttribute("alt", "Off");   //idem
                         toggle_icon.setAttribute("class", "toggle_inside_icon");
+                        toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
                         stat.setAttribute("class", "stat_text");
                         stat.innerHTML = "Status: Off"; //gettearlo con get status
@@ -1028,6 +1030,7 @@ function onPageLoad(){
                         toggle_icon.setAttribute("src", "Iconos/toggle_on.png");  //gettearlo con get status
                         toggle_icon.setAttribute("alt", "Off");   //idem
                         toggle_icon.setAttribute("class", "toggle_inside_icon");
+                        toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
                         stat.setAttribute("class", "stat_text");
                         stat.innerHTML = "Status: On"; //gettearlo con get status
@@ -1260,6 +1263,7 @@ function onPageLoad(){
                 toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                 toggle_icon.setAttribute("alt", "Off");   //idem
                 toggle_icon.setAttribute("class", "toggle_inside_icon");
+                toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
                 stat.setAttribute("class", "stat_text");
                 stat.innerHTML = "Status: Off"; //gettearlo con get status
@@ -1520,22 +1524,22 @@ function onPageLoad(){
                         var blind_icon = document.createElement("img");
                         var p1 = document.createElement("p");
                         if(data.status == 'opened' || data.status == 'opening'){
-                            console.log("acaaaaa!!!");
                             blind_icon.setAttribute("src", "Iconos/blind_up.png"); //debería depender de getstatus
+                            blind_icon.setAttribute("alt", "Up"); //debería depender de getstatus
                             p1.setAttribute("class", "stat_text");
                             p1.innerHTML = "Status: Up"; //debería depender de getstatus
+
                         }else{
                             blind_icon.setAttribute("src", "Iconos/blind_down.png"); //debería depender de getstatus
+                            blind_icon.setAttribute("alt", "Down"); //debería depender de getstatus
                             p1.setAttribute("class", "stat_text");
                             p1.innerHTML = "Status: Down"; //debería depender de getstatus
                         }
                         
-                        blind_icon.setAttribute("alt", "Up"); //debería depender de getstatus
                         blind_icon.setAttribute("class", "status_icon");
                         blind_icon.setAttribute("onclick", "change_blind_status(event,this);");
 
                         
-
                         status1.appendChild(blind_icon);
                         status1.appendChild(p1);
 
@@ -1696,6 +1700,7 @@ function onPageLoad(){
                 toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                 toggle_icon.setAttribute("alt", "Off");   //idem
                 toggle_icon.setAttribute("class", "toggle_inside_icon");
+                toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
                 stat.setAttribute("class", "stat_text");
                 stat.innerHTML = "Status: Off"; //gettearlo con get status
@@ -1848,14 +1853,7 @@ function add_device(event, addbtn){
                                                        });
                                                    });
                                                    
-                                               });
-                                                
-                                               
-                                            
-                                        
-                                        
-                                    
-                                    
+                                               });                                 
                                 }
                             });
                 });
