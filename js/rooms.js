@@ -125,7 +125,7 @@ function onLoad(){
         }else if(roomtype == "bedroom"){
             img1.setAttribute("src", "Iconos/Rooms6.png");       
         }else{
-            img1.setAttribute("src", "Iconos/marta.png");     
+            img1.setAttribute("src", "Iconos/other.png");     
         }
         img1.setAttribute("alt", roomname);
         img1.setAttribute("class", "icon");
@@ -205,7 +205,7 @@ function add_room(event, name) {
         }else if(roomtype == "bedroom"){
             img1.setAttribute("src", "Iconos/Rooms6.png");       
         }else{
-            img1.setAttribute("src", "Iconos/marta.png");     
+            img1.setAttribute("src", "Iconos/other.png");     
         }
         img1.setAttribute("alt", roomname);
         img1.setAttribute("class", "icon");
