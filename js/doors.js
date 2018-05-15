@@ -911,7 +911,7 @@ function onPageLoad(){
 
             }else if(typename == 'oven'){
 
-                              var panel1 = document.createElement("div");
+                var panel1 = document.createElement("div");
                 panel1.setAttribute("class", "panel1");
                 var status1 = document.createElement("div");
                 var status2 = document.createElement("div");
@@ -986,7 +986,7 @@ function onPageLoad(){
                 var option2 = document.createElement("option");
                 var option3 = document.createElement("option");
 
-                heat_icon.setAttribute("src", "Iconos/heat_icont.png");
+                heat_icon.setAttribute("src", "Iconos/heat_icon.png");
                 heat_icon.setAttribute("alt", "Heat");
                 heat_icon.setAttribute("class", "heat_icon");
 
