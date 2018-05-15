@@ -279,7 +279,7 @@ function change_lock_status(event, status){
                     status.src = "Iconos/unlocked_inside.png";
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/unlocked.png";
                     status.nextElementSibling.innerHTML = ' Status: Unlocked';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Unlocked";
 
                 }
                 else
@@ -418,6 +418,7 @@ function change_fridge_freezer_temp(event, status){
     }
 }
 
+//  falta cambiar temperatura de accordion
 function change_fridge_temp(event, status){
     event.stopPropagation();
 
@@ -452,6 +453,7 @@ function change_fridge_mode(event, status){
                 }
 }
 
+//FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM, OVEN
 
 function trash(event, tacho){
     var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
@@ -498,10 +500,14 @@ function pencil2_out(event, title){
 function edit_name(event, name) {
     event.stopPropagation();
     var pencil = name.nextElementSibling.nextElementSibling;
-    pencil.style.visibility = "hidden";
+    pencil.style.visibility = "hidden";    
+
     name.style.visibility = "hidden";
     var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
     input_new_name.style.visibility = "visible";
+
+    $(this).click( function()
+        { change_name(event, document.getElementsByClassName("new_device_name")[0]); } );
     
 }
 
@@ -519,12 +525,16 @@ function change_name(event, element) {
 function input_name(event, name) {
     event.stopPropagation();
     name.style.backgroundColor = "transparent";
+    $(this).click( function()
+        { change_name(event, name); } );
+    
     $(name).keydown(function(event){
         if(event.keyCode == 13){
             change_name(event, name);
         }
     }); 
 }
+
 
 //edit room name
 
@@ -716,15 +726,15 @@ function onPageLoad(){
                     var div_trash = document.createElement("div");
                     var h4_trash = document.createElement("h4");
                     if(data.lock == "locked"){
-                        lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
-                        lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
+                        lock_icon2.setAttribute("src", "Iconos/locked.png"); 
+                        lock_icon2.setAttribute("class", "lock_icon"); 
                         lock_icon2.setAttribute("alt", "Locked");
-                        lock_info.innerHTML = "Locked"; //debería depender de getstate
+                        lock_info.innerHTML = "Locked";
                     }else{
-                        lock_icon2.setAttribute("src", "Iconos/unlocked.png"); //debería depender de getstate
-                        lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
+                        lock_icon2.setAttribute("src", "Iconos/unlocked.png"); 
+                        lock_icon2.setAttribute("class", "lock_icon");
                         lock_icon2.setAttribute("alt", "Unlocked");
-                        lock_info.innerHTML = "Unlocked"; //debería depender de getstate
+                        lock_info.innerHTML = "Unlocked"; 
                     }
                     
                     lock_icon2.setAttribute("onclick", "change_lock_status_from_acc(event,this);");
@@ -1845,14 +1855,16 @@ function onPageLoad(){
                     arrow_down.setAttribute("src", "Iconos/arrow_down.png");
                     arrow_down.setAttribute("alt", "Temperature Down");
                     arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
+                    arrow_down.setAttribute("onclick", "change_fridge_temp(event,this);");
 
                     p2.setAttribute("class", "stat_text");
                     p2.setAttribute("class", "number_info");
-                    p2.innerHTML = data.temperature + "°C "; //esto debería ser un getstatus
+                    p2.innerHTML = data.temperature + "°C ";
 
                     arrow_up.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up.setAttribute("alt", "Temperature Up");
                     arrow_up.setAttribute("class", "arrow_change_up_icon");
+                    arrow_up.setAttribute("onclick", "change_fridge_temp(event,this);");
 
                     status1.appendChild(temp);
                     status1.appendChild(p1);
@@ -1878,14 +1890,16 @@ function onPageLoad(){
                     arrow_down1.setAttribute("src", "Iconos/arrow_down.png");
                     arrow_down1.setAttribute("alt", "Temperature Down");
                     arrow_down1.setAttribute("class", "arrow_change_down_icon_with_text");
+                    arrow_down1.setAttribute("onclick", "change_fridge_freezer_temp(event,this);");
 
                     p4.setAttribute("class", "stat_text");
                     p4.setAttribute("class", "number_info");
-                    p4.innerHTML = data.freezerTemperature + "°C "; //esto debería ser un getstatus
+                    p4.innerHTML = data.freezerTemperature + "°C ";
 
                     arrow_up1.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up1.setAttribute("alt", "Temperature Up");
                     arrow_up1.setAttribute("class", "arrow_change_up_icon");
+                    arrow_up1.setAttribute("onclick", "change_fridge_freezer_temp(event,this);");
 
                     status2.appendChild(temp1);
                     status2.appendChild(p3);
@@ -1907,36 +1921,34 @@ function onPageLoad(){
                     var option2 = document.createElement("option");
                     var option3 = document.createElement("option");
 
-                     //debería ponerse el ícono correspondiente según getstatus
                     
-                    mode_icon.setAttribute("class", "fridge_default_icon"); //idem
+                    mode_icon.setAttribute("class", "fridge_default_icon");
 
                     p5.setAttribute("class", "stat_text");
                     p5.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
+                    select.setAttribute("onclick", "change_fridge_mode(event,this);");
                     if(data.mode == 'default'){
                         mode_icon.setAttribute("src", "Iconos/fridge_default.png");
-                        mode_icon.setAttribute("alt", "Fridge"); //debería ponerse el alt correspondiente segun getstatus
-                        option1.innerHTML = "Default"; //debería ponerse la que esté en el getstatus primera
+                        mode_icon.setAttribute("alt", "Fridge");
+                        option1.innerHTML = "Default"; 
                         option2.innerHTML = "Vacation";
                         option3.innerHTML = "Party";
                     }else if(data.mode == 'vacation'){
                         mode_icon.setAttribute("src", "Iconos/vacation.png");
                         mode_icon.setAttribute("alt", "Vacation");
-                        option1.innerHTML = "Vacation"; //debería ponerse la que esté en el getstatus primera
+                        option1.innerHTML = "Vacation";
                         option2.innerHTML = "Default";
                         option3.innerHTML = "Party";    
                     }else{
                         mode_icon.setAttribute("src", "Iconos/party.png");
                         mode_icon.setAttribute("alt", "Party");
-                        option1.innerHTML = "Party"; //debería ponerse la que esté en el getstatus primera
+                        option1.innerHTML = "Party";
                         option2.innerHTML = "Vacation";
                         option3.innerHTML = "Default";     
                     }
                     
-
-                    //quizás conviene variar el orden acá según getstatus
                     select.appendChild(option1);
                     select.appendChild(option2);
                     select.appendChild(option3);
