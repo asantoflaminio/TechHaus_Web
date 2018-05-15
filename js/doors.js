@@ -718,14 +718,21 @@ function onPageLoad(){
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
                     var h4_trash = document.createElement("h4");
-
-                    toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                    toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                    if(data.status == 'off'){
+                        toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                        toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                        toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    }else{
+                        toggle_img.setAttribute("src", "Iconos/toggle_on.png"); //debería depender de getstate
+                        toggle_img.setAttribute("alt", "On"); //debería depender de getstate
+                        toggle_info.innerHTML = "On"; //debería depender de getstate
+                    }
+                    
                     toggle_img.setAttribute("class", "toggle_icon");
                     toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
 
                     toggle_info.setAttribute("class", "lock_text");
-                    toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -835,14 +842,21 @@ function onPageLoad(){
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
                     var h4_trash = document.createElement("h4");
-
-                    toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                    toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                    if(data.status == 'off'){
+                        toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                        toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                        toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    }else{
+                        toggle_img.setAttribute("src", "Iconos/toggle_on.png"); //debería depender de getstate
+                        toggle_img.setAttribute("alt", "On"); //debería depender de getstate
+                        toggle_info.innerHTML = "On"; //debería depender de getstate
+                    }
+                    
                     toggle_img.setAttribute("class", "toggle_icon");
                     toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
 
                     toggle_info.setAttribute("class", "lock_text");
-                    toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -1322,179 +1336,227 @@ function onPageLoad(){
                 
 
             }else if(typename == 'oven'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status es: " + data.status); 
+                    console.log("Mi tempearatura es: " + data.temperature); 
+                    console.log("Mi heat  es: " + data.heat); 
+                    console.log("Mi grill   es: " + data.grill); 
+                    console.log("Mi convection  es: " + data.convection); 
+                    
+                    var panel1 = document.createElement("div");
+                    panel1.setAttribute("class", "panel1");
+                    var status1 = document.createElement("div");
+                    var status2 = document.createElement("div");
+                    var status3 = document.createElement("div");
+                    status1.setAttribute("class", "status");
+                    status2.setAttribute("class", "status");
+                    status3.setAttribute("class", "status");
 
-                var panel1 = document.createElement("div");
-                panel1.setAttribute("class", "panel1");
-                var status1 = document.createElement("div");
-                var status2 = document.createElement("div");
-                var status3 = document.createElement("div");
-                status1.setAttribute("class", "status");
-                status2.setAttribute("class", "status");
-                status3.setAttribute("class", "status");
+                    var panel2 = document.createElement("div");
+                    panel2.setAttribute("class", "panel2");
+                    var status4 = document.createElement("div");
+                    var status5 = document.createElement("div");
+                    var status6 = document.createElement("div");
+                    status4.setAttribute("class", "status");
+                    status5.setAttribute("class", "status");
+                    status6.setAttribute("class", "status");
 
-                var panel2 = document.createElement("div");
-                panel2.setAttribute("class", "panel2");
-                var status4 = document.createElement("div");
-                var status5 = document.createElement("div");
-                var status6 = document.createElement("div");
-                status4.setAttribute("class", "status");
-                status5.setAttribute("class", "status");
-                status6.setAttribute("class", "status");
+                    //on/off
 
-                //on/off
+                    var toggle_icon = document.createElement("img");
+                    var stat = document.createElement("p");
+                    if(data.status == 'off'){
+                         toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
+                         toggle_icon.setAttribute("alt", "Off");   //idem
+                         stat.innerHTML = "Status: Off"; //gettearlo con get status
+                    }else{
+                        toggle_icon.setAttribute("src", "Iconos/toggle_on.png");  //gettearlo con get status
+                         toggle_icon.setAttribute("alt", "On");   //idem
+                         stat.innerHTML = "Status: On"; //gettearlo con get status
+                    }
+                   
+                    toggle_icon.setAttribute("class", "toggle_inside_icon");
+                    toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
-                var toggle_icon = document.createElement("img");
-                var stat = document.createElement("p");
+                    stat.setAttribute("class", "stat_text");
+                    
 
-                toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
-                toggle_icon.setAttribute("alt", "Off");   //idem
-                toggle_icon.setAttribute("class", "toggle_inside_icon");
-                toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
+                    status1.appendChild(toggle_icon);
+                    status1.appendChild(stat);
 
-                stat.setAttribute("class", "stat_text");
-                stat.innerHTML = "Status: Off"; //gettearlo con get status
+                    //temperature
 
-                status1.appendChild(toggle_icon);
-                status1.appendChild(stat);
+                    var temp = document.createElement("img");
+                    var arrow_up = document.createElement("img");
+                    var arrow_down = document.createElement("img");
+                    var p1 = document.createElement("p");
+                    var p2 = document.createElement("p");
 
-                //temperature
+                    temp.setAttribute("src", "Iconos/temperature2.png");
+                    temp.setAttribute("alt", "Temperature");
+                    temp.setAttribute("class", "temperature_icon");
 
-                var temp = document.createElement("img");
-                var arrow_up = document.createElement("img");
-                var arrow_down = document.createElement("img");
-                var p1 = document.createElement("p");
-                var p2 = document.createElement("p");
+                    p1.setAttribute("class", "stat_text");
+                    p1.innerHTML = "Temperature: ";
 
-                temp.setAttribute("src", "Iconos/temperature2.png");
-                temp.setAttribute("alt", "Temperature");
-                temp.setAttribute("class", "temperature_icon");
+                    arrow_down.setAttribute("src", "Iconos/arrow_down.png");
+                    arrow_down.setAttribute("alt", "Temperature Down");
+                    arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
 
-                p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Temperature: ";
+                    p2.setAttribute("class", "stat_text");
+                    p2.setAttribute("class", "number_info");
+                    p2.innerHTML = data.temperature + "°C "; //esto debería ser un getstatus
 
-                arrow_down.setAttribute("src", "Iconos/arrow_down.png");
-                arrow_down.setAttribute("alt", "Temperature Down");
-                arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
+                    arrow_up.setAttribute("src", "Iconos/arrow_up.png");
+                    arrow_up.setAttribute("alt", "Temperature Up");
+                    arrow_up.setAttribute("class", "arrow_change_up_icon");
 
-                p2.setAttribute("class", "stat_text");
-                p2.setAttribute("class", "number_info");
-                p2.innerHTML = "20°C "; //esto debería ser un getstatus
+                    status2.appendChild(temp);
+                    status2.appendChild(p1);
+                    status2.appendChild(arrow_down);
+                    status2.appendChild(p2);
+                    status2.appendChild(arrow_up);
 
-                arrow_up.setAttribute("src", "Iconos/arrow_up.png");
-                arrow_up.setAttribute("alt", "Temperature Up");
-                arrow_up.setAttribute("class", "arrow_change_up_icon");
+                    //heat
 
-                status2.appendChild(temp);
-                status2.appendChild(p1);
-                status2.appendChild(arrow_down);
-                status2.appendChild(p2);
-                status2.appendChild(arrow_up);
+                    var heat_icon = document.createElement("img");
+                    var p3 = document.createElement("p");
+                    var select = document.createElement("select");
+                    var option1 = document.createElement("option");
+                    var option2 = document.createElement("option");
+                    var option3 = document.createElement("option");
 
-                //heat
+                    heat_icon.setAttribute("src", "Iconos/heat_icon.png");
+                    heat_icon.setAttribute("alt", "Heat");
+                    heat_icon.setAttribute("class", "heat_icon");
 
-                var heat_icon = document.createElement("img");
-                var p3 = document.createElement("p");
-                var select = document.createElement("select");
-                var option1 = document.createElement("option");
-                var option2 = document.createElement("option");
-                var option3 = document.createElement("option");
+                    p3.setAttribute("class", "stat_text");
+                    p3.innerHTML = "Heat: ";
+                    
+                    select.setAttribute("class", "panel_selector");
+                    if(data.heat == 'conventional'){
+                        option1.innerHTML = "Conventional"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Bottom";
+                        option3.innerHTML = "Top";
+                    }else if(data.heat == 'bottom'){
+                        option1.innerHTML = "Bottom"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Conventional";
+                        option3.innerHTML = "Top";    
+                    }else{
+                        option1.innerHTML = "Top"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Bottom";
+                        option3.innerHTML = "Conventional";     
+                    }
+                    
 
-                heat_icon.setAttribute("src", "Iconos/heat_icon.png");
-                heat_icon.setAttribute("alt", "Heat");
-                heat_icon.setAttribute("class", "heat_icon");
+                    //quizás conviene variar el orden acá según getstatus
+                    select.appendChild(option1);
+                    select.appendChild(option2);
+                    select.appendChild(option3);
 
-                p3.setAttribute("class", "stat_text");
-                p3.innerHTML = "Heat: ";
+                    status3.appendChild(heat_icon);
+                    status3.appendChild(p3);
+                    status3.appendChild(select);
 
-                select.setAttribute("class", "panel_selector");
-                option1.innerHTML = "Conventional"; //debería ponerse la que esté en el getstatus primera
-                option2.innerHTML = "Bottom";
-                option3.innerHTML = "Top";
+                    //create panel 1
 
-                //quizás conviene variar el orden acá según getstatus
-                select.appendChild(option1);
-                select.appendChild(option2);
-                select.appendChild(option3);
+                    panel1.appendChild(status1);
+                    panel1.appendChild(status2);
+                    panel1.appendChild(status3);
 
-                status3.appendChild(heat_icon);
-                status3.appendChild(p3);
-                status3.appendChild(select);
+                    //grill
 
-                //create panel 1
+                    var grill_icon = document.createElement("img");
+                    var p4 = document.createElement("p");
+                    var select2 = document.createElement("select");
+                    var option4 = document.createElement("option");
+                    var option5 = document.createElement("option");
+                    var option6 = document.createElement("option");
 
-                panel1.appendChild(status1);
-                panel1.appendChild(status2);
-                panel1.appendChild(status3);
-        
-                //grill
+                    grill_icon.setAttribute("src", "Iconos/grill_icon.png");
+                    grill_icon.setAttribute("alt", "Grill");
+                    grill_icon.setAttribute("class", "grill_icon");
 
-                var grill_icon = document.createElement("img");
-                var p4 = document.createElement("p");
-                var select2 = document.createElement("select");
-                var option4 = document.createElement("option");
-                var option5 = document.createElement("option");
-                var option6 = document.createElement("option");
+                    p4.setAttribute("class", "stat_text");
+                    p4.innerHTML = "Grill: ";
 
-                grill_icon.setAttribute("src", "Iconos/grill_icon.png");
-                grill_icon.setAttribute("alt", "Grill");
-                grill_icon.setAttribute("class", "grill_icon");
+                    select2.setAttribute("class", "panel_selector");
+                    if(data.grill == 'large'){
+                        option4.innerHTML = "Large"; //debería ponerse la que esté en el getstatus primera
+                        option5.innerHTML = "Eco";
+                        option6.innerHTML = "Off";
+                    }else if(data.grill == 'eco'){
+                        option4.innerHTML = "Eco"; //debería ponerse la que esté en el getstatus primera
+                        option5.innerHTML = "Large";
+                        option6.innerHTML = "Off";   
+                    }else{
+                        option4.innerHTML = "Off"; //debería ponerse la que esté en el getstatus primera
+                        option5.innerHTML = "Large";
+                        option6.innerHTML = "Eco";        
+                    }
+                    
 
-                p4.setAttribute("class", "stat_text");
-                p4.innerHTML = "Grill: ";
+                    //quizás conviene variar el orden acá según getstatus
+                    select2.appendChild(option4);
+                    select2.appendChild(option5);
+                    select2.appendChild(option6);
 
-                select2.setAttribute("class", "panel_selector");
-                option4.innerHTML = "Large"; //debería ponerse la que esté en el getstatus primera
-                option5.innerHTML = "Eco";
-                option6.innerHTML = "Off";
+                    status4.appendChild(grill_icon);
+                    status4.appendChild(p4);
+                    status4.appendChild(select2);
 
-                //quizás conviene variar el orden acá según getstatus
-                select2.appendChild(option4);
-                select2.appendChild(option5);
-                select2.appendChild(option6);
+                    //convection
 
-                status4.appendChild(grill_icon);
-                status4.appendChild(p4);
-                status4.appendChild(select2);
+                    var convection_icon = document.createElement("img");
+                    var p5 = document.createElement("p");
+                    var select3 = document.createElement("select");
+                    var option7 = document.createElement("option");
+                    var option8 = document.createElement("option");
+                    var option9 = document.createElement("option");
 
-                //convection
+                    convection_icon.setAttribute("src", "Iconos/convection_icon.png");
+                    convection_icon.setAttribute("alt", "Convection");
+                    convection_icon.setAttribute("class", "convection_icon");
 
-                var convection_icon = document.createElement("img");
-                var p5 = document.createElement("p");
-                var select3 = document.createElement("select");
-                var option7 = document.createElement("option");
-                var option8 = document.createElement("option");
-                var option9 = document.createElement("option");
+                    p5.setAttribute("class", "stat_text");
+                    p5.innerHTML = "Convection: ";
 
-                convection_icon.setAttribute("src", "Iconos/convection_icon.png");
-                convection_icon.setAttribute("alt", "Convection");
-                convection_icon.setAttribute("class", "convection_icon");
+                    select3.setAttribute("class", "panel_selector");
+                    if(data.convection == 'normal'){
+                        option7.innerHTML = "Normal"; //debería ponerse la que esté en el getstatus primera
+                        option8.innerHTML = "Eco";
+                        option9.innerHTML = "Off";
+                    }else if(data.convection == 'Eco'){
+                         option7.innerHTML = "Eco"; //debería ponerse la que esté en el getstatus primera
+                         option8.innerHTML = "Normal";
+                         option9.innerHTML = "Off";    
+                    }else{
+                         option7.innerHTML = "Off"; //debería ponerse la que esté en el getstatus primera
+                         option8.innerHTML = "Normal";
+                         option9.innerHTML = "Eco"; 
+                    }
+                    
 
-                p5.setAttribute("class", "stat_text");
-                p5.innerHTML = "Convection: ";
+                    //quizás conviene variar el orden acá según getstatus
+                    select3.appendChild(option7);
+                    select3.appendChild(option8);
+                    select3.appendChild(option9);
 
-                select3.setAttribute("class", "panel_selector");
-                option7.innerHTML = "Normal"; //debería ponerse la que esté en el getstatus primera
-                option8.innerHTML = "Eco";
-                option9.innerHTML = "Off";
+                    status5.appendChild(convection_icon);
+                    status5.appendChild(p5);
+                    status5.appendChild(select3);
 
-                //quizás conviene variar el orden acá según getstatus
-                select3.appendChild(option7);
-                select3.appendChild(option8);
-                select3.appendChild(option9);
+                    //create panel 2
 
-                status5.appendChild(convection_icon);
-                status5.appendChild(p5);
-                status5.appendChild(select3);
+                    panel2.appendChild(status4);
+                    panel2.appendChild(status5);
 
-                //create panel 2
+                    //create panel
 
-                panel2.appendChild(status4);
-                panel2.appendChild(status5);
-
-                //create panel
-
-                panel.appendChild(panel1);
-                panel.appendChild(panel2);
+                    panel.appendChild(panel1);
+                    panel.appendChild(panel2);
+                    });
+                
 
             }else if(typename == 'alarm'){
 
@@ -1641,131 +1703,156 @@ function onPageLoad(){
                 
 
             }else if(typename == 'refrigerator'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi mode es: " + data.mode); 
+                    console.log("Mi temperature es: " + data.temperature); 
+                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
+                    var panel1 = document.createElement("div");
+                    panel1.setAttribute("class", "panel1");
+                    var status1 = document.createElement("div");
+                    var status2 = document.createElement("div");
+                    status1.setAttribute("class", "status");
+                    status2.setAttribute("class", "status");
 
-                var panel1 = document.createElement("div");
-                panel1.setAttribute("class", "panel1");
-                var status1 = document.createElement("div");
-                var status2 = document.createElement("div");
-                status1.setAttribute("class", "status");
-                status2.setAttribute("class", "status");
+                    var panel2 = document.createElement("div");
+                    panel2.setAttribute("class", "panel2");
+                    var status3 = document.createElement("div");
+                    status3.setAttribute("class", "status");
 
-                var panel2 = document.createElement("div");
-                panel2.setAttribute("class", "panel2");
-                var status3 = document.createElement("div");
-                status3.setAttribute("class", "status");
+                    //temperature
 
-                //temperature
+                    var temp = document.createElement("img");
+                    var arrow_up = document.createElement("img");
+                    var arrow_down = document.createElement("img");
+                    var p1 = document.createElement("p");
+                    var p2 = document.createElement("p");
 
-                var temp = document.createElement("img");
-                var arrow_up = document.createElement("img");
-                var arrow_down = document.createElement("img");
-                var p1 = document.createElement("p");
-                var p2 = document.createElement("p");
+                    temp.setAttribute("src", "Iconos/temperature2.png");
+                    temp.setAttribute("alt", "Temperature");
+                    temp.setAttribute("class", "temperature_icon");
 
-                temp.setAttribute("src", "Iconos/temperature2.png");
-                temp.setAttribute("alt", "Temperature");
-                temp.setAttribute("class", "temperature_icon");
+                    p1.setAttribute("class", "stat_text");
+                    p1.innerHTML = "Temperature: ";
 
-                p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Temperature: ";
+                    arrow_down.setAttribute("src", "Iconos/arrow_down.png");
+                    arrow_down.setAttribute("alt", "Temperature Down");
+                    arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
 
-                arrow_down.setAttribute("src", "Iconos/arrow_down.png");
-                arrow_down.setAttribute("alt", "Temperature Down");
-                arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
+                    p2.setAttribute("class", "stat_text");
+                    p2.setAttribute("class", "number_info");
+                    p2.innerHTML = data.temperature + "°C "; //esto debería ser un getstatus
 
-                p2.setAttribute("class", "stat_text");
-                p2.setAttribute("class", "number_info");
-                p2.innerHTML = "5°C "; //esto debería ser un getstatus
+                    arrow_up.setAttribute("src", "Iconos/arrow_up.png");
+                    arrow_up.setAttribute("alt", "Temperature Up");
+                    arrow_up.setAttribute("class", "arrow_change_up_icon");
 
-                arrow_up.setAttribute("src", "Iconos/arrow_up.png");
-                arrow_up.setAttribute("alt", "Temperature Up");
-                arrow_up.setAttribute("class", "arrow_change_up_icon");
+                    status1.appendChild(temp);
+                    status1.appendChild(p1);
+                    status1.appendChild(arrow_down);
+                    status1.appendChild(p2);
+                    status1.appendChild(arrow_up);
 
-                status1.appendChild(temp);
-                status1.appendChild(p1);
-                status1.appendChild(arrow_down);
-                status1.appendChild(p2);
-                status1.appendChild(arrow_up);
+                    //freezer temperature
 
-                //freezer temperature
+                    var temp1 = document.createElement("img");
+                    var arrow_up1 = document.createElement("img");
+                    var arrow_down1 = document.createElement("img");
+                    var p3 = document.createElement("p");
+                    var p4 = document.createElement("p");
 
-                var temp1 = document.createElement("img");
-                var arrow_up1 = document.createElement("img");
-                var arrow_down1 = document.createElement("img");
-                var p3 = document.createElement("p");
-                var p4 = document.createElement("p");
+                    temp1.setAttribute("src", "Iconos/freezer_temperature.png");
+                    temp1.setAttribute("alt", "Freezer temperature");
+                    temp1.setAttribute("class", "temperature_icon");
 
-                temp1.setAttribute("src", "Iconos/freezer_temperature.png");
-                temp1.setAttribute("alt", "Freezer temperature");
-                temp1.setAttribute("class", "temperature_icon");
+                    p3.setAttribute("class", "stat_text");
+                    p3.innerHTML = "Freezer temperature: ";
 
-                p3.setAttribute("class", "stat_text");
-                p3.innerHTML = "Freezer temperature: ";
+                    arrow_down1.setAttribute("src", "Iconos/arrow_down.png");
+                    arrow_down1.setAttribute("alt", "Temperature Down");
+                    arrow_down1.setAttribute("class", "arrow_change_down_icon_with_text");
 
-                arrow_down1.setAttribute("src", "Iconos/arrow_down.png");
-                arrow_down1.setAttribute("alt", "Temperature Down");
-                arrow_down1.setAttribute("class", "arrow_change_down_icon_with_text");
+                    p4.setAttribute("class", "stat_text");
+                    p4.setAttribute("class", "number_info");
+                    p4.innerHTML = data.freezerTemperature + "°C "; //esto debería ser un getstatus
 
-                p4.setAttribute("class", "stat_text");
-                p4.setAttribute("class", "number_info");
-                p4.innerHTML = "-4°C "; //esto debería ser un getstatus
+                    arrow_up1.setAttribute("src", "Iconos/arrow_up.png");
+                    arrow_up1.setAttribute("alt", "Temperature Up");
+                    arrow_up1.setAttribute("class", "arrow_change_up_icon");
 
-                arrow_up1.setAttribute("src", "Iconos/arrow_up.png");
-                arrow_up1.setAttribute("alt", "Temperature Up");
-                arrow_up1.setAttribute("class", "arrow_change_up_icon");
+                    status2.appendChild(temp1);
+                    status2.appendChild(p3);
+                    status2.appendChild(arrow_down1);
+                    status2.appendChild(p4);
+                    status2.appendChild(arrow_up1);
 
-                status2.appendChild(temp1);
-                status2.appendChild(p3);
-                status2.appendChild(arrow_down1);
-                status2.appendChild(p4);
-                status2.appendChild(arrow_up1);
+                    //create panel 1
 
-                //create panel 1
+                    panel1.appendChild(status1);
+                    panel1.appendChild(status2);
 
-                panel1.appendChild(status1);
-                panel1.appendChild(status2);
+                    //fridge mode
 
-                //fridge mode
+                    var mode_icon = document.createElement("img");
+                    var p5 = document.createElement("p");
+                    var select = document.createElement("select");
+                    var option1 = document.createElement("option");
+                    var option2 = document.createElement("option");
+                    var option3 = document.createElement("option");
 
-                var mode_icon = document.createElement("img");
-                var p5 = document.createElement("p");
-                var select = document.createElement("select");
-                var option1 = document.createElement("option");
-                var option2 = document.createElement("option");
-                var option3 = document.createElement("option");
+                     //debería ponerse el ícono correspondiente según getstatus
+                    
+                    mode_icon.setAttribute("class", "fridge_default_icon"); //idem
 
-                mode_icon.setAttribute("src", "Iconos/fridge_default.png"); //debería ponerse el ícono correspondiente según getstatus
-                mode_icon.setAttribute("alt", "Fridge"); //debería ponerse el alt correspondiente segun getstatus
-                mode_icon.setAttribute("class", "fridge_default_icon"); //idem
+                    p5.setAttribute("class", "stat_text");
+                    p5.innerHTML = "Mode: ";
 
-                p5.setAttribute("class", "stat_text");
-                p5.innerHTML = "Mode: ";
+                    select.setAttribute("class", "panel_selector");
+                    if(data.mode == 'default'){
+                        mode_icon.setAttribute("src", "Iconos/fridge_default.png");
+                        mode_icon.setAttribute("alt", "Fridge"); //debería ponerse el alt correspondiente segun getstatus
+                        option1.innerHTML = "Default"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Vacation";
+                        option3.innerHTML = "Party";
+                    }else if(data.mode == 'vacation'){
+                        mode_icon.setAttribute("src", "Iconos/vacation.png");
+                        mode_icon.setAttribute("alt", "Vacation");
+                        option1.innerHTML = "Vacation"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Default";
+                        option3.innerHTML = "Party";    
+                    }else{
+                        mode_icon.setAttribute("src", "Iconos/party.png");
+                        mode_icon.setAttribute("alt", "Party");
+                        option1.innerHTML = "Party"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Vacation";
+                        option3.innerHTML = "Default";     
+                    }
+                    
 
-                select.setAttribute("class", "panel_selector");
-                option1.innerHTML = "Default"; //debería ponerse la que esté en el getstatus primera
-                option2.innerHTML = "Vacation";
-                option3.innerHTML = "Party";
+                    //quizás conviene variar el orden acá según getstatus
+                    select.appendChild(option1);
+                    select.appendChild(option2);
+                    select.appendChild(option3);
 
-                //quizás conviene variar el orden acá según getstatus
-                select.appendChild(option1);
-                select.appendChild(option2);
-                select.appendChild(option3);
+                    status3.appendChild(mode_icon);
+                    status3.appendChild(p5);
+                    status3.appendChild(select);
 
-                status3.appendChild(mode_icon);
-                status3.appendChild(p5);
-                status3.appendChild(select);
+                    //create panel 2
 
-                //create panel 2
+                    panel2.appendChild(status3);
 
-                panel2.appendChild(status3);
+                    //create panel
 
-                //create panel
-
-                panel.appendChild(panel1);
-                panel.appendChild(panel2);
+                    panel.appendChild(panel1);
+                    panel.appendChild(panel2);
+                });
+                
 
             }else if(typename == 'lamp'){
-
+                api.devices.getState(item.id).done(function(data){
+                 console.log("Mi status es: " + data.status); 
+                 console.log("Mi color es: " + data.color); 
+                 console.log("Mi brightness es: " + data.brightness); 
                 var panel1 = document.createElement("div");
                 panel1.setAttribute("class", "panel1");
                 var status1 = document.createElement("div");
@@ -1782,14 +1869,21 @@ function onPageLoad(){
 
                 var toggle_icon = document.createElement("img");
                 var stat = document.createElement("p");
-
-                toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
-                toggle_icon.setAttribute("alt", "Off");   //idem
+                if(data.status == 'off'){
+                    toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
+                    toggle_icon.setAttribute("alt", "Off");   //idem
+                    stat.innerHTML = "Status: Off"; //gettearlo con get status
+                }else{
+                    toggle_icon.setAttribute("src", "Iconos/toggle_on.png");  //gettearlo con get status
+                    toggle_icon.setAttribute("alt", "On");   //idem
+                    stat.innerHTML = "Status: On"; //gettearlo con get status
+                }
+                
                 toggle_icon.setAttribute("class", "toggle_inside_icon");
                 toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
                 stat.setAttribute("class", "stat_text");
-                stat.innerHTML = "Status: Off"; //gettearlo con get status
+                
 
                 status1.appendChild(toggle_icon);
                 status1.appendChild(stat);
@@ -1808,7 +1902,8 @@ function onPageLoad(){
                 p1.innerHTML = "Color: ";
 
                 input1.setAttribute("type", "color"); 
-                input1.setAttribute("value", "#ffffff");
+                    console.log("color es "+data.color);
+                input1.setAttribute("value", data.color);
                 input1.setAttribute("class", "color_input");
 
                 status2.appendChild(palette);
@@ -1839,7 +1934,7 @@ function onPageLoad(){
                 input2.setAttribute("type", "range");
                 input2.setAttribute("min", "1");
                 input2.setAttribute("max", "100");
-                input2.setAttribute("value", "50"); //debería gettearlo con getstate
+                input2.setAttribute("value", JSON.stringify(data.brightness)); //debería gettearlo con getstate
                 input2.setAttribute("class", "slider");
                 input2.setAttribute("id", "myRange");
 
@@ -1857,7 +1952,7 @@ function onPageLoad(){
 
                 panel.appendChild(panel1);
                 panel.appendChild(panel2);
-
+            });
             }
           
             list.appendChild(elem);
