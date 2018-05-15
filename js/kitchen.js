@@ -191,142 +191,6 @@ function yes(event, yesicon){
 
 
 function add_device(event, name) {
-                var list = document.getElementById("devices_list");
-                var elem = document.createElement("div");
-                elem.setAttribute("class", "accordion");
-                var acc1 = document.createElement("div");
-                var acc2 = document.createElement("div");
-                var acc3 = document.createElement("div");
-                acc1.setAttribute("class", "accordion1");
-                acc2.setAttribute("class", "accordion2");
-                acc3.setAttribute("class", "accordion3");
-
-                var div1 = document.createElement("div");
-                var div2 = document.createElement("div");
-                var h3 = document.createElement("h3");
-                var pencil2 = document.createElement("img");
-                var span = document.createElement("span");
-                var input = document.createElement("input");
-
-                h3.setAttribute("class", "device_name");
-                h3.innerHTML = $('#device_input').val();
-                h3.setAttribute("onmouseover", "pencil2_display(event,this);");
-                h3.setAttribute("onmouseout","pencil2_out(event,this);");   
-                h3.setAttribute("onclick","edit_name(event,this);"); 
-                pencil2.setAttribute("src", "Iconos/pencil.png");
-                pencil2.setAttribute("alt", "Pencil;");
-                pencil2.setAttribute("class", "pencil2_icon");
-                input.setAttribute("type", "text");
-                input.setAttribute("value", $('#device_input').val());
-                input.setAttribute("class", "new_device_name");
-                input.setAttribute("onclick", "input_name(event, this);");
-                div1.setAttribute("class", "name_device");
-
-                span.appendChild(input);
-                div2.appendChild(span);
-                div1.appendChild(h3);
-                div1.appendChild(pencil2);
-                div1.appendChild(div2);
-
-                var div3 = document.createElement("div");
-                var p = document.createElement("p");
-
-                p.setAttribute("class", "device_room");
-                p.innerHTML = $('#room_input').val().toLowerCase();
-
-                div3.appendChild(p);
-                acc1.appendChild(div1);
-                acc1.appendChild(div3);
-
-                var lock_icon = document.createElement("img");
-                var lock_text = document.createElement("p");
-                var div4 = document.createElement("div");
-                var h4 = document.createElement("h4");
-
-                lock_icon.setAttribute("src", "Iconos/locked.png");
-                lock_icon.setAttribute("alt", "Lock");
-                lock_icon.setAttribute("class", "lock_icon");
-                lock_icon.setAttribute("onclick", "lock(event,this);");
-                lock_text.setAttribute("class", "lock_text");
-                lock_text.innerHTML = "  Locked"
-                h4.setAttribute("class", "trash_message");
-                h4.innerHTML = "You are about to delete this device. Continue? ";
-
-                div4.appendChild(h4);
-                acc2.appendChild(lock_icon);
-                acc2.appendChild(lock_text);
-                acc2.appendChild(div4);
-
-                var div5 = document.createElement("div");
-                var div6 = document.createElement("div");
-                var div7 = document.createElement("div");
-                var div8 = document.createElement("div");
-                var div9 = document.createElement("div");
-                var arrow = document.createElement("img");
-                var heart = document.createElement("img");
-                var trash = document.createElement("img");
-                var yes = document.createElement("img");
-                var no = document.createElement("img");
-
-                arrow.setAttribute("src", "Iconos/arrow_down.png");
-                arrow.setAttribute("alt", "Expand");
-                arrow.setAttribute("class", "arrow_icon");
-                heart.setAttribute("src", "Iconos/heart.png");
-                heart.setAttribute("alt", "Fave");
-                heart.setAttribute("class", "fave_icon");
-                heart.setAttribute("onclick", "fav(event,this);");
-                trash.setAttribute("src", "Iconos/tacho.png");
-                trash.setAttribute("alt", "Delete");
-                trash.setAttribute("class", "delete_icon");
-                trash.setAttribute("onclick", "trash(event,this);");
-                yes.setAttribute("src", "Iconos/yes.png");
-                yes.setAttribute("alt", "Yes");
-                yes.setAttribute("class", "yes_icon");
-                yes.setAttribute("onclick", "yes(event,this);");
-                no.setAttribute("src", "Iconos/no.png");
-                no.setAttribute("alt", "No");
-                no.setAttribute("class", "no_icon");
-                no.setAttribute("onclick", "no(event,this);");
-
-                div5.appendChild(arrow);
-                div6.appendChild(heart);
-                div7.appendChild(trash);
-                div8.appendChild(yes);
-                div9.appendChild(no);
-                acc3.appendChild(div5);
-                acc3.appendChild(div6);
-                acc3.appendChild(div7);
-                acc3.appendChild(div8);
-                acc3.appendChild(div9);
-
-                elem.appendChild(acc1);
-                elem.appendChild(acc2);
-                elem.appendChild(acc3);
-
-                var div10 = document.createElement("div");
-                var p1 = document.createElement("p");
-                p1.innerHTML = "Info on";
-                p1.setAttribute("class", "panel_info");
-                div10.setAttribute("class", "panel");
-                div10.appendChild(p1);
-
-                list.appendChild(elem);
-                list.appendChild(div10);
-
-                elem.addEventListener("click", function() {
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-                var arrow = this.children[2].children[0];
-                if (panel.style.display === "block") {
-                    arrow.src = "Iconos/arrow_up.png";
-                } else {
-                    arrow.src = "Iconos/arrow_down.png";
-                }
-                });
                     
                 api.rooms.getRooms().done(function(data) {
 
@@ -341,7 +205,9 @@ function add_device(event, name) {
                                                        $.each(data, function(r, item3){
                                                        if($('#device_input').val() == item3.name){
                                                            console.log("VOY A LINKEAR");
-                                                           api.devices.link(item3.id, item.id);
+                                                           api.devices.link(item3.id, item.id).done(function(data){
+                                                            onPageLoad();
+                                                           });
                                                        }
                                                        });
                                                    });
@@ -359,36 +225,6 @@ function add_device(event, name) {
                 });
               //  document.getElementById("mymodal").modal('hide');
                 //$(this).dialog('close');
-}
-
-
-
-
-function addPanels(){
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            /* Toggle between adding and removing the "active" class,
-            to highlight the button that controls the panel */
-            /*this.classList.toggle("active");*/
-
-            /* Toggle between hiding and showing the active panel */
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-            var arrow = this.children[0].children[0];
-            if (panel.style.display === "block") {
-                arrow.src = "Iconos/arrow_up.png";
-            } else {
-                arrow.src = "Iconos/arrow_down.png";
-            }
-        });
-    }
 }
 
 //edit room name
@@ -581,8 +417,17 @@ function searching() {
 }
 
 $(document).ready(function() {
-    var roomid = window.localStorage.getItem("room_id");
-    api.rooms.getRoom(roomid).done(function(data){
+    onPageLoad();
+});
+
+
+function onPageLoad(){
+      var myNode = document.getElementById("devices_list");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+        var roomid = window.localStorage.getItem("room_id");
+        api.rooms.getRoom(roomid).done(function(data){
         console.log(data.name);
         console.log("THIS IS A " + data.meta.replace("{","").replace("}","").split(',')[0]);
         document.getElementById("title").innerHTML = data.name;
@@ -605,9 +450,6 @@ $(document).ready(function() {
                         }
     });
 
-    
-   
-    
     api.rooms.getRooms().done(function(data) {
         
         $.each(data, function(i, item){
@@ -1737,7 +1579,7 @@ $(document).ready(function() {
                 } else {
                     panel.style.display = "block";
                 }
-                var arrow = this.children[2].children[0];
+                var arrow = this.children[2].children[0].children[0];
                 if (panel.style.display === "block") {
                     arrow.src = "Iconos/arrow_up.png";
                 } else {
@@ -1761,155 +1603,8 @@ $(document).ready(function() {
         console.log("Request failed: jqXHR.status=" + jqXHR.status + ", textStatus=" + textStatus + ", errorThrown=" + errorThrown);
     });
     
-});
+};
 
-$("#addicon").click(function() {
-
-    $("#popup").dialog({
-        modal: true,
-        buttons: [ 
-            {   
-                text:'Cancel',
-                "class": "mybutton cancel-button",
-                click: function() {
-
-                $(this).dialog('close');
-                }
-            },
-            {
-                text: 'Add',
-                "class": "mybutton",
-                click: function () {
-                var list = document.getElementById("devices_list");
-                var elem = document.createElement("div");
-                elem.setAttribute("class", "accordion");
-                var div1 = document.createElement("div");
-                var div2 = document.createElement("div");
-                var div3 = document.createElement("div");
-                var div4 = document.createElement("div");
-                var div5 = document.createElement("div");
-                var div6 = document.createElement("div");
-                var div7 = document.createElement("div");
-                var div8 = document.createElement("div");
-                var p = document.createElement("p");
-                var h3 = document.createElement("h3");
-                var img = document.createElement("img");
-                var trash = document.createElement("img");
-                var heart = document.createElement("img");
-                var yes = document.createElement("img");
-                var no = document.createElement("img");
-                var pencil2 = document.createElement("img");
-                var h4 = document.createElement("h4");
-                img.setAttribute("src", "Iconos/arrow_down.png");
-                img.setAttribute("alt", "Expand");
-                img.setAttribute("class", "arrow_icon");
-                trash.setAttribute("src", "Iconos/tacho.png");
-                trash.setAttribute("alt", "Delete");
-                trash.setAttribute("class", "delete_icon");
-                trash.setAttribute("onclick", "trash(event,this);");
-                heart.setAttribute("src", "Iconos/heart.png");
-                heart.setAttribute("alt", "Fave");
-                heart.setAttribute("class", "fave_icon");
-                heart.setAttribute("onclick", "fav(event,this);");
-                yes.setAttribute("src", "Iconos/yes.png");
-                yes.setAttribute("alt", "Yes");
-                yes.setAttribute("class", "yes_icon");
-                yes.setAttribute("onclick", "yes(event,this);");
-                no.setAttribute("src", "Iconos/no.png");
-                no.setAttribute("alt", "No");
-                no.setAttribute("class", "no_icon");
-                no.setAttribute("onclick", "no(event,this);");
-                pencil2.setAttribute("src", "Iconos/pencil.png");
-                pencil2.setAttribute("alt", "Pencil;");
-                pencil2.setAttribute("class", "pencil2_icon");
-                    
-                div1.appendChild(img);
-                div4.appendChild(trash);
-                div5.appendChild(heart);
-                div6.appendChild(yes);
-                div7.appendChild(no);
-                div8.appendChild(h4);
-                h4.setAttribute("class", "trash_message");
-                h4.innerHTML = "You are about to delete this device. Continue? ";
-                h3.setAttribute("class", "device_name");
-                h3.innerHTML = $('#device_input').val();
-                div2.appendChild(h3);
-                div2.appendChild(pencil2);
-                div2.setAttribute("onmouseover", "pencil2_display(event,this);");
-                div2.setAttribute("onmouseout","pencil2_out(event,this);");   
-                p.setAttribute("class", "device_room");
-                p.innerHTML = $('#room_input').val();
-                var div9 = document.createElement("div");
-                var p1 = document.createElement("p");
-                p1.innerHTML = "Info on";
-                div9.setAttribute("class", "panel");
-                div3.appendChild(p);
-                elem.appendChild(div1);
-                
-                elem.appendChild(div5);
-                elem.appendChild(div4);
-                elem.appendChild(div6);
-                elem.appendChild(div7);
-                elem.appendChild(div2);
-                elem.appendChild(div3);
-                elem.appendChild(div8);
-                elem.appendChild(div9);
-                
-                list.appendChild(elem);
-                div9.appendChild(p1);
-                list.appendChild(div9);
-
-                elem.addEventListener("click", function() {
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-                var arrow = this.children[0].children[0];
-                if (panel.style.display === "block") {
-                    arrow.src = "Iconos/arrow_up.png";
-                } else {
-                    arrow.src = "Iconos/arrow_down.png";
-                }
-                });
-                    
-                api.rooms.getRooms().done(function(data) {
-
-                            $.each(data, function(i, item){
-                                if(item.name.toUpperCase() == document.getElementById("title").innerHTML.toUpperCase()){
-                                    api.devicetypes.getDeviceTypes().done(function(data) {
-                                        $.each(data, function(j, item2){
-                                            if(item2.name.toUpperCase() == $('#room_input').val().toUpperCase()){
-                                               api.devices.addDevice(item2.id,$('#device_input').val(),item.name).done(function(data) {
-                                                   api.devices.getDevices().done(function(data){
-                                                       $.each(data, function(r, item3){
-                                                       if($('#device_input').val() == item3.name){
-                                                           console.log("VOY A LINKEAR");
-                                                           api.devices.link(item3.id, item.id);
-                                                       }
-                                                       });
-                                                   });
-                                                   
-                                               });
-                                                
-                                               }
-                                            
-                                        });
-                                        
-                                    });
-                                    
-                                }
-                            });
-                });
-                
-                $(this).dialog('close');
-
-                }
-            }
-        ]
-    });
-});
 
 function pencil2_displayRoom(event, title){
     var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
