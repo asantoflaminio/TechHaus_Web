@@ -383,6 +383,75 @@ function change_air_mode(event, status){
 }
 
 
+function change_fridge_freezer_temp(event, status){
+    event.stopPropagation();
+    var val;
+
+    if(status.getAttribute('src') == "Iconos/arrow_up.png")
+      val = status.previousElementSibling.innerHTML.substr(0,3);
+    else
+      val = status.nextElementSibling.innerHTML.substr(0,3);
+
+    if(val.charAt(2) === '°') {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {
+            if(val.substr(0,2) == "-9") {
+              status.previousElementSibling.innerHTML = "-8°C";
+            }
+          }
+          else
+          {
+            if(val.substr(0,2) == "-8") {
+              status.nextElementSibling.innerHTML = "-9°C";
+            }
+            else if(val.substr(0,2) == "-9") {
+              status.nextElementSibling.innerHTML = "-10°C";
+            }
+          }
+    } else {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {    
+            status.previousElementSibling.innerHTML = (parseInt(val)+1).toString() + "°C";
+          }
+          else {
+            if(val != "-20")
+              status.nextElementSibling.innerHTML = (parseInt(val)-1).toString() + "°C";
+          }
+    }
+}
+
+function change_fridge_temp(event, status){
+    event.stopPropagation();
+
+    if(status.getAttribute('src') == "Iconos/arrow_down.png")
+                {
+                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,1)) > 2) {
+                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,1))-1).toString() + "°C";
+                  }
+                }
+                else
+                {
+                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,1)) < 8) {
+                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,1))+1).toString() + "°C";
+                  }
+                }
+}
+
+function change_fridge_mode(event, status){
+    event.stopPropagation();
+
+    if(status.value == "Default")
+                {
+                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fridge_default.png");
+                }
+                else if(status.value == "Vacation")
+                {
+                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/vacation.png");
+                }
+                else
+                {
+                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/party.png");
+                }
+}
+
 
 function trash(event, tacho){
     var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
