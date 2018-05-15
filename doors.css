@@ -692,6 +692,7 @@ footer p {
     width: 32.8%;
     height: 100%;
     display: inline-block !important;
+    margin-bottom: 5px;
 }
 
 .accordion2 {
