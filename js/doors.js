@@ -694,7 +694,7 @@ function onPageLoad(){
             }else if(typename =='ac'){
                 api.devices.getState(item.id).done(function(data){
                     console.log("Mi status de ac es: " + data.status); 
-                console.log("Mi tempearatura de ac es: " + data.temperature); 
+                    console.log("Mi tempearatura de ac es: " + data.temperature); 
                     console.log("Mi mode de ac es: " + data.mode); 
                     console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
                     console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
@@ -703,14 +703,22 @@ function onPageLoad(){
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
                     var h4_trash = document.createElement("h4");
-
-                    toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                    toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                    if(data.status == 'off'){
+                         toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                         toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                         toggle_info.setAttribute("class", "lock_text");
+                         toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    }else{
+                         toggle_img.setAttribute("src", "Iconos/toggle_on.png"); //debería depender de getstate
+                         toggle_img.setAttribute("alt", "On"); //debería depender de getstate
+                         toggle_info.setAttribute("class", "lock_text");
+                         toggle_info.innerHTML = "On"; //debería depender de getstate
+                    }
+                   
                     toggle_img.setAttribute("class", "toggle_icon");
                     toggle_img.setAttribute("onclick", "toggle(event,this);");
 
-                    toggle_info.setAttribute("class", "lock_text");
-                    toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -788,14 +796,20 @@ function onPageLoad(){
                     var blind_info = document.createElement("p");
                     var div_trash = document.createElement("div");
                     var h4_trash = document.createElement("h4");
-
-                    blind_icon2.setAttribute("src", "Iconos/blind_up_status.png"); //debería depender de getstate
+                    if(data.status == 'opened' || data.status == 'opening'){
+                        blind_icon2.setAttribute("src", "Iconos/blind_up_status.png"); //debería depender de getstate
+                        blind_info.innerHTML = " Up"; //debería depender de getstate
+                    }else{
+                        blind_icon2.setAttribute("src", "Iconos/blind_down_status.png"); //debería depender de getstate
+                        blind_info.innerHTML = " Down"; //debería depender de getstate
+                    }
+                    
                     blind_icon2.setAttribute("alt", "Up"); //debería depender de getstate
                     blind_icon2.setAttribute("class", "lock_icon");
                     blind_icon2.setAttribute("onclick", "change_blind_status_from_acc(event,this);");
 
                     blind_info.setAttribute("class", "lock_text");
-                    blind_info.innerHTML = " Up"; //debería depender de getstate
+                    
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -974,232 +988,249 @@ function onPageLoad(){
                 panel.appendChild(panel2);
 
             }else if(typename =='ac'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status de ac es: " + data.status); 
+                    console.log("Mi tempearatura de ac es: " + data.temperature); 
+                    console.log("Mi mode de ac es: " + data.mode); 
+                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
+                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
+                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
+                    var panel1 = document.createElement("div");
+                    panel1.setAttribute("class", "panel1");
+                    var status1 = document.createElement("div");
+                    var status2 = document.createElement("div");
+                    var status6 = document.createElement("div");
+                    status1.setAttribute("class", "status");
+                    status2.setAttribute("class", "status");
+                    status6.setAttribute("class", "status");
 
-                var panel1 = document.createElement("div");
-                panel1.setAttribute("class", "panel1");
-                var status1 = document.createElement("div");
-                var status2 = document.createElement("div");
-                var status6 = document.createElement("div");
-                status1.setAttribute("class", "status");
-                status2.setAttribute("class", "status");
-                status6.setAttribute("class", "status");
+                    var panel2 = document.createElement("div");
+                    panel2.setAttribute("class", "panel2");
+                    var status3 = document.createElement("div");
+                    var status4 = document.createElement("div");
+                    var status5 = document.createElement("div");
+                    status3.setAttribute("class", "status");
+                    status4.setAttribute("class", "status");
+                    status5.setAttribute("class", "status");
 
-                var panel2 = document.createElement("div");
-                panel2.setAttribute("class", "panel2");
-                var status3 = document.createElement("div");
-                var status4 = document.createElement("div");
-                var status5 = document.createElement("div");
-                status3.setAttribute("class", "status");
-                status4.setAttribute("class", "status");
-                status5.setAttribute("class", "status");
+                    //on/off
 
-                //on/off
+                    var toggle_icon = document.createElement("img");
+                    var stat = document.createElement("p");
+                    if(data.status == 'off'){
+                        toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
+                        toggle_icon.setAttribute("alt", "Off");   //idem
+                        toggle_icon.setAttribute("class", "toggle_inside_icon");
 
-                var toggle_icon = document.createElement("img");
-                var stat = document.createElement("p");
+                        stat.setAttribute("class", "stat_text");
+                        stat.innerHTML = "Status: Off"; //gettearlo con get status
+                    }else{
+                        toggle_icon.setAttribute("src", "Iconos/toggle_on.png");  //gettearlo con get status
+                        toggle_icon.setAttribute("alt", "Off");   //idem
+                        toggle_icon.setAttribute("class", "toggle_inside_icon");
 
-                toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
-                toggle_icon.setAttribute("alt", "Off");   //idem
-                toggle_icon.setAttribute("class", "toggle_inside_icon");
+                        stat.setAttribute("class", "stat_text");
+                        stat.innerHTML = "Status: On"; //gettearlo con get status
+                    }
+                    
 
-                stat.setAttribute("class", "stat_text");
-                stat.innerHTML = "Status: Off"; //gettearlo con get status
+                    status6.appendChild(toggle_icon);
+                    status6.appendChild(stat);
 
-                status6.appendChild(toggle_icon);
-                status6.appendChild(stat);
+                    //temperature
 
-                //temperature
+                    var temp = document.createElement("img");
+                    var arrow_up = document.createElement("img");
+                    var arrow_down = document.createElement("img");
+                    var p1 = document.createElement("p");
+                    var p2 = document.createElement("p");
 
-                var temp = document.createElement("img");
-                var arrow_up = document.createElement("img");
-                var arrow_down = document.createElement("img");
-                var p1 = document.createElement("p");
-                var p2 = document.createElement("p");
+                    temp.setAttribute("src", "Iconos/temperature2.png");
+                    temp.setAttribute("alt", "Temperature");
+                    temp.setAttribute("class", "temperature_icon");
 
-                temp.setAttribute("src", "Iconos/temperature2.png");
-                temp.setAttribute("alt", "Temperature");
-                temp.setAttribute("class", "temperature_icon");
+                    p1.setAttribute("class", "stat_text");
+                    p1.innerHTML = "Temperature: ";
 
-                p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Temperature: ";
+                    arrow_down.setAttribute("src", "Iconos/arrow_down.png");
+                    arrow_down.setAttribute("alt", "Temperature Down");
+                    arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
 
-                arrow_down.setAttribute("src", "Iconos/arrow_down.png");
-                arrow_down.setAttribute("alt", "Temperature Down");
-                arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
+                    p2.setAttribute("class", "stat_text");
+                    p2.setAttribute("class", "number_info");
+                    p2.innerHTML = "20°C "; //esto debería ser un getstatus
 
-                p2.setAttribute("class", "stat_text");
-                p2.setAttribute("class", "number_info");
-                p2.innerHTML = "20°C "; //esto debería ser un getstatus
+                    arrow_up.setAttribute("src", "Iconos/arrow_up.png");
+                    arrow_up.setAttribute("alt", "Temperature Up");
+                    arrow_up.setAttribute("class", "arrow_change_up_icon");
 
-                arrow_up.setAttribute("src", "Iconos/arrow_up.png");
-                arrow_up.setAttribute("alt", "Temperature Up");
-                arrow_up.setAttribute("class", "arrow_change_up_icon");
+                    status1.appendChild(temp);
+                    status1.appendChild(p1);
+                    status1.appendChild(arrow_down);
+                    status1.appendChild(p2);
+                    status1.appendChild(arrow_up);
 
-                status1.appendChild(temp);
-                status1.appendChild(p1);
-                status1.appendChild(arrow_down);
-                status1.appendChild(p2);
-                status1.appendChild(arrow_up);
+                    //mode
 
-                //mode
+                    var mode_icon = document.createElement("img");
+                    var p3 = document.createElement("p");
+                    var select = document.createElement("select");
+                    var option1 = document.createElement("option");
+                    var option2 = document.createElement("option");
+                    var option3 = document.createElement("option");
+                    var option4 = document.createElement("option");
+                    var option5 = document.createElement("option");
 
-                var mode_icon = document.createElement("img");
-                var p3 = document.createElement("p");
-                var select = document.createElement("select");
-                var option1 = document.createElement("option");
-                var option2 = document.createElement("option");
-                var option3 = document.createElement("option");
-                var option4 = document.createElement("option");
-                var option5 = document.createElement("option");
+                    mode_icon.setAttribute("src", "Iconos/cool.png"); //debería ponerse el ícono correspondiente según getstatus
+                    mode_icon.setAttribute("alt", "Cool"); //debería ponerse el alt correspondiente segun getstatus
+                    mode_icon.setAttribute("class", "ac_mode_icon");
 
-                mode_icon.setAttribute("src", "Iconos/cool.png"); //debería ponerse el ícono correspondiente según getstatus
-                mode_icon.setAttribute("alt", "Cool"); //debería ponerse el alt correspondiente segun getstatus
-                mode_icon.setAttribute("class", "ac_mode_icon");
+                    p3.setAttribute("class", "stat_text");
+                    p3.innerHTML = "Mode: ";
 
-                p3.setAttribute("class", "stat_text");
-                p3.innerHTML = "Mode: ";
+                    select.setAttribute("class", "panel_selector");
+                    option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
+                    option2.innerHTML = "Heat";
+                    option3.innerHTML = "Fan";
 
-                select.setAttribute("class", "panel_selector");
-                option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
-                option2.innerHTML = "Heat";
-                option3.innerHTML = "Fan";
+                    //quizás conviene variar el orden acá según getstatus
+                    select.appendChild(option1);
+                    select.appendChild(option2);
+                    select.appendChild(option3);
 
-                //quizás conviene variar el orden acá según getstatus
-                select.appendChild(option1);
-                select.appendChild(option2);
-                select.appendChild(option3);
+                    status2.appendChild(mode_icon);
+                    status2.appendChild(p3);
+                    status2.appendChild(select);
 
-                status2.appendChild(mode_icon);
-                status2.appendChild(p3);
-                status2.appendChild(select);
+                    //create panel 1
 
-                //create panel 1
+                    panel1.appendChild(status6);
+                    panel1.appendChild(status1);
+                    panel1.appendChild(status2);
 
-                panel1.appendChild(status6);
-                panel1.appendChild(status1);
-                panel1.appendChild(status2);
+                    //fan speed
 
-                //fan speed
+                    var fan_icon = document.createElement("img");
+                    var p4 = document.createElement("p");
+                    var select2 = document.createElement("select");
+                    var option4 = document.createElement("option");
+                    var option5 = document.createElement("option");
+                    var option6 = document.createElement("option");
+                    var option7 = document.createElement("option");
+                    var option8 = document.createElement("option");
 
-                var fan_icon = document.createElement("img");
-                var p4 = document.createElement("p");
-                var select2 = document.createElement("select");
-                var option4 = document.createElement("option");
-                var option5 = document.createElement("option");
-                var option6 = document.createElement("option");
-                var option7 = document.createElement("option");
-                var option8 = document.createElement("option");
+                    fan_icon.setAttribute("src", "Iconos/fan_speed.png");
+                    fan_icon.setAttribute("alt", "Fan");
+                    fan_icon.setAttribute("class", "fan_icon");
 
-                fan_icon.setAttribute("src", "Iconos/fan_speed.png");
-                fan_icon.setAttribute("alt", "Fan");
-                fan_icon.setAttribute("class", "fan_icon");
+                    p4.setAttribute("class", "stat_text");
+                    p4.innerHTML = "Fan speed: ";
 
-                p4.setAttribute("class", "stat_text");
-                p4.innerHTML = "Fan speed: ";
+                    select2.setAttribute("class", "panel_selector");
+                    option4.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                    option5.innerHTML = "25";
+                    option6.innerHTML = "50";
+                    option7.innerHTML = "75";
+                    option8.innerHTML = "100";
 
-                select2.setAttribute("class", "panel_selector");
-                option4.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                option5.innerHTML = "25";
-                option6.innerHTML = "50";
-                option7.innerHTML = "75";
-                option8.innerHTML = "100";
+                    //quizás conviene variar el orden acá según getstatus
+                    select2.appendChild(option4);
+                    select2.appendChild(option5);
+                    select2.appendChild(option6);
+                    select2.appendChild(option7);
+                    select2.appendChild(option8);
 
-                //quizás conviene variar el orden acá según getstatus
-                select2.appendChild(option4);
-                select2.appendChild(option5);
-                select2.appendChild(option6);
-                select2.appendChild(option7);
-                select2.appendChild(option8);
+                    status3.appendChild(fan_icon);
+                    status3.appendChild(p4);
+                    status3.appendChild(select2);
 
-                status3.appendChild(fan_icon);
-                status3.appendChild(p4);
-                status3.appendChild(select2);
+                    //vertical swing
 
-                //vertical swing
+                    var vertical_swing = document.createElement("img");
+                    var p5 = document.createElement("p");
+                    var select3 = document.createElement("select");
+                    var option9 = document.createElement("option");
+                    var option10 = document.createElement("option");
+                    var option11 = document.createElement("option");
+                    var option12 = document.createElement("option");
+                    var option13 = document.createElement("option");
 
-                var vertical_swing = document.createElement("img");
-                var p5 = document.createElement("p");
-                var select3 = document.createElement("select");
-                var option9 = document.createElement("option");
-                var option10 = document.createElement("option");
-                var option11 = document.createElement("option");
-                var option12 = document.createElement("option");
-                var option13 = document.createElement("option");
+                    vertical_swing.setAttribute("src", "Iconos/vertical_swing.png");
+                    vertical_swing.setAttribute("alt", "Vertical Swing");
+                    vertical_swing.setAttribute("class", "swing_icon");
 
-                vertical_swing.setAttribute("src", "Iconos/vertical_swing.png");
-                vertical_swing.setAttribute("alt", "Vertical Swing");
-                vertical_swing.setAttribute("class", "swing_icon");
+                    p5.setAttribute("class", "stat_text");
+                    p5.innerHTML = "Vertical swing: ";
 
-                p5.setAttribute("class", "stat_text");
-                p5.innerHTML = "Vertical swing: ";
+                    select3.setAttribute("class", "panel_selector");
+                    option9.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                    option10.innerHTML = "22";
+                    option11.innerHTML = "45";
+                    option12.innerHTML = "67";
+                    option13.innerHTML = "90";
 
-                select3.setAttribute("class", "panel_selector");
-                option9.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                option10.innerHTML = "22";
-                option11.innerHTML = "45";
-                option12.innerHTML = "67";
-                option13.innerHTML = "90";
+                    //quizás conviene variar el orden acá según getstatus
+                    select3.appendChild(option9);
+                    select3.appendChild(option10);
+                    select3.appendChild(option11);
+                    select3.appendChild(option12);
+                    select3.appendChild(option13);
 
-                //quizás conviene variar el orden acá según getstatus
-                select3.appendChild(option9);
-                select3.appendChild(option10);
-                select3.appendChild(option11);
-                select3.appendChild(option12);
-                select3.appendChild(option13);
+                    status4.appendChild(vertical_swing);
+                    status4.appendChild(p5);
+                    status4.appendChild(select3);
 
-                status4.appendChild(vertical_swing);
-                status4.appendChild(p5);
-                status4.appendChild(select3);
+                    //horizontal swing
 
-                //horizontal swing
+                    var horizontal_swing = document.createElement("img");
+                    var p6 = document.createElement("p");
+                    var select4 = document.createElement("select");
+                    var option14 = document.createElement("option");
+                    var option15 = document.createElement("option");
+                    var option16 = document.createElement("option");
+                    var option17 = document.createElement("option");
+                    var option18 = document.createElement("option");
+                    var option19 = document.createElement("option");
 
-                var horizontal_swing = document.createElement("img");
-                var p6 = document.createElement("p");
-                var select4 = document.createElement("select");
-                var option14 = document.createElement("option");
-                var option15 = document.createElement("option");
-                var option16 = document.createElement("option");
-                var option17 = document.createElement("option");
-                var option18 = document.createElement("option");
-                var option19 = document.createElement("option");
+                    horizontal_swing.setAttribute("src", "Iconos/horizontal_swing.png");
+                    horizontal_swing.setAttribute("alt", "Horizontal Swing");
+                    horizontal_swing.setAttribute("class", "swing_icon");
 
-                horizontal_swing.setAttribute("src", "Iconos/horizontal_swing.png");
-                horizontal_swing.setAttribute("alt", "Horizontal Swing");
-                horizontal_swing.setAttribute("class", "swing_icon");
+                    p6.setAttribute("class", "stat_text");
+                    p6.innerHTML = "Horizontal swing: ";
 
-                p6.setAttribute("class", "stat_text");
-                p6.innerHTML = "Horizontal swing: ";
+                    select4.setAttribute("class", "panel_selector");
+                    option14.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                    option15.innerHTML = "-90";
+                    option16.innerHTML = "-45";
+                    option17.innerHTML = "0";
+                    option18.innerHTML = "45";
+                    option19.innerHTML = "90";
 
-                select4.setAttribute("class", "panel_selector");
-                option14.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                option15.innerHTML = "-90";
-                option16.innerHTML = "-45";
-                option17.innerHTML = "0";
-                option18.innerHTML = "45";
-                option19.innerHTML = "90";
+                    //quizás conviene variar el orden acá según getstatus
+                    select4.appendChild(option14);
+                    select4.appendChild(option15);
+                    select4.appendChild(option16);
+                    select4.appendChild(option17);
+                    select4.appendChild(option18);
+                    select4.appendChild(option19);
 
-                //quizás conviene variar el orden acá según getstatus
-                select4.appendChild(option14);
-                select4.appendChild(option15);
-                select4.appendChild(option16);
-                select4.appendChild(option17);
-                select4.appendChild(option18);
-                select4.appendChild(option19);
+                    status5.appendChild(horizontal_swing);
+                    status5.appendChild(p6);
+                    status5.appendChild(select4);
 
-                status5.appendChild(horizontal_swing);
-                status5.appendChild(p6);
-                status5.appendChild(select4);
+                    //create panel 2
 
-                //create panel 2
+                    panel2.appendChild(status3);
+                    panel2.appendChild(status4);
+                    panel2.appendChild(status5);
 
-                panel2.appendChild(status3);
-                panel2.appendChild(status4);
-                panel2.appendChild(status5);
+                    //create panel
 
-                //create panel
-
-                panel.appendChild(panel1);
-                panel.appendChild(panel2);
+                    panel.appendChild(panel1);
+                    panel.appendChild(panel2);
+                });
+                
 
             }else if(typename == 'oven'){
 
@@ -1475,39 +1506,49 @@ function onPageLoad(){
                 panel.appendChild(panel2);
 
             }else if(typename == 'blind'){
+                 api.devices.getState(item.id).done(function(data){
+                        var panel1 = document.createElement("div");
+                        panel1.setAttribute("class", "panel1");
+                        var status1 = document.createElement("div");
+                        status1.setAttribute("class", "status");
+
+                        var panel2 = document.createElement("div");
+                        panel2.setAttribute("class", "panel2");
+
+                        //up/down
+
+                        var blind_icon = document.createElement("img");
+                        var p1 = document.createElement("p");
+                        if(data.status == 'opened' || data.status == 'opening'){
+                            console.log("acaaaaa!!!");
+                            blind_icon.setAttribute("src", "Iconos/blind_up.png"); //debería depender de getstatus
+                            p1.setAttribute("class", "stat_text");
+                            p1.innerHTML = "Status: Up"; //debería depender de getstatus
+                        }else{
+                            blind_icon.setAttribute("src", "Iconos/blind_down.png"); //debería depender de getstatus
+                            p1.setAttribute("class", "stat_text");
+                            p1.innerHTML = "Status: Down"; //debería depender de getstatus
+                        }
+                        
+                        blind_icon.setAttribute("alt", "Up"); //debería depender de getstatus
+                        blind_icon.setAttribute("class", "status_icon");
+                        blind_icon.setAttribute("onclick", "change_blind_status(event,this);");
+
+                        
+
+                        status1.appendChild(blind_icon);
+                        status1.appendChild(p1);
+
+                        //create panel 1
+
+                        panel1.appendChild(status1);
+
+                        //create panel
+
+                        panel.appendChild(panel1);
+                        panel.appendChild(panel2);
+                 });
                 
-                var panel1 = document.createElement("div");
-                panel1.setAttribute("class", "panel1");
-                var status1 = document.createElement("div");
-                status1.setAttribute("class", "status");
-
-                var panel2 = document.createElement("div");
-                panel2.setAttribute("class", "panel2");
-
-                //up/down
-
-                var blind_icon = document.createElement("img");
-                var p1 = document.createElement("p");
-
-                blind_icon.setAttribute("src", "Iconos/blind_up.png"); //debería depender de getstatus
-                blind_icon.setAttribute("alt", "Up"); //debería depender de getstatus
-                blind_icon.setAttribute("class", "status_icon");
-                blind_icon.setAttribute("onclick", "change_blind_status(event,this);");
-
-                p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Status: Up"; //debería depender de getstatus
-
-                status1.appendChild(blind_icon);
-                status1.appendChild(p1);
-
-                //create panel 1
-
-                panel1.appendChild(status1);
-
-                //create panel
-
-                panel.appendChild(panel1);
-                panel.appendChild(panel2);
 
             }else if(typename == 'refrigerator'){
 
