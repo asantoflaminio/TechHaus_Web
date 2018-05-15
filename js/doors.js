@@ -621,6 +621,7 @@ function onPageLoad(){
             div1.appendChild(div2);
 
             var div3 = document.createElement("div");
+            div3.setAttribute("class", "room_door");
             var p = document.createElement("p");
             var img_pen = document.createElement("img");
             img_pen.setAttribute("src", "Iconos/pencil.png");
@@ -1061,7 +1062,7 @@ function onPageLoad(){
 
                     p2.setAttribute("class", "stat_text");
                     p2.setAttribute("class", "number_info");
-                    p2.innerHTML = "20°C "; //esto debería ser un getstatus
+                    p2.innerHTML = data.temperature + "°C "; //esto debería ser un getstatus
 
                     arrow_up.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up.setAttribute("alt", "Temperature Up");
@@ -1083,8 +1084,14 @@ function onPageLoad(){
                     var option3 = document.createElement("option");
                     var option4 = document.createElement("option");
                     var option5 = document.createElement("option");
-
-                    mode_icon.setAttribute("src", "Iconos/cool.png"); //debería ponerse el ícono correspondiente según getstatus
+                    if(data.mode == 'cool'){
+                        mode_icon.setAttribute("src", "Iconos/cool.png"); 
+                    }else if(data.mode == 'fan'){
+                        mode_icon.setAttribute("src", "Iconos/fan.png"); 
+                    }else{
+                        mode_icon.setAttribute("src", "Iconos/heat.png"); 
+                    }
+                    
                     mode_icon.setAttribute("alt", "Cool"); //debería ponerse el alt correspondiente segun getstatus
                     mode_icon.setAttribute("class", "ac_mode_icon");
 
@@ -1092,9 +1099,20 @@ function onPageLoad(){
                     p3.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
-                    option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
-                    option2.innerHTML = "Heat";
-                    option3.innerHTML = "Fan";
+                    if(data.mode == 'cool'){
+                        option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Heat";
+                        option3.innerHTML = "Fan";
+                    }else if(data.mode == 'heat'){
+                        option1.innerHTML = "Heat"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Cool";
+                        option3.innerHTML = "Fan";
+                    }else{
+                        option1.innerHTML = "Fan"; //debería ponerse la que esté en el getstatus primera
+                        option2.innerHTML = "Heat";
+                        option3.innerHTML = "Cool";
+                    }
+                    
 
                     //quizás conviene variar el orden acá según getstatus
                     select.appendChild(option1);
@@ -1130,11 +1148,38 @@ function onPageLoad(){
                     p4.innerHTML = "Fan speed: ";
 
                     select2.setAttribute("class", "panel_selector");
-                    option4.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                    option5.innerHTML = "25";
-                    option6.innerHTML = "50";
-                    option7.innerHTML = "75";
-                    option8.innerHTML = "100";
+                    if(data.fanSpeed == 'auto'){
+                        option4.innerHTML = "Auto"; 
+                        option5.innerHTML = "25";
+                        option6.innerHTML = "50";
+                        option7.innerHTML = "75";
+                        option8.innerHTML = "100";
+                    }else if(data.fanSpeed == '25'){
+                        option4.innerHTML = "25"; 
+                        option5.innerHTML = "50";
+                        option6.innerHTML = "75";
+                        option7.innerHTML = "100";
+                        option8.innerHTML = "Auto";    
+                    }else if(data.fanSpeed == '50'){
+                        option4.innerHTML = "50"; 
+                        option5.innerHTML = "25";
+                        option6.innerHTML = "75";
+                        option7.innerHTML = "100";
+                        option8.innerHTML = "Auto"; 
+                    }else if(data.fanSpeed == '75'){
+                        option4.innerHTML = "75"; 
+                        option5.innerHTML = "25";
+                        option6.innerHTML = "50";
+                        option7.innerHTML = "100";
+                        option8.innerHTML = "Auto";       
+                    }else{
+                        option4.innerHTML = "100"; 
+                        option5.innerHTML = "25";
+                        option6.innerHTML = "50";
+                        option7.innerHTML = "75";
+                        option8.innerHTML = "Auto";  
+                    }
+                    
 
                     //quizás conviene variar el orden acá según getstatus
                     select2.appendChild(option4);
@@ -1166,11 +1211,38 @@ function onPageLoad(){
                     p5.innerHTML = "Vertical swing: ";
 
                     select3.setAttribute("class", "panel_selector");
-                    option9.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                    option10.innerHTML = "22";
-                    option11.innerHTML = "45";
-                    option12.innerHTML = "67";
-                    option13.innerHTML = "90";
+                    if(data.verticalSwing == "auto"){
+                        option9.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                        option10.innerHTML = "22";
+                        option11.innerHTML = "45";
+                        option12.innerHTML = "67";
+                        option13.innerHTML = "90";
+                    }else if(data.verticalSwing == "22"){
+                        option9.innerHTML = "22"; //debería ponerse la que esté en el getstatus primera
+                        option10.innerHTML = "45";
+                        option10.innerHTML = "67";
+                        option11.innerHTML = "90";
+                        option13.innerHTML = "Auto";    
+                    }else if(data.verticalSwing == "45"){
+                        option9.innerHTML = "45"; //debería ponerse la que esté en el getstatus primera
+                        option10.innerHTML = "22";
+                        option10.innerHTML = "67";
+                        option11.innerHTML = "90";
+                        option13.innerHTML = "Auto";   
+                    }else if(data.verticalSwing == "67"){
+                        option9.innerHTML = "67"; //debería ponerse la que esté en el getstatus primera
+                        option10.innerHTML = "22";
+                        option10.innerHTML = "45";
+                        option11.innerHTML = "90";
+                        option13.innerHTML = "Auto";        
+                    }else{
+                        option9.innerHTML = "90"; //debería ponerse la que esté en el getstatus primera
+                        option10.innerHTML = "22";
+                        option10.innerHTML = "45";
+                        option11.innerHTML = "67";
+                        option13.innerHTML = "Auto";        
+                    }
+                    
 
                     //quizás conviene variar el orden acá según getstatus
                     select3.appendChild(option9);
@@ -1203,12 +1275,50 @@ function onPageLoad(){
                     p6.innerHTML = "Horizontal swing: ";
 
                     select4.setAttribute("class", "panel_selector");
-                    option14.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                    option15.innerHTML = "-90";
-                    option16.innerHTML = "-45";
-                    option17.innerHTML = "0";
-                    option18.innerHTML = "45";
-                    option19.innerHTML = "90";
+                    if(data.horizontalSwing == 'auto'){
+                        option14.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                        option15.innerHTML = "-90";
+                        option16.innerHTML = "-45";
+                        option17.innerHTML = "0";
+                        option18.innerHTML = "45";
+                        option19.innerHTML = "90";
+                    }else if(data.horizontalSwing == '-90'){
+                        option14.innerHTML = "-90"; //debería ponerse la que esté en el getstatus primera
+                        option15.innerHTML = "-45";
+                        option16.innerHTML = "0";
+                        option17.innerHTML = "45";
+                        option18.innerHTML = "90";
+                        option19.innerHTML = "Auto";    
+                    }else if(data.horizontalSwing == '-45'){
+                        option14.innerHTML = "-45"; //debería ponerse la que esté en el getstatus primera
+                        option15.innerHTML = "-90";
+                        option16.innerHTML = "0";
+                        option17.innerHTML = "45";
+                        option18.innerHTML = "90";
+                        option19.innerHTML = "Auto";  
+                    }else if(data.horizontalSwing == '0'){
+                        option14.innerHTML = "0"; 
+                        option15.innerHTML = "-90";
+                        option16.innerHTML = "-45";
+                        option17.innerHTML = "45";
+                        option18.innerHTML = "90";
+                        option19.innerHTML = "Auto";      
+                    }else if(data.horizontalSwing == '45'){
+                        option14.innerHTML = "45"; 
+                        option15.innerHTML = "-90";
+                        option16.innerHTML = "-45";
+                        option17.innerHTML = "0";
+                        option18.innerHTML = "90";
+                        option19.innerHTML = "Auto";   
+                    }else{
+                        option14.innerHTML = "90"; 
+                        option15.innerHTML = "-90";
+                        option16.innerHTML = "-45";
+                        option17.innerHTML = "0";
+                        option18.innerHTML = "45";
+                        option19.innerHTML = "Auto"; 
+                    }
+                    
 
                     //quizás conviene variar el orden acá según getstatus
                     select4.appendChild(option14);

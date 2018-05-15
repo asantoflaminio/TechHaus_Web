@@ -1015,6 +1015,15 @@ input[type=text] {
     font-size: 15px;
 }
 
+
+select[type=text] {
+    float:left;
+    font-family: monaco, sans-serif;
+    font-size: 13px;
+}
+
+
+
 .search-container button {
     float: right;
     height: 32px;

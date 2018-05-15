@@ -167,6 +167,13 @@ section {
    
 }
 
+select[type=text] {
+    float:left;
+    font-family: monaco, sans-serif;
+    font-size: 13px;
+}
+
+
 .title_elements{
     float:left
     height: 100%;

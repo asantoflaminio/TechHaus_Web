@@ -528,6 +528,7 @@ function onPageLoad(){
                 div1.appendChild(div2);
 
                 var div3 = document.createElement("div");
+                div3.setAttribute("class", "room_door");
                 var p = document.createElement("p");
                 var img_pen = document.createElement("img");
                 img_pen.setAttribute("src", "Iconos/pencil.png");
