@@ -601,7 +601,7 @@ $(document).ready(function() {
                         }else if(roomtype == "bedroom"){
                             img.setAttribute("src", "Iconos/Rooms6.png");       
                         }else{
-                            img.setAttribute("src", "Iconos/marta.png");     
+                            img.setAttribute("src", "Iconos/Other.png");     
                         }
     });
 
