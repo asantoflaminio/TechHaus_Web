@@ -278,6 +278,9 @@ function edit_nameRoom(event, name) {
     name.style.visibility = "hidden";
     var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
     input_new_name.style.visibility = "visible";
+
+    $(this).click( function()
+        { change_nameRoom(event, document.getElementsByClassName("new_room_name")[0]); } );
     
 }
 
@@ -297,6 +300,9 @@ function change_nameRoom(event, element) {
 function input_nameRoom(event, name) {
     event.stopPropagation();
     name.style.backgroundColor = "transparent";
+    $(this).click( function()
+        { change_nameRoom(event, name); } );
+    
     $(name).keydown(function(event){
         if(event.keyCode == 13){
             change_nameRoom(event, name);
@@ -329,6 +335,9 @@ function edit_name(event, name) {
     name.style.visibility = "hidden";
     var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
     input_new_name.style.visibility = "visible";
+
+    $(this).click( function()
+        { change_name(event, document.getElementsByClassName("new_device_name")[0]); } );
     
 }
 
@@ -346,12 +355,16 @@ function change_name(event, element) {
 function input_name(event, name) {
     event.stopPropagation();
     name.style.backgroundColor = "transparent";
+    $(this).click( function()
+        { change_name(event, name); } );
+    
     $(name).keydown(function(event){
         if(event.keyCode == 13){
             change_name(event, name);
         }
     }); 
 }
+
 
 function fav(event, heart){
     event.stopPropagation();
