@@ -60,7 +60,16 @@ api.devices = class {
   static get url() {
     return "http://127.0.0.1:8080/api/devices/";
   }
-    
+    static getState(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/getState",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.result;
+        });  
+  } 
     static getAllDevices() {
    return $.ajax({
       url: api.devices.url,
@@ -305,7 +314,8 @@ function delete_device(event, confirm){
     var deviceid = window.localStorage.getItem("device_id2");
     console.log("estoy aca" + deviceid);
     api.devices.deleteDevice(deviceid).done(function(data){
-        onPageLoad();                                           
+        onPageLoad(); 
+        $('#delete_device_popup').modal('hide');
     });
 };
 
@@ -566,171 +576,208 @@ function onPageLoad(){
             acc1.appendChild(div3);
 
             if(typename == 'door'){
+                
+                api.devices.getState(item.id).done(function(data){
+                   console.log("Mi state de door es: " + data.status); 
+                    console.log("Mi lock de door es: " + data.lock); 
+                    var lock_icon2 = document.createElement("img");
+                    var lock_info = document.createElement("p");
+                    var div_trash = document.createElement("div");
+                    var h4_trash = document.createElement("h4");
 
-                var lock_icon2 = document.createElement("img");
-                var lock_info = document.createElement("p");
-                var div_trash = document.createElement("div");
-                var h4_trash = document.createElement("h4");
+                    lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
+                    lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
+                    lock_icon2.setAttribute("alt", "Locked");
+                    lock_icon2.setAttribute("onclick", "lock(event,this);");
 
-                lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
-                lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
-                lock_icon2.setAttribute("alt", "Locked");
-                lock_icon2.setAttribute("onclick", "lock(event,this);");
+                    lock_info.setAttribute("class", "lock_text");
+                    lock_info.innerHTML = "Locked"; //debería depender de getstate
 
-                lock_info.setAttribute("class", "lock_text");
-                lock_info.innerHTML = "Locked"; //debería depender de getstate
+                    h4_trash.setAttribute("class", "trash_message");
+                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                h4_trash.setAttribute("class", "trash_message");
-                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                    div_trash.appendChild(h4_trash);
 
-                div_trash.appendChild(h4_trash);
+                    acc2.appendChild(lock_icon2);
+                    acc2.appendChild(lock_info);
+                    acc2.appendChild(div_trash);
+                });
 
-                acc2.appendChild(lock_icon2);
-                acc2.appendChild(lock_info);
-                acc2.appendChild(div_trash);
+                
 
             }else if(typename =='ac'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status de ac es: " + data.status); 
+                console.log("Mi tempearatura de ac es: " + data.temperature); 
+                    console.log("Mi mode de ac es: " + data.mode); 
+                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
+                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
+                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
+                    var toggle_img = document.createElement("img");
+                    var toggle_info = document.createElement("p");
+                    var div_trash = document.createElement("div");
+                    var h4_trash = document.createElement("h4");
 
-                var toggle_img = document.createElement("img");
-                var toggle_info = document.createElement("p");
-                var div_trash = document.createElement("div");
-                var h4_trash = document.createElement("h4");
+                    toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                    toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                    toggle_img.setAttribute("class", "toggle_icon");
+                    toggle_img.setAttribute("onclick", "toggle(event,this);");
 
-                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
-                toggle_img.setAttribute("class", "toggle_icon");
-                toggle_img.setAttribute("onclick", "toggle(event,this);");
+                    toggle_info.setAttribute("class", "lock_text");
+                    toggle_info.innerHTML = "Off"; //debería depender de getstate
 
-                toggle_info.setAttribute("class", "lock_text");
-                toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    h4_trash.setAttribute("class", "trash_message");
+                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                h4_trash.setAttribute("class", "trash_message");
-                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                    div_trash.appendChild(h4_trash);
 
-                div_trash.appendChild(h4_trash);
-
-                acc2.appendChild(toggle_img);
-                acc2.appendChild(toggle_info);
-                acc2.appendChild(div_trash);
+                    acc2.appendChild(toggle_img);
+                    acc2.appendChild(toggle_info);
+                    acc2.appendChild(div_trash);
+                });
+                
 
             }else if(typename == 'oven'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status es: " + data.status); 
+                    console.log("Mi tempearatura es: " + data.temperature); 
+                    console.log("Mi heat  es: " + data.heat); 
+                    console.log("Mi grill   es: " + data.grill); 
+                    console.log("Mi convection  es: " + data.convection); 
+                    var toggle_img = document.createElement("img");
+                    var toggle_info = document.createElement("p");
+                    var div_trash = document.createElement("div");
+                    var h4_trash = document.createElement("h4");
 
-                var toggle_img = document.createElement("img");
-                var toggle_info = document.createElement("p");
-                var div_trash = document.createElement("div");
-                var h4_trash = document.createElement("h4");
+                    toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                    toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                    toggle_img.setAttribute("class", "toggle_icon");
+                    toggle_img.setAttribute("onclick", "toggle(event,this);");
 
-                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
-                toggle_img.setAttribute("class", "toggle_icon");
-                toggle_img.setAttribute("onclick", "toggle(event,this);");
+                    toggle_info.setAttribute("class", "lock_text");
+                    toggle_info.innerHTML = "Off"; //debería depender de getstate
 
-                toggle_info.setAttribute("class", "lock_text");
-                toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    h4_trash.setAttribute("class", "trash_message");
+                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                h4_trash.setAttribute("class", "trash_message");
-                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                    div_trash.appendChild(h4_trash);
 
-                div_trash.appendChild(h4_trash);
-
-                acc2.appendChild(toggle_img);
-                acc2.appendChild(toggle_info);
-                acc2.appendChild(div_trash);
+                    acc2.appendChild(toggle_img);
+                    acc2.appendChild(toggle_info);
+                    acc2.appendChild(div_trash);
+                });
+                
 
             }else if(typename == 'alarm'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status es: " + data.status); 
+                    var alarm_icon = document.createElement("img");
+                    var alarm_info = document.createElement("p");
+                    var div_trash = document.createElement("div");
+                    var h4_trash = document.createElement("h4");
 
-                var alarm_icon = document.createElement("img");
-                var alarm_info = document.createElement("p");
-                var div_trash = document.createElement("div");
-                var h4_trash = document.createElement("h4");
+                    alarm_icon.setAttribute("src", "Iconos/alarm_stat_off.png"); //debería depender de getstate
+                    alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                    alarm_icon.setAttribute("alt", "Alarm Status");
+                    alarm_icon.setAttribute("onclick", "toggle(event,this);");
 
-                alarm_icon.setAttribute("src", "Iconos/alarm_stat_off.png"); //debería depender de getstate
-                alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                alarm_icon.setAttribute("alt", "Alarm Status");
-                alarm_icon.setAttribute("onclick", "toggle(event,this);");
+                    alarm_info.setAttribute("class", "lock_text");
+                    alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
 
-                alarm_info.setAttribute("class", "lock_text");
-                alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
+                    h4_trash.setAttribute("class", "trash_message");
+                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                h4_trash.setAttribute("class", "trash_message");
-                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                    div_trash.appendChild(h4_trash);
 
-                div_trash.appendChild(h4_trash);
-
-                acc2.appendChild(alarm_icon);
-                acc2.appendChild(alarm_info);
-                acc2.appendChild(div_trash);              
+                    acc2.appendChild(alarm_icon);
+                    acc2.appendChild(alarm_info);
+                    acc2.appendChild(div_trash); 
+                });
+                             
 
             }else if(typename == 'blind'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status es: " + data.status); 
+                    var blind_icon2 = document.createElement("img");
+                    var blind_info = document.createElement("p");
+                    var div_trash = document.createElement("div");
+                    var h4_trash = document.createElement("h4");
 
-                var blind_icon2 = document.createElement("img");
-                var blind_info = document.createElement("p");
-                var div_trash = document.createElement("div");
-                var h4_trash = document.createElement("h4");
+                    blind_icon2.setAttribute("src", "Iconos/blind_up_status.png"); //debería depender de getstate
+                    blind_icon2.setAttribute("alt", "Up"); //debería depender de getstate
+                    blind_icon2.setAttribute("class", "lock_icon");
+                    blind_icon2.setAttribute("onclick", "change_blind_status_from_acc(event,this);");
 
-                blind_icon2.setAttribute("src", "Iconos/blind_up_status.png"); //debería depender de getstate
-                blind_icon2.setAttribute("alt", "Up"); //debería depender de getstate
-                blind_icon2.setAttribute("class", "lock_icon");
-                blind_icon2.setAttribute("onclick", "change_blind_status_from_acc(event,this);");
+                    blind_info.setAttribute("class", "lock_text");
+                    blind_info.innerHTML = " Up"; //debería depender de getstate
 
-                blind_info.setAttribute("class", "lock_text");
-                blind_info.innerHTML = " Up"; //debería depender de getstate
+                    h4_trash.setAttribute("class", "trash_message");
+                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                h4_trash.setAttribute("class", "trash_message");
-                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                    div_trash.appendChild(h4_trash);
 
-                div_trash.appendChild(h4_trash);
-
-                acc2.appendChild(blind_icon2);
-                acc2.appendChild(blind_info);
-                acc2.appendChild(div_trash);
+                    acc2.appendChild(blind_icon2);
+                    acc2.appendChild(blind_info);
+                    acc2.appendChild(div_trash);
+                });
+                
 
             }else if(typename == 'refrigerator'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi mode es: " + data.mode); 
+                    console.log("Mi temperature es: " + data.temperature); 
+                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
+                    var temp_icon = document.createElement("img");
+                    var temp_info = document.createElement("p");
+                    var div_trash = document.createElement("div");
+                    var h4_trash = document.createElement("h4");
 
-                var temp_icon = document.createElement("img");
-                var temp_info = document.createElement("p");
-                var div_trash = document.createElement("div");
-                var h4_trash = document.createElement("h4");
+                    temp_icon.setAttribute("src", "Iconos/temperature.png");
+                    temp_icon.setAttribute("alt", "Temperature");
+                    temp_icon.setAttribute("class", "temperature_icon_status");
 
-                temp_icon.setAttribute("src", "Iconos/temperature.png");
-                temp_icon.setAttribute("alt", "Temperature");
-                temp_icon.setAttribute("class", "temperature_icon_status");
+                    temp_info.setAttribute("class", "lock_text");
+                    temp_info.innerHTML = "5°C"; //debería depender de getstate
 
-                temp_info.setAttribute("class", "lock_text");
-                temp_info.innerHTML = "5°C"; //debería depender de getstate
+                    h4_trash.setAttribute("class", "trash_message");
+                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                h4_trash.setAttribute("class", "trash_message");
-                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                    div_trash.appendChild(h4_trash);
 
-                div_trash.appendChild(h4_trash);
-
-                acc2.appendChild(temp_icon);
-                acc2.appendChild(temp_info);
-                acc2.appendChild(div_trash);
+                    acc2.appendChild(temp_icon);
+                    acc2.appendChild(temp_info);
+                    acc2.appendChild(div_trash);
+                });
+                
 
             }else if(typename == 'lamp'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status es: " + data.status); 
+                    console.log("Mi color es: " + data.color); 
+                    console.log("Mi brightness es: " + data.brightness); 
+                    var toggle_img = document.createElement("img");
+                    var toggle_info = document.createElement("p");
+                    var div_trash = document.createElement("div");
+                    var h4_trash = document.createElement("h4");
 
-                var toggle_img = document.createElement("img");
-                var toggle_info = document.createElement("p");
-                var div_trash = document.createElement("div");
-                var h4_trash = document.createElement("h4");
+                    toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                    toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                    toggle_img.setAttribute("class", "toggle_icon");
+                    toggle_img.setAttribute("onclick", "toggle(event,this);");
 
-                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
-                toggle_img.setAttribute("class", "toggle_icon");
-                toggle_img.setAttribute("onclick", "toggle(event,this);");
+                    toggle_info.setAttribute("class", "lock_text");
+                    toggle_info.innerHTML = "Off"; //debería depender de getstate
 
-                toggle_info.setAttribute("class", "lock_text");
-                toggle_info.innerHTML = "Off"; //debería depender de getstate
+                    h4_trash.setAttribute("class", "trash_message");
+                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                h4_trash.setAttribute("class", "trash_message");
-                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                    div_trash.appendChild(h4_trash);
 
-                div_trash.appendChild(h4_trash);
-
-                acc2.appendChild(toggle_img);
-                acc2.appendChild(toggle_info);
-                acc2.appendChild(div_trash);
+                    acc2.appendChild(toggle_img);
+                    acc2.appendChild(toggle_info);
+                    acc2.appendChild(div_trash);
+                });
+                
             }
 
             var div5 = document.createElement("div");
