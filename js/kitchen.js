@@ -8,6 +8,71 @@ var api = class {
   }
 }
 
+api.devices = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/devices/";
+  }
+
+  static addDevice(typeid, name, room) {
+   return $.ajax({
+      url: api.devices.url,
+      method: "POST",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'typeId': typeid, 'name': name, 'meta': "{" + room + "}"},
+       });     
+  }
+    
+    static link(dev_id, room_id) {
+       return $.ajax({
+          url: api.devices.url + dev_id + "/rooms/" +room_id,
+          method: "POST",
+          dataType: "json",
+          timeout: api.timeout
+           });
+      }
+  static getDevices() {
+    return $.ajax({
+      url: api.devices.url ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices; //.map(item => item.name);
+        });      
+  }
+    static deleteDevice(id) {
+    return $.ajax({
+      url: api.devices.url + id,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout
+       })   
+  }
+
+    static deleteDevice(deviceId) {
+   return $.ajax({
+      url: api.devices.url + deviceId,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout,
+       })
+       
+     
+  }
+
+      static getAllDevices() {
+   return $.ajax({
+      url: api.devices.url,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  } 
+}
+
 api.rooms = class {
   static get url() {
     return "http://127.0.0.1:8080/api/rooms/";
@@ -21,9 +86,28 @@ api.rooms = class {
       timeout: api.timeout,
        }).then(function(data) {
            return data.rooms; //.map(item => item.name);
-        });
-       
-     
+        });      
+  }
+    static getRoomDevices(id) {
+       return $.ajax({
+          url: api.rooms.url + id + "/devices/",
+          method: "GET",
+          dataType: "json",
+          timeout: api.timeout,
+           }).then(function(data) {
+               return data.devices; //.map(item => item.name);
+            });      
+      }
+    
+    static getRoom(id) {
+   return $.ajax({
+      url: api.rooms.url + id,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.room; //.map(item => item.name);
+        });      
   }
 }
 
@@ -56,432 +140,177 @@ api.devicetypes = class {
   
 }
 
-api.devices = class {
-  static get url() {
-    return "http://127.0.0.1:8080/api/devices/";
-  }
-    static getState(id) {
-   return $.ajax({
-      url: api.devices.url + id + "/getState",
-      method: "PUT",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data.result;
-        });  
-  } 
-    static getAllDevices() {
-   return $.ajax({
-      url: api.devices.url,
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data.devices;
-        });  
-  } 
-   static getDeviceName(id) {
-   return $.ajax({
-      url: api.devices.url + id,
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data;
-        });  
-  } 
-    
-    static getDevices(id) {
-   return $.ajax({
-      url: api.devices.url + id,
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data;
-        });  
-  } 
-    
-    
-    static getDevicesID() {
-   return $.ajax({
-      url: "http://127.0.0.1:8080/api/devicetypes",
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data.devices;
-        });  
-  } 
-    
-    static getDevicesForType(id) {
-   return $.ajax({
-      url: "http://127.0.0.1:8080/api/devices/devicetypes/" + id ,
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data.devices;
-        });  
-  }
-    
-    static getDeviceActions(id) {
-   return $.ajax({
-      url: "http://127.0.0.1:8080/api/devicetypes/" + id ,
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data.device.actions;
-        });  
-  } 
-    
-    static addDevice(typeid, name, room) {
-   return $.ajax({
-      url: api.devices.url,
-      method: "POST",
-      dataType: "json",
-      timeout: api.timeout,
-       data: {'typeId': typeid, 'name': name, 'meta': "{" + room + "}"},
-       });     
-  }
-    
-    static link(dev_id, room_id) {
-       return $.ajax({
-          url: api.devices.url + dev_id + "/rooms/" +room_id,
-          method: "POST",
-          dataType: "json",
-          timeout: api.timeout
-           });
-      }
-  static getDevices() {
-    return $.ajax({
-      url: api.devices.url ,
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data.devices; //.map(item => item.name);
-        });      
-  }
-
-      static deleteDevice(deviceId) {
-   return $.ajax({
-      url: api.devices.url + deviceId,
-      method: "DELETE",
-      dataType: "json",
-      timeout: api.timeout,
-       })
-       
-     
-  }
-}
-
-
-//favorite
-
-function fav(event, heart){
-    event.stopPropagation();
-    if (heart.getAttribute('src') == "Iconos/heart.png")
-                {
-                    heart.src = "Iconos/heart_coloured4.png";
-                }
-                else
-                {
-                    heart.src = "Iconos/heart.png";
-                }
-}
-
-function stat(event, status){
-    //event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/closed.png")
-                {
-                    status.src = "Iconos/open.png";
-                     status.nextElementSibling.innerHTML = 'Status: Open';
-                }
-                else
-                {
-                    status.src = "Iconos/closed.png";
-                    status.nextElementSibling.innerHTML = 'Status: Closed';
-                }
-}
-
 function lock(event, locking){
     event.stopPropagation();
     if (locking.getAttribute('src') == "Iconos/locked.png")
                 {
                     locking.src = "Iconos/unlocked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Unlocked";
+                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = "  Unlocked";
                 }
                 else
                 {
                     locking.src = "Iconos/locked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Locked";
+                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = "  Locked";
                 }
 }
 
-function toggle(event, toggling){
+/*
+
+function trash(event, trashcan){
     event.stopPropagation();
-    if (toggling.getAttribute('src') == "Iconos/toggle_off.png")
+    if (trashcan.getAttribute('src') == "Iconos/tacho.png")
                 {
-                    toggling.src = "Iconos/toggle_on.png";
-                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " On";
-                }
-                else
-                {
-                    toggling.src = "Iconos/toggle_off.png";
-                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Off";
+                    //trashcan.src = "Iconos/warning.png"; //this works ok
+                    trashcan.style.visibility = "hidden";
+                    var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
+                    heart.style.visibility = "hidden";
+                    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
+                    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
+                    lck_icon.style.visibility = "hidden";
+                    lck.style.visibility = "hidden";
+                    var message = trashcan.closest('div').parentNode.parentNode.querySelector('.trash_message');
+                    message.style.visibility = "visible";
+                    var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
+                    yes.style.visibility = "visible";
+                    var no = trashcan.closest('div').parentNode.querySelector('.no_icon');
+                    no.style.visibility = "visible";
+                    
                 }
 }
 
-function change_blind_status(event, status){
+
+function no(event, noicon){
     event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/blind_down.png")
-                {
-                    status.src = "Iconos/blind_up.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_up_status.png";
-                    status.nextElementSibling.innerHTML = 'Status: Up';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Up";
-
-                }
-                else
-                {
-                    status.src = "Iconos/blind_down.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_down_status.png";
-                    status.nextElementSibling.innerHTML = 'Status: Down';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Down";
-                }
+    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
+    trashcan.src = "Iconos/tacho.png";
+    trashcan.style.visibility = "visible";
+    noicon.style.visibility = "hidden";
+    var message = noicon.closest('div').parentNode.parentNode.querySelector('.trash_message');
+    message.style.visibility = "hidden";
+    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
+    yes.style.visibility = "hidden";
+    var heart = noicon.closest('div').parentNode.parentNode.querySelector('.fave_icon');
+    heart.style.visibility = "visible";
+    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
+    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
+    lck_icon.style.visibility = "visible";
+    lck.style.visibility = "visible";
+    
+    
 }
 
-function change_blind_status_from_acc(event, status){
+function yes(event, yesicon){
+    
     event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/blind_down_status.png")
-                {
-                    status.src = "Iconos/blind_up_status.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_up.png";
-                    status.nextElementSibling.innerHTML = ' Up';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Up";
-
-                }
-                else
-                {
-                    status.src = "Iconos/blind_down_status.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_down.png";
-                    status.nextElementSibling.innerHTML = ' Down';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Down";
-                }
+    yesicon.closest('div').parentNode.parentNode.nextElementSibling.remove();
+    yesicon.closest('div').parentNode.parentNode.remove();
+    api.devices.getDevices().done(function(data){
+        $.each(data, function(r, item3){
+        if(yesicon.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML == item3.name){
+                api.devices.deleteDevice(item3.id);
+              }
+       });
+  });
 }
 
-function change_lock_status(event, status){
+*/
+
+
+function add_device(event, name) {
+                    
+                api.rooms.getRooms().done(function(data) {
+
+                            $.each(data, function(i, item){
+                                if(item.name.toUpperCase() == document.getElementById("title").innerHTML.toUpperCase()){
+                                    console.log("encontre el room ");
+                                    api.devicetypes.getDeviceTypes().done(function(data) {
+                                        $.each(data, function(j, item2){
+                                            if(item2.name.toUpperCase() == $('#room_input').val().toUpperCase()){
+                                               api.devices.addDevice(item2.id,$('#device_input').val(),item.name).done(function(data) {
+                                                   api.devices.getDevices().done(function(data){
+                                                       $.each(data, function(r, item3){
+                                                       if($('#device_input').val() == item3.name){
+                                                           console.log("VOY A LINKEAR");
+                                                           api.devices.link(item3.id, item.id).done(function(data){
+                                                            onPageLoad();
+                                                           });
+                                                       }
+                                                       });
+                                                   });
+                                                   
+                                               });
+                                                
+                                               }
+                                            
+                                        });
+                                        
+                                    });
+                                    
+                                }
+                            });
+                });
+              //  document.getElementById("mymodal").modal('hide');
+                //$(this).dialog('close');
+}
+
+//edit room name
+function pencil_display(event, title){
+
+    var pencil = title.closest('div').querySelector('.pencil_icon');
+    pencil.style.visibility = "visible";
+    
+}
+
+function pencil_out(event, title){
+    
+
+   var pencil = title.closest('div').querySelector('.pencil_icon');
+    pencil.style.visibility = "hidden";
+    
+}
+
+function edit_nameRoom(event, name) {
     event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/locked_inside.png")
-                {
-                    status.src = "Iconos/unlocked_inside.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/unlocked.png";
-                    status.nextElementSibling.innerHTML = ' Status: Unlocked';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Unlocked";
+    var pencil = name.nextElementSibling;
+    pencil.style.visibility = "hidden";    
+    var add = name.nextElementSibling.nextElementSibling.nextElementSibling;
+    add.style.visibility = "hidden";
+    name.style.visibility = "hidden";
+    var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
+    input_new_name.style.visibility = "visible";
 
-                }
-                else
-                {
-                    status.src = "Iconos/locked_inside.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/locked.png";
-                    status.nextElementSibling.innerHTML = ' Status: Locked';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
-                }
+    $(this).click( function()
+        { change_nameRoom(event, document.getElementsByClassName("new_room_name")[0]); } );
+    
 }
 
-function change_lock_status_from_acc(event, status){
+function change_nameRoom(event, element) {
     event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/locked.png")
-                {
-                    status.src = "Iconos/unlocked.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/unlocked_inside.png";
-                    status.nextElementSibling.innerHTML = ' Unlocked';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Unlocked";
-
-                }
-                else
-                {
-                    status.src = "Iconos/locked.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked.png";
-                    status.nextElementSibling.innerHTML = ' Locked';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Locked";
-                }
+    var name_input = element;
+    var name = name_input.value;
+    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
+    new_name.innerHTML = name;
+    var add = element.parentNode.parentNode.nextElementSibling;
+    add.style.visibility = "visible";
+    name_input.style.visibility = "hidden";
+    new_name.style.visibility = "visible";
+    name_input.style.backgroundColor = "#bbb"
 }
 
-function change_toggle_status(event, status){
+function input_nameRoom(event, name) {
     event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/toggle_inside_off.png")
-                {
-                    status.src = "Iconos/toggle_on.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_on.png";
-                    status.nextElementSibling.innerHTML = ' Status: On';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " On";
-
-                }
-                else
-                {
-                    status.src = "Iconos/toggle_inside_off.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_off.png";
-                    status.nextElementSibling.innerHTML = ' Status: Off';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Off";
-                }
+    name.style.backgroundColor = "transparent";
+    $(this).click( function()
+        { change_nameRoom(event, name); } );
+    
+    $(name).keydown(function(event){
+        if(event.keyCode == 13){
+            change_nameRoom(event, name);
+        }
+    }); 
 }
-
-function change_toggle_status_from_acc(event, status){
-    event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/toggle_on.png")
-                {
-                    status.src = "Iconos/toggle_off.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_inside_off.png";
-                    status.nextElementSibling.innerHTML = ' Off';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Off";
-
-                }
-                else
-                {
-                    status.src = "Iconos/toggle_on.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_on.png";
-                    status.nextElementSibling.innerHTML = ' On';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: On";
-                }
-}
-
-function change_air_temp_status(event, status){
-    event.stopPropagation();
-
-    if(status.getAttribute('src') == "Iconos/arrow_down.png")
-                {
-                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,2)) > 18) {
-                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,2))-1).toString() + "°C";
-                  }
-                }
-                else
-                {
-                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,2)) < 38) {
-                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,2))+1).toString() + "°C";
-                  }
-                }
-}
-
-function change_air_mode(event, status){
-    event.stopPropagation();
-
-    if(status.value == "Cool")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/cool.png");
-                }
-                else if(status.value == "Heat")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/heat.png");
-                }
-                else
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fan.png");
-                }
-}
-
-
-function change_fridge_freezer_temp(event, status){
-    event.stopPropagation();
-    var val;
-
-    if(status.getAttribute('src') == "Iconos/arrow_up.png")
-      val = status.previousElementSibling.innerHTML.substr(0,3);
-    else
-      val = status.nextElementSibling.innerHTML.substr(0,3);
-
-    if(val.charAt(2) === '°') {
-          if(status.getAttribute('src') == "Iconos/arrow_up.png") {
-            if(val.substr(0,2) == "-9") {
-              status.previousElementSibling.innerHTML = "-8°C";
-            }
-          }
-          else
-          {
-            if(val.substr(0,2) == "-8") {
-              status.nextElementSibling.innerHTML = "-9°C";
-            }
-            else if(val.substr(0,2) == "-9") {
-              status.nextElementSibling.innerHTML = "-10°C";
-            }
-          }
-    } else {
-          if(status.getAttribute('src') == "Iconos/arrow_up.png") {    
-            status.previousElementSibling.innerHTML = (parseInt(val)+1).toString() + "°C";
-          }
-          else {
-            if(val != "-20")
-              status.nextElementSibling.innerHTML = (parseInt(val)-1).toString() + "°C";
-          }
-    }
-}
-
-//  falta cambiar temperatura de accordion
-function change_fridge_temp(event, status){
-    event.stopPropagation();
-
-    if(status.getAttribute('src') == "Iconos/arrow_down.png")
-                {
-                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,1)) > 2) {
-                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,1))-1).toString() + "°C";
-                  }
-                }
-                else
-                {
-                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,1)) < 8) {
-                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,1))+1).toString() + "°C";
-                  }
-                }
-}
-
-function change_fridge_mode(event, status){
-    event.stopPropagation();
-
-    if(status.value == "Default")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fridge_default.png");
-                }
-                else if(status.value == "Vacation")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/vacation.png");
-                }
-                else
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/party.png");
-                }
-}
-
-//FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM, OVEN
-
-function trash(event, tacho){
-    var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
-    var deviceid = "";
-    //window.localStorage.clear();
-    window.localStorage.setItem("devicename", devicename);
-    api.devices.getAllDevices().done(function(data){
-        $.each(data, function(i, item){
-            if(item.name == devicename){
-                deviceid = item.id;
-                document.getElementById("msg-tag").innerHTML = "You are about to delete device \'"+devicename+ "\'"
-                window.localStorage.setItem("device_id2", deviceid);
-            }
-        });
-    });  
-}
-
-function delete_device(event, confirm){
-    var deviceid = window.localStorage.getItem("device_id2");
-    console.log("estoy aca" + deviceid);
-    api.devices.deleteDevice(deviceid).done(function(data){
-        onPageLoad(); 
-        $('#delete_device_popup').modal('hide');
-    });
-};
 
 //edit device name
-
 function pencil2_display(event, title){
 
     var pencil = title.closest('div').querySelector('.pencil2_icon');
@@ -496,6 +325,7 @@ function pencil2_out(event, title){
     pencil.style.visibility = "hidden";
     
 }
+
 
 function edit_name(event, name) {
     event.stopPropagation();
@@ -536,40 +366,74 @@ function input_name(event, name) {
 }
 
 
-//edit room name
-
-function pencil2_displayRoom(event, title){
-    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
-    pencil.style.visibility = "visible";
-    
-}
-
-function pencil2_outRoom(event, title){
-    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
-    pencil.style.visibility = "hidden";
-    
-}
-
-function edit_room(event, room) {
+function fav(event, heart){
     event.stopPropagation();
-    var pencil = room.nextElementSibling;
-    pencil.style.visibility = "hidden";
-    room.style.visibility = "hidden";
-    var select_new_room = room.nextElementSibling.nextElementSibling.children[0].children[0];
-    select_new_room.style.visibility = "visible";
+    if (heart.getAttribute('src') == "Iconos/heart.png")
+                {
+                    heart.src = "Iconos/heart_coloured4.png";
+                }
+                else
+                {
+                    heart.src = "Iconos/heart.png";
+                }
+}
+
+function trash(event, trashcan){
+    event.stopPropagation();
+    if (trashcan.getAttribute('src') == "Iconos/tacho.png")
+                {
+                    //trashcan.src = "Iconos/warning.png"; //this works ok
+                    trashcan.style.visibility = "hidden";
+                    var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
+                    heart.style.visibility = "hidden";
+                    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
+                    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
+                    lck_icon.style.visibility = "hidden";
+                    lck.style.visibility = "hidden";
+                    var message = trashcan.closest('div').parentNode.parentNode.querySelector('.trash_message');
+                    message.style.visibility = "visible";
+                    var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
+                    yes.style.visibility = "visible";
+                    var no = trashcan.closest('div').parentNode.querySelector('.no_icon');
+                    no.style.visibility = "visible";
+                    
+                }
+}
+
+function no(event, noicon){
+    event.stopPropagation();
+    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
+    trashcan.src = "Iconos/tacho.png";
+    trashcan.style.visibility = "visible";
+    noicon.style.visibility = "hidden";
+    var message = noicon.closest('div').parentNode.parentNode.querySelector('.trash_message');
+    message.style.visibility = "hidden";
+    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
+    yes.style.visibility = "hidden";
+    var heart = noicon.closest('div').parentNode.parentNode.querySelector('.fave_icon');
+    heart.style.visibility = "visible";
+    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
+    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
+    lck_icon.style.visibility = "visible";
+    lck.style.visibility = "visible";
+    
     
 }
 
-function select_room(event, new_room){
+function yes(event, yesicon){
+    
     event.stopPropagation();
-    var room = new_room;
-    var room_name = room.parentNode.parentNode.previousElementSibling.previousElementSibling;
-    room_name.innerHTML = room.value;
-    room.style.visibility = "hidden";
-    room_name.style.visibility = "visible";
-}
+    yesicon.closest('div').parentNode.parentNode.nextElementSibling.remove();
+    yesicon.closest('div').parentNode.parentNode.remove();
+      api.devices.getDevices().done(function(data){
+         $.each(data, function(r, item3){
+        if(yesicon.closest('div').parentNode.parentNode.querySelector('h3').innerHTML == item3.name){
+                api.devices.deleteDevice(item3.id);
+              }
+       });
+  });
 
-//search bar
+}
 
 function searching() {
     // Declare variables
@@ -591,435 +455,352 @@ function searching() {
     }
 }
 
-//add door
-
 $(document).ready(function() {
     onPageLoad();
 });
+
+
 function onPageLoad(){
-    var myNode = document.getElementById("devices_list");
+      var myNode = document.getElementById("devices_list");
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
     }
-    var typeid = window.localStorage.getItem("type_id");
-//    console.log("desde doors.js tengo typeid = " + typeid);
-    var typename = window.localStorage.getItem("type_name");
-    var logo = document.getElementById("deviceicon");
-    var brd = document.getElementById("breadcrumbfinal");
-    var ttl = document.getElementById("title");
-    if(typename == 'door'){ //esto es para el logo y el titulo
-        logo.setAttribute("src","Iconos/Doors.png");
-        brd.innerHTML = "Doors";
-        ttl.innerHTML = "Doors";
-    }else if(typename =='ac'){
-        logo.setAttribute("src","Iconos/AirConditioners2.png");
-        brd.innerHTML = "Air Conditioners";
-        ttl.innerHTML = "Air Conditioners";
-    }else if(typename == 'oven'){
-        logo.setAttribute("src","Iconos/Ovens3.png");
-        brd.innerHTML = "Ovens";
-        ttl.innerHTML = "Ovens";
-    }else if(typename == 'alarm'){
-        logo.setAttribute("src","Iconos/Alarms.png");
-        brd.innerHTML = "Alarms";
-        ttl.innerHTML = "Alarms";
-    }else if(typename == 'blind'){
-        logo.setAttribute("src","Iconos/Curtains.png");
-        brd.innerHTML = "Curtains";
-        ttl.innerHTML = "Curtains";
-    }else if(typename == 'refrigerator'){
-        logo.setAttribute("src","Iconos/Fridges2.png");
-        brd.innerHTML = "Fridges";
-        ttl.innerHTML = "Fridges";
-    }else if(typename == 'lamp'){
-        logo.setAttribute("src","Iconos/Lights2.png");
-        brd.innerHTML = "Lights";
-        ttl.innerHTML = "Lights";
-    }
-    api.devices.getDevicesForType(typeid).done(function(data) {
-        $.each(data, function(i, item){ //estoy iterando por cada elemento
-             var list = document.getElementById("devices_list");
-             var elem = document.createElement("div");
-             elem.setAttribute("class", "accordion");
-             var acc1 = document.createElement("div");
-             var acc2 = document.createElement("div");
-             var acc3 = document.createElement("div");
-             acc1.setAttribute("class", "accordion1");
-             acc2.setAttribute("class", "accordion2");
-             acc3.setAttribute("class", "accordion3");
+        var roomid = window.localStorage.getItem("room_id");
+        api.rooms.getRoom(roomid).done(function(data){
+        console.log(data.name);
+        console.log("THIS IS A " + data.meta.replace("{","").replace("}","").split(',')[0]);
+        document.getElementById("title").innerHTML = data.name;
+        var roomtype = data.meta.replace("{","").replace("}","").split(',')[0];
+        var img = document.getElementById("deviceicon");
+        if(roomtype == "bathroom"){
+                        img.setAttribute("src", "Iconos/bathroom2.png"); 
+                        }else if(roomtype == "garage"){
+                            img.setAttribute("src", "Iconos/garage2.png"); 
+                        }else if(roomtype == "kitchen"){
+                             img.setAttribute("src", "Iconos/kitchen1.png");      
+                        }else if(roomtype == "garden"){
+                            img.setAttribute("src", "Iconos/jardin4.png");   
+                        }else if(roomtype == "laundry"){
+                            img.setAttribute("src", "Iconos/laundry2.png");      
+                        }else if(roomtype == "bedroom"){
+                            img.setAttribute("src", "Iconos/Rooms6.png");       
+                        }else{
+                            img.setAttribute("src", "Iconos/other.png");     
+                        }
+    });
+
+    api.rooms.getRooms().done(function(data) {
+        
+        $.each(data, function(i, item){
             
-            var div1 = document.createElement("div");
-            var div2 = document.createElement("div");
-            var h3 = document.createElement("h3");
-            var pencil2 = document.createElement("img");
-            var span = document.createElement("span");
-            var input = document.createElement("input");
+            if(item.name == document.getElementById("title").innerHTML){
+                console.log(item.id);
+                api.rooms.getRoomDevices(item.id).done(function(data) {
+                   $.each(data, function(j, item2){
+                       
+                       var dev_name = item2.name;
+                       var dev_type = "";
+                       api.devicetypes.getDeviceType(item2.typeId).done(function(data) {
+                       dev_type = data.name; 
+                           
+                var list = document.getElementById("devices_list");
+                var elem = document.createElement("div");
+                elem.setAttribute("class", "accordion");
+                var acc1 = document.createElement("div");
+                var acc2 = document.createElement("div");
+                var acc3 = document.createElement("div");
+                acc1.setAttribute("class", "accordion1");
+                acc2.setAttribute("class", "accordion2");
+                acc3.setAttribute("class", "accordion3");
 
-            h3.setAttribute("class", "device_name");
-            h3.innerHTML = item.name;
-            h3.setAttribute("onmouseover", "pencil2_display(event,this);");
-            h3.setAttribute("onmouseout","pencil2_out(event,this);");   
-            h3.setAttribute("onclick","edit_name(event,this);"); 
-            pencil2.setAttribute("src", "Iconos/pencil.png");
-            pencil2.setAttribute("alt", "Pencil;");
-            pencil2.setAttribute("class", "pencil2_icon");
-            input.setAttribute("type", "text");
-            input.setAttribute("value", item.name);
-            input.setAttribute("class", "new_device_name");
-            input.setAttribute("onclick", "input_name(event, this);");
-            div1.setAttribute("class", "name_device");  
-            span.appendChild(input);
-            div2.appendChild(span);
-            div1.appendChild(h3);
-            div1.appendChild(pencil2);
-            div1.appendChild(div2);
+                var div1 = document.createElement("div");
+                var div2 = document.createElement("div");
+                var h3 = document.createElement("h3");
+                var pencil2 = document.createElement("img");
+                var span = document.createElement("span");
+                var input = document.createElement("input");
 
-            var div3 = document.createElement("div");
-            div3.setAttribute("class", "room_door");
-            var p = document.createElement("p");
-            var img_pen = document.createElement("img");
-            img_pen.setAttribute("src", "Iconos/pencil.png");
-            img_pen.setAttribute("alt", "Pencil");
-            img_pen.setAttribute("class", "pencil2_iconRoom");
-            var divRo = document.createElement("div");
-            var spanRo = document.createElement("span");
-            var selRo = document.createElement("select");
-            selRo.setAttribute("type", "text");
-            selRo.setAttribute("value", "Door 1");
-            selRo.setAttribute("class", "new_room");
-            selRo.setAttribute("onclick", "event.stopPropagation();");
-            selRo.setAttribute("onchange", "select_room(event,this)");
+                h3.setAttribute("class", "device_name");
+                h3.innerHTML = dev_name;
+                h3.setAttribute("onmouseover", "pencil2_display(event,this);");
+                h3.setAttribute("onmouseout","pencil2_out(event,this);");   
+                h3.setAttribute("onclick","edit_name(event,this);"); 
+                pencil2.setAttribute("src", "Iconos/pencil.png");
+                pencil2.setAttribute("alt", "Pencil;");
+                pencil2.setAttribute("class", "pencil2_icon");
+                input.setAttribute("type", "text");
+                input.setAttribute("value", dev_name);
+                input.setAttribute("class", "new_device_name");
+                input.setAttribute("onclick", "input_name(event, this);");
+                div1.setAttribute("class", "name_device");
+
+                span.appendChild(input);
+                div2.appendChild(span);
+                div1.appendChild(h3);
+                div1.appendChild(pencil2);
+                div1.appendChild(div2);
+
+                var div3 = document.createElement("div");
+                var p = document.createElement("p");
+                var img_pen = document.createElement("img");
+                img_pen.setAttribute("src", "Iconos/pencil.png");
+                img_pen.setAttribute("alt", "Pencil");
+                img_pen.setAttribute("class", "pencil2_iconRoom");
+                var divRo = document.createElement("div");
+                var spanRo = document.createElement("span");
+                var selRo = document.createElement("select");
+                selRo.setAttribute("type", "text");
+                selRo.setAttribute("value", "Door 1");
+                selRo.setAttribute("class", "new_room");
+                selRo.setAttribute("onclick", "event.stopPropagation();");
+                selRo.setAttribute("onchange", "select_room(event,this)");
             //ESTO DEBERIA SER UNA OPCION POR CADA HABITACION MAS TENER UNA FUNCION Q 
             // SI HACEN CLICK CAMBIE LA HABITACION EN LA BD
             //SI HAY TIEMPO SE HACE SINO ES A MODO ILUSTRATIVO
             // BORRAR ESTE COMENTARIO ANTES DE ENTREGAR
-            var opt1 = document.createElement("option");
-            var opt2 = document.createElement("option");
-            opt1.setAttribute("value", "Kitchen");
-            opt1.innerHTML = "Kitchen";
-            opt2.setAttribute("value", "Garage");
-            opt2.innerHTML = "Garage";
-            selRo.appendChild(opt1);
-            selRo.appendChild(opt2);
-            spanRo.appendChild(selRo);
-            divRo.appendChild(spanRo);
+                var opt1 = document.createElement("option");
+                var opt2 = document.createElement("option");
+                opt1.setAttribute("value", "Kitchen");
+                opt1.innerHTML = "Kitchen";
+                opt2.setAttribute("value", "Garage");
+                opt2.innerHTML = "Garage";
+                selRo.appendChild(opt1);
+                selRo.appendChild(opt2);
+                spanRo.appendChild(selRo);
+                divRo.appendChild(spanRo);
+                p.setAttribute("class", "door_room");
+                p.setAttribute("onmouseover", "pencil2_displayRoom(event,this);");
+                p.setAttribute("onmouseout", "pencil2_outRoom(event,this);");
+                p.innerHTML = dev_type;
 
-            p.setAttribute("class", "door_room");
-            p.setAttribute("onmouseover", "pencil2_displayRoom(event,this);");
-            p.setAttribute("onmouseout", "pencil2_outRoom(event,this);");
-            p.setAttribute("onclick", "edit_room(event,this)");
-            p.innerHTML = item.meta.replace("{","").replace("}","").split(',')[0]; //tomo el nombre de la habitacion
+                div3.appendChild(p);
+                div3.appendChild(divRo);
+                acc1.appendChild(div1);
+                acc1.appendChild(div3);
+                           
+            if(dev_type == 'door'){
 
-            div3.appendChild(p);
-            div3.appendChild(img_pen);
-            div3.appendChild(divRo);
-            acc1.appendChild(div1);
-            acc1.appendChild(div3);
+                var lock_icon2 = document.createElement("img");
+                var lock_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
 
-            if(typename == 'door'){
-                
-                api.devices.getState(item.id).done(function(data){
-                   console.log("Mi state de door es: " + data.status); 
-                    console.log("Mi lock de door es: " + data.lock); 
-                    var lock_icon2 = document.createElement("img");
-                    var lock_info = document.createElement("p");
-                    var div_trash = document.createElement("div");
-                    var h4_trash = document.createElement("h4");
-                    if(data.lock == "locked"){
-                        lock_icon2.setAttribute("src", "Iconos/locked.png"); 
-                        lock_icon2.setAttribute("class", "lock_icon"); 
-                        lock_icon2.setAttribute("alt", "Locked");
-                        lock_info.innerHTML = "Locked";
-                    }else{
-                        lock_icon2.setAttribute("src", "Iconos/unlocked.png"); 
-                        lock_icon2.setAttribute("class", "lock_icon");
-                        lock_icon2.setAttribute("alt", "Unlocked");
-                        lock_info.innerHTML = "Unlocked"; 
-                    }
-                    
-                    lock_icon2.setAttribute("onclick", "change_lock_status_from_acc(event,this);");
+                lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
+                lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
+                lock_icon2.setAttribute("alt", "Locked");
+                lock_icon2.setAttribute("onclick", "lock(event,this);");
 
-                    lock_info.setAttribute("class", "lock_text");
-                    
+                lock_info.setAttribute("class", "lock_text");
+                lock_info.innerHTML = "Locked"; //debería depender de getstate
 
-                    h4_trash.setAttribute("class", "trash_message");
-                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                    div_trash.appendChild(h4_trash);
+                div_trash.appendChild(h4_trash);
 
-                    acc2.appendChild(lock_icon2);
-                    acc2.appendChild(lock_info);
-                    acc2.appendChild(div_trash);
-                });
+                acc2.appendChild(lock_icon2);
+                acc2.appendChild(lock_info);
+                acc2.appendChild(div_trash);
 
-                
+            }else if(dev_type =='ac'){
 
-            }else if(typename =='ac'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status de ac es: " + data.status); 
-                    console.log("Mi tempearatura de ac es: " + data.temperature); 
-                    console.log("Mi mode de ac es: " + data.mode); 
-                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
-                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
-                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
-                    var toggle_img = document.createElement("img");
-                    var toggle_info = document.createElement("p");
-                    var div_trash = document.createElement("div");
-                    var h4_trash = document.createElement("h4");
-                    if(data.status == 'off'){
-                         toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                         toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
-                         toggle_info.setAttribute("class", "lock_text");
-                         toggle_info.innerHTML = "Off"; //debería depender de getstate
-                    }else{
-                         toggle_img.setAttribute("src", "Iconos/toggle_on.png"); //debería depender de getstate
-                         toggle_img.setAttribute("alt", "On"); //debería depender de getstate
-                         toggle_info.setAttribute("class", "lock_text");
-                         toggle_info.innerHTML = "On"; //debería depender de getstate
-                    }
-                   
-                    toggle_img.setAttribute("class", "toggle_icon");
-                    toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
+                var toggle_img = document.createElement("img");
+                var toggle_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
 
-                    
+                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                toggle_img.setAttribute("class", "toggle_icon");
+                toggle_img.setAttribute("onclick", "toggle(event,this);");
 
-                    h4_trash.setAttribute("class", "trash_message");
-                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                toggle_info.setAttribute("class", "lock_text");
+                toggle_info.innerHTML = "Off"; //debería depender de getstate
 
-                    div_trash.appendChild(h4_trash);
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                    acc2.appendChild(toggle_img);
-                    acc2.appendChild(toggle_info);
-                    acc2.appendChild(div_trash);
-                });
-                
+                div_trash.appendChild(h4_trash);
 
-            }else if(typename == 'oven'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi tempearatura es: " + data.temperature); 
-                    console.log("Mi heat  es: " + data.heat); 
-                    console.log("Mi grill   es: " + data.grill); 
-                    console.log("Mi convection  es: " + data.convection); 
-                    var toggle_img = document.createElement("img");
-                    var toggle_info = document.createElement("p");
-                    var div_trash = document.createElement("div");
-                    var h4_trash = document.createElement("h4");
-                    if(data.status == 'off'){
-                        toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                        toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
-                        toggle_info.innerHTML = "Off"; //debería depender de getstate
-                    }else{
-                        toggle_img.setAttribute("src", "Iconos/toggle_on.png"); //debería depender de getstate
-                        toggle_img.setAttribute("alt", "On"); //debería depender de getstate
-                        toggle_info.innerHTML = "On"; //debería depender de getstate
-                    }
-                    
-                    toggle_img.setAttribute("class", "toggle_icon");
-                    toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
+                acc2.appendChild(toggle_img);
+                acc2.appendChild(toggle_info);
+                acc2.appendChild(div_trash);
 
-                    toggle_info.setAttribute("class", "lock_text");
-                    
+            }else if(dev_type == 'oven'){
 
-                    h4_trash.setAttribute("class", "trash_message");
-                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                var toggle_img = document.createElement("img");
+                var toggle_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
 
-                    div_trash.appendChild(h4_trash);
+                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                toggle_img.setAttribute("class", "toggle_icon");
+                toggle_img.setAttribute("onclick", "toggle(event,this);");
 
-                    acc2.appendChild(toggle_img);
-                    acc2.appendChild(toggle_info);
-                    acc2.appendChild(div_trash);
-                });
-                
+                toggle_info.setAttribute("class", "lock_text");
+                toggle_info.innerHTML = "Off"; //debería depender de getstate
 
-            }else if(typename == 'alarm'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    var alarm_icon = document.createElement("img");
-                    var alarm_info = document.createElement("p");
-                    var div_trash = document.createElement("div");
-                    var h4_trash = document.createElement("h4");
-                    
-                    if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
-                    }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
-                    }
-                        
-                    
-                    alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle(event,this);");
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                    alarm_info.setAttribute("class", "lock_text");
-                    
+                div_trash.appendChild(h4_trash);
 
-                    h4_trash.setAttribute("class", "trash_message");
-                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                acc2.appendChild(toggle_img);
+                acc2.appendChild(toggle_info);
+                acc2.appendChild(div_trash);
 
-                    div_trash.appendChild(h4_trash);
+            }else if(dev_type == 'alarm'){
 
-                    acc2.appendChild(alarm_icon);
-                    acc2.appendChild(alarm_info);
-                    acc2.appendChild(div_trash); 
-                });
-                             
+                var alarm_icon = document.createElement("img");
+                var alarm_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
 
-            }else if(typename == 'blind'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    var blind_icon2 = document.createElement("img");
-                    var blind_info = document.createElement("p");
-                    var div_trash = document.createElement("div");
-                    var h4_trash = document.createElement("h4");
-                    if(data.status == 'opened' || data.status == 'opening'){
-                        blind_icon2.setAttribute("src", "Iconos/blind_up_status.png"); //debería depender de getstate
-                        blind_info.innerHTML = " Up"; //debería depender de getstate
-                    }else{
-                        blind_icon2.setAttribute("src", "Iconos/blind_down_status.png"); //debería depender de getstate
-                        blind_info.innerHTML = " Down"; //debería depender de getstate
-                    }
-                    
-                    blind_icon2.setAttribute("alt", "Up"); //debería depender de getstate
-                    blind_icon2.setAttribute("class", "lock_icon");
-                    blind_icon2.setAttribute("onclick", "change_blind_status_from_acc(event,this);");
+                alarm_icon.setAttribute("src", "Iconos/alarm_stat_off.png"); //debería depender de getstate
+                alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                alarm_icon.setAttribute("alt", "Alarm Status");
+                alarm_icon.setAttribute("onclick", "toggle(event,this);");
 
-                    blind_info.setAttribute("class", "lock_text");
-                    
+                alarm_info.setAttribute("class", "lock_text");
+                alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
 
-                    h4_trash.setAttribute("class", "trash_message");
-                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                    div_trash.appendChild(h4_trash);
+                div_trash.appendChild(h4_trash);
 
-                    acc2.appendChild(blind_icon2);
-                    acc2.appendChild(blind_info);
-                    acc2.appendChild(div_trash);
-                });
-                
+                acc2.appendChild(alarm_icon);
+                acc2.appendChild(alarm_info);
+                acc2.appendChild(div_trash);              
 
-            }else if(typename == 'refrigerator'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi mode es: " + data.mode); 
-                    console.log("Mi temperature es: " + data.temperature); 
-                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
-                    var temp_icon = document.createElement("img");
-                    var temp_info = document.createElement("p");
-                    var div_trash = document.createElement("div");
-                    var h4_trash = document.createElement("h4");
+            }else if(dev_type == 'blind'){
 
-                    temp_icon.setAttribute("src", "Iconos/temperature.png");
-                    temp_icon.setAttribute("alt", "Temperature");
-                    temp_icon.setAttribute("class", "temperature_icon_status");
+                var blind_icon2 = document.createElement("img");
+                var blind_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
 
-                    temp_info.setAttribute("class", "lock_text");
-                    temp_info.innerHTML = "5°C"; //debería depender de getstate
+                blind_icon2.setAttribute("src", "Iconos/blind_up_status.png"); //debería depender de getstate
+                blind_icon2.setAttribute("alt", "Up"); //debería depender de getstate
+                blind_icon2.setAttribute("class", "lock_icon");
+                blind_icon2.setAttribute("onclick", "change_blind_status_from_acc(event,this);");
 
-                    h4_trash.setAttribute("class", "trash_message");
-                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                blind_info.setAttribute("class", "lock_text");
+                blind_info.innerHTML = " Up"; //debería depender de getstate
 
-                    div_trash.appendChild(h4_trash);
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
 
-                    acc2.appendChild(temp_icon);
-                    acc2.appendChild(temp_info);
-                    acc2.appendChild(div_trash);
-                });
-                
+                div_trash.appendChild(h4_trash);
 
-            }else if(typename == 'lamp'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi color es: " + data.color); 
-                    console.log("Mi brightness es: " + data.brightness); 
-                    var toggle_img = document.createElement("img");
-                    var toggle_info = document.createElement("p");
-                    var div_trash = document.createElement("div");
-                    var h4_trash = document.createElement("h4");
-                    if(data.status == 'off'){
-                        toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
-                        toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
-                        toggle_info.innerHTML = "Off"; //debería depender de getstate
-                    }else{
-                        toggle_img.setAttribute("src", "Iconos/toggle_on.png"); //debería depender de getstate
-                        toggle_img.setAttribute("alt", "On"); //debería depender de getstate
-                        toggle_info.innerHTML = "On"; //debería depender de getstate
-                    }
-                    
-                    toggle_img.setAttribute("class", "toggle_icon");
-                    toggle_img.setAttribute("onclick", "change_toggle_status_from_acc(event,this);");
+                acc2.appendChild(blind_icon2);
+                acc2.appendChild(blind_info);
+                acc2.appendChild(div_trash);
 
-                    toggle_info.setAttribute("class", "lock_text");
-                    
+            }else if(dev_type == 'refrigerator'){
 
-                    h4_trash.setAttribute("class", "trash_message");
-                    h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+                var temp_icon = document.createElement("img");
+                var temp_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
 
-                    div_trash.appendChild(h4_trash);
+                temp_icon.setAttribute("src", "Iconos/temperature.png");
+                temp_icon.setAttribute("alt", "Temperature");
+                temp_icon.setAttribute("class", "temperature_icon_status");
 
-                    acc2.appendChild(toggle_img);
-                    acc2.appendChild(toggle_info);
-                    acc2.appendChild(div_trash);
-                });
-                
+                temp_info.setAttribute("class", "lock_text");
+                temp_info.innerHTML = "5°C"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(temp_icon);
+                acc2.appendChild(temp_info);
+                acc2.appendChild(div_trash);
+
+            }else if(dev_type == 'lamp'){
+
+                var toggle_img = document.createElement("img");
+                var toggle_info = document.createElement("p");
+                var div_trash = document.createElement("div");
+                var h4_trash = document.createElement("h4");
+
+                toggle_img.setAttribute("src", "Iconos/toggle_off.png"); //debería depender de getstate
+                toggle_img.setAttribute("alt", "Off"); //debería depender de getstate
+                toggle_img.setAttribute("class", "toggle_icon");
+                toggle_img.setAttribute("onclick", "toggle(event,this);");
+
+                toggle_info.setAttribute("class", "lock_text");
+                toggle_info.innerHTML = "Off"; //debería depender de getstate
+
+                h4_trash.setAttribute("class", "trash_message");
+                h4_trash.innerHTML = "You are about to delete this device. Continue? ";
+
+                div_trash.appendChild(h4_trash);
+
+                acc2.appendChild(toggle_img);
+                acc2.appendChild(toggle_info);
+                acc2.appendChild(div_trash);
             }
 
-            var div5 = document.createElement("div");
-            var div6 = document.createElement("div");
-            var div7 = document.createElement("div");
-            var div8 = document.createElement("div");
-            var div9 = document.createElement("div");
-            var arrow = document.createElement("img");
-            var heart = document.createElement("img");
-            var trash = document.createElement("img");
-            var yes = document.createElement("img");
-            var no = document.createElement("img");
+                var div5 = document.createElement("div");
+                var div6 = document.createElement("div");
+                var div7 = document.createElement("div");
+                var div8 = document.createElement("div");
+                var div9 = document.createElement("div");
+                var arrow = document.createElement("img");
+                var heart = document.createElement("img");
+                var trash = document.createElement("img");
+                var yes = document.createElement("img");
+                var no = document.createElement("img");
 
-            arrow.setAttribute("src", "Iconos/arrow_down.png");
-            arrow.setAttribute("alt", "Expand");
-            arrow.setAttribute("class", "arrow_icon");  
-            heart.setAttribute("src", "Iconos/heart.png");
-            heart.setAttribute("alt", "Fave");
-            heart.setAttribute("class", "fave_icon");
-            heart.setAttribute("onclick", "fav(event,this);");
-            trash.setAttribute("src", "Iconos/tacho.png");
-            trash.setAttribute("alt", "Delete");
-            trash.setAttribute("class", "delete_icon");
-            trash.setAttribute("onclick", "trash(event,this);");
-            trash.setAttribute("data-toggle", "modal");
-            trash.setAttribute("data-target", "#delete_device_popup");
-            yes.setAttribute("src", "Iconos/yes.png");
-            yes.setAttribute("alt", "Yes");
-            yes.setAttribute("class", "yes_icon");
-            yes.setAttribute("onclick", "yes(event,this);");
-            no.setAttribute("src", "Iconos/no.png");
-            no.setAttribute("alt", "No");
-            no.setAttribute("class", "no_icon");
-            no.setAttribute("onclick", "no(event,this);");
+                arrow.setAttribute("src", "Iconos/arrow_down.png");
+                arrow.setAttribute("alt", "Expand");
+                arrow.setAttribute("class", "arrow_icon");  
+                heart.setAttribute("src", "Iconos/heart.png");
+                heart.setAttribute("alt", "Fave");
+                heart.setAttribute("class", "fave_icon");
+                heart.setAttribute("onclick", "fav(event,this);");
+                trash.setAttribute("src", "Iconos/tacho.png");
+                trash.setAttribute("alt", "Delete");
+                trash.setAttribute("class", "delete_icon");
+                trash.setAttribute("onclick", "trash(event,this);");
+                trash.setAttribute("onclick", "trash(event,this);");
+                trash.setAttribute("onclick", "trash(event,this);"); 
+                trash.setAttribute("data-toggle", "modal");
+                trash.setAttribute("data-target", "#delete_device_popup");
+                yes.setAttribute("src", "Iconos/yes.png");
+                yes.setAttribute("alt", "Yes");
+                yes.setAttribute("class", "yes_icon");
+                yes.setAttribute("onclick", "yes(event,this);");
+                no.setAttribute("src", "Iconos/no.png");
+                no.setAttribute("alt", "No");
+                no.setAttribute("class", "no_icon");
+                no.setAttribute("onclick", "no(event,this);");
 
-            div5.appendChild(arrow);
-            div6.appendChild(heart);
-            div7.appendChild(trash);
-            div8.appendChild(yes);
-            div9.appendChild(no);
-            acc3.appendChild(div5);
-            acc3.appendChild(div6);
-            acc3.appendChild(div7);
-            acc3.appendChild(div8);
-            acc3.appendChild(div9);
+                div5.appendChild(arrow);
+                div6.appendChild(heart);
+                div7.appendChild(trash);
+                div8.appendChild(yes);
+                div9.appendChild(no);
+                acc3.appendChild(div5);
+                acc3.appendChild(div6);
+                acc3.appendChild(div7);
+                acc3.appendChild(div8);
+                acc3.appendChild(div9);
 
-            elem.appendChild(acc1);
-            elem.appendChild(acc2);
-            elem.appendChild(acc3);
+                elem.appendChild(acc1);
+                elem.appendChild(acc2);
+                elem.appendChild(acc3);
 
-            var panel = document.createElement("div");
-            panel.setAttribute("class", "panel");
-            
-            if(typename == 'door'){
-                api.devices.getState(item.id).done(function(data){
-                    
+                var panel = document.createElement("div");
+                panel.setAttribute("class", "panel");
+
+                if(dev_type == 'door'){
+
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1034,21 +815,13 @@ function onPageLoad(){
 
                     var lock_icon = document.createElement("img");
                     var p1 = document.createElement("p");
-                    if(data.lock == "locked"){
-                        lock_icon.setAttribute("src", "Iconos/locked_inside.png"); //debería depender de getstatus
-                        lock_icon.setAttribute("alt", "Locked"); //debería depender de getstatus
-                         p1.innerHTML = "Status: Locked"; //debería depender de getstatus
-                    }else{
-                        lock_icon.setAttribute("src", "Iconos/unlocked_inside.png"); //debería depender de getstatus
-                        lock_icon.setAttribute("alt", "Unlocked"); //debería depender de getstatus
-                        p1.innerHTML = "Status: Unlocked"; //debería depender de getstatus
-                    }
-                    
+
+                    lock_icon.setAttribute("src", "Iconos/locked_inside.png"); //debería depender de getstatus
+                    lock_icon.setAttribute("alt", "Locked"); //debería depender de getstatus
                     lock_icon.setAttribute("class", "status_icon");
-                    lock_icon.setAttribute("onclick", "change_lock_status(event,this);");
 
                     p1.setAttribute("class", "stat_text");
-                   
+                    p1.innerHTML = "Lock: Locked"; //debería depender de getstatus
 
                     status1.appendChild(lock_icon);
                     status1.appendChild(p1);
@@ -1061,22 +834,14 @@ function onPageLoad(){
 
                     var stat = document.createElement("img");
                     var p2 = document.createElement("p");
-                    if(data.status == "closed"){
-                        stat.setAttribute("src", "Iconos/closed.png"); //debería depender de getstatus
-                        stat.setAttribute("alt", "Closed"); //debería depender de getstatus 
-                        p2.innerHTML = "Status: Closed"; //debería depender de getstatus
-                    }else{
-                        stat.setAttribute("src", "Iconos/open.png"); //debería depender de getstatus
-                        stat.setAttribute("alt", "Open"); //debería depender de getstatus 
-                        p2.innerHTML = "Status: Open"; //debería depender de getstatus
-                    }
-                    
-                    
+
+                    stat.setAttribute("src", "Iconos/closed.png"); //debería depender de getstatus
+                    stat.setAttribute("alt", "Closed"); //debería depender de getstatus
                     stat.setAttribute("class", "status_icon"); //debería depender de getstatus
                     stat.setAttribute("onclick", "stat(event,this);");
 
                     p2.setAttribute("class", "stat_text");
-                    
+                    p2.innerHTML = "Status: Closed"; //debería depender de getstatus
 
                     status2.appendChild(stat);
                     status2.appendChild(p2);
@@ -1089,17 +854,9 @@ function onPageLoad(){
 
                     panel.appendChild(panel1);
                     panel.appendChild(panel2);
-                });
-                
 
-            }else if(typename =='ac'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status de ac es: " + data.status); 
-                    console.log("Mi tempearatura de ac es: " + data.temperature); 
-                    console.log("Mi mode de ac es: " + data.mode); 
-                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
-                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
-                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
+                }else if(dev_type =='ac'){
+
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1122,24 +879,13 @@ function onPageLoad(){
 
                     var toggle_icon = document.createElement("img");
                     var stat = document.createElement("p");
-                    if(data.status == 'off'){
-                        toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
-                        toggle_icon.setAttribute("alt", "Off");   //idem
-                        toggle_icon.setAttribute("class", "toggle_inside_icon");
-                        toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
-                        stat.setAttribute("class", "stat_text");
-                        stat.innerHTML = "Status: Off"; //gettearlo con get status
-                    }else{
-                        toggle_icon.setAttribute("src", "Iconos/toggle_on.png");  //gettearlo con get status
-                        toggle_icon.setAttribute("alt", "Off");   //idem
-                        toggle_icon.setAttribute("class", "toggle_inside_icon");
-                        toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
+                    toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
+                    toggle_icon.setAttribute("alt", "Off");   //idem
+                    toggle_icon.setAttribute("class", "toggle_inside_icon");
 
-                        stat.setAttribute("class", "stat_text");
-                        stat.innerHTML = "Status: On"; //gettearlo con get status
-                    }
-                    
+                    stat.setAttribute("class", "stat_text");
+                    stat.innerHTML = "Status: Off"; //gettearlo con get status
 
                     status6.appendChild(toggle_icon);
                     status6.appendChild(stat);
@@ -1162,16 +908,14 @@ function onPageLoad(){
                     arrow_down.setAttribute("src", "Iconos/arrow_down.png");
                     arrow_down.setAttribute("alt", "Temperature Down");
                     arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
-                    arrow_down.setAttribute("onclick", "change_air_temp_status(event, this);");
 
                     p2.setAttribute("class", "stat_text");
                     p2.setAttribute("class", "number_info");
-                    p2.innerHTML = data.temperature + "°C ";
+                    p2.innerHTML = "20°C "; //esto debería ser un getstatus
 
                     arrow_up.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up.setAttribute("alt", "Temperature Up");
                     arrow_up.setAttribute("class", "arrow_change_up_icon");
-                    arrow_up.setAttribute("onclick", "change_air_temp_status(event, this);");
 
                     status1.appendChild(temp);
                     status1.appendChild(p1);
@@ -1190,39 +934,19 @@ function onPageLoad(){
                     var option4 = document.createElement("option");
                     var option5 = document.createElement("option");
 
-                    if(data.mode == 'cool'){
-                        mode_icon.setAttribute("src", "Iconos/cool.png");
-                        mode_icon.setAttribute("alt", "Cool");
-                    }else if(data.mode == 'fan'){
-                        mode_icon.setAttribute("src", "Iconos/fan.png"); 
-                        mode_icon.setAttribute("alt", "Fan");
-                    }else{
-                        mode_icon.setAttribute("src", "Iconos/heat.png");
-                        mode_icon.setAttribute("alt", "Cool"); 
-                    }
-
+                    mode_icon.setAttribute("src", "Iconos/cool.png"); //debería ponerse el ícono correspondiente según getstatus
+                    mode_icon.setAttribute("alt", "Cool"); //debería ponerse el alt correspondiente segun getstatus
                     mode_icon.setAttribute("class", "ac_mode_icon");
 
                     p3.setAttribute("class", "stat_text");
                     p3.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
-                    select.setAttribute("onclick", "change_air_mode(event, this);");
+                    option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
+                    option2.innerHTML = "Heat";
+                    option3.innerHTML = "Fan";
 
-                    if(data.mode == 'cool'){
-                        option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
-                        option2.innerHTML = "Heat";
-                        option3.innerHTML = "Fan";
-                    }else if(data.mode == 'heat'){
-                        option1.innerHTML = "Heat"; //debería ponerse la que esté en el getstatus primera
-                        option2.innerHTML = "Cool";
-                        option3.innerHTML = "Fan";
-                    }else{
-                        option1.innerHTML = "Fan"; //debería ponerse la que esté en el getstatus primera
-                        option2.innerHTML = "Heat";
-                        option3.innerHTML = "Cool";
-                    }
-
+                    //quizás conviene variar el orden acá según getstatus
                     select.appendChild(option1);
                     select.appendChild(option2);
                     select.appendChild(option3);
@@ -1256,39 +980,13 @@ function onPageLoad(){
                     p4.innerHTML = "Fan speed: ";
 
                     select2.setAttribute("class", "panel_selector");
+                    option4.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                    option5.innerHTML = "25";
+                    option6.innerHTML = "50";
+                    option7.innerHTML = "75";
+                    option8.innerHTML = "100";
 
-                    if(data.fanSpeed == 'auto'){
-                        option4.innerHTML = "Auto"; 
-                        option5.innerHTML = "25";
-                        option6.innerHTML = "50";
-                        option7.innerHTML = "75";
-                        option8.innerHTML = "100";
-                    }else if(data.fanSpeed == '25'){
-                        option4.innerHTML = "25"; 
-                        option5.innerHTML = "50";
-                        option6.innerHTML = "75";
-                        option7.innerHTML = "100";
-                        option8.innerHTML = "Auto";    
-                    }else if(data.fanSpeed == '50'){
-                        option4.innerHTML = "50"; 
-                        option5.innerHTML = "25";
-                        option6.innerHTML = "75";
-                        option7.innerHTML = "100";
-                        option8.innerHTML = "Auto"; 
-                    }else if(data.fanSpeed == '75'){
-                        option4.innerHTML = "75"; 
-                        option5.innerHTML = "25";
-                        option6.innerHTML = "50";
-                        option7.innerHTML = "100";
-                        option8.innerHTML = "Auto";       
-                    }else{
-                        option4.innerHTML = "100"; 
-                        option5.innerHTML = "25";
-                        option6.innerHTML = "50";
-                        option7.innerHTML = "75";
-                        option8.innerHTML = "Auto";  
-                    }
-
+                    //quizás conviene variar el orden acá según getstatus
                     select2.appendChild(option4);
                     select2.appendChild(option5);
                     select2.appendChild(option6);
@@ -1318,38 +1016,13 @@ function onPageLoad(){
                     p5.innerHTML = "Vertical swing: ";
 
                     select3.setAttribute("class", "panel_selector");
-                    if(data.verticalSwing == "auto"){
-                        option9.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                        option10.innerHTML = "22";
-                        option11.innerHTML = "45";
-                        option12.innerHTML = "67";
-                        option13.innerHTML = "90";
-                    }else if(data.verticalSwing == "22"){
-                        option9.innerHTML = "22"; //debería ponerse la que esté en el getstatus primera
-                        option10.innerHTML = "45";
-                        option10.innerHTML = "67";
-                        option11.innerHTML = "90";
-                        option13.innerHTML = "Auto";    
-                    }else if(data.verticalSwing == "45"){
-                        option9.innerHTML = "45"; //debería ponerse la que esté en el getstatus primera
-                        option10.innerHTML = "22";
-                        option10.innerHTML = "67";
-                        option11.innerHTML = "90";
-                        option13.innerHTML = "Auto";   
-                    }else if(data.verticalSwing == "67"){
-                        option9.innerHTML = "67"; //debería ponerse la que esté en el getstatus primera
-                        option10.innerHTML = "22";
-                        option10.innerHTML = "45";
-                        option11.innerHTML = "90";
-                        option13.innerHTML = "Auto";        
-                    }else{
-                        option9.innerHTML = "90"; //debería ponerse la que esté en el getstatus primera
-                        option10.innerHTML = "22";
-                        option10.innerHTML = "45";
-                        option11.innerHTML = "67";
-                        option13.innerHTML = "Auto";        
-                     }
+                    option9.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                    option10.innerHTML = "22";
+                    option11.innerHTML = "45";
+                    option12.innerHTML = "67";
+                    option13.innerHTML = "90";
 
+                    //quizás conviene variar el orden acá según getstatus
                     select3.appendChild(option9);
                     select3.appendChild(option10);
                     select3.appendChild(option11);
@@ -1380,51 +1053,14 @@ function onPageLoad(){
                     p6.innerHTML = "Horizontal swing: ";
 
                     select4.setAttribute("class", "panel_selector");
+                    option14.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
+                    option15.innerHTML = "-90";
+                    option16.innerHTML = "-45";
+                    option17.innerHTML = "0";
+                    option18.innerHTML = "45";
+                    option19.innerHTML = "90";
 
-                    if(data.horizontalSwing == 'auto'){
-                        option14.innerHTML = "Auto"; //debería ponerse la que esté en el getstatus primera
-                        option15.innerHTML = "-90";
-                        option16.innerHTML = "-45";
-                        option17.innerHTML = "0";
-                        option18.innerHTML = "45";
-                        option19.innerHTML = "90";
-                    }else if(data.horizontalSwing == '-90'){
-                        option14.innerHTML = "-90"; //debería ponerse la que esté en el getstatus primera
-                        option15.innerHTML = "-45";
-                        option16.innerHTML = "0";
-                        option17.innerHTML = "45";
-                        option18.innerHTML = "90";
-                        option19.innerHTML = "Auto";    
-                    }else if(data.horizontalSwing == '-45'){
-                        option14.innerHTML = "-45"; //debería ponerse la que esté en el getstatus primera
-                        option15.innerHTML = "-90";
-                        option16.innerHTML = "0";
-                        option17.innerHTML = "45";
-                        option18.innerHTML = "90";
-                        option19.innerHTML = "Auto";  
-                    }else if(data.horizontalSwing == '0'){
-                        option14.innerHTML = "0"; 
-                        option15.innerHTML = "-90";
-                        option16.innerHTML = "-45";
-                        option17.innerHTML = "45";
-                        option18.innerHTML = "90";
-                        option19.innerHTML = "Auto";      
-                    }else if(data.horizontalSwing == '45'){
-                        option14.innerHTML = "45"; 
-                        option15.innerHTML = "-90";
-                        option16.innerHTML = "-45";
-                        option17.innerHTML = "0";
-                        option18.innerHTML = "90";
-                        option19.innerHTML = "Auto";   
-                    }else{
-                        option14.innerHTML = "90"; 
-                        option15.innerHTML = "-90";
-                        option16.innerHTML = "-45";
-                        option17.innerHTML = "0";
-                        option18.innerHTML = "45";
-                        option19.innerHTML = "Auto"; 
-                    }
-
+                    //quizás conviene variar el orden acá según getstatus
                     select4.appendChild(option14);
                     select4.appendChild(option15);
                     select4.appendChild(option16);
@@ -1446,17 +1082,9 @@ function onPageLoad(){
 
                     panel.appendChild(panel1);
                     panel.appendChild(panel2);
-                });
-                
 
-            }else if(typename == 'oven'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi tempearatura es: " + data.temperature); 
-                    console.log("Mi heat  es: " + data.heat); 
-                    console.log("Mi grill   es: " + data.grill); 
-                    console.log("Mi convection  es: " + data.convection); 
-                    
+                }else if(dev_type == 'oven'){
+
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1479,21 +1107,13 @@ function onPageLoad(){
 
                     var toggle_icon = document.createElement("img");
                     var stat = document.createElement("p");
-                    if(data.status == 'off'){
-                         toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
-                         toggle_icon.setAttribute("alt", "Off");   //idem
-                         stat.innerHTML = "Status: Off"; //gettearlo con get status
-                    }else{
-                        toggle_icon.setAttribute("src", "Iconos/toggle_on.png");  //gettearlo con get status
-                         toggle_icon.setAttribute("alt", "On");   //idem
-                         stat.innerHTML = "Status: On"; //gettearlo con get status
-                    }
-                   
+
+                    toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
+                    toggle_icon.setAttribute("alt", "Off");   //idem
                     toggle_icon.setAttribute("class", "toggle_inside_icon");
-                    toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
 
                     stat.setAttribute("class", "stat_text");
-                    
+                    stat.innerHTML = "Status: Off"; //gettearlo con get status
 
                     status1.appendChild(toggle_icon);
                     status1.appendChild(stat);
@@ -1519,7 +1139,7 @@ function onPageLoad(){
 
                     p2.setAttribute("class", "stat_text");
                     p2.setAttribute("class", "number_info");
-                    p2.innerHTML = data.temperature + "°C "; //esto debería ser un getstatus
+                    p2.innerHTML = "20°C "; //esto debería ser un getstatus
 
                     arrow_up.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up.setAttribute("alt", "Temperature Up");
@@ -1546,22 +1166,11 @@ function onPageLoad(){
 
                     p3.setAttribute("class", "stat_text");
                     p3.innerHTML = "Heat: ";
-                    
+
                     select.setAttribute("class", "panel_selector");
-                    if(data.heat == 'conventional'){
-                        option1.innerHTML = "Conventional"; //debería ponerse la que esté en el getstatus primera
-                        option2.innerHTML = "Bottom";
-                        option3.innerHTML = "Top";
-                    }else if(data.heat == 'bottom'){
-                        option1.innerHTML = "Bottom"; //debería ponerse la que esté en el getstatus primera
-                        option2.innerHTML = "Conventional";
-                        option3.innerHTML = "Top";    
-                    }else{
-                        option1.innerHTML = "Top"; //debería ponerse la que esté en el getstatus primera
-                        option2.innerHTML = "Bottom";
-                        option3.innerHTML = "Conventional";     
-                    }
-                    
+                    option1.innerHTML = "Conventional"; //debería ponerse la que esté en el getstatus primera
+                    option2.innerHTML = "Bottom";
+                    option3.innerHTML = "Top";
 
                     //quizás conviene variar el orden acá según getstatus
                     select.appendChild(option1);
@@ -1577,7 +1186,7 @@ function onPageLoad(){
                     panel1.appendChild(status1);
                     panel1.appendChild(status2);
                     panel1.appendChild(status3);
-
+            
                     //grill
 
                     var grill_icon = document.createElement("img");
@@ -1595,20 +1204,9 @@ function onPageLoad(){
                     p4.innerHTML = "Grill: ";
 
                     select2.setAttribute("class", "panel_selector");
-                    if(data.grill == 'large'){
-                        option4.innerHTML = "Large"; //debería ponerse la que esté en el getstatus primera
-                        option5.innerHTML = "Eco";
-                        option6.innerHTML = "Off";
-                    }else if(data.grill == 'eco'){
-                        option4.innerHTML = "Eco"; //debería ponerse la que esté en el getstatus primera
-                        option5.innerHTML = "Large";
-                        option6.innerHTML = "Off";   
-                    }else{
-                        option4.innerHTML = "Off"; //debería ponerse la que esté en el getstatus primera
-                        option5.innerHTML = "Large";
-                        option6.innerHTML = "Eco";        
-                    }
-                    
+                    option4.innerHTML = "Large"; //debería ponerse la que esté en el getstatus primera
+                    option5.innerHTML = "Eco";
+                    option6.innerHTML = "Off";
 
                     //quizás conviene variar el orden acá según getstatus
                     select2.appendChild(option4);
@@ -1636,20 +1234,9 @@ function onPageLoad(){
                     p5.innerHTML = "Convection: ";
 
                     select3.setAttribute("class", "panel_selector");
-                    if(data.convection == 'normal'){
-                        option7.innerHTML = "Normal"; //debería ponerse la que esté en el getstatus primera
-                        option8.innerHTML = "Eco";
-                        option9.innerHTML = "Off";
-                    }else if(data.convection == 'Eco'){
-                         option7.innerHTML = "Eco"; //debería ponerse la que esté en el getstatus primera
-                         option8.innerHTML = "Normal";
-                         option9.innerHTML = "Off";    
-                    }else{
-                         option7.innerHTML = "Off"; //debería ponerse la que esté en el getstatus primera
-                         option8.innerHTML = "Normal";
-                         option9.innerHTML = "Eco"; 
-                    }
-                    
+                    option7.innerHTML = "Normal"; //debería ponerse la que esté en el getstatus primera
+                    option8.innerHTML = "Eco";
+                    option9.innerHTML = "Off";
 
                     //quizás conviene variar el orden acá según getstatus
                     select3.appendChild(option7);
@@ -1669,13 +1256,9 @@ function onPageLoad(){
 
                     panel.appendChild(panel1);
                     panel.appendChild(panel2);
-                    });
-                
 
-            }else if(typename == 'alarm'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    
+                }else if(dev_type == 'alarm'){
+
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1772,59 +1355,44 @@ function onPageLoad(){
 
                     panel.appendChild(panel1);
                     panel.appendChild(panel2);
-                    });
-                
 
-            }else if(typename == 'blind'){
-                 api.devices.getState(item.id).done(function(data){
-                        var panel1 = document.createElement("div");
-                        panel1.setAttribute("class", "panel1");
-                        var status1 = document.createElement("div");
-                        status1.setAttribute("class", "status");
+                }else if(dev_type == 'blind'){
+                    
+                    var panel1 = document.createElement("div");
+                    panel1.setAttribute("class", "panel1");
+                    var status1 = document.createElement("div");
+                    status1.setAttribute("class", "status");
 
-                        var panel2 = document.createElement("div");
-                        panel2.setAttribute("class", "panel2");
+                    var panel2 = document.createElement("div");
+                    panel2.setAttribute("class", "panel2");
 
-                        //up/down
+                    //up/down
 
-                        var blind_icon = document.createElement("img");
-                        var p1 = document.createElement("p");
-                        if(data.status == 'opened' || data.status == 'opening'){
-                            blind_icon.setAttribute("src", "Iconos/blind_up.png"); //debería depender de getstatus
-                            blind_icon.setAttribute("alt", "Up"); //debería depender de getstatus
-                            p1.setAttribute("class", "stat_text");
-                            p1.innerHTML = "Status: Up"; //debería depender de getstatus
+                    var blind_icon = document.createElement("img");
+                    var p1 = document.createElement("p");
 
-                        }else{
-                            blind_icon.setAttribute("src", "Iconos/blind_down.png"); //debería depender de getstatus
-                            blind_icon.setAttribute("alt", "Down"); //debería depender de getstatus
-                            p1.setAttribute("class", "stat_text");
-                            p1.innerHTML = "Status: Down"; //debería depender de getstatus
-                        }
-                        
-                        blind_icon.setAttribute("class", "status_icon");
-                        blind_icon.setAttribute("onclick", "change_blind_status(event,this);");
+                    blind_icon.setAttribute("src", "Iconos/blind_up.png"); //debería depender de getstatus
+                    blind_icon.setAttribute("alt", "Up"); //debería depender de getstatus
+                    blind_icon.setAttribute("class", "status_icon");
+                    blind_icon.setAttribute("onclick", "change_blind_status(event,this);");
 
-                        
-                        status1.appendChild(blind_icon);
-                        status1.appendChild(p1);
+                    p1.setAttribute("class", "stat_text");
+                    p1.innerHTML = "Status: Up"; //debería depender de getstatus
 
-                        //create panel 1
+                    status1.appendChild(blind_icon);
+                    status1.appendChild(p1);
 
-                        panel1.appendChild(status1);
+                    //create panel 1
 
-                        //create panel
+                    panel1.appendChild(status1);
 
-                        panel.appendChild(panel1);
-                        panel.appendChild(panel2);
-                 });
-                
+                    //create panel
 
-            }else if(typename == 'refrigerator'){
-                api.devices.getState(item.id).done(function(data){
-                    console.log("Mi mode es: " + data.mode); 
-                    console.log("Mi temperature es: " + data.temperature); 
-                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
+                    panel.appendChild(panel1);
+                    panel.appendChild(panel2);
+
+                }else if(dev_type == 'refrigerator'){
+
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1855,16 +1423,14 @@ function onPageLoad(){
                     arrow_down.setAttribute("src", "Iconos/arrow_down.png");
                     arrow_down.setAttribute("alt", "Temperature Down");
                     arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
-                    arrow_down.setAttribute("onclick", "change_fridge_temp(event,this);");
 
                     p2.setAttribute("class", "stat_text");
                     p2.setAttribute("class", "number_info");
-                    p2.innerHTML = data.temperature + "°C ";
+                    p2.innerHTML = "5°C "; //esto debería ser un getstatus
 
                     arrow_up.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up.setAttribute("alt", "Temperature Up");
                     arrow_up.setAttribute("class", "arrow_change_up_icon");
-                    arrow_up.setAttribute("onclick", "change_fridge_temp(event,this);");
 
                     status1.appendChild(temp);
                     status1.appendChild(p1);
@@ -1890,16 +1456,14 @@ function onPageLoad(){
                     arrow_down1.setAttribute("src", "Iconos/arrow_down.png");
                     arrow_down1.setAttribute("alt", "Temperature Down");
                     arrow_down1.setAttribute("class", "arrow_change_down_icon_with_text");
-                    arrow_down1.setAttribute("onclick", "change_fridge_freezer_temp(event,this);");
 
                     p4.setAttribute("class", "stat_text");
                     p4.setAttribute("class", "number_info");
-                    p4.innerHTML = data.freezerTemperature + "°C ";
+                    p4.innerHTML = "-4°C "; //esto debería ser un getstatus
 
                     arrow_up1.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up1.setAttribute("alt", "Temperature Up");
                     arrow_up1.setAttribute("class", "arrow_change_up_icon");
-                    arrow_up1.setAttribute("onclick", "change_fridge_freezer_temp(event,this);");
 
                     status2.appendChild(temp1);
                     status2.appendChild(p3);
@@ -1921,34 +1485,19 @@ function onPageLoad(){
                     var option2 = document.createElement("option");
                     var option3 = document.createElement("option");
 
-                    
-                    mode_icon.setAttribute("class", "fridge_default_icon");
+                    mode_icon.setAttribute("src", "Iconos/fridge_default.png"); //debería ponerse el ícono correspondiente según getstatus
+                    mode_icon.setAttribute("alt", "Fridge"); //debería ponerse el alt correspondiente segun getstatus
+                    mode_icon.setAttribute("class", "fridge_default_icon"); //idem
 
                     p5.setAttribute("class", "stat_text");
                     p5.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
-                    select.setAttribute("onclick", "change_fridge_mode(event,this);");
-                    if(data.mode == 'default'){
-                        mode_icon.setAttribute("src", "Iconos/fridge_default.png");
-                        mode_icon.setAttribute("alt", "Fridge");
-                        option1.innerHTML = "Default"; 
-                        option2.innerHTML = "Vacation";
-                        option3.innerHTML = "Party";
-                    }else if(data.mode == 'vacation'){
-                        mode_icon.setAttribute("src", "Iconos/vacation.png");
-                        mode_icon.setAttribute("alt", "Vacation");
-                        option1.innerHTML = "Vacation";
-                        option2.innerHTML = "Default";
-                        option3.innerHTML = "Party";    
-                    }else{
-                        mode_icon.setAttribute("src", "Iconos/party.png");
-                        mode_icon.setAttribute("alt", "Party");
-                        option1.innerHTML = "Party";
-                        option2.innerHTML = "Vacation";
-                        option3.innerHTML = "Default";     
-                    }
-                    
+                    option1.innerHTML = "Default"; //debería ponerse la que esté en el getstatus primera
+                    option2.innerHTML = "Vacation";
+                    option3.innerHTML = "Party";
+
+                    //quizás conviene variar el orden acá según getstatus
                     select.appendChild(option1);
                     select.appendChild(option2);
                     select.appendChild(option3);
@@ -1965,228 +1514,180 @@ function onPageLoad(){
 
                     panel.appendChild(panel1);
                     panel.appendChild(panel2);
-                });
-                
 
-            }else if(typename == 'lamp'){
-                api.devices.getState(item.id).done(function(data){
-                 console.log("Mi status es: " + data.status); 
-                 console.log("Mi color es: " + data.color); 
-                 console.log("Mi brightness es: " + data.brightness); 
-                var panel1 = document.createElement("div");
-                panel1.setAttribute("class", "panel1");
-                var status1 = document.createElement("div");
-                var status2 = document.createElement("div");
-                status1.setAttribute("class", "status");
-                status2.setAttribute("class", "status");
+                }else if(dev_type == 'lamp'){
 
-                var panel2 = document.createElement("div");
-                panel2.setAttribute("class", "panel2");
-                var status3 = document.createElement("div");
-                status3.setAttribute("class", "status");
+                    var panel1 = document.createElement("div");
+                    panel1.setAttribute("class", "panel1");
+                    var status1 = document.createElement("div");
+                    var status2 = document.createElement("div");
+                    status1.setAttribute("class", "status");
+                    status2.setAttribute("class", "status");
 
-                //on/off
+                    var panel2 = document.createElement("div");
+                    panel2.setAttribute("class", "panel2");
+                    var status3 = document.createElement("div");
+                    status3.setAttribute("class", "status");
 
-                var toggle_icon = document.createElement("img");
-                var stat = document.createElement("p");
-                if(data.status == 'off'){
+                    //on/off
+
+                    var toggle_icon = document.createElement("img");
+                    var stat = document.createElement("p");
+
                     toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                     toggle_icon.setAttribute("alt", "Off");   //idem
+                    toggle_icon.setAttribute("class", "toggle_inside_icon");
+
+                    stat.setAttribute("class", "stat_text");
                     stat.innerHTML = "Status: Off"; //gettearlo con get status
-                }else{
-                    toggle_icon.setAttribute("src", "Iconos/toggle_on.png");  //gettearlo con get status
-                    toggle_icon.setAttribute("alt", "On");   //idem
-                    stat.innerHTML = "Status: On"; //gettearlo con get status
+
+                    status1.appendChild(toggle_icon);
+                    status1.appendChild(stat);
+
+                    //color
+
+                    var palette = document.createElement("img");
+                    var p1 = document.createElement("p");
+                    var input1 = document.createElement("input");
+
+                    palette.setAttribute("src", "Iconos/color_icon.png"); 
+                    palette.setAttribute("alt", "Color");
+                    palette.setAttribute("class", "color_icon");
+
+                    p1.setAttribute("class", "stat_text");
+                    p1.innerHTML = "Color: ";
+
+                    input1.setAttribute("type", "color"); 
+                    input1.setAttribute("value", "#ffffff");
+                    input1.setAttribute("class", "color_input");
+
+                    status2.appendChild(palette);
+                    status2.appendChild(p1);
+                    status2.appendChild(input1);
+
+                    //create panel 1
+
+                    panel1.appendChild(status1);
+                    panel1.appendChild(status2);
+
+                    //brightness
+
+                    var brightness_icon = document.createElement("img");
+                    var p2 = document.createElement("p");
+                    var div_slide = document.createElement("div");
+                    var input2 = document.createElement("input");
+
+                    brightness_icon.setAttribute("src", "Iconos/brightness_icon.png"); 
+                    brightness_icon.setAttribute("alt", "Brightness");
+                    brightness_icon.setAttribute("class", "brightness_icon");
+
+                    p2.setAttribute("class", "stat_text");
+                    p2.innerHTML = "Brightness: ";
+
+                    div_slide.setAttribute("class", "slidecontainer");
+
+                    input2.setAttribute("type", "range");
+                    input2.setAttribute("min", "1");
+                    input2.setAttribute("max", "100");
+                    input2.setAttribute("value", "50"); //debería gettearlo con getstate
+                    input2.setAttribute("class", "slider");
+                    input2.setAttribute("id", "myRange");
+
+                    div_slide.appendChild(input2);
+
+                    status3.appendChild(brightness_icon);
+                    status3.appendChild(p2);
+                    status3.appendChild(div_slide);
+
+                    //create panel 2
+
+                    panel2.appendChild(status3);
+
+                    //create panel
+
+                    panel.appendChild(panel1);
+                    panel.appendChild(panel2);
+
+                }
+
+                list.appendChild(elem);
+                list.appendChild(panel);
+
+                elem.addEventListener("click", function() {
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+                var arrow = this.children[2].children[0].children[0];
+                if (panel.style.display === "block") {
+                    arrow.src = "Iconos/arrow_up.png";
+                } else {
+                    arrow.src = "Iconos/arrow_down.png";
                 }
                 
-                toggle_icon.setAttribute("class", "toggle_inside_icon");
-                toggle_icon.setAttribute("onclick", "change_toggle_status(event,this);");
+                        });
+                       });
 
-                stat.setAttribute("class", "stat_text");
-                
-
-                status1.appendChild(toggle_icon);
-                status1.appendChild(stat);
-
-                //color
-
-                var palette = document.createElement("img");
-                var p1 = document.createElement("p");
-                var input1 = document.createElement("input");
-
-                palette.setAttribute("src", "Iconos/color_icon.png"); 
-                palette.setAttribute("alt", "Color");
-                palette.setAttribute("class", "color_icon");
-
-                p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Color: ";
-
-                input1.setAttribute("type", "color"); 
-                    console.log("color es "+data.color);
-                input1.setAttribute("value", data.color);
-                input1.setAttribute("class", "color_input");
-
-                status2.appendChild(palette);
-                status2.appendChild(p1);
-                status2.appendChild(input1);
-
-                //create panel 1
-
-                panel1.appendChild(status1);
-                panel1.appendChild(status2);
-
-                //brightness
-
-                var brightness_icon = document.createElement("img");
-                var p2 = document.createElement("p");
-                var div_slide = document.createElement("div");
-                var input2 = document.createElement("input");
-
-                brightness_icon.setAttribute("src", "Iconos/brightness_icon.png"); 
-                brightness_icon.setAttribute("alt", "Brightness");
-                brightness_icon.setAttribute("class", "brightness_icon");
-
-                p2.setAttribute("class", "stat_text");
-                p2.innerHTML = "Brightness: ";
-
-                div_slide.setAttribute("class", "slidecontainer");
-
-                input2.setAttribute("type", "range");
-                input2.setAttribute("min", "1");
-                input2.setAttribute("max", "100");
-                input2.setAttribute("value", JSON.stringify(data.brightness)); //debería gettearlo con getstate
-                input2.setAttribute("class", "slider");
-                input2.setAttribute("id", "myRange");
-
-                div_slide.appendChild(input2);
-
-                status3.appendChild(brightness_icon);
-                status3.appendChild(p2);
-                status3.appendChild(div_slide);
-
-                //create panel 2
-
-                panel2.appendChild(status3);
-
-                //create panel
-
-                panel.appendChild(panel1);
-                panel.appendChild(panel2);
-            });
-            }
-          
-            list.appendChild(elem);
-            list.appendChild(panel);
-
-            elem.addEventListener("click", function() {
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                  panel.style.display = "block";
-            }
-            var arrow = this.children[2].children[0].children[0];
-            if (panel.style.display === "block") {
-               arrow.src = "Iconos/arrow_up.png";
-             } else {
-                 arrow.src = "Iconos/arrow_down.png";
+                       
+                   });
+                });
             }
         });
-        });
-    });
-}
-
-function add_room_input(event, room){
-    room.removeAttribute("onclick");
-    $(room).children('option').remove();
-    api.rooms.getRooms().done(function(data){
-                                    $.each(data, function(i, item){
-                                                    var option = document.createElement("option");
-                                                    option.innerHTML = item.name;
-                                                    room.appendChild(option);
-                                                });
-                                            });
-                                        
-                                   
-        //
-                                 
-}
-
-function add_device(event, addbtn){
-    var typeid = window.localStorage.getItem("type_id");
-    var name = $("#door_input").val();
-    var room = $("#room_input").val();
-    var no = 0;
+        
+        
     
+        
+        
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("Request failed: jqXHR.status=" + jqXHR.status + ", textStatus=" + textStatus + ", errorThrown=" + errorThrown);
+    });
+    
+};
+
+
+function pencil2_displayRoom(event, title){
+    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
+    pencil.style.visibility = "visible";
+    
+}
+
+function edit_room(event, room) {
+    event.stopPropagation();
+    var pencil = room.nextElementSibling;
+    pencil.style.visibility = "hidden";
+    room.style.visibility = "hidden";
+    var select_new_room = room.nextElementSibling.nextElementSibling.children[0].children[0];
+    select_new_room.style.visibility = "visible";
+    
+}
+
+function pencil2_outRoom(event, title){
+    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
+    pencil.style.visibility = "hidden";
+    
+}
+
+function trash(event, tacho){
+    var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
+    var deviceid = "";
+    //window.localStorage.clear();
+    window.localStorage.setItem("devicename", devicename);
     api.devices.getAllDevices().done(function(data){
         $.each(data, function(i, item){
-                                        if(name == item.name){
-                                            no = 1;
-                                        }
-                                         });
-        if(name == ""){
-            no = 2;
-        }
-        if(no == 2){
-            document.getElementById("name-tag").style.color = "#ff0000";
-            document.getElementById("name-tag").innerHTML = "Choose a name";
-            $('#add_room_popup').modal('show');
-        }
-        else if(no == 1){
-            document.getElementById("name-tag").style.color = "#ff0000";
-            document.getElementById("name-tag").innerHTML = "Name already in use";
-            $('#add_room_popup').modal('show');
-        }else{
-            //agrego y linkeo
-            api.rooms.getRooms().done(function(data) {
-                            
-                            $.each(data, function(i, item){
-                                if(item.name.toUpperCase() == room.toUpperCase()){
-                                               api.devices.addDevice(typeid,name,item.name).done(function(data) {
-                                                   api.devices.getDevices().done(function(data){
-                                                       $.each(data, function(r, item3){
-                                                       if(name == item3.name){
-                                                           console.log("VOY A LINKEAR");
-                                                           api.devices.link(item3.id, item.id);
-                                                           onPageLoad();
-                                                            $('#add_room_popup').modal('hide');
-                                                       }
-                                                       });
-                                                   });
-                                                   
-                                               });                                 
-                                }
-                            });
-                });
-            
-        }
+            if(item.name == devicename){
+                deviceid = item.id;
+                document.getElementById("msg-tag").innerHTML = "You are about to delete device \'"+devicename+ "\'"
+                window.localStorage.setItem("device_id2", deviceid);
+            }
+        });
+    });  
+}
+
+function delete_device(event, confirm){
+    var deviceid = window.localStorage.getItem("device_id2");
+    api.devices.deleteDevice(deviceid).done(function(data){
+        onPageLoad();                                           
     });
-    
-}
-
-function activateroominput(event, roominput){
-   roominput.setAttribute("onclick","add_room_input(event, this);");
-}
-
-$(function() {
-    
-    function edit(event, title){
-    var divHtml = title.html();
-    var editableText = $("<textarea />");
-    editableText.val(divHtml);
-    title.replaceWith(editableText);
-    editableText.focus();
-    // setup the blur event for this new textarea
-    editableText.blur(editableTextBlurred(title));
-    }
-
-    function editableTextBlurred(title) {
-    var html = title.val();
-    var viewableText = $("<div>");
-    viewableText.html(html);
-    title.replaceWith(viewableText);
-    // setup the click event for this new div
-    $(viewableText).click(divClicked);
-    }    
-
-});
+};
