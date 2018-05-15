@@ -349,7 +349,7 @@ ul.tabs li:before {
 
 
 .door_room {
-	text-align: left;
+    text-align: left;
     font-style: italic;
     font-size: 14px;
     color: #777;
@@ -360,7 +360,7 @@ ul.tabs li:before {
     text-align: left;
     margin-left: 0;
     margin-top: 4px;
-	margin-bottom: 0px;
+    margin-bottom: 0px;
     font-family: monaco, monospace;
 
 }
@@ -427,11 +427,11 @@ ul.tabs li:before {
 }
 
 .lock_text{
-	font-size: 15px;
+    font-size: 15px;
     margin-bottom: 0;
     display: inline-block !important;
     position: relative;
-    top: -13px;
+    top: -20px;
 }
 
 .lock_icon {
@@ -704,6 +704,7 @@ footer p {
     width: 32.8%;
     height: 100%;
     display: inline-block !important;
+    margin-bottom: 6px;
 }
 
 /*
@@ -755,8 +756,8 @@ footer p {
 }
 
 .color_input {
-	margin-left: 10px;  
-	margin-top: 3px;  
+    margin-left: 10px;  
+    margin-top: 3px;  
 }
 
 .brightness_icon {
@@ -860,12 +861,12 @@ footer p {
 }
 
 .temperature_icon_status {
-	width: 30px;
+    width: 30px;
     height: 35px;
     display: inline-block !important;
     margin-left: 29%;
-    margin-top: 2px;
-    margin-bottom: 30px;
+    margin-top: 0;
+    margin-bottom: 45px;
 }
 
 .changepass_icon {
@@ -893,7 +894,7 @@ footer p {
 }
 
 .swing_icon {
-	width: 42px;
+    width: 42px;
     height: 39px;
     margin-left: 20px;
   
@@ -904,7 +905,7 @@ footer p {
 }
 
 .fan_icon {
-	width: 40px;
+    width: 40px;
     height: 33px;
     margin-left: 20px;
   
@@ -915,7 +916,7 @@ footer p {
 }
 
 .convection_icon {
-	width: 38px;
+    width: 38px;
     height: 35px;
     margin-left: 20px;
   
@@ -926,7 +927,7 @@ footer p {
 }
 
 .grill_icon {
-	width: 35px;
+    width: 35px;
     height: 38px;
     margin-left: 20px;
   
@@ -937,7 +938,7 @@ footer p {
 }
 
 .heat_icon {
-	width: 35px;
+    width: 35px;
     height: 35px;
     margin-left: 20px;
   
@@ -948,7 +949,7 @@ footer p {
 }
 
 .fridge_default_icon {
-	width: 40px;
+    width: 40px;
     height: 45px;
     margin-left: 20px;
   
@@ -959,13 +960,13 @@ footer p {
 }
 
 .panel_selector {
-	margin-left: 7px;
-	font-size: 13px;
+    margin-left: 7px;
+    font-size: 13px;
 }
 
 .stat_text{
-	float: left;
-	display: table-cell;
+    float: left;
+    display: table-cell;
     vertical-align: middle;
     margin-left: 20px;
     margin-top: 5px;
@@ -974,7 +975,7 @@ footer p {
 }
 
 .number_info {
-	margin-left: 5px !important;
+    margin-left: 5px !important;
 }
 
 .panel_info {
@@ -1037,19 +1038,19 @@ input[type=text] {
 /*panel inside*/
 
 .panel1 {
-	margin-top: 8px;
-	height: 100% !important;
-	width: 49%;
-	display: inline-block !important;
+    margin-top: 8px;
+    height: 100% !important;
+    width: 49%;
+    display: inline-block !important;
 
 }
 
 .panel2 {
-	margin-top: 8px;
-	vertical-align: top;
-	height: 100% !important;
-	width: 49%;
-	display: inline-block !important;
+    margin-top: 8px;
+    vertical-align: top;
+    height: 100% !important;
+    width: 49%;
+    display: inline-block !important;
 }
 
 /*slider*/
