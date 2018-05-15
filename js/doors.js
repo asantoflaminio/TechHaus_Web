@@ -1,4 +1,113 @@
-//accordion
+var api = class {
+  static get baseUrl() {
+    return "http://127.0.0.1:8080/api/";
+  }
+
+  static get timeout() {
+    return 60 * 1000;
+  }
+}
+
+api.devicetypes = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/devicetypes/";
+  }
+
+  static getDeviceType(id) {
+   return $.ajax({
+      url: api.devicetypes.url + id,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.device; //.map(item => item.name);
+        });      
+  }
+    static getDeviceTypes() {
+   return $.ajax({
+      url: api.devicetypes.url ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices; //.map(item => item.name);
+        });      
+  }
+    
+  
+}
+
+api.devices = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/devices/";
+  }
+    
+    static getAllDevices() {
+   return $.ajax({
+      url: api.devices.url,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  } 
+   static getDeviceName(id) {
+   return $.ajax({
+      url: api.devices.url + id,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data;
+        });  
+  } 
+    
+    static getDevices(id) {
+   return $.ajax({
+      url: api.devices.url + id,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data;
+        });  
+  } 
+    
+    
+    static getDevicesID() {
+   return $.ajax({
+      url: "http://127.0.0.1:8080/api/devicetypes",
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  } 
+    
+    static getDevicesForType(id) {
+   return $.ajax({
+      url: "http://127.0.0.1:8080/api/devices/devicetypes/" + id ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  }
+    
+    static getDeviceActions(id) {
+   return $.ajax({
+      url: "http://127.0.0.1:8080/api/devicetypes/" + id ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.device.actions;
+        });  
+  } 
+}
 
 addPanels();
 
@@ -278,6 +387,186 @@ function searching() {
 }
 
 //add door
+
+$(document).ready(function() {
+    onPageLoad();
+});
+function onPageLoad(){
+    var typeid = window.localStorage.getItem("type_id");
+    console.log("desde doors.js tengo typeid = " + typeid);
+    var typename = window.localStorage.getItem("type_name");
+    api.devices.getDevicesForType(typeid).done(function(data) {
+        $.each(data, function(i, item){ //estoy iterando por cada elemento
+             var list = document.getElementById("devices_list");
+             var elem = document.createElement("div");
+             elem.setAttribute("class", "accordion");
+             var acc1 = document.createElement("div");
+             var acc2 = document.createElement("div");
+             var acc3 = document.createElement("div");
+             acc1.setAttribute("class", "accordion1");
+             acc2.setAttribute("class", "accordion2");
+             acc3.setAttribute("class", "accordion3");
+            
+            var div1 = document.createElement("div");
+            var div2 = document.createElement("div");
+            var h3 = document.createElement("h3");
+            var pencil2 = document.createElement("img");
+            var span = document.createElement("span");
+            var input = document.createElement("input");
+
+            h3.setAttribute("class", "device_name");
+            h3.innerHTML = item.name;
+            h3.setAttribute("onmouseover", "pencil2_display(event,this);");
+            h3.setAttribute("onmouseout","pencil2_out(event,this);");   
+            h3.setAttribute("onclick","edit_name(event,this);"); 
+            pencil2.setAttribute("src", "Iconos/pencil.png");
+            pencil2.setAttribute("alt", "Pencil;");
+            pencil2.setAttribute("class", "pencil2_icon");
+            input.setAttribute("type", "text");
+            input.setAttribute("value", item.name);
+            input.setAttribute("class", "new_device_name");
+            input.setAttribute("onclick", "input_name(event, this);");
+            div1.setAttribute("class", "name_device");  
+            span.appendChild(input);
+            div2.appendChild(span);
+            div1.appendChild(h3);
+            div1.appendChild(pencil2);
+            div1.appendChild(div2);
+
+            var div3 = document.createElement("div");
+            var p = document.createElement("p");
+            var img_pen = document.createElement("img");
+            img_pen.setAttribute("src", "Iconos/pencil.png");
+            img_pen.setAttribute("alt", "Pencil");
+            img_pen.setAttribute("class", "pencil2_iconRoom");
+            var divRo = document.createElement("div");
+            var spanRo = document.createElement("span");
+            var selRo = document.createElement("select");
+            selRo.setAttribute("type", "text");
+            selRo.setAttribute("value", "Door 1");
+            selRo.setAttribute("class", "new_room");
+            selRo.setAttribute("onclick", "event.stopPropagation();");
+            selRo.setAttribute("onchange", "select_room(event,this)");
+            //ESTO DEBERIA SER UNA OPCION POR CADA HABITACION MAS TENER UNA FUNCION Q 
+            // SI HACEN CLICK CAMBIE LA HABITACION EN LA BD
+            //SI HAY TIEMPO SE HACE SINO ES A MODO ILUSTRATIVO
+            // BORRAR ESTE COMENTARIO ANTES DE ENTREGAR
+            var opt1 = document.createElement("option");
+            var opt2 = document.createElement("option");
+            opt1.setAttribute("value", "Kitchen");
+            opt1.innerHTML = "Kitchen";
+            opt2.setAttribute("value", "Garage");
+            opt2.innerHTML = "Garage";
+            selRo.appendChild(opt1);
+            selRo.appendChild(opt2);
+            spanRo.appendChild(selRo);
+            divRo.appendChild(spanRo);
+
+            p.setAttribute("class", "door_room");
+            p.setAttribute("onmouseover", "pencil2_displayRoom(event,this);");
+            p.setAttribute("onmouseout", "pencil2_outRoom(event,this);");
+            p.setAttribute("onclick", "edit_room(event,this)");
+            p.innerHTML = item.meta.replace("{","").replace("}","").split(',')[0]; //tomo el nombre de la habitacion
+
+            div3.appendChild(p);
+            div3.appendChild(img_pen);
+            div3.appendChild(divRo);
+            acc1.appendChild(div1);
+            acc1.appendChild(div3);
+            //A partir de aca viene lo q pertenece al acc2 que es en kitchen donde empieza con lock_icon
+            if(typename == 'door'){ //para crear 'var divX' usar X mayor a 10
+
+            }else if(typename =='ac'){
+
+            }else if(typename == 'oven'){
+
+            }else if(typename == 'alarm'){
+
+            }else if(typename == 'blind'){
+
+            }else if(typename == 'refrigerator'){
+
+            }else if(typename == 'lamp'){
+
+            }
+            var div5 = document.createElement("div");
+            var div6 = document.createElement("div");
+            var div7 = document.createElement("div");
+            var div8 = document.createElement("div");
+            var div9 = document.createElement("div");
+            var arrow = document.createElement("img");
+            var heart = document.createElement("img");
+            var trash = document.createElement("img");
+            var yes = document.createElement("img");
+            var no = document.createElement("img");
+
+            arrow.setAttribute("src", "Iconos/arrow_down.png");
+            arrow.setAttribute("alt", "Expand");
+            arrow.setAttribute("class", "arrow_icon");  
+            heart.setAttribute("src", "Iconos/heart.png");
+            heart.setAttribute("alt", "Fave");
+            heart.setAttribute("class", "fave_icon");
+            heart.setAttribute("onclick", "fav(event,this);");
+            trash.setAttribute("src", "Iconos/tacho.png");
+            trash.setAttribute("alt", "Delete");
+            trash.setAttribute("class", "delete_icon");
+            trash.setAttribute("onclick", "trash(event,this);");
+            yes.setAttribute("src", "Iconos/yes.png");
+            yes.setAttribute("alt", "Yes");
+            yes.setAttribute("class", "yes_icon");
+            yes.setAttribute("onclick", "yes(event,this);");
+            no.setAttribute("src", "Iconos/no.png");
+            no.setAttribute("alt", "No");
+            no.setAttribute("class", "no_icon");
+            no.setAttribute("onclick", "no(event,this);");
+
+            div5.appendChild(arrow);
+            div6.appendChild(heart);
+            div7.appendChild(trash);
+            div8.appendChild(yes);
+            div9.appendChild(no);
+            acc3.appendChild(div5);
+            acc3.appendChild(div6);
+            acc3.appendChild(div7);
+            acc3.appendChild(div8);
+            acc3.appendChild(div9);
+
+            elem.appendChild(acc1);
+            elem.appendChild(acc2);
+            elem.appendChild(acc3);
+
+            var div10 = document.createElement("div");
+            var p1 = document.createElement("p");
+            
+            //ACA ESTA EL PANEL!!!
+            //
+            //
+            
+            p1.innerHTML = "Info on";
+            p1.setAttribute("class", "panel_info");
+            div10.setAttribute("class", "panel");
+            div10.appendChild(p1);
+
+            list.appendChild(elem);
+            list.appendChild(div10);
+
+            elem.addEventListener("click", function() {
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                  panel.style.display = "block";
+            }
+            var arrow = this.children[2].children[0];
+            if (panel.style.display === "block") {
+               arrow.src = "Iconos/arrow_up.png";
+             } else {
+                 arrow.src = "Iconos/arrow_down.png";
+            }
+        });
+        });
+    });
+}
 
 $(function() {
     

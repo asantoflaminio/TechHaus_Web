@@ -26,6 +26,34 @@ h3 {
     text-align: center;
 }
 
+.device_name {
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+    position: relative;
+    float: left;
+    margin-left: 0;
+    margin-top: -3px;
+    margin-bottom: 0px;
+    font-family: monaco, monospace;
+    
+}
+
+.device_room {
+    font-size: 14px;
+    color: #777;
+    position: relative;
+    float: left;
+    clear: left;
+    font-style: italic;
+    text-align: left;
+    margin-left: 0;
+    margin-top: 8px;
+    font-family: monaco, monospace;
+
+}
+
 nav {
     list-style-type: none;
     margin: 0;
@@ -260,6 +288,33 @@ ul.tabs li:before {
     margin-bottom: 0px;
     font-family: monaco, monospace;
     
+}
+
+.new_device_name:focus {
+    outline: none;
+}
+
+.name_device{
+    display: table;
+    
+}
+
+.new_device_name {
+    position: relative;
+    height: 17px !important;
+    width: 130px !important;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+    margin-top: -17px;
+    font-weight: bold;
+    color: #555; 
+    visibility: hidden;
+    font-family: monaco, monospace !important;
+    background-color: #bbb;
+    font-style: italic;
 }
 
 .new_door_name:focus {
@@ -577,6 +632,25 @@ footer p {
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .accordion:hover {
     background-color: #ccc;
+}
+
+.accordion1 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+}
+
+.accordion2 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
+    overflow-x:visible !important;
+}
+
+.accordion3 {
+    width: 32.8%;
+    height: 100%;
+    display: inline-block !important;
 }
 
 /*

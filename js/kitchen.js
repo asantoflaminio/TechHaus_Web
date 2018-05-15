@@ -579,7 +579,6 @@ function searching() {
 
 $(document).ready(function() {
     var roomid = window.localStorage.getItem("room_id");
-    window.localStorage.clear();
     api.rooms.getRoom(roomid).done(function(data){
         console.log(data.name);
         console.log("THIS IS A " + data.meta.replace("{","").replace("}","").split(',')[0]);
@@ -659,14 +658,45 @@ $(document).ready(function() {
 
                 var div3 = document.createElement("div");
                 var p = document.createElement("p");
-
-                p.setAttribute("class", "device_room");
+                var img_pen = document.createElement("img");
+                img_pen.setAttribute("src", "Iconos/pencil.png");
+                img_pen.setAttribute("alt", "Pencil");
+                img_pen.setAttribute("class", "pencil2_iconRoom");
+                var divRo = document.createElement("div");
+                var spanRo = document.createElement("span");
+                var selRo = document.createElement("select");
+                selRo.setAttribute("type", "text");
+                selRo.setAttribute("value", "Door 1");
+                selRo.setAttribute("class", "new_room");
+                selRo.setAttribute("onclick", "event.stopPropagation();");
+                selRo.setAttribute("onchange", "select_room(event,this)");
+            //ESTO DEBERIA SER UNA OPCION POR CADA HABITACION MAS TENER UNA FUNCION Q 
+            // SI HACEN CLICK CAMBIE LA HABITACION EN LA BD
+            //SI HAY TIEMPO SE HACE SINO ES A MODO ILUSTRATIVO
+            // BORRAR ESTE COMENTARIO ANTES DE ENTREGAR
+                var opt1 = document.createElement("option");
+                var opt2 = document.createElement("option");
+                opt1.setAttribute("value", "Kitchen");
+                opt1.innerHTML = "Kitchen";
+                opt2.setAttribute("value", "Garage");
+                opt2.innerHTML = "Garage";
+                selRo.appendChild(opt1);
+                selRo.appendChild(opt2);
+                spanRo.appendChild(selRo);
+                divRo.appendChild(spanRo);
+                p.setAttribute("class", "door_room");
+                p.setAttribute("onmouseover", "pencil2_displayRoom(event,this);");
+                p.setAttribute("onmouseout", "pencil2_outRoom(event,this);");
+                p.setAttribute("onclick", "edit_room(event,this)");
                 p.innerHTML = dev_type;
 
                 div3.appendChild(p);
+                div3.appendChild(img_pen);
+                div3.appendChild(divRo);
                 acc1.appendChild(div1);
                 acc1.appendChild(div3);
-
+                           
+                ////accordion 2 igual que en doors.js!!!
                 var lock_icon = document.createElement("img");
                 var lock_text = document.createElement("p");
                 var div4 = document.createElement("div");
@@ -922,3 +952,25 @@ $("#addicon").click(function() {
         ]
     });
 });
+
+function pencil2_displayRoom(event, title){
+    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
+    pencil.style.visibility = "visible";
+    
+}
+
+function edit_room(event, room) {
+    event.stopPropagation();
+    var pencil = room.nextElementSibling;
+    pencil.style.visibility = "hidden";
+    room.style.visibility = "hidden";
+    var select_new_room = room.nextElementSibling.nextElementSibling.children[0].children[0];
+    select_new_room.style.visibility = "visible";
+    
+}
+
+function pencil2_outRoom(event, title){
+    var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
+    pencil.style.visibility = "hidden";
+    
+}

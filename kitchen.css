@@ -156,6 +156,17 @@ section {
     visibility: hidden;
 }
 
+.pencil2_iconRoom {
+    width: 12px;
+    height: 12px;
+    position: relative;
+   	bottom: -8px;
+   	right: -4px;
+    display: table;
+    visibility: hidden;
+   
+}
+
 .title_elements{
     float:left
     height: 100%;
@@ -269,6 +280,22 @@ ul.tabs li:before {
     font-style: italic;
 }
 
+.new_room{
+	position: relative;
+    height: 28px !important;
+    width: 130px !important;
+    font-style: italic;
+    background: none;
+    border: 0;
+    padding: 2px;
+    margin: 0;
+    margin-top: -22px;
+    color: #555; 
+   	visibility: hidden;
+    font-family: monaco, monospace !important;
+    background-color: #bbb;
+}
+
 .new_room_name {
     position: absolute;
     display: table-cell;
@@ -287,6 +314,20 @@ ul.tabs li:before {
     font-family: monaco, monospace !important;
     background-color: #bbb;
     font-style: italic;
+}
+
+.door_room {
+    text-align: left;
+    font-size: 14px;
+    font-style: italic;
+    color: #777;
+    position: relative;
+    float: left;
+    margin-left: 0;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-family: monaco, monospace;
+    
 }
 
 .device_room {
