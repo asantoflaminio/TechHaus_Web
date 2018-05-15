@@ -528,7 +528,6 @@ function onPageLoad(){
                 div1.appendChild(div2);
 
                 var div3 = document.createElement("div");
-                div3.setAttribute("class", "room_door");
                 var p = document.createElement("p");
                 var img_pen = document.createElement("img");
                 img_pen.setAttribute("src", "Iconos/pencil.png");
@@ -559,11 +558,9 @@ function onPageLoad(){
                 p.setAttribute("class", "door_room");
                 p.setAttribute("onmouseover", "pencil2_displayRoom(event,this);");
                 p.setAttribute("onmouseout", "pencil2_outRoom(event,this);");
-                p.setAttribute("onclick", "edit_room(event,this)");
                 p.innerHTML = dev_type;
 
                 div3.appendChild(p);
-                div3.appendChild(img_pen);
                 div3.appendChild(divRo);
                 acc1.appendChild(div1);
                 acc1.appendChild(div3);
