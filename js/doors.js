@@ -715,14 +715,22 @@ function onPageLoad(){
                     var lock_info = document.createElement("p");
                     var div_trash = document.createElement("div");
                     var h4_trash = document.createElement("h4");
-
-                    lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
-                    lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
-                    lock_icon2.setAttribute("alt", "Locked");
+                    if(data.lock == "locked"){
+                        lock_icon2.setAttribute("src", "Iconos/locked.png"); //debería depender de getstate
+                        lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
+                        lock_icon2.setAttribute("alt", "Locked");
+                        lock_info.innerHTML = "Locked"; //debería depender de getstate
+                    }else{
+                        lock_icon2.setAttribute("src", "Iconos/unlocked.png"); //debería depender de getstate
+                        lock_icon2.setAttribute("class", "lock_icon"); //debería depender de getstate
+                        lock_icon2.setAttribute("alt", "Unlocked");
+                        lock_info.innerHTML = "Unlocked"; //debería depender de getstate
+                    }
+                    
                     lock_icon2.setAttribute("onclick", "change_lock_status_from_acc(event,this);");
 
                     lock_info.setAttribute("class", "lock_text");
-                    lock_info.innerHTML = "Locked"; //debería depender de getstate
+                    
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -821,14 +829,23 @@ function onPageLoad(){
                     var alarm_info = document.createElement("p");
                     var div_trash = document.createElement("div");
                     var h4_trash = document.createElement("h4");
-
-                    alarm_icon.setAttribute("src", "Iconos/alarm_stat_off.png"); //debería depender de getstate
-                    alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                    
+                    if(data.status == 'disarmed'){
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                        alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
+                    }else{
+                        alarm_icon.setAttribute("src", "Iconos/disarm.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                        alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
+                    }
+                        
+                    
                     alarm_icon.setAttribute("alt", "Alarm Status");
                     alarm_icon.setAttribute("onclick", "toggle(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
-                    alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
+                    
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -991,61 +1008,79 @@ function onPageLoad(){
             panel.setAttribute("class", "panel");
             
             if(typename == 'door'){
+                api.devices.getState(item.id).done(function(data){
+                    
+                    var panel1 = document.createElement("div");
+                    panel1.setAttribute("class", "panel1");
+                    var status1 = document.createElement("div");
+                    status1.setAttribute("class", "status");
 
-                var panel1 = document.createElement("div");
-                panel1.setAttribute("class", "panel1");
-                var status1 = document.createElement("div");
-                status1.setAttribute("class", "status");
+                    var panel2 = document.createElement("div");
+                    panel2.setAttribute("class", "panel2");
+                    var status2 = document.createElement("div");
+                    status2.setAttribute("class", "status");
 
-                var panel2 = document.createElement("div");
-                panel2.setAttribute("class", "panel2");
-                var status2 = document.createElement("div");
-                status2.setAttribute("class", "status");
+                    //lock/unlock
 
-                //lock/unlock
+                    var lock_icon = document.createElement("img");
+                    var p1 = document.createElement("p");
+                    if(data.lock == "locked"){
+                        lock_icon.setAttribute("src", "Iconos/locked_inside.png"); //debería depender de getstatus
+                        lock_icon.setAttribute("alt", "Locked"); //debería depender de getstatus
+                         p1.innerHTML = "Status: Locked"; //debería depender de getstatus
+                    }else{
+                        lock_icon.setAttribute("src", "Iconos/unlocked_inside.png"); //debería depender de getstatus
+                        lock_icon.setAttribute("alt", "Unlocked"); //debería depender de getstatus
+                        p1.innerHTML = "Status: Unlocked"; //debería depender de getstatus
+                    }
+                    
+                    lock_icon.setAttribute("class", "status_icon");
+                    lock_icon.setAttribute("onclick", "change_lock_status(event,this);");
 
-                var lock_icon = document.createElement("img");
-                var p1 = document.createElement("p");
+                    p1.setAttribute("class", "stat_text");
+                   
 
-                lock_icon.setAttribute("src", "Iconos/locked_inside.png"); //debería depender de getstatus
-                lock_icon.setAttribute("alt", "Locked"); //debería depender de getstatus
-                lock_icon.setAttribute("class", "status_icon");
-                lock_icon.setAttribute("onclick", "change_lock_status(event,this);");
+                    status1.appendChild(lock_icon);
+                    status1.appendChild(p1);
 
-                p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Status: Locked"; //debería depender de getstatus
+                    //create panel 1
 
-                status1.appendChild(lock_icon);
-                status1.appendChild(p1);
+                    panel1.appendChild(status1);
 
-                //create panel 1
+                    //close/open
 
-                panel1.appendChild(status1);
+                    var stat = document.createElement("img");
+                    var p2 = document.createElement("p");
+                    if(data.status == "closed"){
+                        stat.setAttribute("src", "Iconos/closed.png"); //debería depender de getstatus
+                        stat.setAttribute("alt", "Closed"); //debería depender de getstatus 
+                        p2.innerHTML = "Status: Closed"; //debería depender de getstatus
+                    }else{
+                        stat.setAttribute("src", "Iconos/open.png"); //debería depender de getstatus
+                        stat.setAttribute("alt", "Open"); //debería depender de getstatus 
+                        p2.innerHTML = "Status: Open"; //debería depender de getstatus
+                    }
+                    
+                    
+                    stat.setAttribute("class", "status_icon"); //debería depender de getstatus
+                    stat.setAttribute("onclick", "stat(event,this);");
 
-                //close/open
+                    p2.setAttribute("class", "stat_text");
+                    
 
-                var stat = document.createElement("img");
-                var p2 = document.createElement("p");
+                    status2.appendChild(stat);
+                    status2.appendChild(p2);
 
-                stat.setAttribute("src", "Iconos/closed.png"); //debería depender de getstatus
-                stat.setAttribute("alt", "Closed"); //debería depender de getstatus
-                stat.setAttribute("class", "status_icon"); //debería depender de getstatus
-                stat.setAttribute("onclick", "stat(event,this);");
+                    //create panel 2
 
-                p2.setAttribute("class", "stat_text");
-                p2.innerHTML = "Status: Closed"; //debería depender de getstatus
+                    panel2.appendChild(status2);
 
-                status2.appendChild(stat);
-                status2.appendChild(p2);
+                    //create panel
 
-                //create panel 2
-
-                panel2.appendChild(status2);
-
-                //create panel
-
-                panel.appendChild(panel1);
-                panel.appendChild(panel2);
+                    panel.appendChild(panel1);
+                    panel.appendChild(panel2);
+                });
+                
 
             }else if(typename =='ac'){
                 api.devices.getState(item.id).done(function(data){
@@ -1628,103 +1663,107 @@ function onPageLoad(){
                 
 
             }else if(typename == 'alarm'){
+                api.devices.getState(item.id).done(function(data){
+                    console.log("Mi status es: " + data.status); 
+                    
+                    var panel1 = document.createElement("div");
+                    panel1.setAttribute("class", "panel1");
+                    var status1 = document.createElement("div");
+                    var status2 = document.createElement("div");
+                    status1.setAttribute("class", "status");
+                    status2.setAttribute("class", "status");
 
-                var panel1 = document.createElement("div");
-                panel1.setAttribute("class", "panel1");
-                var status1 = document.createElement("div");
-                var status2 = document.createElement("div");
-                status1.setAttribute("class", "status");
-                status2.setAttribute("class", "status");
+                    var panel2 = document.createElement("div");
+                    panel2.setAttribute("class", "panel2");
+                    var status3 = document.createElement("div");
+                    var status4 = document.createElement("div");
+                    status3.setAttribute("class", "status");
+                    status4.setAttribute("class", "status");
 
-                var panel2 = document.createElement("div");
-                panel2.setAttribute("class", "panel2");
-                var status3 = document.createElement("div");
-                var status4 = document.createElement("div");
-                status3.setAttribute("class", "status");
-                status4.setAttribute("class", "status");
+                    //change password
 
-                //change password
+                    var changepass = document.createElement("img");
+                    var p1 = document.createElement("p");
 
-                var changepass = document.createElement("img");
-                var p1 = document.createElement("p");
+                    changepass.setAttribute("src", "Iconos/changepass.png");
+                    changepass.setAttribute("alt", "Change Password");
+                    changepass.setAttribute("class", "changepass_icon");
+                    changepass.setAttribute("data-toggle", "modal");
+                    changepass.setAttribute("data-target", "#change_pass_popup");
 
-                changepass.setAttribute("src", "Iconos/changepass.png");
-                changepass.setAttribute("alt", "Change Password");
-                changepass.setAttribute("class", "changepass_icon");
-                changepass.setAttribute("data-toggle", "modal");
-                changepass.setAttribute("data-target", "#change_pass_popup");
+                    p1.setAttribute("class", "stat_text");
+                    p1.innerHTML = "Change password...";
 
-                p1.setAttribute("class", "stat_text");
-                p1.innerHTML = "Change password...";
+                    status1.appendChild(changepass);
+                    status1.appendChild(p1);
 
-                status1.appendChild(changepass);
-                status1.appendChild(p1);
+                    //disarm
 
-                //disarm
+                    var disarm = document.createElement("img");
+                    var p2 = document.createElement("p");
 
-                var disarm = document.createElement("img");
-                var p2 = document.createElement("p");
+                    disarm.setAttribute("src", "Iconos/disarm.png");
+                    disarm.setAttribute("alt", "Disarm");
+                    disarm.setAttribute("class", "disarm_icon");
+                    disarm.setAttribute("data-toggle", "modal");
+                    disarm.setAttribute("data-target", "#ask_pass_disarm_popup");
 
-                disarm.setAttribute("src", "Iconos/disarm.png");
-                disarm.setAttribute("alt", "Disarm");
-                disarm.setAttribute("class", "disarm_icon");
-                disarm.setAttribute("data-toggle", "modal");
-                disarm.setAttribute("data-target", "#ask_pass_disarm_popup");
+                    p2.setAttribute("class", "stat_text");
+                    p2.innerHTML = "Disarm...";
 
-                p2.setAttribute("class", "stat_text");
-                p2.innerHTML = "Disarm...";
+                    status2.appendChild(disarm);
+                    status2.appendChild(p2);
 
-                status2.appendChild(disarm);
-                status2.appendChild(p2);
+                    //create panel 1
 
-                //create panel 1
+                    panel1.appendChild(status1);
+                    panel1.appendChild(status2);
 
-                panel1.appendChild(status1);
-                panel1.appendChild(status2);
+                    //armStay
 
-                //armStay
+                    var armStay = document.createElement("img");
+                    var p3 = document.createElement("p");
 
-                var armStay = document.createElement("img");
-                var p3 = document.createElement("p");
+                    armStay.setAttribute("src", "Iconos/alarm_w_people.png");
+                    armStay.setAttribute("alt", "ArmStay");
+                    armStay.setAttribute("class", "stay_away_icon");
+                    armStay.setAttribute("data-toggle", "modal");
+                    armStay.setAttribute("data-target", "#ask_pass_armstay_popup");
 
-                armStay.setAttribute("src", "Iconos/alarm_w_people.png");
-                armStay.setAttribute("alt", "ArmStay");
-                armStay.setAttribute("class", "stay_away_icon");
-                armStay.setAttribute("data-toggle", "modal");
-                armStay.setAttribute("data-target", "#ask_pass_armstay_popup");
+                    p3.setAttribute("class", "stat_text");
+                    p3.innerHTML = "ArmStay...";
 
-                p3.setAttribute("class", "stat_text");
-                p3.innerHTML = "ArmStay...";
+                    status3.appendChild(armStay);
+                    status3.appendChild(p3);
 
-                status3.appendChild(armStay);
-                status3.appendChild(p3);
+                    //armAway
 
-                //armAway
+                    var armAway = document.createElement("img");
+                    var p4 = document.createElement("p");
 
-                var armAway = document.createElement("img");
-                var p4 = document.createElement("p");
+                    armAway.setAttribute("src", "Iconos/alarm_wo_people.png");
+                    armAway.setAttribute("alt", "ArmAway");
+                    armAway.setAttribute("class", "stay_away_icon");
+                    armAway.setAttribute("data-toggle", "modal");
+                    armAway.setAttribute("data-target", "#ask_pass_armaway_popup");
 
-                armAway.setAttribute("src", "Iconos/alarm_wo_people.png");
-                armAway.setAttribute("alt", "ArmAway");
-                armAway.setAttribute("class", "stay_away_icon");
-                armAway.setAttribute("data-toggle", "modal");
-                armAway.setAttribute("data-target", "#ask_pass_armaway_popup");
+                    p4.setAttribute("class", "stat_text");
+                    p4.innerHTML = "ArmAway...";
 
-                p4.setAttribute("class", "stat_text");
-                p4.innerHTML = "ArmAway...";
+                    status4.appendChild(armAway);
+                    status4.appendChild(p4);
 
-                status4.appendChild(armAway);
-                status4.appendChild(p4);
+                    //create panel 2
 
-                //create panel 2
+                    panel2.appendChild(status3);
+                    panel2.appendChild(status4);
 
-                panel2.appendChild(status3);
-                panel2.appendChild(status4);
+                    //create panel
 
-                //create panel
-
-                panel.appendChild(panel1);
-                panel.appendChild(panel2);
+                    panel.appendChild(panel1);
+                    panel.appendChild(panel2);
+                    });
+                
 
             }else if(typename == 'blind'){
                  api.devices.getState(item.id).done(function(data){
