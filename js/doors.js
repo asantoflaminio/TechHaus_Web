@@ -836,7 +836,7 @@ function onPageLoad(){
 
             }else if(typename =='ac'){
 
-                              var panel1 = document.createElement("div");
+                var panel1 = document.createElement("div");
                 panel1.setAttribute("class", "panel1");
                 var status1 = document.createElement("div");
                 var status2 = document.createElement("div");
@@ -859,7 +859,7 @@ function onPageLoad(){
                 var toggle_icon = document.createElement("img");
                 var stat = document.createElement("p");
 
-                toggle_icon.setAttribute("src", "Iconos/toggle_off.png");  //gettearlo con get status
+                toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                 toggle_icon.setAttribute("alt", "Off");   //idem
                 toggle_icon.setAttribute("class", "toggle_inside_icon");
 
@@ -1087,7 +1087,7 @@ function onPageLoad(){
                 var toggle_icon = document.createElement("img");
                 var stat = document.createElement("p");
 
-                toggle_icon.setAttribute("src", "Iconos/toggle_off.png");  //gettearlo con get status
+                toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                 toggle_icon.setAttribute("alt", "Off");   //idem
                 toggle_icon.setAttribute("class", "toggle_inside_icon");
 
@@ -1513,7 +1513,7 @@ function onPageLoad(){
                 var toggle_icon = document.createElement("img");
                 var stat = document.createElement("p");
 
-                toggle_icon.setAttribute("src", "Iconos/toggle_off.png");  //gettearlo con get status
+                toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                 toggle_icon.setAttribute("alt", "Off");   //idem
                 toggle_icon.setAttribute("class", "toggle_inside_icon");
 
