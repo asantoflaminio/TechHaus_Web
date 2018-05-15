@@ -240,7 +240,7 @@ function change_blind_status(event, status){
                 {
                     status.src = "Iconos/blind_up.png";
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_up_status.png";
-                    status.nextElementSibling.innerHTML = ' Up';
+                    status.nextElementSibling.innerHTML = 'Status: Up';
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Up";
 
                 }
@@ -248,7 +248,7 @@ function change_blind_status(event, status){
                 {
                     status.src = "Iconos/blind_down.png";
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_down_status.png";
-                    status.nextElementSibling.innerHTML = ' Down';
+                    status.nextElementSibling.innerHTML = 'Status: Down';
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Down";
                 }
 }
@@ -260,7 +260,7 @@ function change_blind_status_from_acc(event, status){
                     status.src = "Iconos/blind_up_status.png";
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_up.png";
                     status.nextElementSibling.innerHTML = ' Up';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Up";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Up";
 
                 }
                 else
@@ -268,8 +268,93 @@ function change_blind_status_from_acc(event, status){
                     status.src = "Iconos/blind_down_status.png";
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_down.png";
                     status.nextElementSibling.innerHTML = ' Down';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Down";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Down";
                 }
+}
+
+function change_lock_status(event, status){
+    event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/locked_inside.png")
+                {
+                    status.src = "Iconos/unlocked_inside.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/unlocked.png";
+                    status.nextElementSibling.innerHTML = ' Status: Unlocked';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
+
+                }
+                else
+                {
+                    status.src = "Iconos/locked_inside.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/locked.png";
+                    status.nextElementSibling.innerHTML = ' Status: Locked';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
+                }
+}
+
+function change_lock_status_from_acc(event, status){
+    event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/locked.png")
+                {
+                    status.src = "Iconos/unlocked.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/unlocked_inside.png";
+                    status.nextElementSibling.innerHTML = ' Unlocked';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Unlocked";
+
+                }
+                else
+                {
+                    status.src = "Iconos/locked.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked.png";
+                    status.nextElementSibling.innerHTML = ' Locked';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Locked";
+                }
+}
+
+function change_toggle_status(event, status){
+    event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/toggle_inside_off.png")
+                {
+                    status.src = "Iconos/toggle_on.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_on.png";
+                    status.nextElementSibling.innerHTML = ' Status: On';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " On";
+
+                }
+                else
+                {
+                    status.src = "Iconos/toggle_inside_off.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_off.png";
+                    status.nextElementSibling.innerHTML = ' Status: Off';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Off";
+                }
+}
+
+function change_toggle_status_from_acc(event, status){
+    event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/toggle_on.png")
+                {
+                    status.src = "Iconos/toggle_off.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_inside_off.png";
+                    status.nextElementSibling.innerHTML = ' Off';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Off";
+
+                }
+                else
+                {
+                    status.src = "Iconos/toggle_on.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_on.png";
+                    status.nextElementSibling.innerHTML = ' On';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: On";
+                }
+}
+
+function change_temp_status(event, status){
+    event.stopPropagation();
+
+}
+
+function change_temp_status_from_acc(event, status){
+    event.stopPropagation();
 }
 
 /*function trash(event, trashcan){
@@ -319,7 +404,7 @@ function delete_device(event, confirm){
     });
 };
 
-
+/*
 function no(event, noicon){
     event.stopPropagation();
     var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
@@ -347,6 +432,7 @@ function yes(event, yesicon){
     yesicon.closest('div').parentNode.parentNode.remove();
 
 }
+*/
 
 //edit device name
 
