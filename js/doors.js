@@ -395,6 +395,36 @@ function onPageLoad(){
     var typeid = window.localStorage.getItem("type_id");
     console.log("desde doors.js tengo typeid = " + typeid);
     var typename = window.localStorage.getItem("type_name");
+    var logo = document.getElementById("deviceicon");
+    var brd = document.getElementById("breadcrumbfinal");
+    var ttl = document.getElementById("title");
+    if(typename == 'door'){ //esto es para el logo y el titulo
+
+    }else if(typename =='ac'){
+        logo.setAttribute("src","Iconos/AirConditioners2.png");
+        brd.innerHTML = "Air Conditioners";
+        ttl.innerHTML = "Air Conditioners";
+    }else if(typename == 'oven'){
+        logo.setAttribute("src","Iconos/Ovens3.png");
+        brd.innerHTML = "Ovens";
+        ttl.innerHTML = "Ovens";
+    }else if(typename == 'alarm'){
+        logo.setAttribute("src","Iconos/Alarms.png");
+        brd.innerHTML = "Alarms";
+        ttl.innerHTML = "Alarms";
+    }else if(typename == 'blind'){
+        logo.setAttribute("src","Iconos/Curtains.png");
+        brd.innerHTML = "Curtains";
+        ttl.innerHTML = "Curtains";
+    }else if(typename == 'refrigerator'){
+        logo.setAttribute("src","Iconos/Fridges2.png");
+        brd.innerHTML = "Fridges";
+        ttl.innerHTML = "Fridges";
+    }else if(typename == 'lamp'){
+        logo.setAttribute("src","Iconos/Lights2.png");
+        brd.innerHTML = "Lights";
+        ttl.innerHTML = "Lights";
+    }
     api.devices.getDevicesForType(typeid).done(function(data) {
         $.each(data, function(i, item){ //estoy iterando por cada elemento
              var list = document.getElementById("devices_list");
