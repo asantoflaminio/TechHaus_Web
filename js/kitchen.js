@@ -49,6 +49,28 @@ api.devices = class {
       timeout: api.timeout
        })   
   }
+
+    static deleteDevice(deviceId) {
+   return $.ajax({
+      url: api.devices.url + deviceId,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout,
+       })
+       
+     
+  }
+
+      static getAllDevices() {
+   return $.ajax({
+      url: api.devices.url,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices;
+        });  
+  } 
 }
 
 api.rooms = class {
@@ -132,6 +154,8 @@ function lock(event, locking){
                 }
 }
 
+/*
+
 function trash(event, trashcan){
     event.stopPropagation();
     if (trashcan.getAttribute('src') == "Iconos/tacho.png")
@@ -153,6 +177,7 @@ function trash(event, trashcan){
                     
                 }
 }
+
 
 function no(event, noicon){
     event.stopPropagation();
@@ -188,6 +213,7 @@ function yes(event, yesicon){
   });
 }
 
+*/
 
 
 function add_device(event, name) {
@@ -731,6 +757,10 @@ function onPageLoad(){
                 trash.setAttribute("alt", "Delete");
                 trash.setAttribute("class", "delete_icon");
                 trash.setAttribute("onclick", "trash(event,this);");
+                trash.setAttribute("onclick", "trash(event,this);");
+                trash.setAttribute("onclick", "trash(event,this);"); 
+                trash.setAttribute("data-toggle", "modal");
+                trash.setAttribute("data-target", "#delete_device_popup");
                 yes.setAttribute("src", "Iconos/yes.png");
                 yes.setAttribute("alt", "Yes");
                 yes.setAttribute("class", "yes_icon");
@@ -1627,3 +1657,26 @@ function pencil2_outRoom(event, title){
     pencil.style.visibility = "hidden";
     
 }
+
+function trash(event, tacho){
+    var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
+    var deviceid = "";
+    //window.localStorage.clear();
+    window.localStorage.setItem("devicename", devicename);
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){
+            if(item.name == devicename){
+                deviceid = item.id;
+                document.getElementById("msg-tag").innerHTML = "You are about to delete device \'"+devicename+ "\'"
+                window.localStorage.setItem("device_id2", deviceid);
+            }
+        });
+    });  
+}
+
+function delete_device(event, confirm){
+    var deviceid = window.localStorage.getItem("device_id2");
+    api.devices.deleteDevice(deviceid).done(function(data){
+        onPageLoad();                                           
+    });
+};
