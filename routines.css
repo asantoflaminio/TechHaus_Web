@@ -122,11 +122,11 @@ section {
 
 /* Style the list box */
 .routines_list_box {
-    float: center;
+    float: right;
     margin-bottom: 15px;
     background-color: #fff;
     height: 410px;
-    width: 99.5%;
+    width: 100%;
     border-style: solid;
     border-color: #a6a6a6;
     overflow:auto;
@@ -179,8 +179,8 @@ section {
 }
 
 .delete_icon {
-    width: 30px;
-    height: 30px;
+    width: 23px;
+    height: 23px;
     margin: 0;
     margin-top: 5px;
     margin-right: 15px;
@@ -228,8 +228,8 @@ section {
 }
 
 .lapiz_icon {
-    width: 30px;
-    height: 30px;
+    width: 23px;
+    height: 23px;
     margin-top: 3px;
     margin-right: 10px;
     cursor: pointer;
@@ -448,7 +448,15 @@ input[type=text] {
     margin-bottom: 7px;
 }
 
-#device-tag {
+.device_tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-top: 42px;
+    margin-left: 13px;
+    margin-bottom: 7px;
+}
+
+#device_tag {
     position: relative !important;
     font-family: monaco, monospace;
     margin-top: 42px;
@@ -475,6 +483,14 @@ input[type=text] {
     margin-top: 42px;
     margin-left: 13px;
     margin-bottom: 7px;
+}
+
+.devicetype_tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-top: 5px;
+    margin-left: 13px;
+    margin-bottom: 8px;
 }
 
 #device_input {
@@ -522,6 +538,17 @@ input[type=text] {
     font-family: monaco, monospace;
     margin-bottom: 7px;
 }
+
+.action_tag {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 15px;
+    position: relative !important;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+}
+
 
 #action_input {
     height: 25px;
