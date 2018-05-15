@@ -8,6 +8,49 @@ var api = class {
   }
 }
 
+api.devices = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/devices/";
+  }
+
+  static addDevice(typeid, name, room) {
+   return $.ajax({
+      url: api.devices.url,
+      method: "POST",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'typeId': typeid, 'name': name, 'meta': "{" + room + "}"},
+       });     
+  }
+    
+    static link(dev_id, room_id) {
+       return $.ajax({
+          url: api.devices.url + dev_id + "/rooms/" +room_id,
+          method: "POST",
+          dataType: "json",
+          timeout: api.timeout
+           });
+      }
+  static getDevices() {
+    return $.ajax({
+      url: api.devices.url ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices; //.map(item => item.name);
+        });      
+  }
+    static deleteDevice(id) {
+    return $.ajax({
+      url: api.devices.url + id,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout
+       })   
+  }
+}
+
 api.rooms = class {
   static get url() {
     return "http://127.0.0.1:8080/api/rooms/";
@@ -317,48 +360,7 @@ function add_device(event, name) {
                 //$(this).dialog('close');
 }
 
-api.devices = class {
-  static get url() {
-    return "http://127.0.0.1:8080/api/devices/";
-  }
 
-  static addDevice(typeid, name, room) {
-   return $.ajax({
-      url: api.devices.url,
-      method: "POST",
-      dataType: "json",
-      timeout: api.timeout,
-       data: {'typeId': typeid, 'name': name, 'meta': "{" + room + "}"},
-       });     
-  }
-    
-    static link(dev_id, room_id) {
-       return $.ajax({
-          url: api.devices.url + dev_id + "/rooms/" +room_id,
-          method: "POST",
-          dataType: "json",
-          timeout: api.timeout
-           });
-      }
-  static getDevices() {
-    return $.ajax({
-      url: api.devices.url ,
-      method: "GET",
-      dataType: "json",
-      timeout: api.timeout,
-       }).then(function(data) {
-           return data.devices; //.map(item => item.name);
-        });      
-  }
-    static deleteDevice(id) {
-    return $.ajax({
-      url: api.devices.url + id,
-      method: "DELETE",
-      dataType: "json",
-      timeout: api.timeout
-       })   
-  }
-}
 
 
 function addPanels(){

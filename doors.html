@@ -45,16 +45,13 @@
                 <p id="name-tag">Name</p>
                 <input type="text" class="text-input" id="door_input">
                 <p id="room-tag">Room</p>
-                <select class="text-input" id="room_input">
-                  <option>Kitchen</option>
-                  <option>Garage</option>
-                  <option>Mia's Room</option>
-                  <option>Living Room</option>
+                <select class="text-input" id="room_input" onclick="add_room_input(event, this);" onmouseleave="activateroominput(event, this);">
+                  <option></option>
                 </select>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="add_device(event, this)" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-primary" onclick="add_device(event, this)">Add</button>
               </div>
             </div>
           </div>

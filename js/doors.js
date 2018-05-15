@@ -8,6 +8,25 @@ var api = class {
   }
 }
 
+api.rooms = class {
+  static get url() {
+    return "http://127.0.0.1:8080/api/rooms/";
+  }
+
+  static getRooms() {
+   return $.ajax({
+      url: api.rooms.url,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.rooms; //.map(item => item.name);
+        });
+       
+     
+  }
+}
+
 api.devicetypes = class {
   static get url() {
     return "http://127.0.0.1:8080/api/devicetypes/";
@@ -107,6 +126,35 @@ api.devices = class {
            return data.device.actions;
         });  
   } 
+    
+    static addDevice(typeid, name, room) {
+   return $.ajax({
+      url: api.devices.url,
+      method: "POST",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'typeId': typeid, 'name': name, 'meta': "{" + room + "}"},
+       });     
+  }
+    
+    static link(dev_id, room_id) {
+       return $.ajax({
+          url: api.devices.url + dev_id + "/rooms/" +room_id,
+          method: "POST",
+          dataType: "json",
+          timeout: api.timeout
+           });
+      }
+  static getDevices() {
+    return $.ajax({
+      url: api.devices.url ,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices; //.map(item => item.name);
+        });      
+  }
 }
 
 addPanels();
@@ -392,6 +440,10 @@ $(document).ready(function() {
     onPageLoad();
 });
 function onPageLoad(){
+    var myNode = document.getElementById("devices_list");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
     var typeid = window.localStorage.getItem("type_id");
     console.log("desde doors.js tengo typeid = " + typeid);
     var typename = window.localStorage.getItem("type_name");
@@ -1409,6 +1461,85 @@ function onPageLoad(){
     });
 }
 
+function add_room_input(event, room){
+    room.removeAttribute("onclick");
+    $(room).children('option').remove();
+    api.rooms.getRooms().done(function(data){
+                                    $.each(data, function(i, item){
+                                                    var option = document.createElement("option");
+                                                    option.innerHTML = item.name;
+                                                    room.appendChild(option);
+                                                });
+                                            });
+                                        
+                                   
+        //
+                                 
+}
+
+function add_device(event, addbtn){
+    var typeid = window.localStorage.getItem("type_id");
+    var name = $("#door_input").val();
+    var room = $("#room_input").val();
+    var no = 0;
+    
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){
+                                        if(name == item.name){
+                                            no = 1;
+                                        }
+                                         });
+        if(name == ""){
+            no = 2;
+        }
+        if(no == 2){
+            document.getElementById("name-tag").style.color = "#ff0000";
+            document.getElementById("name-tag").innerHTML = "Choose a name";
+            $('#add_room_popup').modal('show');
+        }
+        else if(no == 1){
+            document.getElementById("name-tag").style.color = "#ff0000";
+            document.getElementById("name-tag").innerHTML = "Name already in use";
+            $('#add_room_popup').modal('show');
+        }else{
+            //agrego y linkeo
+            api.rooms.getRooms().done(function(data) {
+                            
+                            $.each(data, function(i, item){
+                                if(item.name.toUpperCase() == room.toUpperCase()){
+                                               api.devices.addDevice(typeid,name,item.name).done(function(data) {
+                                                   api.devices.getDevices().done(function(data){
+                                                       $.each(data, function(r, item3){
+                                                       if(name == item3.name){
+                                                           console.log("VOY A LINKEAR");
+                                                           api.devices.link(item3.id, item.id);
+                                                           onPageLoad();
+                                                            $('#add_room_popup').modal('hide');
+                                                       }
+                                                       });
+                                                   });
+                                                   
+                                               });
+                                                
+                                               
+                                            
+                                        
+                                        
+                                    
+                                    
+                                }
+                            });
+                });
+            
+        }
+    });
+    
+}
+
+function activateroominput(event, roominput){
+   roominput.setAttribute("onclick","add_room_input(event, this);");
+}
+
 $(function() {
     
     function edit(event, title){
@@ -1430,6 +1561,10 @@ $(function() {
     $(viewableText).click(divClicked);
     }
     
+    
+    
+    
+   //esto es viejo, borrar (creo)
 $("#addicon").click(function() {
 
 	$("#popup").dialog({
