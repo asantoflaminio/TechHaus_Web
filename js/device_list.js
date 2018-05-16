@@ -2738,10 +2738,12 @@ function add_device(event, addbtn){
                                          });
         if(name == ""){
             no = 2;
+        } else {
+          no = 2;
         }
         if(no == 2){
             document.getElementById("name-tag").style.color = "#ff0000";
-            document.getElementById("name-tag").innerHTML = "Choose a name";
+            document.getElementById("name-tag").innerHTML = "Name is required";
             $('#add_room_popup').modal('show');
         }
         else if(no == 1){
@@ -2762,6 +2764,10 @@ function add_device(event, addbtn){
                                                            agregado = 1;
                                                            onPageLoad();
                                                             $('#add_room_popup').modal('hide');
+                                                            document.getElementById("name-tag").innerHTML = "Name*";
+                                                            document.getElementById("door_input").value = "";
+                                                            document.getElementById("name-tag").style.color = "#000000";
+
                                                        }
                                                        });
                                                    });
@@ -2774,6 +2780,9 @@ function add_device(event, addbtn){
                                                     console.log("Es unrouped")
                                                     onPageLoad();
                                                    $('#add_room_popup').modal('hide');
+                                                   document.getElementById("name-tag").innerHTML = "Name*";
+                                                    document.getElementById("door_input").value = "";
+                                                    document.getElementById("name-tag").style.color = "#000000";
                                                }); 
                             }
                 });
@@ -2781,6 +2790,12 @@ function add_device(event, addbtn){
         }
     });
     
+}
+
+function cancel_add(event, sth) {
+   document.getElementById("name-tag").innerHTML = "Name*";
+   document.getElementById("door_input").value = "";
+   document.getElementById("name-tag").style.color = "#000000";
 }
 
 function activateroominput(event, roominput){
