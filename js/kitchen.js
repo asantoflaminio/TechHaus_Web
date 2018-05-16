@@ -1,6 +1,28 @@
 
 function add_device(event, name) {
-                    
+    var name = $("#device_input").val();
+    var room = $("#room_input").val();
+    var no = 0;
+    
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){
+        if(name == item.name){
+              no = 1;
+        }
+        });
+        if(name == ""){
+            no = 2;
+        }
+        if(no == 2){
+            document.getElementById("name-tag").style.color = "#ff0000";
+            document.getElementById("name-tag").innerHTML = "Choose a name";
+            $('#add_room_popup').modal('show');
+        }
+        else if(no == 1){
+            document.getElementById("name-tag").style.color = "#ff0000";
+            document.getElementById("name-tag").innerHTML = "Name already in use";
+            $('#add_room_popup').modal('show');
+        }else{
                 api.rooms.getRooms().done(function(data) {
 
                             $.each(data, function(i, item){
@@ -16,6 +38,8 @@ function add_device(event, name) {
                                                            console.log("VOY A LINKEAR");
                                                            api.devices.link(item3.id, item.id).done(function(data){
                                                             onPageLoad();
+                                                            $('#add_room_popup').modal('hide');
+
                                                            });
                                                        }
                                                        });
@@ -34,6 +58,9 @@ function add_device(event, name) {
                 });
               //  document.getElementById("mymodal").modal('hide');
                 //$(this).dialog('close');
+              }
+          });
+
 }
 
 //edit room name
