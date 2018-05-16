@@ -10,12 +10,12 @@ function add_device(event, name) {
               no = 1;
         }
         });
-        if(name == ""){
+        if(name == "" || name.length < 3){
             no = 2;
         }
         if(no == 2){
             document.getElementById("name-tag").style.color = "#ff0000";
-            document.getElementById("name-tag").innerHTML = "Choose a name";
+            document.getElementById("name-tag").innerHTML = "Name is required";
             $('#add_room_popup').modal('show');
         }
         else if(no == 1){
@@ -39,7 +39,9 @@ function add_device(event, name) {
                                                            api.devices.link(item3.id, item.id).done(function(data){
                                                             onPageLoad();
                                                             $('#add_room_popup').modal('hide');
-
+                                                              document.getElementById("name-tag").innerHTML = "Name*";
+                                                              document.getElementById("device_input").value = "";
+                                                              document.getElementById("name-tag").style.color = "#000000";
                                                            });
                                                        }
                                                        });
@@ -61,6 +63,12 @@ function add_device(event, name) {
               }
           });
 
+}
+
+function cancel_add(event, sth) {
+  document.getElementById("name-tag").innerHTML = "Name*";
+  document.getElementById("device_input").value = "";
+  document.getElementById("name-tag").style.color = "#000000";
 }
 
 //edit room name
