@@ -1227,8 +1227,16 @@ function onPageLoad(){
                             img.setAttribute("src", "Iconos/laundry2.png");      
                         }else if(roomtype == "bedroom"){
                             img.setAttribute("src", "Iconos/Rooms6.png");       
+                        }else if(roomtype == "dining room"){
+                            img.setAttribute("src", "Iconos/diningroom.png");                   
+                        }else if(roomtype == "living room"){
+                            img.setAttribute("src", "Iconos/living.png");
+                        }else if(roomtype == "office"){
+                            img.setAttribute("src", "Iconos/office.png");
+                        }else if(roomtype == "tv room"){
+                            img.setAttribute("src", "Iconos/tv_room.png");
                         }else{
-                            img.setAttribute("src", "Iconos/other.png");     
+                            img1.setAttribute("src", "Iconos/other.png");     
                         }
     });
 
