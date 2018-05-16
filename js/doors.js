@@ -453,7 +453,32 @@ function change_fridge_mode(event, status){
                 }
 }
 
-//FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM, OVEN
+function change_oven_temp(event, status){
+    event.stopPropagation();
+    var val;
+
+    if(status.getAttribute('src') == "Iconos/arrow_up.png")
+      val = status.previousElementSibling.innerHTML.substr(0,3);
+    else
+      val = status.nextElementSibling.innerHTML.substr(0,3);
+
+    if(val.charAt(2) === '°') {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {
+              status.previousElementSibling.innerHTML = "100°C";
+          } else {
+            //do nothing
+          }
+    } else {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {   
+            if(val != "230") 
+              status.previousElementSibling.innerHTML = (parseInt(val)+10).toString() + "°C";
+          }
+          else {
+              status.nextElementSibling.innerHTML = (parseInt(val)-10).toString() + "°C";
+          }
+    }
+}
+//FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM
 
 function trash(event, tacho){
     var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
@@ -1516,6 +1541,7 @@ function onPageLoad(){
                     arrow_down.setAttribute("src", "Iconos/arrow_down.png");
                     arrow_down.setAttribute("alt", "Temperature Down");
                     arrow_down.setAttribute("class", "arrow_change_down_icon_with_text");
+                    arrow_down.setAttribute("onclick", "change_oven_temp(event, this);");
 
                     p2.setAttribute("class", "stat_text");
                     p2.setAttribute("class", "number_info");
@@ -1524,6 +1550,7 @@ function onPageLoad(){
                     arrow_up.setAttribute("src", "Iconos/arrow_up.png");
                     arrow_up.setAttribute("alt", "Temperature Up");
                     arrow_up.setAttribute("class", "arrow_change_up_icon");
+                    arrow_up.setAttribute("onclick", "change_oven_temp(event, this);");
 
                     status2.appendChild(temp);
                     status2.appendChild(p1);
