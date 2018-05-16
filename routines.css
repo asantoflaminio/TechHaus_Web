@@ -447,22 +447,66 @@ input[type=text] {
     font-family: monaco, monospace;
     margin-left: 13px;
     margin-bottom: 7px;
+    display: inline-block;
 }
+
+.more_info1 {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    top: -3px;
+}
+
+.more_info2 {
+    height: 20px;
+    width: 20px;
+
+}
+
+.more_info3 {
+    position: relative;
+    top: 12px;
+    margin-left: 12px;
+}
+
+.more_info4 {
+    position: relative;
+    top: 8px;
+    margin-left: 12px;
+}
+
+#room-tag {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+    display: inline-block !important;
+}
+
 
 .device_tag {
-    position: relative !important;
-    font-family: monaco, monospace;
-    margin-top: 42px;
+    padding-top: 0;
     margin-left: 13px;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
     margin-bottom: 7px;
+    display: inline-block !important;
 }
 
-#device_tag {
-    position: relative !important;
-    font-family: monaco, monospace;
-    margin-top: 42px;
+#device-tag {
+    padding-top: 0;
     margin-left: 13px;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
     margin-bottom: 7px;
+    display: inline-block !important;
 }
 
 #device-tag2 {
@@ -479,11 +523,25 @@ input[type=text] {
 }
 
 #devicetype-tag {
-    position: relative !important;
-    font-family: monaco, monospace;
-    margin-top: 42px;
+    padding-top: 0;
     margin-left: 13px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
     margin-bottom: 7px;
+    display: inline-block !important;
+}
+
+#devicetype-tag2 {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+    display: inline-block !important;
 }
 
 .devicetype_tag {
@@ -512,17 +570,6 @@ input[type=text] {
 
 }
 
-#room-tag {
-    padding-top: 0;
-    margin-left: 13px;
-    margin-top: 15px;
-    position: relative;
-    float: left;
-    font-family: monaco, monospace;
-    margin-bottom: 7px;
-
-}
-
 #room_input {
     height: 25px;
     overflow: scroll;
@@ -533,21 +580,23 @@ input[type=text] {
 #action-tag {
     padding-top: 0;
     margin-left: 13px;
-    margin-top: 15px;
-    position: relative !important;
+    margin-top: 10px;
+    position: relative;
     float: left;
     font-family: monaco, monospace;
     margin-bottom: 7px;
+    display: inline-block !important;
 }
 
 .action_tag {
     padding-top: 0;
     margin-left: 13px;
-    margin-top: 15px;
-    position: relative !important;
+    margin-top: 10px;
+    position: relative;
     float: left;
     font-family: monaco, monospace;
     margin-bottom: 7px;
+    display: inline-block !important;
 }
 
 
