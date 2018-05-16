@@ -8,6 +8,76 @@ var api = class {
   }
 }
 
+api.routines = class {
+  static get url() {
+    return api.baseUrl + "routines/";
+  }
+
+  static getRoutines() {
+   return $.ajax({
+      url: api.routines.url,
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.routines; 
+        });  
+  }
+    
+  static executeRoutine(id) {
+   return $.ajax({
+      url: api.routines.url + id + "/execute/",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return "done"; 
+        }); 
+  }
+    
+    static postRoutine(nombre, action) {
+   return $.ajax({
+      url: api.routines.url,
+      method: "POST",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'name': nombre, 'actions': action, 'meta': "{}"},
+       })
+  }
+    
+static updateRoutine(id, nombre, action) {
+   return $.ajax({
+      url: api.routines.url + id,
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'name': nombre, 'actions': action, 'meta': "{}"},
+       })
+  }
+
+    
+    static getActionsNames(id) {
+       return $.ajax({
+          url: api.routines.url + id,
+          method: "GET",
+          dataType: "json",
+          timeout: api.timeout,
+           }).then(function(data) {
+               return data.routine.actions; 
+            });  
+      }
+    
+    static deleteRoutine(id) {
+       return $.ajax({
+          url: api.routines.url + id,
+          method: "DELETE",
+          dataType: "json",
+          timeout: api.timeout
+           })
+      }
+    
+}
+
 api.rooms = class {
   static get url() {
     return api.baseUrl + "rooms/";
@@ -59,6 +129,27 @@ api.rooms = class {
        
      
   }
+    
+    static deleteRoom(id){
+      return $.ajax({
+      url: api.rooms.url +id,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout
+       
+       });
+  }
+    
+    static getDevicesForRoom(roomid){
+        return $.ajax({
+      url: api.rooms.url + roomid + "/devices",
+      method: "GET",
+      dataType: "json",
+      timeout: api.timeout,
+       }).then(function(data) {
+           return data.devices; 
+        });
+    }
 }
 
 api.devicetypes = class {
@@ -327,7 +418,7 @@ api.devices = class {
     
     static getDevicesID() {
    return $.ajax({
-      url: "http://127.0.0.1:8080/api/devicetypes",
+      url: api.devicetypes.url,
       method: "GET",
       dataType: "json",
       timeout: api.timeout,
@@ -338,7 +429,7 @@ api.devices = class {
     
     static getDevicesForType(id) {
    return $.ajax({
-      url: "http://127.0.0.1:8080/api/devices/devicetypes/" + id ,
+      url: api.devices.url + "devicetypes/" + id ,
       method: "GET",
       dataType: "json",
       timeout: api.timeout,
@@ -349,7 +440,7 @@ api.devices = class {
     
     static getDeviceActions(id) {
    return $.ajax({
-      url: "http://127.0.0.1:8080/api/devicetypes/" + id ,
+      url: api.devicetypes.url + id ,
       method: "GET",
       dataType: "json",
       timeout: api.timeout,
@@ -390,6 +481,17 @@ api.devices = class {
       static deleteDevice(deviceId) {
    return $.ajax({
       url: api.devices.url + deviceId,
+      method: "DELETE",
+      dataType: "json",
+      timeout: api.timeout,
+       })
+       
+     
+  }
+    
+    static deleteFromRoom(deviceId) {
+   return $.ajax({
+      url: api.devices.url + deviceId + "/rooms",
       method: "DELETE",
       dataType: "json",
       timeout: api.timeout,
