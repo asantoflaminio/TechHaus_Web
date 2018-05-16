@@ -2594,6 +2594,119 @@ function onPageLoad(){
     
 };
 
+function change_heat(event, heatbox){
+    var dev_name = heatbox.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if(heatbox.value == 'Conventional'){
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setHeat(item.id, JSON.stringify(["conventional"])).done(function(data){
+                                    console.log("heat seteaado como conv " + data.result);
+                                  });
+                              }
+                          });
+                    });
+    }else if(heatbox.value == 'Bottom'){
+         api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setHeat(item.id, JSON.stringify(["bottom"])).done(function(data){
+                                    console.log("heat seteaado como bottom " + data.result);
+                                  });
+                              }
+                          });
+                    });    
+    }else{
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setHeat(item.id, JSON.stringify(["top"])).done(function(data){
+                                    console.log("heat seteaado como top " + data.result);
+                                  });
+                              }
+                          });
+                    });     
+    }
+}
+
+function change_grill(event, heatbox){
+    var dev_name = heatbox.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if(heatbox.value == 'Off'){
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setGrill(item.id, JSON.stringify(["off"])).done(function(data){
+                                    console.log("heat seteaado como conv " + data.result);
+                                  });
+                              }
+                          });
+                    });
+    }else if(heatbox.value == 'Large'){
+         api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setGrill(item.id, JSON.stringify(["large"])).done(function(data){
+                                    console.log("heat seteaado como bottom " + data.result);
+                                  });
+                              }
+                          });
+                    });    
+    }else{
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setGrill(item.id, JSON.stringify(["eco"])).done(function(data){
+                                    console.log("heat seteaado como top " + data.result);
+                                  });
+                              }
+                          });
+                    });     
+    }
+}
+
+function change_convection(event, heatbox){
+    var dev_name = heatbox.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if(heatbox.value == 'Off'){
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setConvection(item.id, JSON.stringify(["off"])).done(function(data){
+                                    console.log("heat seteaado como conv " + data.result);
+                                  });
+                              }
+                          });
+                    });
+    }else if(heatbox.value == 'Normal'){
+         api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setConvection(item.id, JSON.stringify(["normal"])).done(function(data){
+                                    console.log("heat seteaado como bottom " + data.result);
+                                  });
+                              }
+                          });
+                    });    
+    }else{
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setConvection(item.id, JSON.stringify(["eco"])).done(function(data){
+                                    console.log("heat seteaado como top " + data.result);
+                                  });
+                              }
+                          });
+                    });     
+    }
+}
 
 function pencil2_displayRoom(event, title){
     var pencil = title.closest('div').querySelector('.pencil2_iconRoom');
