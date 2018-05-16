@@ -180,11 +180,37 @@ function fav(event, heart){
     event.stopPropagation();
     if (heart.getAttribute('src') == "Iconos/heart.png")
                 {
-                    heart.src = "Iconos/heart_coloured4.png";
+                    
+                    var dev_name = heart.closest('div').parentNode.parentNode.querySelector('h3').innerHTML;
+                    console.log("Faved device: " + dev_name);
+                    api.devices.getAllDevices().done(function(data){
+                        $.each(data, function(i, item){
+                            if(item.name == dev_name){
+                                var room = item.meta.replace("{","").replace("}","").split(',')[0];
+                                api.devices.updateDevice(item.id, item.typeId, item.name, room, ", faved").done(function(data){
+                                    heart.src = "Iconos/heart_coloured4.png";
+                                });
+                            }
+                            
+                        });
+                    });
                 }
                 else
                 {
-                    heart.src = "Iconos/heart.png";
+                    var dev_name = heart.closest('div').parentNode.parentNode.querySelector('h3').innerHTML;
+                    console.log("unaved device: " + dev_name);
+                    api.devices.getAllDevices().done(function(data){
+                        $.each(data, function(i, item){
+                            if(item.name == dev_name){
+                                var room = item.meta.replace("{","").replace("}","").split(',')[0];
+                                api.devices.updateDevice(item.id, item.typeId, item.name, room, "").done(function(data){
+                                    heart.src = "Iconos/heart.png";
+                                });
+                            }
+                            
+                        });
+                    });
+                    
                 }
 }
 
@@ -1542,7 +1568,11 @@ function onPageLoad(){
                 arrow.setAttribute("src", "Iconos/arrow_down.png");
                 arrow.setAttribute("alt", "Expand");
                 arrow.setAttribute("class", "arrow_icon");  
-                heart.setAttribute("src", "Iconos/heart.png");
+                if(item2.meta.replace("{","").replace("}","").split(',')[1] == ' faved'){
+                    heart.setAttribute("src", "Iconos/heart_coloured4.png");
+               }else{
+                    heart.setAttribute("src", "Iconos/heart.png");
+            }
                 heart.setAttribute("alt", "Fave");
                 heart.setAttribute("class", "fave_icon");
                 heart.setAttribute("onclick", "fav(event,this);");
