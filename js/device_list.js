@@ -1130,8 +1130,8 @@ function onPageLoad(){
         ttl.innerHTML = "Doors";
     }else if(typename =='ac'){
         logo.setAttribute("src","Iconos/AirConditioners2.png");
-        brd.innerHTML = "Air Conditioners";
-        ttl.innerHTML = "Air Conditioners";
+        brd.innerHTML = "ACs";
+        ttl.innerHTML = "ACs";
     }else if(typename == 'oven'){
         logo.setAttribute("src","Iconos/Ovens3.png");
         brd.innerHTML = "Ovens";
@@ -1142,16 +1142,16 @@ function onPageLoad(){
         ttl.innerHTML = "Alarms";
     }else if(typename == 'blind'){
         logo.setAttribute("src","Iconos/Curtains.png");
-        brd.innerHTML = "Curtains";
-        ttl.innerHTML = "Curtains";
+        brd.innerHTML = "Blinds";
+        ttl.innerHTML = "Blinds";
     }else if(typename == 'refrigerator'){
         logo.setAttribute("src","Iconos/Fridges2.png");
-        brd.innerHTML = "Fridges";
-        ttl.innerHTML = "Fridges";
+        brd.innerHTML = "Refrigerators";
+        ttl.innerHTML = "Refrigerators";
     }else if(typename == 'lamp'){
         logo.setAttribute("src","Iconos/Lights2.png");
-        brd.innerHTML = "Lights";
-        ttl.innerHTML = "Lights";
+        brd.innerHTML = "Lamps";
+        ttl.innerHTML = "Lamps";
     }else if(typename == 'all'){
         logo.setAttribute("src","Iconos/All.png");
         brd.innerHTML = "All";
