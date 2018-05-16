@@ -48,43 +48,6 @@ function stat(event, status){
                 }
 }
 
-function lock(event, locking){
-    event.stopPropagation();
-    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
-    if (locking.getAttribute('src') == "Iconos/locked.png")
-                {
-                    api.devices.getAllDevices().done(function(data){
-                          
-                          $.each(data, function(i, item){
-                              if(item.name == dev_name){
-                                  api.devices.unlock(item.id).done(function(data){
-                                      
-                                        locking.src = "Iconos/unlocked.png";
-                                        locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Unlocked";
-                                  });
-                              }
-                          });
-                    });
-                    
-                }
-                else
-                {
-                    api.devices.getAllDevices().done(function(data){
-                          
-                          $.each(data, function(i, item){
-                              if(item.name == dev_name){
-                                  api.devices.lock(item.id).done(function(data){
-
-                                        locking.src = "Iconos/locked.png";
-                                      locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Locked";
-                                  });
-                              }
-                          });
-                    });
-                    
-                }
-}
-
 function toggle_alarm(event, toggling){
     event.stopPropagation();
     if (toggling.getAttribute('src') == "Iconos/alarm_wo_people_stat.png")
@@ -280,7 +243,7 @@ function change_lock_status_from_acc(event, status){
                                   api.devices.lock(item.id).done(function(data){
                                       
                                         status.src = "Iconos/locked.png";
-                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked.png";
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked_inside.png";
                                         status.nextElementSibling.innerHTML = ' Locked';
                                         status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Locked";
 
@@ -1316,7 +1279,6 @@ function onPageLoad(){
 
             }else if(typename == 'alarm'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
                     var alarm_icon = document.createElement("img");
                     var alarm_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -1352,7 +1314,6 @@ function onPageLoad(){
 
             }else if(typename == 'blind'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
                     var blind_icon2 = document.createElement("img");
                     var blind_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -1385,9 +1346,6 @@ function onPageLoad(){
 
             }else if(typename == 'refrigerator'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi mode es: " + data.mode); 
-                    console.log("Mi temperature es: " + data.temperature); 
-                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
                     var temp_icon = document.createElement("img");
                     var temp_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -1908,6 +1866,7 @@ function onPageLoad(){
                     select4.appendChild(option18);
                     select4.appendChild(option19);
                     select4.setAttribute("onchange", "change_hoz(event,this);");
+                    
                     status5.appendChild(horizontal_swing);
                     status5.appendChild(p6);
                     status5.appendChild(select4);
@@ -2150,7 +2109,6 @@ function onPageLoad(){
 
             }else if(typename == 'alarm'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
                     
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
@@ -2298,9 +2256,6 @@ function onPageLoad(){
 
             }else if(typename == 'refrigerator'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi mode es: " + data.mode); 
-                    console.log("Mi temperature es: " + data.temperature); 
-                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -2446,9 +2401,6 @@ function onPageLoad(){
 
             }else if(typename == 'lamp'){
                 api.devices.getState(item.id).done(function(data){
-                 console.log("Mi status es: " + data.status); 
-                 console.log("Mi color es: " + data.color); 
-                 console.log("Mi brightness es: " + data.brightness); 
                 var panel1 = document.createElement("div");
                 panel1.setAttribute("class", "panel1");
                 var status1 = document.createElement("div");
