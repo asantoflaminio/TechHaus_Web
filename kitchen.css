@@ -382,7 +382,7 @@ ul.tabs li:before {
     height: 27px;
     margin: 0;
     margin-top: 5px;
-    margin-right: 40px;
+    margin-right: 15px;
     cursor: pointer;
     position: relative;
     float: right;
@@ -477,7 +477,7 @@ ul.tabs li:before {
     height: 23px;
     margin: 0;
     margin-top: 7px;
-    margin-right: 15px;
+    margin-right: 40px;
     cursor: pointer;
     position: relative;
     float: right;
