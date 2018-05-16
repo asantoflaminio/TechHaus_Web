@@ -4,14 +4,16 @@ function fav(event, heart){
     event.stopPropagation();
     if (heart.getAttribute('src') == "Iconos/heart.png")
                 {
-                    heart.src = "Iconos/heart_coloured4.png";
+                    
                     var dev_name = heart.closest('div').parentNode.parentNode.querySelector('h3').innerHTML;
                     console.log("Faved device: " + dev_name);
                     api.devices.getAllDevices().done(function(data){
                         $.each(data, function(i, item){
                             if(item.name == dev_name){
-                                var fav_state = item.meta.replace("{","").replace("}","").split(',')[0];
-                                console.log("deberias er null " + fav_state) ;
+                                var room = item.meta.replace("{","").replace("}","").split(',')[0];
+                                api.devices.updateDevice(item.id, item.typeId, item.name, room, ", faved").done(function(data){
+                                    heart.src = "Iconos/heart_coloured4.png";
+                                });
                             }
                             
                         });
@@ -19,7 +21,20 @@ function fav(event, heart){
                 }
                 else
                 {
-                    heart.src = "Iconos/heart.png";
+                    var dev_name = heart.closest('div').parentNode.parentNode.querySelector('h3').innerHTML;
+                    console.log("unaved device: " + dev_name);
+                    api.devices.getAllDevices().done(function(data){
+                        $.each(data, function(i, item){
+                            if(item.name == dev_name){
+                                var room = item.meta.replace("{","").replace("}","").split(',')[0];
+                                api.devices.updateDevice(item.id, item.typeId, item.name, room, "").done(function(data){
+                                    heart.src = "Iconos/heart.png";
+                                });
+                            }
+                            
+                        });
+                    });
+                    
                 }
 }
 

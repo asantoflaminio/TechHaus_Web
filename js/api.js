@@ -459,6 +459,16 @@ api.devices = class {
        });     
   }
     
+    static updateDevice(id, typeid, name, room, favState) {
+   return $.ajax({
+      url: api.devices.url + id,
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'typeId': typeid, 'name': name, 'meta': "{" + room + favState + "}"},
+       });     
+  }
+    
     static link(dev_id, room_id) {
        return $.ajax({
           url: api.devices.url + dev_id + "/rooms/" +room_id,
