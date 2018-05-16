@@ -558,8 +558,39 @@ footer p {
     font-family: monaco, monospace;
     margin-left: 13px;
     margin-bottom: 7px;
+    display: inline-block;
+}
+
+.more_info1 {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    top: -3px;
+}
+
+.more_info2 {
+    height: 20px;
+    width: 20px;
 
 }
+
+.more_info3 {
+    position: relative;
+    top: 12px;
+    margin-left: 12px;
+}
+
+#room-tag {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+    display: inline-block !important;
+}
+
 
 #door_input {
     width: 88%;
@@ -602,17 +633,6 @@ footer p {
     position: relative !important;
     float: left;
     font-family: monaco, monospace;
-
-}
-
-#room-tag {
-    padding-top: 0;
-    margin-left: 13px;
-    margin-top: 15px;
-    position: relative;
-    float: left;
-    font-family: monaco, monospace;
-    margin-bottom: 7px;
 
 }
 
@@ -1144,3 +1164,4 @@ select[type=text] {
     margin-right: 4px;
     margin-top: 6px;
 }
+
