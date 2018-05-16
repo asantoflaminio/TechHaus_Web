@@ -191,7 +191,9 @@ function onPageLoad(){
         trash.setAttribute("src", "Iconos/tacho.png");
         trash.setAttribute("alt", "Delete");
         trash.setAttribute("class", "delete_icon");
-        trash.setAttribute("onclick", "trash(event,this);");
+        trash.setAttribute("onclick", "trash(event,this);");           
+        trash.setAttribute("data-toggle", "modal");
+        trash.setAttribute("data-target", "#delete_routine_popup");
         var yes = document.createElement("img");
         var no = document.createElement("img");
         yes.setAttribute("src", "Iconos/yes.png");
@@ -255,54 +257,7 @@ function onPageLoad(){
     });
 }
 
-function trash(event, trashcan){
-    event.stopPropagation();
-    if (trashcan.getAttribute('src') == "Iconos/tacho.png")
-                {
-                    //trashcan.src = "Iconos/warning.png"; //this works ok
-                    trashcan.style.visibility = "hidden";
-                    var heart = trashcan.closest('div').parentNode.querySelector('.lapiz_icon');
-                    heart.style.visibility = "hidden";
-                    var message = trashcan.closest('div').parentNode.querySelector('.trash_message');
-                    message.style.visibility = "visible";
-                    var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
-                    yes.style.visibility = "visible";
-                    var no = trashcan.closest('div').parentNode.querySelector('.no_icon');
-                    no.style.visibility = "visible";
-                    
-                }
-}
 
-function no(event, noicon){
-    event.stopPropagation();
-    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
-    trashcan.src = "Iconos/tacho.png";
-    trashcan.style.visibility = "visible";
-    noicon.style.visibility = "hidden";
-    var message = noicon.closest('div').parentNode.querySelector('.trash_message');
-    message.style.visibility = "hidden";
-    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
-    yes.style.visibility = "hidden";
-    var heart = noicon.closest('div').parentNode.querySelector('.lapiz_icon');
-    heart.style.visibility = "visible";
-    
-    
-}
-
-function yes(event, yesicon){
-    
-    event.stopPropagation();
-    yesicon.closest('div').parentNode.nextElementSibling.remove();
-    yesicon.closest('div').parentNode.remove();
-    api.routines.getRoutines().done(function(data){
-         $.each(data, function(r, item3){
-        if(yesicon.closest('div').parentNode.querySelector('h3').innerHTML == item3.name){
-                api.routines.deleteRoutine(item3.id);
-              }
-       });
-  });
-    
-}
 
 $(document).ready(function() {
     onPageLoad();
@@ -727,3 +682,34 @@ $("#addicon").click(function() {
 })
 
 });
+
+//delete routine
+
+function trash(event, tacho){
+    event.stopPropagation();
+    $('#delete_routine_popup').modal('toggle');
+
+    var routinename = tacho.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
+    var routineid = "";
+    //window.localStorage.clear();
+    window.localStorage.setItem("routinename", routinename);
+    api.routines.getRoutines().done(function(data){
+        $.each(data, function(i, item){
+            if(item.name == routinename){
+                routineid = item.id;
+                document.getElementById("msg-tag").innerHTML = "You are about to delete the routine \'"+routinename+ "\'"
+                window.localStorage.setItem("routine_id2", routineid);
+            }
+        });
+    });  
+
+
+}
+
+function delete_routine(event, confirm){
+    var routineid = window.localStorage.getItem("routine_id2");
+
+    api.routines.deleteRoutine(routineid).done(function(data){
+        onPageLoad(); 
+    });
+};
