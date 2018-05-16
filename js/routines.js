@@ -1,6 +1,4 @@
 
-
-
 function onPageLoad(){
     //document.getElementById("routines_list")
 
@@ -87,8 +85,8 @@ function onPageLoad(){
         pnl.appendChild(p);
         div.appendChild(img1);
         div.appendChild(img2);
-        div.appendChild(img3);
         div.appendChild(trash);
+        div.appendChild(img3);
         div.appendChild(no);
         div.appendChild(yes);
         div.appendChild(h4);
@@ -546,7 +544,7 @@ function trash(event, tacho){
     event.stopPropagation();
     $('#delete_routine_popup').modal('toggle');
 
-    var routinename = tacho.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
+    var routinename = tacho.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
     var routineid = "";
     //window.localStorage.clear();
     window.localStorage.setItem("routinename", routinename);
