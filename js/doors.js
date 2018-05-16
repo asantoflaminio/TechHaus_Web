@@ -71,13 +71,38 @@ api.devices = class {
         });  
   } 
     
-    static performAction(id, param, actionUrl) {
+    static setMode(id, param) {
    return $.ajax({
-      url: api.devices.url + id + actionUrl,
+      url: api.devices.url + id + "/setMode",
       method: "PUT",
       dataType: "json",
+     contentType: "application/json; charset=utf-8",
       timeout: api.timeout,
-      data: param,
+      data: "["+param+"]",
+   }).then(function(data) {
+           return data; 
+        });  
+  }
+    
+    static turnOff(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/turnOff",
+      method: "PUT",
+      dataType: "json",
+     contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      
+   });
+  }
+    
+    static turnOn(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/turnOn",
+      method: "PUT",
+      dataType: "json",
+     contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      
    });
   }
     
@@ -89,6 +114,97 @@ api.devices = class {
        contentType: "application/json; charset=utf-8",
       timeout: api.timeout,
       data: "["+param+"]",
+   });
+  }
+    
+    static setBrightness(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setBrightness",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static setFTemp(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setFreezerTemperature",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static setHeat(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setHeat",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static setConvection(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setConvection",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static setGrill(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setGrill",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static open(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/open",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+   });
+  }
+    
+    static close(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/close",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+   });
+  }
+    
+    static lock(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/lock",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+   });
+  }
+    
+    static unlock(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/unlock",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
    });
   }
     
@@ -233,29 +349,74 @@ function fav(event, heart){
 
 function stat(event, status){
     //event.stopPropagation();
+     var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     if (status.getAttribute('src') == "Iconos/closed.png")
                 {
-                    status.src = "Iconos/open.png";
-                     status.nextElementSibling.innerHTML = 'Status: Open';
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.open(item.id).done(function(data){
+                                      status.src = "Iconos/open.png";
+                                        status.nextElementSibling.innerHTML = 'Status: Open';
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
                 else
                 {
-                    status.src = "Iconos/closed.png";
-                    status.nextElementSibling.innerHTML = 'Status: Closed';
+                    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.close(item.id).done(function(data){
+                                      status.src = "Iconos/closed.png";
+                                        status.nextElementSibling.innerHTML = 'Status: Closed';
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
 }
 
 function lock(event, locking){
     event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     if (locking.getAttribute('src') == "Iconos/locked.png")
                 {
-                    locking.src = "Iconos/unlocked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Unlocked";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.unlock(item.id).done(function(data){
+                                      
+                                        locking.src = "Iconos/unlocked.png";
+                                        locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Unlocked";
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
                 else
                 {
-                    locking.src = "Iconos/locked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Locked";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.lock(item.id).done(function(data){
+
+                                        locking.src = "Iconos/locked.png";
+                                      locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Locked";
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
 }
 
@@ -376,84 +537,185 @@ function change_blind_status_from_acc(event, status){
 }
 
 function change_lock_status(event, status){
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     event.stopPropagation();
     if (status.getAttribute('src') == "Iconos/locked_inside.png")
                 {
-                    status.src = "Iconos/unlocked_inside.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/unlocked.png";
-                    status.nextElementSibling.innerHTML = ' Status: Unlocked';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Unlocked";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.unlock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/unlocked_inside.png";
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/unlocked.png";
+                                        status.nextElementSibling.innerHTML = ' Status: Unlocked';
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Unlocked";
 
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
                 else
                 {
-                    status.src = "Iconos/locked_inside.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/locked.png";
-                    status.nextElementSibling.innerHTML = ' Status: Locked';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.lock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/locked_inside.png";
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/locked.png";
+                                        status.nextElementSibling.innerHTML = ' Status: Locked';
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
+
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
 }
 
 function change_lock_status_from_acc(event, status){
     event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.querySelector('h3').innerHTML;
     if (status.getAttribute('src') == "Iconos/locked.png")
                 {
-                    status.src = "Iconos/unlocked.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/unlocked_inside.png";
-                    status.nextElementSibling.innerHTML = ' Unlocked';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Unlocked";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.unlock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/unlocked.png";
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/unlocked_inside.png";
+                                        status.nextElementSibling.innerHTML = ' Unlocked';
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Unlocked";
+
+                                  });
+                              }
+                          });
+                    });
+                    
 
                 }
                 else
                 {
-                    status.src = "Iconos/locked.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked.png";
-                    status.nextElementSibling.innerHTML = ' Locked';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Locked";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.lock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/locked.png";
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked.png";
+                                        status.nextElementSibling.innerHTML = ' Locked';
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Locked";
+
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
 }
 
 function change_toggle_status(event, status){
     event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     if (status.getAttribute('src') == "Iconos/toggle_inside_off.png")
                 {
-                    status.src = "Iconos/toggle_on.png";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOn(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/toggle_on.png";
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_on.png";
                     status.nextElementSibling.innerHTML = ' Status: On';
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " On";
 
+                                  });
+                              }
+                          });
+                    });
+                    
+                    
+
                 }
                 else
                 {
-                    status.src = "Iconos/toggle_inside_off.png";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOff(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/toggle_inside_off.png";
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_off.png";
                     status.nextElementSibling.innerHTML = ' Status: Off';
                     status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Off";
+
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
 }
 
 function change_toggle_status_from_acc(event, status){
     event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.querySelector('h3').innerHTML;;
     if (status.getAttribute('src') == "Iconos/toggle_on.png")
                 {
-                    status.src = "Iconos/toggle_off.png";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOff(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/toggle_off.png";
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_inside_off.png";
                     status.nextElementSibling.innerHTML = ' Off';
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Off";
 
+                                  });
+                              }
+                          });
+                    });
+                    
+
                 }
                 else
                 {
-                    status.src = "Iconos/toggle_on.png";
+                    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOn(item.id).done(function(data){
+                                      
+                     status.src = "Iconos/toggle_on.png";
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_on.png";
                     status.nextElementSibling.innerHTML = ' On';
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: On";
+
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
 }
 
 function change_air_temp_status(event, status){
     event.stopPropagation();
-
+    
     if(status.getAttribute('src') == "Iconos/arrow_down.png")
                 {
                   if(parseInt(status.nextElementSibling.innerHTML.substr(0,2)) > 18) {
@@ -506,18 +768,67 @@ function change_air_temp_status(event, status){
 
 function change_air_mode(event, status){
     event.stopPropagation();
-
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    var act = "setMode";
     if(status.value == "Cool")
                 {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/cool.png");
+                  console.log("VOINE ACA");
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = "cool";
+                                  console.log(par);
+                                  api.devices.setMode(item.id,"cool").done(function(data){
+                                      status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/cool.png");
+                                  });
+                              }
+                          });
+                          
+                      });
                 }
                 else if(status.value == "Heat")
                 {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/heat.png");
+                 api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  var par = "heat";
+                                  console.log(par);
+                                  api.devices.setMode(item.id,"heat").done(function(data){
+                                      status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/heat.png");
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
                 }
                 else
                 {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fan.png");
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = "fan";
+                                  console.log(par);
+                                  api.devices.setMode(item.id,"fan").done(function(data){
+                                       status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fan.png");
+                                  });
+                              }
+                          });
+                          
+                      });
+                 
                 }
 }
 
@@ -525,7 +836,7 @@ function change_air_mode(event, status){
 function change_fridge_freezer_temp(event, status){
     event.stopPropagation();
     var val;
-
+     var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     if(status.getAttribute('src') == "Iconos/arrow_up.png")
       val = status.previousElementSibling.innerHTML.substr(0,3);
     else
@@ -534,27 +845,111 @@ function change_fridge_freezer_temp(event, status){
     if(val.charAt(2) === '°') {
           if(status.getAttribute('src') == "Iconos/arrow_up.png") {
             if(val.substr(0,2) == "-9") {
-              status.previousElementSibling.innerHTML = "-8°C";
+              
+             
+                      var nueva_temp = "-8"
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = "-8°C";
+                                  });
+                              }
+                          });
+                          
+                      });
             }
           }
           else
           {
             if(val.substr(0,2) == "-8") {
-              status.nextElementSibling.innerHTML = "-9°C";
+              console.log("ACAAAA");
+                
+                var nueva_temp = "-9"
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                     status.nextElementSibling.innerHTML = "-9°C";
+                                  });
+                              }
+                          });
+                          
+                      });
             }
             else if(val.substr(0,2) == "-9") {
-              status.nextElementSibling.innerHTML = "-10°C";
+                var nueva_temp = "-10"
+                api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                     status.nextElementSibling.innerHTML = "-10°C";
+                                  });
+                              }
+                          });
+                          
+                      });
             }
           }
     } else {
           if(status.getAttribute('src') == "Iconos/arrow_up.png") {    
-            status.previousElementSibling.innerHTML = (parseInt(val)+1).toString() + "°C";
+           
+              var nueva_temp = (parseInt(val)+1).toString();
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = (parseInt(val)+1).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
           }
           else {
-            if(val != "-20")
-              status.nextElementSibling.innerHTML = (parseInt(val)-1).toString() + "°C";
+            if(val != "-20"){
+                var nueva_temp = (parseInt(val)-1).toString() ;
+                
+                 api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                     status.nextElementSibling.innerHTML = (parseInt(val)-1).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+            }
+              
           }
     }
+ 
 }
 
 //  falta cambiar temperatura de accordion
@@ -564,35 +959,101 @@ function change_fridge_temp(event, status){
     if(status.getAttribute('src') == "Iconos/arrow_down.png")
                 {
                   if(parseInt(status.nextElementSibling.innerHTML.substr(0,1)) > 2) {
-                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,1))-1).toString() + "°C";
+                    var nueva_temp = (parseInt(status.nextElementSibling.innerHTML.substr(0,1))-1).toString();
+                    status.nextElementSibling.innerHTML =  nueva_temp + "°C";
+                      var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.nextElementSibling.innerHTML = nueva_temp + "°C";
+                                     status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').parentNode.parentNode.parentNode.querySelector('.lock_text').innerHTML  = nueva_temp + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
                   }
                 }
                 else
                 {
                   if(parseInt(status.previousElementSibling.innerHTML.substr(0,1)) < 8) {
-                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,1))+1).toString() + "°C";
+                    
+                      var nueva_temp = (parseInt(status.previousElementSibling.innerHTML.substr(0,1))+1).toString()
+                      status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                                     status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').parentNode.parentNode.parentNode.querySelector('.lock_text').innerHTML  = nueva_temp + "°C";
+                                  });
+                              
+                          });
+                          
+                      });
                   }
                 }
 }
 
 function change_fridge_mode(event, status){
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     event.stopPropagation();
-
     if(status.value == "Default")
                 {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fridge_default.png");
+                  
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setMode(item.id, JSON.stringify(["default"])).done(function(data){
+                                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fridge_default.png");
+                              });
+                              }
+                              
+                          });
+                    });
                 }
                 else if(status.value == "Vacation")
                 {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/vacation.png");
+                  
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                              api.devices.setMode(item.id, JSON.stringify(["vacation"])).done(function(data){
+                                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/vacation.png");
+                              });
+                              }
+                          });
+                    });
                 }
                 else
                 {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/party.png");
+                  
+                     api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setMode(item.id, JSON.stringify(["party"])).done(function(data){
+                                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/party.png");
+                                });
+                              }
+                              
+                          });
+                    });
                 }
 }
 
 function change_oven_temp(event, status){
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     event.stopPropagation();
     var val;
 
@@ -603,20 +1064,83 @@ function change_oven_temp(event, status){
 
     if(val.charAt(2) === '°') {
           if(status.getAttribute('src') == "Iconos/arrow_up.png") {
-              status.previousElementSibling.innerHTML = "100°C";
+              
+              var nueva_temp = "100";
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                  status.previousElementSibling.innerHTML = "100°C";
+                                  });
+                              }
+                          });
+                          
+                      });
           } else {
             //do nothing
           }
     } else {
           if(status.getAttribute('src') == "Iconos/arrow_up.png") {   
             if(val != "230") 
-              status.previousElementSibling.innerHTML = (parseInt(val)+10).toString() + "°C";
+              
+              var nueva_temp = (parseInt(val)+10).toString();
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                  status.previousElementSibling.innerHTML = (parseInt(val)+10).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
           }
           else {
-              status.nextElementSibling.innerHTML = (parseInt(val)-10).toString() + "°C";
+              
+               var nueva_temp = (parseInt(val)-10).toString();
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                  status.nextElementSibling.innerHTML = (parseInt(val)-10).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
           }
     }
 }
+
+function choose_brightness(event, slid){
+    var dev_name = slid.closest('div').parentNode.parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    var val = slid.value;
+    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  console.log("found it");
+                                  api.devices.setBrightness(item.id, val).done(function(data){
+                                  slid.value = val;
+                              });
+                              }
+                              
+                          });
+                    });
+}
+
 //FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM
 
 function trash(event, tacho){
@@ -920,12 +1444,7 @@ function onPageLoad(){
 
             }else if(typename =='ac'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status de ac es: " + data.status); 
-                    console.log("Mi tempearatura de ac es: " + data.temperature); 
-                    console.log("Mi mode de ac es: " + data.mode); 
-                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
-                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
-                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
+                    
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -960,11 +1479,6 @@ function onPageLoad(){
 
             }else if(typename == 'oven'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi tempearatura es: " + data.temperature); 
-                    console.log("Mi heat  es: " + data.heat); 
-                    console.log("Mi grill   es: " + data.grill); 
-                    console.log("Mi convection  es: " + data.convection); 
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -1080,7 +1594,7 @@ function onPageLoad(){
                     temp_icon.setAttribute("class", "temperature_icon_status");
 
                     temp_info.setAttribute("class", "lock_text");
-                    temp_info.innerHTML = "5°C"; //debería depender de getstate
+                    temp_info.innerHTML = data.temperature + "°C"; //debería depender de getstate
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -1095,9 +1609,7 @@ function onPageLoad(){
 
             }else if(typename == 'lamp'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi color es: " + data.color); 
-                    console.log("Mi brightness es: " + data.brightness); 
+            
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -1258,12 +1770,7 @@ function onPageLoad(){
 
             }else if(typename =='ac'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status de ac es: " + data.status); 
-                    console.log("Mi tempearatura de ac es: " + data.temperature); 
-                    console.log("Mi mode de ac es: " + data.mode); 
-                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
-                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
-                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
+                    
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1371,7 +1878,7 @@ function onPageLoad(){
                     p3.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
-                    select.setAttribute("onclick", "change_air_mode(event, this);");
+                    select.setAttribute("onChange", "change_air_mode(event, this);");
 
                     if(data.mode == 'cool'){
                         option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
@@ -1615,11 +2122,6 @@ function onPageLoad(){
 
             }else if(typename == 'oven'){
                 api.devices.getState(item.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi tempearatura es: " + data.temperature); 
-                    console.log("Mi heat  es: " + data.heat); 
-                    console.log("Mi grill   es: " + data.grill); 
-                    console.log("Mi convection  es: " + data.convection); 
                     
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
@@ -1702,6 +2204,7 @@ function onPageLoad(){
                     var heat_icon = document.createElement("img");
                     var p3 = document.createElement("p");
                     var select = document.createElement("select");
+                    select.setAttribute("onchange", "change_heat(event, this)");
                     var option1 = document.createElement("option");
                     var option2 = document.createElement("option");
                     var option3 = document.createElement("option");
@@ -1749,6 +2252,7 @@ function onPageLoad(){
                     var grill_icon = document.createElement("img");
                     var p4 = document.createElement("p");
                     var select2 = document.createElement("select");
+                    select2.setAttribute("onchange", "change_grill(event, this)");
                     var option4 = document.createElement("option");
                     var option5 = document.createElement("option");
                     var option6 = document.createElement("option");
@@ -1790,6 +2294,7 @@ function onPageLoad(){
                     var convection_icon = document.createElement("img");
                     var p5 = document.createElement("p");
                     var select3 = document.createElement("select");
+                    select3.setAttribute("onchange", "change_convection(event, this)");
                     var option7 = document.createElement("option");
                     var option8 = document.createElement("option");
                     var option9 = document.createElement("option");
@@ -1806,7 +2311,7 @@ function onPageLoad(){
                         option7.innerHTML = "Normal"; //debería ponerse la que esté en el getstatus primera
                         option8.innerHTML = "Eco";
                         option9.innerHTML = "Off";
-                    }else if(data.convection == 'Eco'){
+                    }else if(data.convection == 'eco'){
                          option7.innerHTML = "Eco"; //debería ponerse la que esté en el getstatus primera
                          option8.innerHTML = "Normal";
                          option9.innerHTML = "Off";    
@@ -2094,7 +2599,7 @@ function onPageLoad(){
                     p5.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
-                    select.setAttribute("onclick", "change_fridge_mode(event,this);");
+                    select.setAttribute("onchange", "change_fridge_mode(event,this);");
                     if(data.mode == 'default'){
                         mode_icon.setAttribute("src", "Iconos/fridge_default.png");
                         mode_icon.setAttribute("alt", "Fridge");
@@ -2223,6 +2728,7 @@ function onPageLoad(){
                 input2.setAttribute("value", JSON.stringify(data.brightness)); //debería gettearlo con getstate
                 input2.setAttribute("class", "slider");
                 input2.setAttribute("id", "myRange");
+                input2.setAttribute("onclick", "choose_brightness(event, this)");
 
                 div_slide.appendChild(input2);
 
@@ -2261,6 +2767,121 @@ function onPageLoad(){
         });
     });
 }
+
+function change_heat(event, heatbox){
+    var dev_name = heatbox.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if(heatbox.value == 'Conventional'){
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setHeat(item.id, JSON.stringify(["conventional"])).done(function(data){
+                                    console.log("heat seteaado como conv " + data.result);
+                                  });
+                              }
+                          });
+                    });
+    }else if(heatbox.value == 'Bottom'){
+         api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setHeat(item.id, JSON.stringify(["bottom"])).done(function(data){
+                                    console.log("heat seteaado como bottom " + data.result);
+                                  });
+                              }
+                          });
+                    });    
+    }else{
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setHeat(item.id, JSON.stringify(["top"])).done(function(data){
+                                    console.log("heat seteaado como top " + data.result);
+                                  });
+                              }
+                          });
+                    });     
+    }
+}
+
+function change_grill(event, heatbox){
+    var dev_name = heatbox.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if(heatbox.value == 'Off'){
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setGrill(item.id, JSON.stringify(["off"])).done(function(data){
+                                    console.log("heat seteaado como conv " + data.result);
+                                  });
+                              }
+                          });
+                    });
+    }else if(heatbox.value == 'Large'){
+         api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setGrill(item.id, JSON.stringify(["large"])).done(function(data){
+                                    console.log("heat seteaado como bottom " + data.result);
+                                  });
+                              }
+                          });
+                    });    
+    }else{
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setGrill(item.id, JSON.stringify(["eco"])).done(function(data){
+                                    console.log("heat seteaado como top " + data.result);
+                                  });
+                              }
+                          });
+                    });     
+    }
+}
+
+function change_convection(event, heatbox){
+    var dev_name = heatbox.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if(heatbox.value == 'Off'){
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setConvection(item.id, JSON.stringify(["off"])).done(function(data){
+                                    console.log("heat seteaado como conv " + data.result);
+                                  });
+                              }
+                          });
+                    });
+    }else if(heatbox.value == 'Normal'){
+         api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setConvection(item.id, JSON.stringify(["normal"])).done(function(data){
+                                    console.log("heat seteaado como bottom " + data.result);
+                                  });
+                              }
+                          });
+                    });    
+    }else{
+        api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setConvection(item.id, JSON.stringify(["eco"])).done(function(data){
+                                    console.log("heat seteaado como top " + data.result);
+                                  });
+                              }
+                          });
+                    });     
+    }
+}
+
 
 function add_room_input(event, room){
     room.removeAttribute("onclick");
