@@ -853,11 +853,46 @@ function change_oven_temp(event, status){
                           
                       });
           } else {
-            //do nothing
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
           }
-    } else {
+    }
+    else if(val.charAt(1) == '°') {
+              if(status.getAttribute('src') == "Iconos/arrow_up.png") {
+              
+              var nueva_temp = "90";
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                  status.previousElementSibling.innerHTML = "90°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+          } else {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
+          }
+    }
+     else {
           if(status.getAttribute('src') == "Iconos/arrow_up.png") {   
-            if(val != "230") 
+            if(val != "230") {
               
               var nueva_temp = (parseInt(val)+10).toString();
               api.devices.getAllDevices().done(function(data){
@@ -874,10 +909,21 @@ function change_oven_temp(event, status){
                           });
                           
                       });
+            } 
+            else
+            {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go higher";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
+            }
           }
           else {
               
-               var nueva_temp = (parseInt(val)-10).toString();
+              var nueva_temp = (parseInt(val)-10).toString();
               api.devices.getAllDevices().done(function(data){
                           
                           $.each(data, function(i, item){
