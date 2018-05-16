@@ -1146,8 +1146,8 @@ function onPageLoad(){
         ttl.innerHTML = "Curtains";
     }else if(typename == 'refrigerator'){
         logo.setAttribute("src","Iconos/Fridges2.png");
-        brd.innerHTML = "Fridges";
-        ttl.innerHTML = "Fridges";
+        brd.innerHTML = "Refrigerators";
+        ttl.innerHTML = "Refrigerators";
     }else if(typename == 'lamp'){
         logo.setAttribute("src","Iconos/Lights2.png");
         brd.innerHTML = "Lights";
