@@ -465,6 +465,26 @@ ul.tabs li:before {
 
 }
 
+.alarm_icon_stat_disarm {
+    width: 41px;
+    height: 28px;
+    display: inline-block !important;
+    margin-left: 25%;
+    margin-top: -2px;
+    margin-bottom: 40px;
+
+}
+
+.alarm_icon_stat_armaway {
+    width: 35px;
+    height: 35px;
+    display: inline-block !important;
+    margin-left: 25%;
+    margin-top: 2px;
+    margin-bottom: 40px;
+
+}
+
 .delete_icon {
     width: 23px;
     height: 23px;
@@ -770,7 +790,7 @@ footer p {
     height: 35px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -787,7 +807,7 @@ footer p {
     height: 35px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -837,7 +857,7 @@ footer p {
     height: 37px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -910,7 +930,7 @@ footer p {
     height: 35px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -922,7 +942,7 @@ footer p {
     height: 39px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -933,7 +953,7 @@ footer p {
     height: 33px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -944,7 +964,7 @@ footer p {
     height: 35px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -955,7 +975,7 @@ footer p {
     height: 38px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -964,9 +984,9 @@ footer p {
 .heat_icon {
     width: 35px;
     height: 35px;
-    margin-left: 20px;
+    margin-left: 17px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -977,7 +997,7 @@ footer p {
     height: 45px;
     margin-left: 20px;
   
-    cursor: pointer;
+    cursor: default;
     float: left;
     display: table-cell;
     vertical-align: middle;
@@ -1134,7 +1154,7 @@ select[type=text] {
     cursor: pointer; /* Cursor on hover */
 }
 
-/* routine played */
+/* temperature can'tgo higher/lower message */
 
 .notice{
     margin-bottom: 40px;
