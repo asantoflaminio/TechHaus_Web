@@ -844,7 +844,7 @@ function onPageLoad(){
                            
             if(dev_type == 'door'){
                 
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                    console.log("Mi state de door es: " + data.status); 
                     console.log("Mi lock de door es: " + data.lock); 
                     var lock_icon2 = document.createElement("img");
@@ -881,7 +881,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type =='ac'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data2){
                     console.log("Mi status de ac es: " + data.status); 
                     console.log("Mi tempearatura de ac es: " + data.temperature); 
                     console.log("Mi mode de ac es: " + data.mode); 
@@ -921,7 +921,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'oven'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi status es: " + data.status); 
                     console.log("Mi tempearatura es: " + data.temperature); 
                     console.log("Mi heat  es: " + data.heat); 
@@ -959,7 +959,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'alarm'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi status es: " + data.status); 
                     var alarm_icon = document.createElement("img");
                     var alarm_info = document.createElement("p");
@@ -995,7 +995,7 @@ function onPageLoad(){
                              
 
             }else if(dev_type == 'blind'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi status es: " + data.status); 
                     var blind_icon2 = document.createElement("img");
                     var blind_info = document.createElement("p");
@@ -1028,7 +1028,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'refrigerator'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi mode es: " + data.mode); 
                     console.log("Mi temperature es: " + data.temperature); 
                     console.log("Mi freezerTemp es: " + data.freezerTemperature); 
@@ -1056,7 +1056,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'lamp'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi status es: " + data.status); 
                     console.log("Mi color es: " + data.color); 
                     console.log("Mi brightness es: " + data.brightness); 
@@ -1146,7 +1146,7 @@ function onPageLoad(){
                 panel.setAttribute("class", "panel");
 
             if(dev_type == 'door'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
@@ -1221,7 +1221,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type =='ac'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi status de ac es: " + data.status); 
                     console.log("Mi tempearatura de ac es: " + data.temperature); 
                     console.log("Mi mode de ac es: " + data.mode); 
@@ -1578,7 +1578,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'oven'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi status es: " + data.status); 
                     console.log("Mi tempearatura es: " + data.temperature); 
                     console.log("Mi heat  es: " + data.heat); 
@@ -1803,7 +1803,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'alarm'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi status es: " + data.status); 
                     
                     var panel1 = document.createElement("div");
@@ -1906,7 +1906,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'blind'){
-                 api.devices.getState(item.id).done(function(data){
+                 api.devices.getState(item2.id).done(function(data){
                         var panel1 = document.createElement("div");
                         panel1.setAttribute("class", "panel1");
                         var status1 = document.createElement("div");
@@ -1951,7 +1951,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'refrigerator'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                     console.log("Mi mode es: " + data.mode); 
                     console.log("Mi temperature es: " + data.temperature); 
                     console.log("Mi freezerTemp es: " + data.freezerTemperature); 
@@ -2099,7 +2099,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type == 'lamp'){
-                api.devices.getState(item.id).done(function(data){
+                api.devices.getState(item2.id).done(function(data){
                  console.log("Mi status es: " + data.status); 
                  console.log("Mi color es: " + data.color); 
                  console.log("Mi brightness es: " + data.brightness); 
