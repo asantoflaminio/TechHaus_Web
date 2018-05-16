@@ -1090,10 +1090,23 @@ function edit_room(event, room) {
     
 }
 
+function cargar_rooms(event, box){
+    console.log("ge");
+    api.rooms.getRooms().done(function(data){
+        $.each(data, function(i, item){ 
+            var opt1 = document.createElement("option");
+            opt1.setAttribute("value", item.name);
+            opt1.innerHTML = item.name;
+            box.appendChild(opt1);
+        });
+    })
+}
+
 function select_room(event, new_room){
     event.stopPropagation();
     var room = new_room;
     var room_name = room.parentNode.parentNode.previousElementSibling.previousElementSibling;
+    console.log("new room es " + new_room.value);
     room_name.innerHTML = room.value;
     room.style.visibility = "hidden";
     room_name.style.visibility = "visible";
@@ -1232,19 +1245,13 @@ function onPageLoad(){
             selRo.setAttribute("value", "Door 1");
             selRo.setAttribute("class", "new_room");
             selRo.setAttribute("onclick", "event.stopPropagation();");
+            selRo.setAttribute("onmouseover", "cargar_rooms(event,this)");
             selRo.setAttribute("onchange", "select_room(event,this)");
             //ESTO DEBERIA SER UNA OPCION POR CADA HABITACION MAS TENER UNA FUNCION Q 
             // SI HACEN CLICK CAMBIE LA HABITACION EN LA BD
             //SI HAY TIEMPO SE HACE SINO ES A MODO ILUSTRATIVO
             // BORRAR ESTE COMENTARIO ANTES DE ENTREGAR
-            var opt1 = document.createElement("option");
-            var opt2 = document.createElement("option");
-            opt1.setAttribute("value", "Kitchen");
-            opt1.innerHTML = "Kitchen";
-            opt2.setAttribute("value", "Garage");
-            opt2.innerHTML = "Garage";
-            selRo.appendChild(opt1);
-            selRo.appendChild(opt2);
+           
             spanRo.appendChild(selRo);
             divRo.appendChild(spanRo);
 
