@@ -106,10 +106,25 @@ nav {
 .leftcol {
     background:#eee;
     text-align:left;
-    height:100%;
+    height:800px;
     float:left;
+    padding-top: 20px;
+    margin-left: 10px;
+    margin-right: 30px; 
     width:170px;
     font-family: monaco, monospace;
+}
+
+.leftcol ul li a:active{
+    background: #E0E0E0;
+}
+
+.current {
+    background: #E0E0E0;
+}
+
+.leftcol ul li a:focus{
+    background: #E0E0E0;
 }
 
 .leftcol ul {
@@ -125,18 +140,21 @@ nav {
     text-decoration: none;
     color:#2B3B4E;
     font-weight: bold;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    padding: 8px;
+    
+    
     text-align: center;
     vertical-align:middle;
 }
 
 .leftcol ul li {
+	padding: 5px;
     margin-left: -5px;
+    cursor: pointer;
 }
 
 .leftcol ul li:hover {
-    background-color: #ccc;
+    background-color: #E0E0E0;
 }
 
 .logo_grey {
@@ -180,7 +198,12 @@ nav {
     overflow-y: scroll;
     position:relative;
     height: 500px;
-    width: 86%;
+    width: 80%;
+    margin-top: 30px;
+    margin-left: 10px;
+    border-style: groove;
+    border-color: #E0E0E0;
+    background-color: #D3D3D3;
 }
 
 .box {
@@ -189,7 +212,8 @@ nav {
   background:#eee;
   position: relative;
   display: block;
-  margin-top: 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
   display:table;
@@ -202,7 +226,7 @@ nav {
   height: 30px;
   top: -2px;
   left: -2px;
-  z-index:-1;
+  
   border-left: 2px solid rgb(50, 74, 94);
   border-top: 2px solid rgb(50, 74, 94);
 }
@@ -214,104 +238,24 @@ nav {
   height: 30px;
   right: -2px;
   bottom: -2px;
-  z-index:-1;
+
   border-right: 2px solid rgb(50, 74, 94);
   border-bottom: 2px solid rgb(50, 74, 94);
 }
 
-.favor_help {
-  width: 180px;
-  height: 170px;
-  position: relative;
+.help {
+  	width: 170px;
+  	height: 170px;
+  	position: relative;
     float:left;
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 15px;
  
 }
 
-.heart_help {
-  width: 148px;
-  height: 170px;
-  position: relative;
-    float:left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
- 
-}
 
-.doors_help {
-  width: 155px;
-  height: 170px;
-  position: relative;
-    float:left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
- 
-}
-
-.bath_help {
-  width: 146px;
-  height: 170px;
-  position: relative;
-    float:left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
- 
-}
-
-.routine_help {
-    width: 230px;
-  height: 170px;
-  position: relative;
-    float:left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
- 
-}
-
-.trash_help {
-  width: 157px;
-  height: 170px;
-  position: relative;
-    float:left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
- 
-}
-
-.delete_help {
-  width: 171px;
-  height: 170px;
-  position: relative;
-    float:left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
- 
-}
-
-.add_help {
-  position: relative;
-    float:left;
-    margin-top: 24.5px;
-    margin-bottom: 24.55px;
-    margin-left: 5px;
-    margin-right: 5px;
- 
-}
 
 .Messagebox_title {
     vertical-align:middle;
@@ -369,9 +313,6 @@ section {
     font-size: 30px;
     padding-right: 15px;
 }
-
-
-
 
 
 #footer {
