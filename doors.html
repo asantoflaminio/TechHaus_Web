@@ -42,9 +42,15 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p id="name-tag">Name</p>
+                <div>
+                <p id="name-tag">Name*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Name is required and must contain at least 3 letters, and no 'ñ' or symbols"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>
+
                 <input type="text" class="text-input" id="door_input">
-                <p id="room-tag">Room</p>
+                <div><p id="room-tag">Room</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Room is not required. Devices with no room are added to 'Ungrouped devices'" class="more_info3"><img src="Iconos/question.png" class="more_info2"></a>
+              </div>
                 <select class="text-input" id="room_input" onclick="add_room_input(event, this);" onmouseleave="activateroominput(event, this);">
                   <option></option>
                 </select>
@@ -201,6 +207,12 @@
           </div>
         </article>
         
+          <div class="notice">
+            <div class="routine_played">
+              <h1 id='name'></h1> 
+            </div>
+          </div>
+
       </section>
       
     <footer>
