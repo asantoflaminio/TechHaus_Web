@@ -3250,8 +3250,8 @@ function loadUngrouped(){
                 div8.appendChild(yes);
                 div9.appendChild(no);
                 acc3.appendChild(div5);
-                acc3.appendChild(div6);
                 acc3.appendChild(div7);
+                acc3.appendChild(div6);
                 acc3.appendChild(div8);
                 acc3.appendChild(div9);
 
