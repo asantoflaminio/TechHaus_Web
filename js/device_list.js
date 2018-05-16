@@ -1106,7 +1106,43 @@ function select_room(event, new_room){
     event.stopPropagation();
     var room = new_room;
     var room_name = room.parentNode.parentNode.previousElementSibling.previousElementSibling;
+    var dev_name = new_room.closest('span').parentNode.parentNode.parentElement.querySelector('h3').innerHTML;
     console.log("new room es " + new_room.value);
+    console.log("dev_name es " + dev_name);
+    
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){ 
+            if(item.name == dev_name){
+                //borrar el device del room
+                api.devices.deleteFromRoom(item.id).done(function(data){
+                    api.rooms.getRooms().done(function(data){
+                        $.each(data, function(j, item2){ 
+                            if(item2.name == new_room.value){
+                                //linkeo con el nuevo room
+                                api.devices.link(item.id, item2.id).done(function(data){
+                                    //cambio el meta del device
+                                    if(item.meta.replace("{","").replace("}","").split(',')[1] == ' faved'){
+                                        api.devices.updateDevice(item.id, item.typeId, item.name, new_room.value, ', faved').done(function(data){
+                                        
+                                        });
+                                    }else{
+                                        api.devices.updateDevice(item.id, item.typeId, item.name, new_room.value, '').done(function(data){
+                                        
+                                        });
+                                    }
+                                    
+                                    
+                                });
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    });
+    
+    
+    //linkear con el nuevo room
     room_name.innerHTML = room.value;
     room.style.visibility = "hidden";
     room_name.style.visibility = "visible";
