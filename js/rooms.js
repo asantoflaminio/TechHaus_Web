@@ -1,5 +1,4 @@
 
-
 function onLoad(){
      
     //para que ande el popover
@@ -38,7 +37,15 @@ function onLoad(){
         }else if(roomtype == "laundry"){
             img1.setAttribute("src", "Iconos/laundry2.png");      
         }else if(roomtype == "bedroom"){
-            img1.setAttribute("src", "Iconos/Rooms6.png");       
+            img1.setAttribute("src", "Iconos/Rooms6.png");
+        }else if(roomtype == "dining room"){
+            img1.setAttribute("src", "Iconos/diningroom.png");                   
+        }else if(roomtype == "living room"){
+            img1.setAttribute("src", "Iconos/living.png");
+        }else if(roomtype == "office"){
+            img1.setAttribute("src", "Iconos/office.png");
+        }else if(roomtype == "tv room"){
+            img1.setAttribute("src", "Iconos/tv_room.png");
         }else{
             img1.setAttribute("src", "Iconos/other.png");     
         }
@@ -137,6 +144,14 @@ function add_room(event, name) {
                 img1.setAttribute("src", "Iconos/laundry2.png");      
             }else if(roomtype == "bedroom"){
                 img1.setAttribute("src", "Iconos/Rooms6.png");       
+            }else if(roomtype == "dining room"){
+                img1.setAttribute("src", "Iconos/diningroom.png");                   
+            }else if(roomtype == "living room"){
+                img1.setAttribute("src", "Iconos/living.png");
+            }else if(roomtype == "office"){
+                img1.setAttribute("src", "Iconos/office.png");
+            }else if(roomtype == "tv room"){
+                img1.setAttribute("src", "Iconos/tv_room.png");
             }else{
                 img1.setAttribute("src", "Iconos/other.png");     
             }
