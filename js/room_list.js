@@ -119,16 +119,27 @@ function change_nameRoom(event, element) {
     add.style.visibility = "visible";
     console.log("Nombre viejo: " + oldname);
     console.log("Nombre nuevo: " + name);
+    var no = 0;
     api.rooms.getRooms().done(function(data){
-        $.each(data, function(i, item){ 
-            if(item.name == oldname){
-                console.log("lo encontree");
-                api.rooms.updateRoomName(item.id, name, item.meta).done(function(data){
-                                                       new_name.innerHTML = name;
-                                                       });
+        $.each(data, function(k, itemk){ 
+            if(itemk.name == name){
+                no = 1;
             }
         });
+        if(no == 0){
+            api.rooms.getRooms().done(function(data){
+                $.each(data, function(i, item){ 
+                    if(item.name == oldname){
+                        console.log("lo encontree");
+                        api.rooms.updateRoomName(item.id, name, item.meta).done(function(data){
+                                                               new_name.innerHTML = name;
+                                                               });
+                    }
+                });
+            });
+        }
     });
+    
 }
 
 function input_nameRoom(event, name) {
@@ -189,15 +200,26 @@ function change_name(event, element) {
     name_input.style.backgroundColor = "#bbb"
     console.log("Nombre viejo: " + oldname);
     console.log("Nombre nuevo: " + name);
+    var no = 0;
     api.devices.getAllDevices().done(function(data){
-        $.each(data, function(i, item){ 
-            if(item.name == oldname){
-                api.devices.updateName(item.id, item.typeId, name, item.meta).done(function(data){
-                                                       new_name.innerHTML = name;
-                                                       });
+        $.each(data, function(k, itemk){
+            if(itemk.name == name){
+                no = 1;
             }
         });
+        if(no == 0){
+            api.devices.getAllDevices().done(function(data){
+                    $.each(data, function(i, item){
+                        if(item.name == oldname){
+                            api.devices.updateName(item.id, item.typeId, name, item.meta).done(function(data){
+                                                                   new_name.innerHTML = name;
+                                                                   });
+                        }
+                    });
+                });
+        }
     });
+    
 }
 
 function input_name(event, name) {

@@ -1037,15 +1037,26 @@ function change_name(event, element) {
     name_input.style.backgroundColor = "#bbb"
     console.log("Nombre viejo: " + oldname);
     console.log("Nombre nuevo: " + name);
+    var no = 0;
     api.devices.getAllDevices().done(function(data){
-        $.each(data, function(i, item){ 
-            if(item.name == oldname){
-                api.devices.updateName(item.id, item.typeId, name, item.meta).done(function(data){
-                                                       new_name.innerHTML = name;
-                                                       });
+        $.each(data, function(k, itemk){
+            if(itemk.name == name){
+                no = 1;
             }
         });
+        if(no == 0){
+            api.devices.getAllDevices().done(function(data){
+                    $.each(data, function(i, item){
+                        if(item.name == oldname){
+                            api.devices.updateName(item.id, item.typeId, name, item.meta).done(function(data){
+                                                                   new_name.innerHTML = name;
+                                                                   });
+                        }
+                    });
+                });
+        }
     });
+    
 }
 
 function input_name(event, name) {
