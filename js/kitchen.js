@@ -1,19 +1,4 @@
 
-function lock(event, locking){
-    event.stopPropagation();
-    if (locking.getAttribute('src') == "Iconos/locked.png")
-                {
-                    locking.src = "Iconos/unlocked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = "  Unlocked";
-                }
-                else
-                {
-                    locking.src = "Iconos/locked.png";
-                    locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = "  Locked";
-                }
-}
-
-
 function add_device(event, name) {
                     
                 api.rooms.getRooms().done(function(data) {
@@ -198,251 +183,41 @@ function trash(event, trashcan){
                 }
 }
 
-function change_blind_status(event, status){
-    event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/blind_down.png")
+function stat(event, status){
+    //event.stopPropagation();
+     var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if (status.getAttribute('src') == "Iconos/closed.png")
                 {
-                    status.src = "Iconos/blind_up.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_up_status.png";
-                    status.nextElementSibling.innerHTML = 'Status: Up';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Up";
-
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.open(item.id).done(function(data){
+                                      status.src = "Iconos/open.png";
+                                        status.nextElementSibling.innerHTML = 'Status: Open';
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
                 else
                 {
-                    status.src = "Iconos/blind_down.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_down_status.png";
-                    status.nextElementSibling.innerHTML = 'Status: Down';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Down";
+                    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.close(item.id).done(function(data){
+                                      status.src = "Iconos/closed.png";
+                                        status.nextElementSibling.innerHTML = 'Status: Closed';
+                                  });
+                              }
+                          });
+                    });
+                    
                 }
 }
-
-function change_blind_status_from_acc(event, status){
-    event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/blind_down_status.png")
-                {
-                    status.src = "Iconos/blind_up_status.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_up.png";
-                    status.nextElementSibling.innerHTML = ' Up';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Up";
-
-                }
-                else
-                {
-                    status.src = "Iconos/blind_down_status.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_down.png";
-                    status.nextElementSibling.innerHTML = ' Down';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Down";
-                }
-}
-
-function change_lock_status(event, status){
-    event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/locked_inside.png")
-                {
-                    status.src = "Iconos/unlocked_inside.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/unlocked.png";
-                    status.nextElementSibling.innerHTML = ' Status: Unlocked';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Unlocked";
-
-                }
-                else
-                {
-                    status.src = "Iconos/locked_inside.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/locked.png";
-                    status.nextElementSibling.innerHTML = ' Status: Locked';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
-                }
-}
-
-function change_lock_status_from_acc(event, status){
-    event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/locked.png")
-                {
-                    status.src = "Iconos/unlocked.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/unlocked_inside.png";
-                    status.nextElementSibling.innerHTML = ' Unlocked';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Unlocked";
-
-                }
-                else
-                {
-                    status.src = "Iconos/locked.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked.png";
-                    status.nextElementSibling.innerHTML = ' Locked';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Locked";
-                }
-}
-
-function change_toggle_status(event, status){
-    event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/toggle_inside_off.png")
-                {
-                    status.src = "Iconos/toggle_on.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_on.png";
-                    status.nextElementSibling.innerHTML = ' Status: On';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " On";
-
-                }
-                else
-                {
-                    status.src = "Iconos/toggle_inside_off.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_off.png";
-                    status.nextElementSibling.innerHTML = ' Status: Off';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Off";
-                }
-}
-
-function change_toggle_status_from_acc(event, status){
-    event.stopPropagation();
-    if (status.getAttribute('src') == "Iconos/toggle_on.png")
-                {
-                    status.src = "Iconos/toggle_off.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_inside_off.png";
-                    status.nextElementSibling.innerHTML = ' Off';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Off";
-
-                }
-                else
-                {
-                    status.src = "Iconos/toggle_on.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_on.png";
-                    status.nextElementSibling.innerHTML = ' On';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: On";
-                }
-}
-
-function change_air_temp_status(event, status){
-    event.stopPropagation();
-
-    if(status.getAttribute('src') == "Iconos/arrow_down.png")
-                {
-                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,2)) > 18) {
-                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,2))-1).toString() + "°C";
-                  }
-                }
-                else
-                {
-                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,2)) < 38) {
-                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,2))+1).toString() + "°C";
-                  }
-                }
-}
-
-function change_air_mode(event, status){
-    event.stopPropagation();
-
-    if(status.value == "Cool")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/cool.png");
-                }
-                else if(status.value == "Heat")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/heat.png");
-                }
-                else
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fan.png");
-                }
-}
-
-
-function change_fridge_freezer_temp(event, status){
-    event.stopPropagation();
-    var val;
-
-    if(status.getAttribute('src') == "Iconos/arrow_up.png")
-      val = status.previousElementSibling.innerHTML.substr(0,3);
-    else
-      val = status.nextElementSibling.innerHTML.substr(0,3);
-
-    if(val.charAt(2) === '°') {
-          if(status.getAttribute('src') == "Iconos/arrow_up.png") {
-            if(val.substr(0,2) == "-9") {
-              status.previousElementSibling.innerHTML = "-8°C";
-            }
-          }
-          else
-          {
-            if(val.substr(0,2) == "-8") {
-              status.nextElementSibling.innerHTML = "-9°C";
-            }
-            else if(val.substr(0,2) == "-9") {
-              status.nextElementSibling.innerHTML = "-10°C";
-            }
-          }
-    } else {
-          if(status.getAttribute('src') == "Iconos/arrow_up.png") {    
-            status.previousElementSibling.innerHTML = (parseInt(val)+1).toString() + "°C";
-          }
-          else {
-            if(val != "-20")
-              status.nextElementSibling.innerHTML = (parseInt(val)-1).toString() + "°C";
-          }
-    }
-}
-
-//  falta cambiar temperatura de accordion
-function change_fridge_temp(event, status){
-    event.stopPropagation();
-
-    if(status.getAttribute('src') == "Iconos/arrow_down.png")
-                {
-                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,1)) > 2) {
-                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,1))-1).toString() + "°C";
-                  }
-                }
-                else
-                {
-                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,1)) < 8) {
-                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,1))+1).toString() + "°C";
-                  }
-                }
-}
-
-function change_fridge_mode(event, status){
-    event.stopPropagation();
-
-    if(status.value == "Default")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fridge_default.png");
-                }
-                else if(status.value == "Vacation")
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/vacation.png");
-                }
-                else
-                {
-                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/party.png");
-                }
-}
-
-function change_oven_temp(event, status){
-    event.stopPropagation();
-    var val;
-
-    if(status.getAttribute('src') == "Iconos/arrow_up.png")
-      val = status.previousElementSibling.innerHTML.substr(0,3);
-    else
-      val = status.nextElementSibling.innerHTML.substr(0,3);
-
-    if(val.charAt(2) === '°') {
-          if(status.getAttribute('src') == "Iconos/arrow_up.png") {
-              status.previousElementSibling.innerHTML = "100°C";
-          } else {
-            //do nothing
-          }
-    } else {
-          if(status.getAttribute('src') == "Iconos/arrow_up.png") {   
-            if(val != "230") 
-              status.previousElementSibling.innerHTML = (parseInt(val)+10).toString() + "°C";
-          }
-          else {
-              status.nextElementSibling.innerHTML = (parseInt(val)-10).toString() + "°C";
-          }
-    }
-}
-//FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM
 
 function toggle_alarm(event, toggling){
     event.stopPropagation();
@@ -461,6 +236,844 @@ function toggle_alarm(event, toggling){
                     toggling.removeAttribute("class");
                     toggling.setAttribute("class","alarm_icon_stat_armaway");}
 }
+
+function change_blind_status(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if (status.getAttribute('src') == "Iconos/blind_down.png")
+                {
+                    
+                    
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/up";
+                                 // arr[0]= nueva_temp;
+                                  
+                                  api.devices.upBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_up.png";
+                                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_up_status.png";
+                                    status.nextElementSibling.innerHTML = 'Status: Up';
+                                      status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Up";
+                                  });
+                              }
+                          });
+                          
+                      });
+
+                }
+                else
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/down";
+                                  var pp = [];
+                                 // arr[0]= nueva_temp;
+                                  console.log("BASTA CHICOSS");
+                                  
+                                  api.devices.downBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_down.png";
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_down_status.png";
+                                        status.nextElementSibling.innerHTML = 'Status: Down';
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Down";
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
+                }
+}
+
+function change_blind_status_from_acc(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.querySelector('h3').innerHTML;
+    if (status.getAttribute('src') == "Iconos/blind_down_status.png")
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/up";
+                                 // arr[0]= nueva_temp;
+                                  
+                                  api.devices.upBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_up_status.png";
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_up.png";
+                                        status.nextElementSibling.innerHTML = ' Up';
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Up";
+
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
+                }
+                else
+                {
+                    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/down";
+                                 // arr[0]= nueva_temp;
+                                  
+                                  api.devices.downBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_down_status.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_down.png";
+                    status.nextElementSibling.innerHTML = ' Down';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Down";
+
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
+                }
+}
+
+function change_lock_status(event, status){
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    event.stopPropagation();
+    if (status.getAttribute('src') == "Iconos/locked_inside.png")
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.unlock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/unlocked_inside.png";
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/unlocked.png";
+                                        status.nextElementSibling.innerHTML = ' Status: Unlocked';
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Unlocked";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+                }
+                else
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.lock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/locked_inside.png";
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/locked.png";
+                                        status.nextElementSibling.innerHTML = ' Status: Locked';
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Locked";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+                }
+}
+
+function change_lock_status_from_acc(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.querySelector('h3').innerHTML;
+    if (status.getAttribute('src') == "Iconos/locked.png")
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.unlock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/unlocked.png";
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/unlocked_inside.png";
+                                        status.nextElementSibling.innerHTML = ' Unlocked';
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Unlocked";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+
+                }
+                else
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.lock(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/locked.png";
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/locked_inside.png";
+                                        status.nextElementSibling.innerHTML = ' Locked';
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Locked";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+                }
+}
+
+function change_toggle_status(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if (status.getAttribute('src') == "Iconos/toggle_inside_off.png")
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOn(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/toggle_on.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_on.png";
+                    status.nextElementSibling.innerHTML = ' Status: On';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " On";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+                    
+
+                }
+                else
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOff(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/toggle_inside_off.png";
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/toggle_off.png";
+                    status.nextElementSibling.innerHTML = ' Status: Off';
+                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Off";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+                }
+}
+
+function change_toggle_status_from_acc(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.querySelector('h3').innerHTML;;
+    if (status.getAttribute('src') == "Iconos/toggle_on.png")
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOff(item.id).done(function(data){
+                                      
+                                        status.src = "Iconos/toggle_off.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_inside_off.png";
+                    status.nextElementSibling.innerHTML = ' Off';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: Off";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+
+                }
+                else
+                {
+                    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.turnOn(item.id).done(function(data){
+                                      
+                     status.src = "Iconos/toggle_on.png";
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/toggle_on.png";
+                    status.nextElementSibling.innerHTML = ' On';
+                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = " Status: On";
+
+                                  });
+                              }
+                          });
+                    });
+                    
+                }
+}
+
+function change_air_temp_status(event, status){
+    event.stopPropagation();
+    
+    if(status.getAttribute('src') == "Iconos/arrow_down.png")
+                {
+                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,2)) > 18) {
+                      var nueva_temp =(parseInt(status.nextElementSibling.innerHTML.substr(0,2))-1).toString()
+                      status.nextElementSibling.innerHTML =  nueva_temp + "°C";
+                      var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.nextElementSibling.innerHTML = nueva_temp + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+                  }
+                  else 
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);                  }
+                }
+                else
+                {
+                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,2)) < 38) {
+                      var nueva_temp = (parseInt(status.previousElementSibling.innerHTML.substr(0,2))+1).toString()
+                     status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                      var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+                  } 
+                  else
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go higher";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);                  
+                  }
+                }
+}
+
+function change_air_mode(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    var act = "setMode";
+    if(status.value == "Cool")
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = "cool";
+                                  console.log(par);
+                                  api.devices.setMode(item.id,JSON.stringify(["cool"])).done(function(data){
+                                      status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/cool.png");
+                                  });
+                              }
+                          });
+                          
+                      });
+                }
+                else if(status.value == "Heat")
+                {
+                 api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  var par = "heat";
+                                  console.log(par);
+                                  api.devices.setMode(item.id,JSON.stringify(["heat"])).done(function(data){
+                                      status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/heat.png");
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
+                }
+                else
+                {
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = "fan";
+                                  console.log(par);
+                                  api.devices.setMode(item.id,JSON.stringify(["fan"])).done(function(data){
+                                       status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fan.png");
+                                  });
+                              }
+                          });
+                          
+                      });
+                 
+                }
+}
+
+function change_fan_speed(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = status.value.toLowerCase();
+                                  console.log(par);
+                                  api.devices.setFan(item.id,JSON.stringify([par])).done(function(data){
+                                  });
+                              }
+                          });
+                          
+                      });
+
+}
+
+function change_vert(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = status.value.toLowerCase();
+                                  console.log(par);
+                                  api.devices.setVertical(item.id,JSON.stringify([par])).done(function(data){
+                                  });
+                              }
+                          });
+                          
+                      });
+
+}
+
+function change_hoz(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = status.value.toLowerCase();
+                                  console.log(par);
+                                  api.devices.setHorizontal(item.id,JSON.stringify([par])).done(function(data){
+                                  });
+                              }
+                          });
+                          
+                      });
+
+}
+
+
+function change_fridge_freezer_temp(event, status){
+    event.stopPropagation();
+    var val;
+     var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    if(status.getAttribute('src') == "Iconos/arrow_up.png")
+      val = status.previousElementSibling.innerHTML.substr(0,3);
+    else
+      val = status.nextElementSibling.innerHTML.substr(0,3);
+
+    if(val.charAt(2) === '°') {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {
+            if(val.substr(0,2) == "-9") {
+              
+             
+                      var nueva_temp = "-8"
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = "-8°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+            } 
+            else
+            {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go higher";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);   
+            }
+          }
+          else
+          {
+            if(val.substr(0,2) == "-8") {
+                
+                var nueva_temp = "-9"
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                     status.nextElementSibling.innerHTML = "-9°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+            }
+            else if(val.substr(0,2) == "-9") {
+                var nueva_temp = "-10"
+                api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                     status.nextElementSibling.innerHTML = "-10°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+            }
+          }
+    } else {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {    
+           
+              var nueva_temp = (parseInt(val)+1).toString();
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = (parseInt(val)+1).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+          }
+          else {
+            if(val != "-20"){
+                var nueva_temp = (parseInt(val)-1).toString() ;
+                
+                 api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setFTemp(item.id, nueva_temp).done(function(data){
+                                     status.nextElementSibling.innerHTML = (parseInt(val)-1).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+            }
+            else
+            {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
+              
+            }
+          }
+    }
+ 
+}
+
+//  falta cambiar temperatura de accordion
+function change_fridge_temp(event, status){
+    event.stopPropagation();
+
+    if(status.getAttribute('src') == "Iconos/arrow_down.png")
+                {
+                  if(parseInt(status.nextElementSibling.innerHTML.substr(0,1)) > 2) {
+                    var nueva_temp = (parseInt(status.nextElementSibling.innerHTML.substr(0,1))-1).toString();
+                    status.nextElementSibling.innerHTML =  nueva_temp + "°C";
+                      var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.nextElementSibling.innerHTML = nueva_temp + "°C";
+                                     status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').parentNode.parentNode.parentNode.querySelector('.lock_text').innerHTML  = nueva_temp + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+                  }
+                  else
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
+              
+                  }
+
+                }
+                else
+                {
+                  if(parseInt(status.previousElementSibling.innerHTML.substr(0,1)) < 8) {
+                    
+                      var nueva_temp = (parseInt(status.previousElementSibling.innerHTML.substr(0,1))+1).toString()
+                      status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                                     status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').parentNode.parentNode.parentNode.querySelector('.lock_text').innerHTML  = nueva_temp + "°C";
+                                  });
+                              
+                          });
+                          
+                      });
+                  }
+                  else
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go higher";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
+              
+                  }
+                }
+}
+
+function change_fridge_mode(event, status){
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    event.stopPropagation();
+    if(status.value == "Default")
+                {
+                  
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setMode(item.id, JSON.stringify(["default"])).done(function(data){
+                                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fridge_default.png");
+                              });
+                              }
+                              
+                          });
+                    });
+                }
+                else if(status.value == "Vacation")
+                {
+                  
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                              api.devices.setMode(item.id, JSON.stringify(["vacation"])).done(function(data){
+                                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/vacation.png");
+                              });
+                              }
+                          });
+                    });
+                }
+                else
+                {
+                  
+                     api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  api.devices.setMode(item.id, JSON.stringify(["party"])).done(function(data){
+                                  status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/party.png");
+                                });
+                              }
+                              
+                          });
+                    });
+                }
+}
+
+function change_oven_temp(event, status){
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    event.stopPropagation();
+    var val;
+
+    if(status.getAttribute('src') == "Iconos/arrow_up.png")
+      val = status.previousElementSibling.innerHTML.substr(0,3);
+    else
+      val = status.nextElementSibling.innerHTML.substr(0,3);
+
+    if(val.charAt(2) === '°') {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {
+              
+              var nueva_temp = "100";
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                  status.previousElementSibling.innerHTML = "100°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+          } else {
+            //do nothing
+          }
+    } else {
+          if(status.getAttribute('src') == "Iconos/arrow_up.png") {   
+            if(val != "230") 
+              
+              var nueva_temp = (parseInt(val)+10).toString();
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                  status.previousElementSibling.innerHTML = (parseInt(val)+10).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+          }
+          else {
+              
+               var nueva_temp = (parseInt(val)-10).toString();
+              api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                  status.nextElementSibling.innerHTML = (parseInt(val)-10).toString() + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
+          }
+    }
+}
+
+function choose_brightness(event, slid){
+    var dev_name = slid.closest('div').parentNode.parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    var val = slid.value;
+    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  console.log("found it");
+                                  api.devices.setBrightness(item.id, val).done(function(data){
+                                  slid.value = val;
+                              });
+                              }
+                              
+                          });
+                    });
+}
+//FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM
+
 
 function searching() {
     // Declare variables
@@ -649,12 +1262,7 @@ function onPageLoad(){
 
             }else if(dev_type =='ac'){
                 api.devices.getState(item2.id).done(function(data2){
-                    console.log("Mi status de ac es: " + data.status); 
-                    console.log("Mi tempearatura de ac es: " + data.temperature); 
-                    console.log("Mi mode de ac es: " + data.mode); 
-                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
-                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
-                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
+ 
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -689,11 +1297,7 @@ function onPageLoad(){
 
             }else if(dev_type == 'oven'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi tempearatura es: " + data.temperature); 
-                    console.log("Mi heat  es: " + data.heat); 
-                    console.log("Mi grill   es: " + data.grill); 
-                    console.log("Mi convection  es: " + data.convection); 
+
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -727,7 +1331,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'alarm'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
                     var alarm_icon = document.createElement("img");
                     var alarm_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -763,7 +1366,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'blind'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
                     var blind_icon2 = document.createElement("img");
                     var blind_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -796,9 +1398,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'refrigerator'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi mode es: " + data.mode); 
-                    console.log("Mi temperature es: " + data.temperature); 
-                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
                     var temp_icon = document.createElement("img");
                     var temp_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -809,7 +1408,7 @@ function onPageLoad(){
                     temp_icon.setAttribute("class", "temperature_icon_status");
 
                     temp_info.setAttribute("class", "lock_text");
-                    temp_info.innerHTML = "5°C"; //debería depender de getstate
+                    temp_info.innerHTML = data.temperature + "°C"; //debería depender de getstate
 
                     h4_trash.setAttribute("class", "trash_message");
                     h4_trash.innerHTML = "You are about to delete this device. Continue? ";
@@ -824,9 +1423,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'lamp'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi color es: " + data.color); 
-                    console.log("Mi brightness es: " + data.brightness); 
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
                     var div_trash = document.createElement("div");
@@ -989,12 +1585,7 @@ function onPageLoad(){
 
             }else if(dev_type =='ac'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi status de ac es: " + data.status); 
-                    console.log("Mi tempearatura de ac es: " + data.temperature); 
-                    console.log("Mi mode de ac es: " + data.mode); 
-                    console.log("Mi vertical swing  de ac es: " + data.verticalSwing); 
-                    console.log("Mi horizontal swing de ac es: " + data.horizontalSwing); 
-                    console.log("Mi fan speed de ac es: " + data.fanSpeed); 
+
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1017,7 +1608,7 @@ function onPageLoad(){
 
                     var toggle_icon = document.createElement("img");
                     var stat = document.createElement("p");
-                    if(data.status == 'off'){
+                    if(data.status == 'Off'){
                         toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                         toggle_icon.setAttribute("alt", "Off");   //idem
                         toggle_icon.setAttribute("class", "toggle_inside_icon");
@@ -1102,7 +1693,7 @@ function onPageLoad(){
                     p3.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
-                    select.setAttribute("onclick", "change_air_mode(event, this);");
+                    select.setAttribute("onChange", "change_air_mode(event, this);");
 
                     if(data.mode == 'cool'){
                         option1.innerHTML = "Cool"; //debería ponerse la que esté en el getstatus primera
@@ -1189,6 +1780,7 @@ function onPageLoad(){
                     select2.appendChild(option6);
                     select2.appendChild(option7);
                     select2.appendChild(option8);
+                    select2.setAttribute("onchange", "change_fan_speed(event,this);");
 
                     status3.appendChild(fan_icon);
                     status3.appendChild(p4);
@@ -1250,6 +1842,7 @@ function onPageLoad(){
                     select3.appendChild(option11);
                     select3.appendChild(option12);
                     select3.appendChild(option13);
+                    select3.setAttribute("onchange", "change_vert(event,this);");
 
                     status4.appendChild(vertical_swing);
                     status4.appendChild(p5);
@@ -1326,6 +1919,7 @@ function onPageLoad(){
                     select4.appendChild(option17);
                     select4.appendChild(option18);
                     select4.appendChild(option19);
+                    select4.setAttribute("onchange", "change_hoz(event,this);");
 
                     status5.appendChild(horizontal_swing);
                     status5.appendChild(p6);
@@ -1346,11 +1940,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'oven'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
-                    console.log("Mi tempearatura es: " + data.temperature); 
-                    console.log("Mi heat  es: " + data.heat); 
-                    console.log("Mi grill   es: " + data.grill); 
-                    console.log("Mi convection  es: " + data.convection); 
                     
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
@@ -1433,6 +2022,7 @@ function onPageLoad(){
                     var heat_icon = document.createElement("img");
                     var p3 = document.createElement("p");
                     var select = document.createElement("select");
+                    select.setAttribute("onchange", "change_heat(event, this)");
                     var option1 = document.createElement("option");
                     var option2 = document.createElement("option");
                     var option3 = document.createElement("option");
@@ -1480,6 +2070,7 @@ function onPageLoad(){
                     var grill_icon = document.createElement("img");
                     var p4 = document.createElement("p");
                     var select2 = document.createElement("select");
+                    select2.setAttribute("onchange", "change_grill(event, this)");
                     var option4 = document.createElement("option");
                     var option5 = document.createElement("option");
                     var option6 = document.createElement("option");
@@ -1521,6 +2112,7 @@ function onPageLoad(){
                     var convection_icon = document.createElement("img");
                     var p5 = document.createElement("p");
                     var select3 = document.createElement("select");
+                    select3.setAttribute("onchange", "change_convection(event, this)");
                     var option7 = document.createElement("option");
                     var option8 = document.createElement("option");
                     var option9 = document.createElement("option");
@@ -1571,7 +2163,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'alarm'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi status es: " + data.status); 
                     
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
@@ -1719,9 +2310,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'refrigerator'){
                 api.devices.getState(item2.id).done(function(data){
-                    console.log("Mi mode es: " + data.mode); 
-                    console.log("Mi temperature es: " + data.temperature); 
-                    console.log("Mi freezerTemp es: " + data.freezerTemperature); 
                     var panel1 = document.createElement("div");
                     panel1.setAttribute("class", "panel1");
                     var status1 = document.createElement("div");
@@ -1825,7 +2413,7 @@ function onPageLoad(){
                     p5.innerHTML = "Mode: ";
 
                     select.setAttribute("class", "panel_selector");
-                    select.setAttribute("onclick", "change_fridge_mode(event,this);");
+                    select.setAttribute("onchange", "change_fridge_mode(event,this);");
                     if(data.mode == 'default'){
                         mode_icon.setAttribute("src", "Iconos/fridge_default.png");
                         mode_icon.setAttribute("alt", "Fridge");
@@ -1867,9 +2455,6 @@ function onPageLoad(){
 
             }else if(dev_type == 'lamp'){
                 api.devices.getState(item2.id).done(function(data){
-                 console.log("Mi status es: " + data.status); 
-                 console.log("Mi color es: " + data.color); 
-                 console.log("Mi brightness es: " + data.brightness); 
                 var panel1 = document.createElement("div");
                 panel1.setAttribute("class", "panel1");
                 var status1 = document.createElement("div");
@@ -1954,6 +2539,7 @@ function onPageLoad(){
                 input2.setAttribute("value", JSON.stringify(data.brightness)); //debería gettearlo con getstate
                 input2.setAttribute("class", "slider");
                 input2.setAttribute("id", "myRange");
+                input2.setAttribute("onclick", "choose_brightness(event, this)");
 
                 div_slide.appendChild(input2);
 
