@@ -39,6 +39,10 @@ function passId(event, devicea){
     
         });
      });
+    }else{
+        window.localStorage.clear();
+        window.localStorage.setItem("type_name", device_name);
+        window.location.href = 'doors.html';
     }
 
     
