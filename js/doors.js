@@ -172,6 +172,39 @@ api.devices = class {
    });
   }
     
+    static setFan(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setFanSpeed",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static setVertical(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setVerticalSwing",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static setHorizontal(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setHorizontalSwing",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
     static open(id) {
    return $.ajax({
       url: api.devices.url + id + "/open",
@@ -773,7 +806,6 @@ function change_air_mode(event, status){
     var act = "setMode";
     if(status.value == "Cool")
                 {
-                  console.log("VOINE ACA");
                     api.devices.getAllDevices().done(function(data){
                           
                           $.each(data, function(i, item){
@@ -783,7 +815,7 @@ function change_air_mode(event, status){
                                   //var pp = JSON.stringify(arr);
                                   var par = "cool";
                                   console.log(par);
-                                  api.devices.setMode(item.id,"cool").done(function(data){
+                                  api.devices.setMode(item.id,JSON.stringify(["cool"])).done(function(data){
                                       status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/cool.png");
                                   });
                               }
@@ -801,7 +833,7 @@ function change_air_mode(event, status){
                                   //var pp = JSON.stringify(arr);
                                   var par = "heat";
                                   console.log(par);
-                                  api.devices.setMode(item.id,"heat").done(function(data){
+                                  api.devices.setMode(item.id,JSON.stringify(["heat"])).done(function(data){
                                       status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/heat.png");
                                   });
                               }
@@ -821,7 +853,7 @@ function change_air_mode(event, status){
                                   //var pp = JSON.stringify(arr);
                                   var par = "fan";
                                   console.log(par);
-                                  api.devices.setMode(item.id,"fan").done(function(data){
+                                  api.devices.setMode(item.id,JSON.stringify(["fan"])).done(function(data){
                                        status.previousElementSibling.previousElementSibling.setAttribute("src","Iconos/fan.png");
                                   });
                               }
@@ -830,6 +862,75 @@ function change_air_mode(event, status){
                       });
                  
                 }
+}
+
+function change_fan_speed(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = status.value.toLowerCase();
+                                  console.log(par);
+                                  api.devices.setFan(item.id,JSON.stringify([par])).done(function(data){
+                                  });
+                              }
+                          });
+                          
+                      });
+
+}
+
+function change_vert(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = status.value.toLowerCase();
+                                  console.log(par);
+                                  api.devices.setVertical(item.id,JSON.stringify([par])).done(function(data){
+                                  });
+                              }
+                          });
+                          
+                      });
+
+}
+
+function change_hoz(event, status){
+    event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+    
+    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  var par = status.value.toLowerCase();
+                                  console.log(par);
+                                  api.devices.setHorizontal(item.id,JSON.stringify([par])).done(function(data){
+                                  });
+                              }
+                          });
+                          
+                      });
+
 }
 
 
@@ -1965,6 +2066,7 @@ function onPageLoad(){
                     select2.appendChild(option6);
                     select2.appendChild(option7);
                     select2.appendChild(option8);
+                    select2.setAttribute("onchange", "change_fan_speed(event,this);");
 
                     status3.appendChild(fan_icon);
                     status3.appendChild(p4);
@@ -1998,26 +2100,26 @@ function onPageLoad(){
                     }else if(data.verticalSwing == "22"){
                         option9.innerHTML = "22"; //debería ponerse la que esté en el getstatus primera
                         option10.innerHTML = "45";
-                        option10.innerHTML = "67";
-                        option11.innerHTML = "90";
+                        option11.innerHTML = "67";
+                        option12.innerHTML = "90";
                         option13.innerHTML = "Auto";    
                     }else if(data.verticalSwing == "45"){
                         option9.innerHTML = "45"; //debería ponerse la que esté en el getstatus primera
                         option10.innerHTML = "22";
-                        option10.innerHTML = "67";
-                        option11.innerHTML = "90";
+                        option11.innerHTML = "67";
+                        option12.innerHTML = "90";
                         option13.innerHTML = "Auto";   
                     }else if(data.verticalSwing == "67"){
                         option9.innerHTML = "67"; //debería ponerse la que esté en el getstatus primera
                         option10.innerHTML = "22";
-                        option10.innerHTML = "45";
-                        option11.innerHTML = "90";
+                        option11.innerHTML = "45";
+                        option12.innerHTML = "90";
                         option13.innerHTML = "Auto";        
                     }else{
                         option9.innerHTML = "90"; //debería ponerse la que esté en el getstatus primera
                         option10.innerHTML = "22";
-                        option10.innerHTML = "45";
-                        option11.innerHTML = "67";
+                        option11.innerHTML = "45";
+                        option12.innerHTML = "67";
                         option13.innerHTML = "Auto";        
                      }
 
@@ -2026,7 +2128,7 @@ function onPageLoad(){
                     select3.appendChild(option11);
                     select3.appendChild(option12);
                     select3.appendChild(option13);
-
+                    select3.setAttribute("onchange", "change_vert(event,this);");
                     status4.appendChild(vertical_swing);
                     status4.appendChild(p5);
                     status4.appendChild(select3);
@@ -2102,7 +2204,7 @@ function onPageLoad(){
                     select4.appendChild(option17);
                     select4.appendChild(option18);
                     select4.appendChild(option19);
-
+                    select4.setAttribute("onchange", "change_hoz(event,this);");
                     status5.appendChild(horizontal_swing);
                     status5.appendChild(p6);
                     status5.appendChild(select4);
