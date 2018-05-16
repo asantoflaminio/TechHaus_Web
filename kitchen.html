@@ -42,10 +42,15 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p id="name-tag">Name</p>
-                <input type="text" class="text-input" id="device_input">
-                <p id="room-tag">Type</p>
-                <select class="text-input" id="room_input">
+                <div>
+                <p id="name-tag">Name*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Name is required and must contain at least 3 letters, and no 'ñ' or symbols"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>
+              <input type="text" class="text-input" id="device_input">
+                <div><p id="room-tag">Type*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Type is required. Functionalities vary based on the type of device" class="more_info3"><img src="Iconos/question.png" class="more_info2"></a>
+              </div>                
+              <select class="text-input" id="room_input">
                   <option>Alarm</option>
                   <option>Door</option>
                   <option>AC</option>
