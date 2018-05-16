@@ -343,6 +343,10 @@ function searching() {
 }
 
 function cargar_datos(icono, event){
+    event.stopPropagation();
+    $('#add_task_popup').modal('toggle');
+
+
     var routinename = icono.closest('div').querySelector('h3').innerHTML;
     api.routines.getRoutines().done(function(data) {
         $.each(data, function(i, item){
