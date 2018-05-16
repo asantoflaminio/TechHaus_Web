@@ -133,6 +133,22 @@ function change_nameRoom(event, element) {
                         console.log("lo encontree");
                         api.rooms.updateRoomName(item.id, name, item.meta).done(function(data){
                                                                new_name.innerHTML = name;
+                                                                    api.devices.getAllDevices().done(function(data){
+                                                                        $.each(data, function(q, itemq){ 
+                                                                            if(itemq.meta.replace("{","").replace("}","").split(',')[0] == oldname){
+                                                                                if(itemq.meta.replace("{","").replace("}","").split(',')[1] == ' faved'){
+                                                                                    api.devices.updateDevice(itemq.id, itemq.typeId, itemq.name, name, ', faved').done(function(data){
+                                                                                    
+                                                                                    });
+                                                                                }else{
+                                                                                    api.devices.updateDevice(itemq.id, itemq.typeId, itemq.name, name, '').done(function(data){
+                                                                                    
+                                                                                    });
+                                                                                }
+                                                                                
+                                                                            }
+                                                                        })
+                                                                    });
                                                                });
                     }
                 });

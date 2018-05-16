@@ -1134,11 +1134,11 @@ function select_room(event, new_room){
                                     //cambio el meta del device
                                     if(item.meta.replace("{","").replace("}","").split(',')[1] == ' faved'){
                                         api.devices.updateDevice(item.id, item.typeId, item.name, new_room.value, ', faved').done(function(data){
-                                        
+                                            onPageLoad();
                                         });
                                     }else{
                                         api.devices.updateDevice(item.id, item.typeId, item.name, new_room.value, '').done(function(data){
-                                        
+                                            onPageLoad();
                                         });
                                     }
                                     
