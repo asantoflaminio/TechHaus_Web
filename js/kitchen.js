@@ -1619,13 +1619,13 @@ function onPageLoad(){
                 no.setAttribute("onclick", "no(event,this);");
 
                 div5.appendChild(arrow);
-                div6.appendChild(heart);
                 div7.appendChild(trash);
+                div6.appendChild(heart);
                 div8.appendChild(yes);
                 div9.appendChild(no);
                 acc3.appendChild(div5);
-                acc3.appendChild(div6);
                 acc3.appendChild(div7);
+                acc3.appendChild(div6);
                 acc3.appendChild(div8);
                 acc3.appendChild(div9);
 
