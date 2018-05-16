@@ -69,6 +69,44 @@ function onLoad(){
         
        // console.log(item.meta);
         });
+        
+        
+        //AGREGA EL UNGROUPED
+        api.devices.getAllDevices().done(function(data){
+            var hayungrouped =0;
+            $.each(data, function(i, item){
+                if(item.meta.replace("{","").replace("}","").split(',')[0] == 'Ungrouped'){
+                    
+                    hayungrouped = 1;
+                }
+            });
+            if(hayungrouped == 1){
+                var roomname = "Ungrouped"//JSON.stringify(item.name.replace("\"",""));
+                var roomtype = "Ungrouped"; //tomo el primer elemento de meta
+                var icons = document.getElementById("icons");
+                var fig = document.createElement("figure");
+                var a_elem = document.createElement("a"); 
+                var div1 = document.createElement("div");
+                var img1 = document.createElement("img");  
+                var fig_cap = document.createElement("figcaption");
+
+
+               // a_elem.setAttribute("href", "kitchen.html"); //despues va a cambiar
+                //a_elem.setAttribute("onclick", "passId(event, this)");
+                img1.setAttribute("src", "Iconos/ungrouped2.png"); 
+                img1.setAttribute("alt", roomname);
+                img1.setAttribute("class", "icon");
+                img1.setAttribute("onclick", "passUngrouped(event, this)");
+                fig_cap.innerHTML = roomname;
+
+                div1.appendChild(img1);
+                a_elem.appendChild(div1);
+                fig.appendChild(a_elem);
+                fig.appendChild(fig_cap);
+                icons.appendChild(fig);
+            }
+        }) ;
+        
 
         //var rooms = JSON.stringify(data[0]);
        // console.log(rooms);
@@ -225,6 +263,15 @@ function delete_room(event, confirm){
     
     
     
+}
+
+function passUngrouped(event, aelem){
+                
+     window.localStorage.clear();
+     window.localStorage.setItem("room_id", "Ungrouped");
+     window.location.href = 'kitchen.html';
+                
+        
 }
 
 function passId(event, aelem){

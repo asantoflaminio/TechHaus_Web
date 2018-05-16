@@ -2751,7 +2751,7 @@ function add_device(event, addbtn){
         }else{
             //agrego y linkeo
             api.rooms.getRooms().done(function(data) {
-                            
+                            var agregado = 0;
                             $.each(data, function(i, item){
                                 if(item.name.toUpperCase() == room.toUpperCase()){
                                                api.devices.addDevice(typeid,name,item.name).done(function(data) {
@@ -2759,6 +2759,7 @@ function add_device(event, addbtn){
                                                        $.each(data, function(r, item3){
                                                        if(name == item3.name){
                                                            api.devices.link(item3.id, item.id);
+                                                           agregado = 1;
                                                            onPageLoad();
                                                             $('#add_room_popup').modal('hide');
                                                        }
@@ -2768,6 +2769,13 @@ function add_device(event, addbtn){
                                                });                                 
                                 }
                             });
+                            if(agregado == 0){
+                                api.devices.addDevice(typeid,name,"Ungrouped").done(function(data) {
+                                                    console.log("Es unrouped")
+                                                    onPageLoad();
+                                                   $('#add_room_popup').modal('hide');
+                                               }); 
+                            }
                 });
             
         }
