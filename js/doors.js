@@ -1146,8 +1146,8 @@ function onPageLoad(){
         ttl.innerHTML = "Curtains";
     }else if(typename == 'refrigerator'){
         logo.setAttribute("src","Iconos/Fridges2.png");
-        brd.innerHTML = "Refrigerators";
-        ttl.innerHTML = "Refrigerators";
+        brd.innerHTML = "Fridges";
+        ttl.innerHTML = "Fridges";
     }else if(typename == 'lamp'){
         logo.setAttribute("src","Iconos/Lights2.png");
         brd.innerHTML = "Lights";
@@ -1519,8 +1519,8 @@ function onPageLoad(){
             div8.appendChild(yes);
             div9.appendChild(no);
             acc3.appendChild(div5);
-            acc3.appendChild(div6);
             acc3.appendChild(div7);
+            acc3.appendChild(div6);
             acc3.appendChild(div8);
             acc3.appendChild(div9);
 
