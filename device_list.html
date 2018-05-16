@@ -37,7 +37,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Add Device</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" onclick="cancel_add(event, this);" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -56,7 +56,7 @@
                 </select>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancel_add(event, this);">Cancel</button>
                 <button type="button" class="btn btn-primary" onclick="add_device(event, this)">Add</button>
               </div>
             </div>
