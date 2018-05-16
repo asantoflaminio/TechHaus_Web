@@ -146,7 +146,7 @@ function add_room(event, name) {
                     no = 1;
                 }
             });
-        if(roomname == ""){
+        if(roomname == "" || roomname.length < 3){
             document.getElementById("name-tag").innerHTML = "Name is required";
             document.getElementById("name-tag").style.color = "#ff0000";
             $('#add_room_popup').modal('show');
@@ -215,11 +215,25 @@ function add_room(event, name) {
 
                                                                console.log("ROOM ADDED");
                                                                 $('#add_room_popup').modal('hide');
+                                                                document.getElementById("name-tag").innerHTML = "Name*";
+                                                                document.getElementById("room-tag").innerHTML = "Type*";
+                                                                document.getElementById("name_input").value = "";
+                                                                document.getElementById("name-tag").style.color = "#000000";
+                                                                document.getElementById("room-tag").style.color = "#000000";
+
                                                            });
             }  
             });
         
 
+}
+
+function cancel_add(event, sth) {
+    document.getElementById("name-tag").innerHTML = "Name*";
+    document.getElementById("room-tag").innerHTML = "Type*";
+    document.getElementById("name_input").value = "";
+    document.getElementById("name-tag").style.color = "#000000";
+    document.getElementById("room-tag").style.color = "#000000";
 }
 
 function display_box(event, tacho){
