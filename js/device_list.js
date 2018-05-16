@@ -2280,6 +2280,7 @@ function onPageLoad(){
                     changepass.setAttribute("class", "changepass_icon");
                     changepass.setAttribute("data-toggle", "modal");
                     changepass.setAttribute("data-target", "#change_pass_popup");
+                    changepass.setAttribute("onclick", "changepass(event,this);");
 
                     p1.setAttribute("class", "stat_text");
                     p1.innerHTML = "Change password...";
@@ -2297,6 +2298,7 @@ function onPageLoad(){
                     disarm.setAttribute("class", "disarm_icon");
                     disarm.setAttribute("data-toggle", "modal");
                     disarm.setAttribute("data-target", "#ask_pass_disarm_popup");
+                    disarm.setAttribute("onclick", "disarm_call(event, this);");
 
                     p2.setAttribute("class", "stat_text");
                     p2.innerHTML = "Disarm...";
@@ -2319,6 +2321,7 @@ function onPageLoad(){
                     armStay.setAttribute("class", "stay_away_icon");
                     armStay.setAttribute("data-toggle", "modal");
                     armStay.setAttribute("data-target", "#ask_pass_armstay_popup");
+                    armStay.setAttribute("onclick", "armstay_call(event,this);");
 
                     p3.setAttribute("class", "stat_text");
                     p3.innerHTML = "ArmStay...";
@@ -2336,6 +2339,7 @@ function onPageLoad(){
                     armAway.setAttribute("class", "stay_away_icon");
                     armAway.setAttribute("data-toggle", "modal");
                     armAway.setAttribute("data-target", "#ask_pass_armaway_popup");
+                    armAway.setAttribute("onclick", "armaway_call(event,this);");
 
                     p4.setAttribute("class", "stat_text");
                     p4.innerHTML = "ArmAway...";
@@ -5959,7 +5963,7 @@ function armaway_confirm(event, elem){
       
     if(no == 0) {
 
-      /*ACA CAMBIA EL ESTADO A ARMSTAY*/
+      /*ACA CAMBIA EL ESTADO A ARMAWAY*/
 
       $('#ask_pass_armaway_popup').modal('hide');
       document.getElementById("pass2-tag").style.color = "#000000";
