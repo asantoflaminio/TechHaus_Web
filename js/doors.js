@@ -4448,18 +4448,18 @@ function loadFaves(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); //debería depender de getstate
                         alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
                     }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); //debería depender de getstate
                         alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
                     }
                         
                     
                     alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle(event,this);");
+                    alarm_icon.setAttribute("onclick", "toggle_alarm(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
                     
