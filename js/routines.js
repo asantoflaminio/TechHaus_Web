@@ -154,6 +154,10 @@ api.devices = class {
 
 function onPageLoad(){
     //document.getElementById("routines_list")
+
+   //para que ande el popover
+    $("[data-toggle=popover]").popover();
+
     var myNode = document.getElementById("routines_list");
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
