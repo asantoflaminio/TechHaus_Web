@@ -90,6 +90,10 @@ api.rooms = class {
 }
 
 function onLoad(){
+     
+    //para que ande el popover
+    $("[data-toggle=popover]").popover();
+  
     var myNode = document.getElementById("icons");
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
