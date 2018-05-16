@@ -1236,7 +1236,7 @@ function onPageLoad(){
                         }else if(roomtype == "tv room"){
                             img.setAttribute("src", "Iconos/tv_room.png");
                         }else{
-                            img1.setAttribute("src", "Iconos/other.png");     
+                            img.setAttribute("src", "Iconos/other.png");     
                         }
     });
 
