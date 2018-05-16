@@ -42,9 +42,14 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p id="name-tag">Name</p>
+                <div>
+                <p id="name-tag">Name*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Name is required and must contain at least 3 letters, and no 'ñ' or symbols"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>
                 <input type="text" class="text-input" id="name_input">
-                <p id="devicetype-tag">Device Type</p>
+                <div><p id="devicetype-tag">Device Type*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Device type is required as functionalities vary based on the type of device" class="more_info3"><img src="Iconos/question.png" class="more_info2"></a>
+              </div>                
                 <select class="text-input" id="devicetype_input" >
                   <option>AC</option>
                   <option>Alarm</option>
@@ -55,11 +60,16 @@
                   <option>Oven</option>
                   <option>Timer</option>
                 </select>
-                <p id="device-tag">Device</p>
+                <div><p id="device-tag">Device*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Device is required. It selects the device you want to perform an action on" class="more_info4"><img src="Iconos/question.png" class="more_info2"></a>
+              </div>                
                 <select class="text-input" id="device_input" onclick="add_device_input(event, this);" onmouseleave="activatetypeinput(event, this);">
                   <option>--</option>
                 </select>
-                <p id="action-tag">Action</p>
+                <div>
+                <p id="action-tag">Action*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Action is required. It selects the action you want to perform on the selected device" class="more_info4"><img src="Iconos/question.png" class="more_info2"></a>
+              </div>   
                 <select class="text-input" id="action_input" onclick="add_action_input(event, this);" onmouseleave="activateactioninput(event, this);">
                   <option>--</option>
                 </select>
@@ -83,8 +93,10 @@
                 </button>
               </div>
               <div class="modal-body">
-               <p id="devicetype-tag2" class="devicetype_tag">Device Type</p>
-                <select class="text-input" id="devicetype_input2" >
+                <div><p id="devicetype-tag2">Device Type*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Device type is required as functionalities vary based on the type of device" class="more_info4"><img src="Iconos/question.png" class="more_info2"></a>
+              </div>                
+              <select class="text-input" id="devicetype_input2" >
                   <option>AC</option>
                   <option>Alarm</option>
                   <option>Blind</option>
@@ -94,11 +106,16 @@
                   <option>Oven</option>
                   <option>Timer</option>
                 </select>
-               <p id="device-tag22222" class="device_tag">Device</p> 
+               <div><p id="device-tag22222" class="device_tag">Device*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Device is required. It selects the device you want to perform an action on" class="more_info4"><img src="Iconos/question.png" class="more_info2"></a>
+              </div> 
                 <select class="text-input" id="device_input2" onclick="add_device_input2(event, this);" onmouseleave="activatetypeinput2(event, this);"> 
                   <option>--</option>
                 </select>
-                <p id="action-tag22222" class="action_tag">Action</p>
+                <div>
+                <p id="action-tag22222" class="action_tag">Action*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Action is required. It selects the action you want to perform on the selected device" class="more_info4"><img src="Iconos/question.png" class="more_info2"></a>
+              </div>
                 <select class="text-input" id="action_input2" onclick="add_action_input2(event, this);" onmouseleave="activateactioninput2(event, this);">
                   <option>--</option>
                 </select> 
