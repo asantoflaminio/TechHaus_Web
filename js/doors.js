@@ -70,6 +70,45 @@ api.devices = class {
            return data.result;
         });  
   } 
+    
+    static performAction(id, param, actionUrl) {
+   return $.ajax({
+      url: api.devices.url + id + actionUrl,
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+      data: param,
+   });
+  }
+    
+    static setTemp(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/setTemperature",
+      method: "PUT",
+      dataType: "json",
+       contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static upBlind(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/up",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+   });
+  }
+    
+    static downBlind(id) {
+   return $.ajax({
+      url: api.devices.url + id + "/down",
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+   });
+  }
     static getAllDevices() {
    return $.ajax({
       url: api.devices.url,
@@ -236,39 +275,103 @@ function toggle(event, toggling){
 
 function change_blind_status(event, status){
     event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
     if (status.getAttribute('src') == "Iconos/blind_down.png")
                 {
-                    status.src = "Iconos/blind_up.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_up_status.png";
-                    status.nextElementSibling.innerHTML = 'Status: Up';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Up";
+                    
+                    
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/up";
+                                 // arr[0]= nueva_temp;
+                                  
+                                  api.devices.upBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_up.png";
+                                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_up_status.png";
+                                    status.nextElementSibling.innerHTML = 'Status: Up';
+                                      status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Up";
+                                  });
+                              }
+                          });
+                          
+                      });
 
                 }
                 else
                 {
-                    status.src = "Iconos/blind_down.png";
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_down_status.png";
-                    status.nextElementSibling.innerHTML = 'Status: Down';
-                    status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Down";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/down";
+                                  var pp = [];
+                                 // arr[0]= nueva_temp;
+                                  console.log("BASTA CHICOSS");
+                                  
+                                  api.devices.downBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_down.png";
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[0].src = "Iconos/blind_down_status.png";
+                                        status.nextElementSibling.innerHTML = 'Status: Down';
+                                        status.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.accordion2').children[1].innerHTML = " Down";
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
                 }
 }
 
 function change_blind_status_from_acc(event, status){
     event.stopPropagation();
+    var dev_name = status.closest('div').parentNode.querySelector('h3').innerHTML;
     if (status.getAttribute('src') == "Iconos/blind_down_status.png")
                 {
-                    status.src = "Iconos/blind_up_status.png";
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_up.png";
-                    status.nextElementSibling.innerHTML = ' Up';
-                    status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Up";
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/up";
+                                 // arr[0]= nueva_temp;
+                                  
+                                  api.devices.upBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_up_status.png";
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_up.png";
+                                        status.nextElementSibling.innerHTML = ' Up';
+                                        status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Up";
 
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
                 }
                 else
                 {
-                    status.src = "Iconos/blind_down_status.png";
+                    
+                    api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  var act = "/down";
+                                 // arr[0]= nueva_temp;
+                                  
+                                  api.devices.downBlind(item.id).done(function(data){
+                                      status.src = "Iconos/blind_down_status.png";
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[0].src = "Iconos/blind_down.png";
                     status.nextElementSibling.innerHTML = ' Down';
                     status.parentNode.parentNode.nextElementSibling.querySelector('.panel1').children[0].children[1].innerHTML = "Status: Down";
+
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
                 }
 }
 
@@ -354,13 +457,49 @@ function change_air_temp_status(event, status){
     if(status.getAttribute('src') == "Iconos/arrow_down.png")
                 {
                   if(parseInt(status.nextElementSibling.innerHTML.substr(0,2)) > 18) {
-                    status.nextElementSibling.innerHTML = (parseInt(status.nextElementSibling.innerHTML.substr(0,2))-1).toString() + "°C";
+                      var nueva_temp =(parseInt(status.nextElementSibling.innerHTML.substr(0,2))-1).toString()
+                      status.nextElementSibling.innerHTML =  nueva_temp + "°C";
+                      var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.nextElementSibling.innerHTML = nueva_temp + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
                   }
                 }
                 else
                 {
                   if(parseInt(status.previousElementSibling.innerHTML.substr(0,2)) < 38) {
-                    status.previousElementSibling.innerHTML = (parseInt(status.previousElementSibling.innerHTML.substr(0,2))+1).toString() + "°C";
+                      var nueva_temp = (parseInt(status.previousElementSibling.innerHTML.substr(0,2))+1).toString()
+                     status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                      var dev_name = status.closest('div').parentNode.parentNode.previousElementSibling.querySelector('h3').innerHTML;
+                      
+                      api.devices.getAllDevices().done(function(data){
+                          
+                          $.each(data, function(i, item){
+                              if(item.name == dev_name){
+                                  //var act = 
+                                  
+                                  //var pp = JSON.stringify(arr);
+                                  
+                                  api.devices.setTemp(item.id, nueva_temp).done(function(data){
+                                      status.previousElementSibling.innerHTML = nueva_temp + "°C";
+                                  });
+                              }
+                          });
+                          
+                      });
                   }
                 }
 }
