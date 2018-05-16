@@ -33,7 +33,7 @@ function passId(event, devicea){
                 console.log("desde devices.js voy a poner type_id = " + type_id);
                 window.localStorage.setItem("type_id", type_id);
                 window.localStorage.setItem("type_name", device_name);
-                window.location.href = 'doors.html';
+                window.location.href = 'device_list.html';
                 
             }
     
@@ -42,7 +42,7 @@ function passId(event, devicea){
     }else{
         window.localStorage.clear();
         window.localStorage.setItem("type_name", device_name);
-        window.location.href = 'doors.html';
+        window.location.href = 'device_list.html';
     }
 
     
