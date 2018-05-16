@@ -581,6 +581,49 @@ footer p {
     display: inline-block;
 }
 
+#old-pass-tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-left: 13px;
+    margin-bottom: 7px;
+    display: inline-block;
+}
+
+#new-pass-tag {
+    padding-top: 0;
+    margin-left: 13px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    font-family: monaco, monospace;
+    margin-bottom: 7px;
+    display: inline-block !important;
+}
+
+#pass1-tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-left: 13px;
+    margin-bottom: 7px;
+    display: inline-block;
+}
+
+#pass2-tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-left: 13px;
+    margin-bottom: 7px;
+    display: inline-block;
+}
+
+#pass3-tag {
+    position: relative !important;
+    font-family: monaco, monospace;
+    margin-left: 13px;
+    margin-bottom: 7px;
+    display: inline-block;
+}
+
 .more_info1 {
     height: 20px;
     width: 20px;
@@ -640,6 +683,33 @@ footer p {
 }
 
 #pass_input {
+    width: 88%;
+    height: 25px;
+    position: relative !important;
+    float: left !important;
+    font-family: monaco, monospace;
+
+}
+
+#pass1_input {
+    width: 88%;
+    height: 25px;
+    position: relative !important;
+    float: left !important;
+    font-family: monaco, monospace;
+
+}
+
+#pass2_input {
+    width: 88%;
+    height: 25px;
+    position: relative !important;
+    float: left !important;
+    font-family: monaco, monospace;
+
+}
+
+#pass3_input {
     width: 88%;
     height: 25px;
     position: relative !important;
