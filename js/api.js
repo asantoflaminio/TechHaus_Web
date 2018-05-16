@@ -96,6 +96,18 @@ api.rooms = class {
      
   }
     
+    static updateRoomName(id, name, meta) {
+   return $.ajax({
+      url: api.rooms.url + id,
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'name': name, 'meta': meta}
+       });
+       
+     
+  }
+    
     static getRoomDevices(id) {
        return $.ajax({
           url: api.rooms.url + id + "/devices/",
@@ -456,6 +468,15 @@ api.devices = class {
       dataType: "json",
       timeout: api.timeout,
        data: {'typeId': typeid, 'name': name, 'meta': "{" + room + "}"},
+       });     
+  }
+    static updateName(id, typeid, name, meta) {
+   return $.ajax({
+      url: api.devices.url + id,
+      method: "PUT",
+      dataType: "json",
+      timeout: api.timeout,
+       data: {'typeId': typeid, 'name': name, 'meta': meta}
        });     
   }
     

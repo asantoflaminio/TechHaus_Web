@@ -1029,18 +1029,34 @@ function change_name(event, element) {
     event.stopPropagation();
     var name_input = element;
     var name = name_input.value;
-    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
-    new_name.innerHTML = name;
+    var oldname = window.localStorage.getItem("oldname");
+    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;
+   // new_name.innerHTML = name;
     name_input.style.visibility = "hidden";
     new_name.style.visibility = "visible";
     name_input.style.backgroundColor = "#bbb"
+    console.log("Nombre viejo: " + oldname);
+    console.log("Nombre nuevo: " + name);
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){ 
+            if(item.name == oldname){
+                api.devices.updateName(item.id, item.typeId, name, item.meta).done(function(data){
+                                                       new_name.innerHTML = name;
+                                                       });
+            }
+        });
+    });
 }
 
 function input_name(event, name) {
     event.stopPropagation();
     name.style.backgroundColor = "transparent";
+    window.localStorage.removeItem("oldname");
+    window.localStorage.setItem("oldname", name.value);
     $(this).click( function()
-        { change_name(event, name); } );
+        { 
+        
+        change_name(event, name); } );
     
     $(name).keydown(function(event){
         if(event.keyCode == 13){
@@ -2736,11 +2752,9 @@ function add_device(event, addbtn){
                                             no = 1;
                                         }
                                          });
-        if(name == ""){
+        if(name == "" || name.length < 3){
             no = 2;
-        } else {
-          no = 2;
-        }
+        } 
         if(no == 2){
             document.getElementById("name-tag").style.color = "#ff0000";
             document.getElementById("name-tag").innerHTML = "Name is required";

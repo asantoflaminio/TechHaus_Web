@@ -96,28 +96,46 @@ function edit_nameRoom(event, name) {
     name.style.visibility = "hidden";
     var input_new_name = name.nextElementSibling.nextElementSibling.children[0].children[0];
     input_new_name.style.visibility = "visible";
-
+    console.log("nombre es --> " + name.innerHTML);
+    window.localStorage.setItem("oldroomname", name.innerHTML);
     $(this).click( function()
         { change_nameRoom(event, document.getElementsByClassName("new_room_name")[0]); } );
     
 }
 
+
+
 function change_nameRoom(event, element) {
     event.stopPropagation();
     var name_input = element;
     var name = name_input.value;
-    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
-    new_name.innerHTML = name;
-    var add = element.parentNode.parentNode.nextElementSibling;
-    add.style.visibility = "visible";
+    var oldname = window.localStorage.getItem("oldroomname");
+    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;
+   // new_name.innerHTML = name;
     name_input.style.visibility = "hidden";
     new_name.style.visibility = "visible";
     name_input.style.backgroundColor = "#bbb"
+    var add = element.parentNode.parentNode.nextElementSibling;
+    add.style.visibility = "visible";
+    console.log("Nombre viejo: " + oldname);
+    console.log("Nombre nuevo: " + name);
+    api.rooms.getRooms().done(function(data){
+        $.each(data, function(i, item){ 
+            if(item.name == oldname){
+                console.log("lo encontree");
+                api.rooms.updateRoomName(item.id, name, item.meta).done(function(data){
+                                                       new_name.innerHTML = name;
+                                                       });
+            }
+        });
+    });
 }
 
 function input_nameRoom(event, name) {
     event.stopPropagation();
     name.style.backgroundColor = "transparent";
+    window.localStorage.removeItem("oldname");
+    window.localStorage.setItem("oldname", name.value);
     $(this).click( function()
         { change_nameRoom(event, name); } );
     
@@ -163,18 +181,34 @@ function change_name(event, element) {
     event.stopPropagation();
     var name_input = element;
     var name = name_input.value;
-    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;;
-    new_name.innerHTML = name;
+    var oldname = window.localStorage.getItem("oldname");
+    var new_name = element.parentNode.parentNode.previousElementSibling.previousElementSibling;
+   // new_name.innerHTML = name;
     name_input.style.visibility = "hidden";
     new_name.style.visibility = "visible";
     name_input.style.backgroundColor = "#bbb"
+    console.log("Nombre viejo: " + oldname);
+    console.log("Nombre nuevo: " + name);
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){ 
+            if(item.name == oldname){
+                api.devices.updateName(item.id, item.typeId, name, item.meta).done(function(data){
+                                                       new_name.innerHTML = name;
+                                                       });
+            }
+        });
+    });
 }
 
 function input_name(event, name) {
     event.stopPropagation();
     name.style.backgroundColor = "transparent";
+    window.localStorage.removeItem("oldname");
+    window.localStorage.setItem("oldname", name.value);
     $(this).click( function()
-        { change_name(event, name); } );
+        { 
+        
+        change_name(event, name); } );
     
     $(name).keydown(function(event){
         if(event.keyCode == 13){
@@ -182,6 +216,7 @@ function input_name(event, name) {
         }
     }); 
 }
+
 
 
 function fav(event, heart){
