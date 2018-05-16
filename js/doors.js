@@ -1,6 +1,3 @@
-
-
-
 //favorite
 
 function fav(event, heart){
@@ -88,18 +85,22 @@ function lock(event, locking){
                 }
 }
 
-function toggle(event, toggling){
+function toggle_alarm(event, toggling){
     event.stopPropagation();
-    if (toggling.getAttribute('src') == "Iconos/toggle_off.png")
+    if (toggling.getAttribute('src') == "Iconos/alarm_wo_people_stat.png")
                 {
-                    toggling.src = "Iconos/toggle_on.png";
-                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " On";
+                    toggling.src = "Iconos/disarm_stat.png";
+                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Disarm...";
+                    toggling.removeAttribute("class");
+                    toggling.setAttribute("class","alarm_icon_stat_disarm");
                 }
                 else
                 {
-                    toggling.src = "Iconos/toggle_off.png";
-                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Off";
-                }
+                    toggling.src = "Iconos/alarm_wo_people_stat.png";
+                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " ArmAway...";
+                    toggling.class = "alarm_icon_stat_armaway";
+                    toggling.removeAttribute("class");
+                    toggling.setAttribute("class","alarm_icon_stat_armaway");}
 }
 
 function change_blind_status(event, status){
@@ -407,6 +408,15 @@ function change_air_temp_status(event, status){
                           
                       });
                   }
+                  else 
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);                  }
                 }
                 else
                 {
@@ -430,6 +440,16 @@ function change_air_temp_status(event, status){
                           });
                           
                       });
+                  } 
+                  else
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go higher";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);                  
                   }
                 }
 }
@@ -599,12 +619,21 @@ function change_fridge_freezer_temp(event, status){
                           });
                           
                       });
+            } 
+            else
+            {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go higher";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);   
             }
           }
           else
           {
             if(val.substr(0,2) == "-8") {
-              console.log("ACAAAA");
                 
                 var nueva_temp = "-9"
                       api.devices.getAllDevices().done(function(data){
@@ -682,7 +711,17 @@ function change_fridge_freezer_temp(event, status){
                           
                       });
             }
+            else
+            {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
               
+            }
           }
     }
  
@@ -715,6 +754,18 @@ function change_fridge_temp(event, status){
                           
                       });
                   }
+                  else
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go lower";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
+              
+                  }
+
                 }
                 else
                 {
@@ -735,6 +786,17 @@ function change_fridge_temp(event, status){
                           });
                           
                       });
+                  }
+                  else
+                  {
+                        var notice = document.getElementsByClassName('notice')[0];
+                        notice.style.display = 'block';
+                        document.getElementById('name').innerHTML = "Temperature can't go higher";
+
+                        this.setTimeout(function(){
+                            notice.style.display='none';
+                        }, 3000);
+              
                   }
                 }
 }
@@ -880,6 +942,8 @@ function choose_brightness(event, slid){
 //FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM
 
 function trash(event, tacho){
+    event.stopPropagation();
+    $('#delete_device_popup').modal('toggle');
     var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
     var deviceid = "";
     //window.localStorage.clear();
@@ -1021,6 +1085,10 @@ $(document).ready(function() {
     onPageLoad();
 });
 function onPageLoad(){
+
+    //para que ande el popover
+    $("[data-toggle=popover]").popover();
+
     var myNode = document.getElementById("devices_list");
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
@@ -1255,18 +1323,18 @@ function onPageLoad(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png");
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); 
+                        alarm_info.innerHTML = "ArmAway...";
                     }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); 
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm");
+                        alarm_info.innerHTML = "Disarm..."; 
                     }
                         
                     
                     alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle(event,this);");
+                    alarm_icon.setAttribute("onclick", "toggle_alarm(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
                     
