@@ -1,5 +1,4 @@
 
-
 function lock(event, locking){
     event.stopPropagation();
     if (locking.getAttribute('src') == "Iconos/locked.png")
@@ -13,67 +12,6 @@ function lock(event, locking){
                     locking.closest('div').parentNode.querySelector('.lock_text').innerHTML = "  Locked";
                 }
 }
-
-/*
-
-function trash(event, trashcan){
-    event.stopPropagation();
-    if (trashcan.getAttribute('src') == "Iconos/tacho.png")
-                {
-                    //trashcan.src = "Iconos/warning.png"; //this works ok
-                    trashcan.style.visibility = "hidden";
-                    var heart = trashcan.closest('div').parentNode.querySelector('.fave_icon');
-                    heart.style.visibility = "hidden";
-                    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
-                    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
-                    lck_icon.style.visibility = "hidden";
-                    lck.style.visibility = "hidden";
-                    var message = trashcan.closest('div').parentNode.parentNode.querySelector('.trash_message');
-                    message.style.visibility = "visible";
-                    var yes = trashcan.closest('div').parentNode.querySelector('.yes_icon');
-                    yes.style.visibility = "visible";
-                    var no = trashcan.closest('div').parentNode.querySelector('.no_icon');
-                    no.style.visibility = "visible";
-                    
-                }
-}
-
-
-function no(event, noicon){
-    event.stopPropagation();
-    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
-    trashcan.src = "Iconos/tacho.png";
-    trashcan.style.visibility = "visible";
-    noicon.style.visibility = "hidden";
-    var message = noicon.closest('div').parentNode.parentNode.querySelector('.trash_message');
-    message.style.visibility = "hidden";
-    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
-    yes.style.visibility = "hidden";
-    var heart = noicon.closest('div').parentNode.parentNode.querySelector('.fave_icon');
-    heart.style.visibility = "visible";
-    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
-    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
-    lck_icon.style.visibility = "visible";
-    lck.style.visibility = "visible";
-    
-    
-}
-
-function yes(event, yesicon){
-    
-    event.stopPropagation();
-    yesicon.closest('div').parentNode.parentNode.nextElementSibling.remove();
-    yesicon.closest('div').parentNode.parentNode.remove();
-    api.devices.getDevices().done(function(data){
-        $.each(data, function(r, item3){
-        if(yesicon.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML == item3.name){
-                api.devices.deleteDevice(item3.id);
-              }
-       });
-  });
-}
-
-*/
 
 
 function add_device(event, name) {
@@ -506,43 +444,23 @@ function change_oven_temp(event, status){
 }
 //FALTA LAMP (MOSTRAR VALUE DE SLIDE), ALARM
 
-/*
-
-function no(event, noicon){
+function toggle_alarm(event, toggling){
     event.stopPropagation();
-    var trashcan = noicon.closest('div').parentNode.querySelector('.delete_icon');
-    trashcan.src = "Iconos/tacho.png";
-    trashcan.style.visibility = "visible";
-    noicon.style.visibility = "hidden";
-    var message = noicon.closest('div').parentNode.parentNode.querySelector('.trash_message');
-    message.style.visibility = "hidden";
-    var yes = noicon.closest('div').parentNode.querySelector('.yes_icon');
-    yes.style.visibility = "hidden";
-    var heart = noicon.closest('div').parentNode.parentNode.querySelector('.fave_icon');
-    heart.style.visibility = "visible";
-    var lck_icon = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_icon');
-    var lck = trashcan.closest('div').parentNode.parentNode.querySelector('.lock_text');
-    lck_icon.style.visibility = "visible";
-    lck.style.visibility = "visible";
-    
-    
+    if (toggling.getAttribute('src') == "Iconos/alarm_wo_people_stat.png")
+                {
+                    toggling.src = "Iconos/disarm_stat.png";
+                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " Disarm...";
+                    toggling.removeAttribute("class");
+                    toggling.setAttribute("class","alarm_icon_stat_disarm");
+                }
+                else
+                {
+                    toggling.src = "Iconos/alarm_wo_people_stat.png";
+                    toggling.closest('div').parentNode.querySelector('.lock_text').innerHTML = " ArmAway...";
+                    toggling.class = "alarm_icon_stat_armaway";
+                    toggling.removeAttribute("class");
+                    toggling.setAttribute("class","alarm_icon_stat_armaway");}
 }
-
-function yes(event, yesicon){
-    
-    event.stopPropagation();
-    yesicon.closest('div').parentNode.parentNode.nextElementSibling.remove();
-    yesicon.closest('div').parentNode.parentNode.remove();
-      api.devices.getDevices().done(function(data){
-         $.each(data, function(r, item3){
-        if(yesicon.closest('div').parentNode.parentNode.querySelector('h3').innerHTML == item3.name){
-                api.devices.deleteDevice(item3.id);
-              }
-       });
-  });
-
-}
-*/
 
 function searching() {
     // Declare variables
@@ -816,18 +734,18 @@ function onPageLoad(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png");
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); 
+                        alarm_info.innerHTML = "ArmAway...";
                     }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); 
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); 
+                        alarm_info.innerHTML = "Disarm..."; 
                     }
                         
                     
                     alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle(event,this);");
+                    alarm_icon.setAttribute("onclick", "toggle_alarm(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
                     
@@ -2114,6 +2032,9 @@ function pencil2_outRoom(event, title){
 }
 
 function trash(event, tacho){
+    event.stopPropagation();
+    $('#delete_device_popup').modal('toggle');
+
     var devicename = tacho.closest('div').parentNode.parentNode.querySelector('.device_name').innerHTML;
     var deviceid = "";
     //window.localStorage.clear();
