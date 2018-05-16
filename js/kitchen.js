@@ -721,6 +721,10 @@ $(document).ready(function() {
 
 
 function onPageLoad(){
+  
+      //para que ande el popover
+    $("[data-toggle=popover]").popover();
+
       var myNode = document.getElementById("devices_list");
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
