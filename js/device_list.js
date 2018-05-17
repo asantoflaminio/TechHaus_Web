@@ -1426,13 +1426,13 @@ function onPageLoad(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png");
-                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); 
-                        alarm_info.innerHTML = "ArmAway...";
+                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); //debería depender de getstate
+                        alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
                     }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); 
-                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm");
-                        alarm_info.innerHTML = "Disarm..."; 
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); //debería depender de getstate
+                        alarm_info.innerHTML = "ArmAway On"; //debería depender de getstate
                     }
                         
                     
@@ -3094,18 +3094,17 @@ function loadAll(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
-                    }else{
                         alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
-                        alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); //debería depender de getstate
+                        alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
+                    }else{
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); //debería depender de getstate
+                        alarm_info.innerHTML = "ArmAway On"; //debería depender de getstate
                     }
                         
                     
                     alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
                     
@@ -4535,18 +4534,17 @@ function loadFaves(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
-                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); //debería depender de getstate
-                        alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
-                    }else{
                         alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); //debería depender de getstate
                         alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); //debería depender de getstate
-                        alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
+                        alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
+                    }else{
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); //debería depender de getstate
+                        alarm_info.innerHTML = "ArmAway On"; //debería depender de getstate
                     }
                         
                     
                     alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle_alarm(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
                     
@@ -5806,7 +5804,7 @@ function change_pass(event, elem){
     else
     {
       document.getElementById("old-pass-tag").style.color = "#000000";
-      document.getElementById("old-pass-tag").innerHTML = "Old password*";
+      document.getElementById("old-pass-tag").innerHTML = "Old password";
       $('#change_pass_popup').modal('show');
     }
 
@@ -5830,11 +5828,12 @@ function change_pass(event, elem){
         console.log("dev id" +deviceid);
    
         api.devices.changecode(deviceid,old_pass, new_pass).done(function(data){
+          onPageLoad();
             
         });
       $('#change_pass_popup').modal('hide');
       document.getElementById("old-pass-tag").style.color = "#000000";
-      document.getElementById("old-pass-tag").innerHTML = "Old password*";
+      document.getElementById("old-pass-tag").innerHTML = "Old password";
       document.getElementById("new-pass-tag").style.color = "#000000";
       document.getElementById("new-pass-tag").innerHTML = "New password*";
     }
@@ -5867,7 +5866,7 @@ function changepass(event, icon){
 function close_changepass(event,sth) {
       $('#change_pass_popup').modal('hide');
       document.getElementById("old-pass-tag").style.color = "#000000";
-      document.getElementById("old-pass-tag").innerHTML = "Old password*";
+      document.getElementById("old-pass-tag").innerHTML = "Old password";
       document.getElementById("new-pass-tag").style.color = "#000000";
       document.getElementById("new-pass-tag").innerHTML = "New password*";
 }
@@ -5908,18 +5907,18 @@ function armstay_confirm(event, elem){
 
       /*ACA CAMBIA EL ESTADO A ARMSTAY*/
         api.devices.armstay(deviceid, pass).done(function(data){
-          
+          onPageLoad();
       });
       $('#ask_pass_armstay_popup').modal('hide');
       document.getElementById("pass1-tag").style.color = "#000000";
-      document.getElementById("pass1-tag").innerHTML = "Password*";
+      document.getElementById("pass1-tag").innerHTML = "Password";
     }
   }
 
   function cancel_armstay(event, elem) {
       $('#ask_pass_armstay_popup').modal('hide');
       document.getElementById("pass1-tag").style.color = "#000000";
-      document.getElementById("pass1-tag").innerHTML = "Password*";
+      document.getElementById("pass1-tag").innerHTML = "Password";
   }
 
 // password check armaway
@@ -5958,18 +5957,19 @@ function armaway_confirm(event, elem){
 
       /*ACA CAMBIA EL ESTADO A ARMAWAY*/
       api.devices.armaway(deviceid, pass).done(function(data){
+            onPageLoad();
           
       });
       $('#ask_pass_armaway_popup').modal('hide');
       document.getElementById("pass2-tag").style.color = "#000000";
-      document.getElementById("pass2-tag").innerHTML = "Password*";
+      document.getElementById("pass2-tag").innerHTML = "Password";
     }
   }
 
 function cancel_armaway(event,sth) {
       $('#ask_pass_armaway_popup').modal('hide');
       document.getElementById("pass2-tag").style.color = "#000000";
-      document.getElementById("pass2-tag").innerHTML = "Password*";
+      document.getElementById("pass2-tag").innerHTML = "Password";
 }
 
 // password check disarm
@@ -6014,16 +6014,16 @@ function disarm_confirm(event, elem){
         console.log("hey");
         console.log(deviceid);
         api.devices.disarm(deviceid,pass).done(function(data){
-            
+            onPageLoad();
         });
       $('#ask_pass_disarm_popup').modal('hide');
       document.getElementById("pass3-tag").style.color = "#000000";
-      document.getElementById("pass3-tag").innerHTML = "Password*";
+      document.getElementById("pass3-tag").innerHTML = "Password";
     }
   }
 
 function cancel_disarm(event, sth) {
       $('#ask_pass_disarm_popup').modal('hide');
       document.getElementById("pass3-tag").style.color = "#000000";
-      document.getElementById("pass3-tag").innerHTML = "Password*";
+      document.getElementById("pass3-tag").innerHTML = "Password";
 }
