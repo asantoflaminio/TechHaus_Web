@@ -3101,11 +3101,11 @@ function loadAll(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
                         alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
                         alarm_info.innerHTML = "ArmAway..."; //debería depender de getstate
                     }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); //debería depender de getstate
                         alarm_icon.setAttribute("class", "alarm_icon"); //debería depender de getstate
                         alarm_info.innerHTML = "Disarm..."; //debería depender de getstate
                     }
