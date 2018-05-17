@@ -1816,7 +1816,7 @@ function onPageLoad(){
 
                     var toggle_icon = document.createElement("img");
                     var stat = document.createElement("p");
-                    if(data.status == 'Off'){
+                    if(data.status == 'off'){
                         toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                         toggle_icon.setAttribute("alt", "Off");   //idem
                         toggle_icon.setAttribute("class", "toggle_inside_icon");
