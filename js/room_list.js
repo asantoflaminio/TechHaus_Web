@@ -1466,7 +1466,7 @@ function onPageLoad(){
                 
 
             }else if(dev_type =='ac'){
-                api.devices.getState(item2.id).done(function(data2){
+                api.devices.getState(item2.id).done(function(data){
  
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
@@ -3095,7 +3095,7 @@ function loadUngrouped(){
                 
 
             }else if(dev_type =='ac'){
-                api.devices.getState(item2.id).done(function(data2){
+                api.devices.getState(item2.id).done(function(data){
  
                     var toggle_img = document.createElement("img");
                     var toggle_info = document.createElement("p");
@@ -3445,7 +3445,7 @@ function loadUngrouped(){
 
                     var toggle_icon = document.createElement("img");
                     var stat = document.createElement("p");
-                    if(data.status == 'Off'){
+                    if(data.status == 'off'){
                         toggle_icon.setAttribute("src", "Iconos/toggle_inside_off.png");  //gettearlo con get status
                         toggle_icon.setAttribute("alt", "Off");   //idem
                         toggle_icon.setAttribute("class", "toggle_inside_icon");
