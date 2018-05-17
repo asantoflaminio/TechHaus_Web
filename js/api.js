@@ -221,6 +221,50 @@ api.devices = class {
         });  
   }
     
+    static disarm(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/disarm",
+      method: "PUT",
+      dataType: "json",
+     contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static armstay(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/armStay",
+      method: "PUT",
+      dataType: "json",
+     contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static armaway(id, param) {
+   return $.ajax({
+      url: api.devices.url + id + "/armAway",
+      method: "PUT",
+      dataType: "json",
+     contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param+"]",
+   });
+  }
+    
+    static changecode(id, param1, param2) {
+   return $.ajax({
+      url: api.devices.url + id + "/armAway",
+      method: "PUT",
+      dataType: "json",
+     contentType: "application/json; charset=utf-8",
+      timeout: api.timeout,
+      data: "["+param1 + ", " + param2+ "]",
+   });
+  }
+    
     static turnOff(id) {
    return $.ajax({
       url: api.devices.url + id + "/turnOff",

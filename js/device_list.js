@@ -2848,14 +2848,21 @@ function add_device(event, addbtn){
                                 }
                             });
                             if(agregado == 0){
-                                api.devices.addDevice(typeid,name,"Ungrouped").done(function(data) {
+                                api.devicetypes.getDeviceType(typeid).done(function(data){
+                                    if(data.name = 'alarm'){
+                                        console.log("Soy una alarma");
+                                    }else{
+                                        api.devices.addDevice(typeid,name,"Ungrouped").done(function(data) {
                                                     console.log("Es unrouped")
                                                     onPageLoad();
                                                    $('#add_room_popup').modal('hide');
                                                    document.getElementById("name-tag").innerHTML = "Name*";
                                                     document.getElementById("door_input").value = "";
                                                     document.getElementById("name-tag").style.color = "#000000";
-                                               }); 
+                                 }); 
+                                    }
+                                });
+                                
                             }
                 });
             
@@ -5800,9 +5807,7 @@ function change_pass(event, elem){
 
 //ACA BUSCA el device entre los devices con el deviceid
 
-  if(old_pass != /*ACA CHEQUEA CON contraseña de meta*/) {
-    no = 1;
-  } 
+ 
 
   if(new_pass.length != 4 || isNotDigit(new_pass.charAt(0)) || isNotDigit(new_pass.charAt(1)) || isNotDigit(new_pass.charAt(2)) || isNotDigit(new_pass.charAt(3))) {
     no2 = 1;
@@ -5834,7 +5839,14 @@ function change_pass(event, elem){
     if(no == 0 && no2 == 0) {
 
       /*ACA PONE new_pass en meta*/
-
+        console.log("se vienen las passs");
+        console.log(old_pass);
+        console.log(new_pass);
+        console.log("dev id" +deviceid);
+        var arr = [old_pass, new_pass];
+        api.devices.changecode(deviceid,JSON.stringify(arr)).done(function(data){
+            
+        });
       $('#change_pass_popup').modal('hide');
       document.getElementById("old-pass-tag").style.color = "#000000";
       document.getElementById("old-pass-tag").innerHTML = "Old password*";
@@ -5854,7 +5866,7 @@ function isNotDigit(str) {
 function changepass(event, icon){
     event.stopPropagation();
     $('#change_pass_popup').modal('toggle');
-    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').innerHTML;
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
     var deviceid = "";
     window.localStorage.setItem("devicename3", devicename);
     api.devices.getAllDevices().done(function(data){
@@ -5880,7 +5892,7 @@ function close_changepass(event,sth) {
 function armstay_call(event,icon) {
     event.stopPropagation();
     $('#ask_pass_armstay_popup').modal('toggle');
-    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').innerHTML;
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
     var deviceid = "";
     window.localStorage.setItem("devicename4", devicename);
     api.devices.getAllDevices().done(function(data){
@@ -5900,10 +5912,7 @@ function armstay_confirm(event, elem){
 
 //ACA BUSCA el device entre los devices con el deviceid
 
-  if(pass != /*ACA CHEQUEA CON contraseña de meta*/) {
-    no = 1;
-  } 
-
+  
     if(no == 1) {
       document.getElementById("pass1-tag").style.color = "#ff0000";
       document.getElementById("pass1-tag").innerHTML = "Incorrect password";
@@ -5913,7 +5922,9 @@ function armstay_confirm(event, elem){
     if(no == 0) {
 
       /*ACA CAMBIA EL ESTADO A ARMSTAY*/
-
+        api.devices.armstay(deviceid, pass).done(function(data){
+          
+      });
       $('#ask_pass_armstay_popup').modal('hide');
       document.getElementById("pass1-tag").style.color = "#000000";
       document.getElementById("pass1-tag").innerHTML = "Password*";
@@ -5931,7 +5942,7 @@ function armstay_confirm(event, elem){
 function armaway_call(event,icon) {
     event.stopPropagation();
     $('#ask_pass_armaway_popup').modal('toggle');
-    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').innerHTML;
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
     var deviceid = "";
     window.localStorage.setItem("devicename5", devicename);
     api.devices.getAllDevices().done(function(data){
@@ -5951,9 +5962,6 @@ function armaway_confirm(event, elem){
 
 //ACA BUSCA el device entre los devices con el deviceid
 
-  if(pass != /*ACA CHEQUEA CON contraseña de meta*/) {
-    no = 1;
-  } 
 
     if(no == 1) {
       document.getElementById("pass2-tag").style.color = "#ff0000";
@@ -5964,7 +5972,9 @@ function armaway_confirm(event, elem){
     if(no == 0) {
 
       /*ACA CAMBIA EL ESTADO A ARMAWAY*/
-
+      api.devices.armaway(deviceid, pass).done(function(data){
+          
+      });
       $('#ask_pass_armaway_popup').modal('hide');
       document.getElementById("pass2-tag").style.color = "#000000";
       document.getElementById("pass2-tag").innerHTML = "Password*";
@@ -5982,13 +5992,16 @@ function cancel_armaway(event,sth) {
 function disarm_call(event,icon) {
     event.stopPropagation();
     $('#ask_pass_disarm_popup').modal('toggle');
-    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').innerHTML;
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
     var deviceid = "";
     window.localStorage.setItem("devicename6", devicename);
+    
     api.devices.getAllDevices().done(function(data){
         $.each(data, function(i, item){
             if(item.name == devicename){
+                
                 deviceid = item.id;
+                console.log("seteo el id " + deviceid);
                 window.localStorage.setItem("device_id6", deviceid);
             }
         });
@@ -6002,9 +6015,7 @@ function disarm_confirm(event, elem){
 
 //ACA BUSCA el device entre los devices con el deviceid
 
-  if(pass != /*ACA CHEQUEA CON contraseña de meta*/) {
-    no = 1;
-  } 
+  
 
     if(no == 1) {
       document.getElementById("pass3-tag").style.color = "#ff0000";
@@ -6015,7 +6026,11 @@ function disarm_confirm(event, elem){
     if(no == 0) {
 
       /*ACA CAMBIA EL ESTADO A DISARM*/
-
+        console.log("hey");
+        console.log(deviceid);
+        api.devices.disarm(deviceid,pass).done(function(data){
+            
+        });
       $('#ask_pass_disarm_popup').modal('hide');
       document.getElementById("pass3-tag").style.color = "#000000";
       document.getElementById("pass3-tag").innerHTML = "Password*";
