@@ -1542,18 +1542,17 @@ function onPageLoad(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png");
-                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); 
-                        alarm_info.innerHTML = "ArmAway...";
+                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); //debería depender de getstate
+                        alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
                     }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); 
-                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); 
-                        alarm_info.innerHTML = "Disarm..."; 
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); //debería depender de getstate
+                        alarm_info.innerHTML = "ArmAway On"; //debería depender de getstate
                     }
                         
                     
                     alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle_alarm(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
                     
@@ -3168,18 +3167,17 @@ function loadUngrouped(){
                     var h4_trash = document.createElement("h4");
                     
                     if(data.status == 'disarmed'){
-                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png");
-                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); 
-                        alarm_info.innerHTML = "ArmAway...";
+                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); //debería depender de getstate
+                        alarm_info.innerHTML = "Disarmed"; //debería depender de getstate
                     }else{
-                        alarm_icon.setAttribute("src", "Iconos/disarm_stat.png"); 
-                        alarm_icon.setAttribute("class", "alarm_icon_stat_disarm"); 
-                        alarm_info.innerHTML = "Disarm..."; 
+                        alarm_icon.setAttribute("src", "Iconos/alarm_wo_people_stat.png"); //debería depender de getstate
+                        alarm_icon.setAttribute("class", "alarm_icon_stat_armaway"); //debería depender de getstate
+                        alarm_info.innerHTML = "ArmAway On"; //debería depender de getstate
                     }
                         
                     
                     alarm_icon.setAttribute("alt", "Alarm Status");
-                    alarm_icon.setAttribute("onclick", "toggle_alarm(event,this);");
 
                     alarm_info.setAttribute("class", "lock_text");
                     
@@ -4417,4 +4415,253 @@ function loadUngrouped(){
                    });
                 });
            
+}
+
+//password validation
+
+function change_pass(event, elem){
+    var old_pass = $("#old_pass_input").val();
+    var new_pass = $("#new_pass_input").val();
+    var no = 0;
+    var no2 = 0;
+    var deviceid = window.localStorage.getItem("device_id3");
+
+//ACA BUSCA el device entre los devices con el deviceid
+
+ 
+
+  if(new_pass.length != 4 || isNotDigit(new_pass.charAt(0)) || isNotDigit(new_pass.charAt(1)) || isNotDigit(new_pass.charAt(2)) || isNotDigit(new_pass.charAt(3))) {
+    no2 = 1;
+  }
+
+    if(no == 1) {
+      document.getElementById("old-pass-tag").style.color = "#ff0000";
+      document.getElementById("old-pass-tag").innerHTML = "Incorrect password";
+      $('#change_pass_popup').modal('show');
+    }
+    else
+    {
+      document.getElementById("old-pass-tag").style.color = "#000000";
+      document.getElementById("old-pass-tag").innerHTML = "Old password";
+      $('#change_pass_popup').modal('show');
+    }
+
+    if(no2 == 1) {
+      document.getElementById("new-pass-tag").style.color = "#ff0000";
+      document.getElementById("new-pass-tag").innerHTML = "Invalid password";
+      $('#change_pass_popup').modal('show');
+    }
+    else {
+      document.getElementById("new-pass-tag").style.color = "#000000";
+      document.getElementById("new-pass-tag").innerHTML = "New password*";
+      $('#change_pass_popup').modal('show');
+    }
+      
+    if(no == 0 && no2 == 0) {
+
+      /*ACA PONE new_pass en meta*/
+        console.log("se vienen las passs");
+        console.log(old_pass);
+        console.log(new_pass);
+        console.log("dev id" +deviceid);
+   
+        api.devices.changecode(deviceid,old_pass, new_pass).done(function(data){
+          onPageLoad();
+            
+        });
+      $('#change_pass_popup').modal('hide');
+      document.getElementById("old-pass-tag").style.color = "#000000";
+      document.getElementById("old-pass-tag").innerHTML = "Old password";
+      document.getElementById("new-pass-tag").style.color = "#000000";
+      document.getElementById("new-pass-tag").innerHTML = "New password*";
+    }
+  }
+
+
+function isNotDigit(str) {
+  if(str == '0' || str == '1' || str == '2' || str == '3' || str == '4' || str == '5' || str == '6' || str == '7' || str == '8' || str == '9') {
+    return false;
+  }
+  return true;
+}
+
+function changepass(event, icon){
+    event.stopPropagation();
+    $('#change_pass_popup').modal('toggle');
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
+    var deviceid = "";
+    window.localStorage.setItem("devicename3", devicename);
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){
+            if(item.name == devicename){
+                deviceid = item.id;
+                window.localStorage.setItem("device_id3", deviceid);
+            }
+        });
+    });  
+}
+
+function close_changepass(event,sth) {
+      $('#change_pass_popup').modal('hide');
+      document.getElementById("old-pass-tag").style.color = "#000000";
+      document.getElementById("old-pass-tag").innerHTML = "Old password";
+      document.getElementById("new-pass-tag").style.color = "#000000";
+      document.getElementById("new-pass-tag").innerHTML = "New password*";
+}
+
+//check password armstay
+
+function armstay_call(event,icon) {
+    event.stopPropagation();
+    $('#ask_pass_armstay_popup').modal('toggle');
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
+    var deviceid = "";
+    window.localStorage.setItem("devicename4", devicename);
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){
+            if(item.name == devicename){
+                deviceid = item.id;
+                window.localStorage.setItem("device_id4", deviceid);
+            }
+        });
+    });  
+}
+
+function armstay_confirm(event, elem){
+    var pass = $("#pass1_input").val();
+    var no = 0;
+    var deviceid = window.localStorage.getItem("device_id4");
+
+//ACA BUSCA el device entre los devices con el deviceid
+
+  
+    if(no == 1) {
+      document.getElementById("pass1-tag").style.color = "#ff0000";
+      document.getElementById("pass1-tag").innerHTML = "Incorrect password";
+      $('#ask_pass_armstay_popup').modal('show');
+    }
+      
+    if(no == 0) {
+
+      /*ACA CAMBIA EL ESTADO A ARMSTAY*/
+        api.devices.armstay(deviceid, pass).done(function(data){
+          onPageLoad();
+      });
+      $('#ask_pass_armstay_popup').modal('hide');
+      document.getElementById("pass1-tag").style.color = "#000000";
+      document.getElementById("pass1-tag").innerHTML = "Password";
+    }
+  }
+
+  function cancel_armstay(event, elem) {
+      $('#ask_pass_armstay_popup').modal('hide');
+      document.getElementById("pass1-tag").style.color = "#000000";
+      document.getElementById("pass1-tag").innerHTML = "Password";
+  }
+
+// password check armaway
+
+function armaway_call(event,icon) {
+    event.stopPropagation();
+    $('#ask_pass_armaway_popup').modal('toggle');
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
+    var deviceid = "";
+    window.localStorage.setItem("devicename5", devicename);
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){
+            if(item.name == devicename){
+                deviceid = item.id;
+                window.localStorage.setItem("device_id5", deviceid);
+            }
+        });
+    });  
+}
+
+function armaway_confirm(event, elem){
+    var pass = $("#pass2_input").val();
+    var no = 0;
+    var deviceid = window.localStorage.getItem("device_id5");
+
+//ACA BUSCA el device entre los devices con el deviceid
+
+
+    if(no == 1) {
+      document.getElementById("pass2-tag").style.color = "#ff0000";
+      document.getElementById("pass2-tag").innerHTML = "Incorrect password";
+      $('#ask_pass_armaway_popup').modal('show');
+    }
+      
+    if(no == 0) {
+
+      /*ACA CAMBIA EL ESTADO A ARMAWAY*/
+      api.devices.armaway(deviceid, pass).done(function(data){
+            onPageLoad();
+          
+      });
+      $('#ask_pass_armaway_popup').modal('hide');
+      document.getElementById("pass2-tag").style.color = "#000000";
+      document.getElementById("pass2-tag").innerHTML = "Password";
+    }
+  }
+
+function cancel_armaway(event,sth) {
+      $('#ask_pass_armaway_popup').modal('hide');
+      document.getElementById("pass2-tag").style.color = "#000000";
+      document.getElementById("pass2-tag").innerHTML = "Password";
+}
+
+// password check disarm
+
+function disarm_call(event,icon) {
+    event.stopPropagation();
+    $('#ask_pass_disarm_popup').modal('toggle');
+    var devicename = icon.closest('div').parentNode.parentNode.previousElementSibling.querySelector('.name_device').querySelector('input').value;
+    var deviceid = "";
+    window.localStorage.setItem("devicename6", devicename);
+    
+    api.devices.getAllDevices().done(function(data){
+        $.each(data, function(i, item){
+            if(item.name == devicename){
+                
+                deviceid = item.id;
+                console.log("seteo el id " + deviceid);
+                window.localStorage.setItem("device_id6", deviceid);
+            }
+        });
+    });  
+}
+
+function disarm_confirm(event, elem){
+    var pass = $("#pass3_input").val();
+    var no = 0;
+    var deviceid = window.localStorage.getItem("device_id6");
+
+//ACA BUSCA el device entre los devices con el deviceid
+
+  
+
+    if(no == 1) {
+      document.getElementById("pass3-tag").style.color = "#ff0000";
+      document.getElementById("pass3-tag").innerHTML = "Incorrect password";
+      $('#ask_pass_disarm_popup').modal('show');
+    }
+      
+    if(no == 0) {
+
+      /*ACA CAMBIA EL ESTADO A DISARM*/
+        console.log("hey");
+        console.log(deviceid);
+        api.devices.disarm(deviceid,pass).done(function(data){
+            onPageLoad();
+        });
+      $('#ask_pass_disarm_popup').modal('hide');
+      document.getElementById("pass3-tag").style.color = "#000000";
+      document.getElementById("pass3-tag").innerHTML = "Password";
+    }
+  }
+
+function cancel_disarm(event, sth) {
+      $('#ask_pass_disarm_popup').modal('hide');
+      document.getElementById("pass3-tag").style.color = "#000000";
+      document.getElementById("pass3-tag").innerHTML = "Password";
 }
