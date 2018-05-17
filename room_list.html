@@ -73,23 +73,29 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="close_changepass(event,this)" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p id="name-tag">Old Password</p>
+                <div>
+                <p id="old-pass-tag">Old password*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Old password is required. Default password is 1234"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>
                 <input type="text" class="text-input" id="old_pass_input">
-                <p id="room-tag">New Password</p>
-                <input type="text" class="text-input" id="new_pass_input">
+                <div>
+                <p id="new-pass-tag">New password*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="New password is required and must be a 4-digit number" class="more_info3"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>  
+              <input type="text" class="text-input" id="new_pass_input">
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="change_pass(event, this)" data-dismiss="modal">Change</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close_changepass(event,this)">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="change_pass(event, this)">Change</button>
               </div>
             </div>
           </div>
-        </div>  
+        </div> 
 
         <!-- ArmStay Ask Password Modal -->
         <div class="modal fade" id="ask_pass_armstay_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -97,17 +103,20 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Enter Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="cancel_armaway(event,this)" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p id="name-tag">Password</p>
-                <input type="text" class="text-input" id="pass_input">
+                <div>
+                <p id="pass1-tag">Password*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Password is required"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>
+                <input type="text" class="text-input" id="pass1_input">
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="armstay_confirm(event, this)" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancel_armstay(event,this)">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="armstay_confirm(event, this)">Confirm</button>
               </div>
             </div>
           </div>
@@ -119,17 +128,20 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Enter Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="cancel_armaway(event,this)" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p id="name-tag">Password</p>
-                <input type="text" class="text-input" id="pass_input">
+                <div>
+                <p id="pass2-tag">Password*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Password is required"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>
+                <input type="text" class="text-input" id="pass2_input">
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="armaway_confirm(event, this)" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancel_armaway(event,this)">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="armaway_confirm(event, this)">Confirm</button>
               </div>
             </div>
           </div>
@@ -141,17 +153,20 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Enter Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="cancel_disarm(event,this)" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p id="name-tag">Password</p>
-                <input type="text" class="text-input" id="pass_input">
+              <div>
+                <p id="pass3-tag">Password*</p>
+                <a href="#" role="button" data-toggle="popover" data-content="Password is required"><img src="Iconos/question.png" class="more_info1"></a>
+              </div>
+                <input type="text" class="text-input" id="pass3_input">
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="disarm_confirm(event, this)" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancel_disarm(event,this)">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="disarm_confirm(event, this)">Confirm</button>
               </div>
             </div>
           </div>
