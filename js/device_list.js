@@ -2853,7 +2853,6 @@ function add_device(event, addbtn){
                                         console.log("Soy una alarma");
                                     }else{
                                         api.devices.addDevice(typeid,name,"Ungrouped").done(function(data) {
-                                                    console.log("Es unrouped")
                                                     onPageLoad();
                                                    $('#add_room_popup').modal('hide');
                                                    document.getElementById("name-tag").innerHTML = "Name*";
@@ -5843,8 +5842,8 @@ function change_pass(event, elem){
         console.log(old_pass);
         console.log(new_pass);
         console.log("dev id" +deviceid);
-        var arr = [old_pass, new_pass];
-        api.devices.changecode(deviceid,JSON.stringify(arr)).done(function(data){
+   
+        api.devices.changecode(deviceid,old_pass, new_pass).done(function(data){
             
         });
       $('#change_pass_popup').modal('hide');

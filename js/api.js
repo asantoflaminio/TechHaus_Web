@@ -256,7 +256,7 @@ api.devices = class {
     
     static changecode(id, param1, param2) {
    return $.ajax({
-      url: api.devices.url + id + "/armAway",
+      url: api.devices.url + id + "/changeSecurityCode",
       method: "PUT",
       dataType: "json",
      contentType: "application/json; charset=utf-8",
